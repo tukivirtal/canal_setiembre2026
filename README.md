@@ -24,8 +24,8 @@ internos, no como canales aparte.
 | 2b | [Identidad, audiencia y pilares](01-nicho/identidad-canal.md) | ✅ |
 | 2c | [Las primeras 100 ideas de video](01-nicho/100-ideas-video.md) | ✅ |
 | — | [Lote de prueba de 6 videos](01-nicho/lote-prueba-6-videos.md) | ✅ definido |
-| 1 | Plan completo de canal | ⏳ siguiente |
-| 3 | Guiones, hooks y miniaturas | ⏳ |
+| 1 | [Plan completo de canal](02-plan/plan-completo-canal.md) | ✅ |
+| 3 | Guiones, hooks y miniaturas | ⏳ siguiente |
 | 4 | Algoritmo y crecimiento | ⏳ |
 | 5 | Flujo de producción | ⏳ |
 | 6 | Plan de monetización | ⏳ |
