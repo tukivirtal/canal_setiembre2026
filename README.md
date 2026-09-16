@@ -31,5 +31,11 @@ internos, no como canales aparte.
 | 6 | Plan de monetización | ⏳ |
 | 7 | Analítica y revisión | ⏳ |
 
+### Consultas fuera de la secuencia
+
+| Tema | Archivo |
+|---|---|
+| Nicho de meditación y espiritualidad | [análisis](06-meditacion/analisis-nicho-meditacion.md) + [generador de sonido](06-meditacion/generar_sonido.py) |
+
 > El paso 1 se hace **después** del 2 a propósito: el "plan completo de canal" pide
 > analizar "mi nicho", así que no se puede escribir antes de tener nicho.
