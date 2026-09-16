@@ -117,22 +117,12 @@ reclamo de copyright desvía todos los ingresos del video.
 **Decisión tomada:** las miniaturas se generan en Leonardo, con créditos ya contratados.
 
 Acá la imagen generada **sí** es válida, y conviene tener clara la distinción:
-la miniatura es **empaque**, no evidencia. Nadie la toma como documento histórico.
-Dentro del video la regla sigue siendo la contraria: objeto real de museo, nunca ilustración
-inventada.
+la miniatura es **empaque**, no evidencia. Dentro del video la regla sigue siendo la
+contraria: objeto real de museo, nunca ilustración inventada.
 
-Los seis prompts del lote de prueba están en
+El sistema visual completo —bajorrelieve táctil, luz rasante, los seis prompts y la
+tipografía— está en
 [`prompts-leonardo-miniaturas.md`](prompts-leonardo-miniaturas.md).
-
-**Reglas para que las seis se vean del mismo canal:**
-
-- Misma paleta en todos los prompts: ocre, tierra, rojo apagado, fondo oscuro.
-- Misma luz: lateral, dura, tipo naturaleza muerta de museo.
-- **Un solo objeto** ocupando 40 % del cuadro o más.
-- Relación 16:9, exportar a 1280×720.
-- El **texto se agrega después**, nunca en el prompt: los generadores todavía escriben mal
-  y el texto tiene que ser idéntico en todos los videos. Photopea o Canva, gratis.
-- Dos versiones por video, objeto y rostro, para la prueba A/B del paso 3.
 
 ## 5. El flujo real, por lote de dos videos
 
