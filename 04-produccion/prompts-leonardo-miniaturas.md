@@ -27,14 +27,24 @@ el texto se agrega después en Photopea o Canva, nunca en el prompt.
 
 ## 1 · Qué comía un soldado romano
 
-**A — objeto**
+**A — objeto** *(prompt corregido tras la prueba en Canva, ver más abajo)*
 ```
-A dark dense round loaf of ancient Roman bread, broken in half, resting on rough wood
-next to a stone hand quern with scattered wheat grains, cinematic museum still life,
-single subject centered, dramatic side lighting, warm ochre and earth tone palette,
-deep dark background, shallow depth of field, photorealistic, high detail, 16:9
+A flat dense dark round loaf of ancient Roman panis militaris, coarse wholegrain,
+low and heavy, scored into radial wedges, NOT a modern crusty sourdough boule,
+resting on rough wood beside a Roman rotary hand quern made of two flat circular
+stone discs with a wooden handle, NOT a mortar and pestle, scattered wheat grains,
+cinematic museum still life, single subject centered, dramatic side lighting,
+warm ochre and earth tone palette, deep dark background, shallow depth of field,
+photorealistic, high detail, 16:9
 ```
 Texto a superponer: **UN KILO AL DÍA**
+
+> **Mejor aún:** para este video concreto, la imagen ganadora no se genera.
+> El **pan carbonizado de Pompeya** es un objeto real, está fotografiado en dominio
+> público, tiene esas marcas radiales inconfundibles y es muchísimo más llamativo que
+> cualquier hogaza generada. Lo trae el script del archivo con la búsqueda
+> `carbonized bread Pompeii`. Un objeto real que parece imposible le gana a una
+> ilustración perfecta.
 
 **B — rostro**
 ```
@@ -153,3 +163,34 @@ Texto: **SU DÍA COMPLETO**
    ni se lee el texto, no sirve: así es como la ve el espectador en el móvil.
 4. Guardar el archivo del prompt que funcionó. La plantilla del canal se construye
    acumulando prompts que dieron resultado, no reinventándolos cada vez.
+
+
+---
+
+## Lo que aprendimos probando en Canva
+
+Se generó la miniatura 1 en Canva con el prompt original, para comparar. Resultado:
+
+**Lo que salió bien:** la paleta, la luz lateral dura, el fondo oscuro y el tono
+documental salieron exactamente como los define el sistema. El objeto quedó centrado
+y dominante, y a tamaño chico se lee sin problema.
+
+**Los tres fallos, y son instructivos:**
+
+1. **No puso el texto.** Se pidió "UN KILO AL DÍA" y devolvió solo la imagen.
+   Confirma la regla: **el texto se agrega siempre aparte**, nunca en el prompt.
+2. **La hogaza es moderna.** Devolvió un pan artesanal de masa madre, alto, crujiente
+   y claro. El *panis militaris* romano era bajo, denso y oscuro. El guion del video
+   dice literalmente "nada parecido a una hogaza blanca de hoy" — y la miniatura
+   mostraba exactamente eso. **La miniatura contradecía al video.**
+3. **Cambió el molino por un mortero.** Se pidió una piedra de molino de mano y
+   devolvió un mortero con su mano. Herramienta equivocada.
+
+**La lección, que vale para Leonardo igual que para Canva:** un generador de imagen no
+sabe historia, sabe estética. Produce el objeto *promedio* que coincide con la palabra,
+y el promedio de "pan" es el pan de hoy. Por eso:
+
+- Todo prompt histórico necesita **negaciones explícitas** (`NOT a modern crusty boule`,
+  `NOT a mortar and pestle`) además de la descripción.
+- Y por eso la regla del canal se sostiene: **la imagen generada es empaque, no
+  evidencia.** Sirve de miniatura. Dentro del video, objeto real de museo.
