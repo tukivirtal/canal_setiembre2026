@@ -1,0 +1,4 @@
+# Los archivos de imagen no se versionan: son binarios pesados y se reconstruyen
+# en cualquier momento con `python3 descargar_archivo.py`.
+# El catálogo sí se versiona: es el que guarda la atribución.
+imagenes/
