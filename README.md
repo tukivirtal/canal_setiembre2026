@@ -35,7 +35,9 @@ internos, no como canales aparte.
 
 | Tema | Archivo |
 |---|---|
-| Nicho de meditación y espiritualidad | [análisis](06-meditacion/analisis-nicho-meditacion.md) + [generador de sonido](06-meditacion/generar_sonido.py) |
+| Nicho de meditación y espiritualidad | [análisis de rentabilidad](06-meditacion/analisis-nicho-meditacion.md) |
+| Canal de meditación sin riesgo de desmonetización | [diseño](06-meditacion/canal-sin-riesgo.md) |
+| Herramientas de audio | [generador de sonido](06-meditacion/generar_sonido.py) · [compositor de música](06-meditacion/componer_musica.py) |
 
 > El paso 1 se hace **después** del 2 a propósito: el "plan completo de canal" pide
 > analizar "mi nicho", así que no se puede escribir antes de tener nicho.
