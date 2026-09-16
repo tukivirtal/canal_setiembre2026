@@ -50,22 +50,29 @@ shallow depth of field, physically based rendering`.
 ## 3. Base común (va en los seis prompts)
 
 ```
-extreme close-up photograph of a carved stone bas-relief depicting [SUJETO],
+photograph of a broken fragment of a carved stone relief slab depicting [SUJETO],
+the stone fragment isolated and floating in empty dark space, deep black background,
+volumetric smoke drifting through the darkness around the fragment,
+ONE dominant carved subject filling 40% of the frame, minimal secondary elements,
 weathered marble with visible chisel marks, chipped edges and fine surface pitting,
-raking side light grazing across the surface revealing every carved depth,
-deep undercut shadows, subsurface scattering in the marble,
-volumetric smoke drifting slowly across a deep black background,
-one warm amber light source from the left, desaturated stone tones,
+lit from the extreme left at a ten degree grazing angle, strong chiaroscuro,
+the right side of every carved form falling into deep black shadow,
+subsurface scattering in the marble, one warm amber light source,
 shot on 85mm macro lens, shallow depth of field, physically based rendering,
 photograph of a real sculpture, not an illustration, hyper-tactile, 8k, 16:9
 ```
 
+> Las tres líneas que más importan son **la segunda** (fragmento aislado sobre fondo
+> negro), **la cuarta** (un solo sujeto dominante) y **la sexta** (ángulo de diez
+> grados). Sin esas tres, el generador devuelve un muro de piedra plano que llena el
+> cuadro entero. Con ellas, devuelve una pieza de museo. Ver la prueba más abajo.
+
 **Negative prompt (en los seis):**
 ```
 smooth plastic, glossy, cgi render, cartoon, illustration, digital painting,
-flat lighting, front lighting, text, letters, watermark, modern objects,
-multiple subjects, cluttered background, blurry, distorted hands, extra fingers,
-oversaturated, pastel colors
+flat lighting, front lighting, even lighting, full frame stone wall, edge to edge texture,
+busy composition, text, letters, watermark, modern objects, multiple competing subjects,
+cluttered background, blurry, distorted hands, extra fingers, oversaturated, pastel colors
 ```
 
 > **Usá tus referencias de Cloudinary como *style reference* en Leonardo.** Subir dos o
