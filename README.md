@@ -25,8 +25,8 @@ internos, no como canales aparte.
 | 2c | [Las primeras 100 ideas de video](01-nicho/100-ideas-video.md) | ✅ |
 | — | [Lote de prueba de 6 videos](01-nicho/lote-prueba-6-videos.md) | ✅ definido |
 | 1 | [Plan completo de canal](02-plan/plan-completo-canal.md) | ✅ |
-| 3 | Guiones, hooks y miniaturas | ⏳ siguiente |
-| 4 | Algoritmo y crecimiento | ⏳ |
+| 3 | [Sistema de guiones, hooks y miniaturas](03-guiones/sistema-guiones.md) · [títulos y miniaturas del lote](03-guiones/titulos-y-miniaturas-lote.md) · [guion completo del video 1](03-guiones/guion-01-soldado-romano.md) | ✅ |
+| 4 | Algoritmo y crecimiento | ⏳ siguiente |
 | 5 | Flujo de producción | ⏳ |
 | 6 | Plan de monetización | ⏳ |
 | 7 | Analítica y revisión | ⏳ |
