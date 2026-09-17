@@ -68,20 +68,23 @@ Casi todo el peso es el audio. El video de imagen fija a 1 fps apenas suma.
 ```
 [1] Trigger            Programado, o manual por obra
 [2] Google Sheets      Buscar la primera fila con estado = "montada"
-[3] Cloudinary         Obtener la URL del MP4 y la de la portada
-[4] YouTube            Upload a Video  ← con URL directa, no con el archivo
-[5] YouTube            Set Thumbnail   ← URL de la portada en Cloudinary
-[6] Google Sheets      Escribir url_video, estado = "publicada", fecha
-[7] Cloudinary         Borrar el MP4 (ya está en YouTube)
+[3] YouTube            Upload a Video  ← con URL directa, no con el archivo
+[4] YouTube            Set Thumbnail   ← URL de la portada
+[5] Google Sheets      Escribir url_video, estado = "publicada", fecha
+[6] Cloudinary         Borrar el MP4 (ya está en YouTube)
+
+Las URLs de [3] y [4] **no se consultan**: se construyen con la columna `id`
+siguiendo la convención de nombres (ver cloudinary.md). Eso ahorra un módulo
+entero y un punto de fallo.
 ```
 
-**El módulo clave es el [4].** La versión 1.1 de *Upload a Video* de Make admite
+**El módulo clave es el [3].** La versión 1.1 de *Upload a Video* de Make admite
 **subida directa desde una URL de video, con bajo consumo de transferencia**. Eso es lo
 que hace viable el flujo: el archivo **no pasa por dentro de Make**, que es donde se
 atascan los videos grandes. Si se usa el módulo en modo archivo, un MP4 de 445 MB del
 pilar Sueño es un problema; por URL, no.
 
-Los campos del [4] salen tal cual del catálogo:
+Los campos del [3] salen tal cual del catálogo:
 
 | Campo de YouTube | Columna del Excel |
 |---|---|
@@ -91,8 +94,14 @@ Los campos del [4] salen tal cual del catálogo:
 | Category | Música |
 | Privacy | (ver la trampa 1) |
 
-El Excel conviene tenerlo en **Google Sheets**, porque Make lo lee y lo escribe de forma
-nativa. `generar_catalogo.py --csv` produce el CSV que se importa.
+### El Excel tiene que ser una hoja de Google, no un .xlsx
+
+El archivo subido a Drive está como **`.xlsx`**, no como hoja de Google nativa. Los módulos
+de Google Sheets de Make **no leen un .xlsx guardado en Drive**: necesitan una hoja nativa.
+
+Se arregla en diez segundos: abrir el archivo en Drive y usar
+**Archivo → Guardar como Hojas de cálculo de Google**. Eso crea una copia nativa, que es la
+que apunta Make. El .xlsx original puede quedarse o borrarse.
 
 ## Los cuatro puntos donde esto se rompe
 
