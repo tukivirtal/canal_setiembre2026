@@ -1,0 +1,13 @@
+# Audio y video generados. No se versionan: son binarios pesados (una hora de
+# WAV son ~635 MB) y se regeneran idénticos con la semilla del catálogo.
+audio/
+video/
+portadas/
+*.wav
+*.flac
+*.mp4
+*.mov
+
+# Python
+__pycache__/
+*.pyc

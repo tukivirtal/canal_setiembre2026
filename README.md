@@ -31,6 +31,7 @@ los 7 pasos del PDF *"Armado canal YouTube"* aplicados a este nicho.
 | **5** | [Producción](05-produccion/produccion.md) · [prompts de video en Leonardo](05-produccion/prompts-leonardo-video.md) |
 | **6** | [Monetización](06-monetizacion/monetizacion.md) |
 | **7** | [Analítica](07-analitica/analitica.md) |
+| — | [Control de catálogo, lotes y Codespaces](08-catalogo/README.md) · [Excel](08-catalogo/catalogo_canal.xlsx) |
 
 > El paso 1 se escribe después del 2 porque pide analizar "mi nicho".
 

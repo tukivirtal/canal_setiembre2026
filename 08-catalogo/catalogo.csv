@@ -1,0 +1,641 @@
+id,titulo,tema,descripcion_optimizada,titulo_miniatura,hashtags,etiquetas,imagen_miniatura,url_video,raiz_hz,modo,semilla,duracion_min,comando_regeneracion,estado,fecha_publicacion,vistas,suscriptores,subs_por_1000
+OBRA-001,Música de meditación · 528 Hz · Raíz de sal · 1 hora,Frecuencias,"Raíz de sal · 1 hora
+
+Compuesta con raíz en 528 Hz, en entonación justa, modo hirajoshi.
+Para acompañar una práctica de respiración.
+
+Ciclo respiratorio: de 6.0 a 4.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
+Cuencos sintetizados cada 4 respiraciones.
+Composición original, sintetizada desde cero. Ninguna muestra procede de terceros.
+
+— English —
+Composed with a root of 528 Hz in just intonation, hirajoshi mode.
+To accompany a breathing practice.
+Original composition, synthesized from scratch. No third-party samples.
+
+Capítulos:
+00:00 [completar tras el montaje]",528 HZ,#Meditación #MúsicaRelajante #528Hz,"528 hz, música 528 hz, música de meditación, meditation music, frecuencias, hirajoshi, música relajante, meditación, relajación, entonación justa, composición original, relaxing music, sleep music, singing bowls, just intonation",,,528,hirajoshi,454078,60,python3 03-composicion/compositor.py --minutos 60 --raiz 528 --modo hirajoshi --semilla 454078,pendiente,,,,
+OBRA-002,Música de meditación · 432 Hz · Agua quieta · 1 hora,Frecuencias,"Agua quieta · 1 hora
+
+Compuesta con raíz en 432 Hz, en entonación justa, modo kumoi.
+Para acompañar una práctica de respiración.
+
+Ciclo respiratorio: de 6.0 a 4.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
+Cuencos sintetizados cada 4 respiraciones.
+Composición original, sintetizada desde cero. Ninguna muestra procede de terceros.
+
+— English —
+Composed with a root of 432 Hz in just intonation, kumoi mode.
+To accompany a breathing practice.
+Original composition, synthesized from scratch. No third-party samples.
+
+Capítulos:
+00:00 [completar tras el montaje]",432 HZ,#Meditación #MúsicaRelajante #432Hz,"432 hz, música 432 hz, música de meditación, meditation music, frecuencias, kumoi, música relajante, meditación, relajación, entonación justa, composición original, relaxing music, sleep music, singing bowls, just intonation",,,432,kumoi,146597,60,python3 03-composicion/compositor.py --minutos 60 --raiz 432 --modo kumoi --semilla 146597,pendiente,,,,
+OBRA-003,Música de meditación · 396 Hz · Ceniza tibia · 1 hora,Frecuencias,"Ceniza tibia · 1 hora
+
+Compuesta con raíz en 396 Hz, en entonación justa, modo kumoi.
+Para acompañar una práctica de respiración.
+
+Ciclo respiratorio: de 6.0 a 4.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
+Cuencos sintetizados cada 4 respiraciones.
+Composición original, sintetizada desde cero. Ninguna muestra procede de terceros.
+
+— English —
+Composed with a root of 396 Hz in just intonation, kumoi mode.
+To accompany a breathing practice.
+Original composition, synthesized from scratch. No third-party samples.
+
+Capítulos:
+00:00 [completar tras el montaje]",396 HZ,#Meditación #MúsicaRelajante #396Hz,"396 hz, música 396 hz, música de meditación, meditation music, frecuencias, kumoi, música relajante, meditación, relajación, entonación justa, composición original, relaxing music, sleep music, singing bowls, just intonation",,,396,kumoi,338018,60,python3 03-composicion/compositor.py --minutos 60 --raiz 396 --modo kumoi --semilla 338018,pendiente,,,,
+OBRA-004,Música de meditación · 417 Hz · Puerta baja · 45 minutos,Frecuencias,"Puerta baja · 45 minutos
+
+Compuesta con raíz en 417 Hz, en entonación justa, modo hirajoshi.
+Para acompañar una práctica de respiración.
+
+Ciclo respiratorio: de 6.0 a 4.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
+Cuencos sintetizados cada 4 respiraciones.
+Composición original, sintetizada desde cero. Ninguna muestra procede de terceros.
+
+— English —
+Composed with a root of 417 Hz in just intonation, hirajoshi mode.
+To accompany a breathing practice.
+Original composition, synthesized from scratch. No third-party samples.
+
+Capítulos:
+00:00 [completar tras el montaje]",417 HZ,#Meditación #MúsicaRelajante #417Hz,"417 hz, música 417 hz, música de meditación, meditation music, frecuencias, hirajoshi, música relajante, meditación, relajación, entonación justa, composición original, relaxing music, sleep music, singing bowls, just intonation",,,417,hirajoshi,409966,45,python3 03-composicion/compositor.py --minutos 45 --raiz 417 --modo hirajoshi --semilla 409966,pendiente,,,,
+OBRA-005,Música de meditación · 639 Hz · Campo abierto · 1 hora,Frecuencias,"Campo abierto · 1 hora
+
+Compuesta con raíz en 639 Hz, en entonación justa, modo yo.
+Para acompañar una práctica de respiración.
+
+Ciclo respiratorio: de 6.0 a 4.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
+Cuencos sintetizados cada 4 respiraciones.
+Composición original, sintetizada desde cero. Ninguna muestra procede de terceros.
+
+— English —
+Composed with a root of 639 Hz in just intonation, yo mode.
+To accompany a breathing practice.
+Original composition, synthesized from scratch. No third-party samples.
+
+Capítulos:
+00:00 [completar tras el montaje]",639 HZ,#Meditación #MúsicaRelajante #639Hz,"639 hz, música 639 hz, música de meditación, meditation music, frecuencias, yo, música relajante, meditación, relajación, entonación justa, composición original, relaxing music, sleep music, singing bowls, just intonation",,,639,yo,133046,60,python3 03-composicion/compositor.py --minutos 60 --raiz 639 --modo yo --semilla 133046,pendiente,,,,
+OBRA-006,Música de meditación · 741 Hz · Aire delgado · 45 minutos,Frecuencias,"Aire delgado · 45 minutos
+
+Compuesta con raíz en 741 Hz, en entonación justa, modo yo.
+Para acompañar una práctica de respiración.
+
+Ciclo respiratorio: de 6.0 a 4.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
+Cuencos sintetizados cada 4 respiraciones.
+Composición original, sintetizada desde cero. Ninguna muestra procede de terceros.
+
+— English —
+Composed with a root of 741 Hz in just intonation, yo mode.
+To accompany a breathing practice.
+Original composition, synthesized from scratch. No third-party samples.
+
+Capítulos:
+00:00 [completar tras el montaje]",741 HZ,#Meditación #MúsicaRelajante #741Hz,"741 hz, música 741 hz, música de meditación, meditation music, frecuencias, yo, música relajante, meditación, relajación, entonación justa, composición original, relaxing music, sleep music, singing bowls, just intonation",,,741,yo,244487,45,python3 03-composicion/compositor.py --minutos 45 --raiz 741 --modo yo --semilla 244487,pendiente,,,,
+OBRA-007,Música de meditación · 852 Hz · Última luz · 45 minutos,Frecuencias,"Última luz · 45 minutos
+
+Compuesta con raíz en 852 Hz, en entonación justa, modo hirajoshi.
+Para acompañar una práctica de respiración.
+
+Ciclo respiratorio: de 6.0 a 4.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
+Cuencos sintetizados cada 4 respiraciones.
+Composición original, sintetizada desde cero. Ninguna muestra procede de terceros.
+
+— English —
+Composed with a root of 852 Hz in just intonation, hirajoshi mode.
+To accompany a breathing practice.
+Original composition, synthesized from scratch. No third-party samples.
+
+Capítulos:
+00:00 [completar tras el montaje]",852 HZ,#Meditación #MúsicaRelajante #852Hz,"852 hz, música 852 hz, música de meditación, meditation music, frecuencias, hirajoshi, música relajante, meditación, relajación, entonación justa, composición original, relaxing music, sleep music, singing bowls, just intonation",,,852,hirajoshi,288169,45,python3 03-composicion/compositor.py --minutos 45 --raiz 852 --modo hirajoshi --semilla 288169,pendiente,,,,
+OBRA-008,"Música de meditación · 528 Hz · Raíz de sal, larga · 3 horas",Frecuencias,"Raíz de sal, larga · 3 horas
+
+Compuesta con raíz en 528 Hz, en entonación justa, modo hirajoshi.
+Para acompañar una práctica de respiración.
+
+Ciclo respiratorio: de 6.0 a 4.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
+Cuencos sintetizados cada 4 respiraciones.
+Composición original, sintetizada desde cero. Ninguna muestra procede de terceros.
+
+— English —
+Composed with a root of 528 Hz in just intonation, hirajoshi mode.
+To accompany a breathing practice.
+Original composition, synthesized from scratch. No third-party samples.
+
+Capítulos:
+00:00 [completar tras el montaje]",528 HZ,#Meditación #MúsicaRelajante #528Hz,"528 hz, música 528 hz, música de meditación, meditation music, frecuencias, hirajoshi, música relajante, meditación, relajación, entonación justa, composición original, relaxing music, sleep music, singing bowls, just intonation",,,528,hirajoshi,638156,180,python3 03-composicion/compositor.py --minutos 180 --raiz 528 --modo hirajoshi --semilla 638156,pendiente,,,,
+OBRA-009,Música para dormir · 432 Hz · Noche sin fondo · 3 horas,Sueño,"Noche sin fondo · 3 horas
+
+Compuesta con raíz en 432 Hz, en entonación justa, modo shin.
+Para acompañar una práctica de respiración.
+
+Ciclo respiratorio: de 4.5 a 3.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
+Cuencos sintetizados cada 4 respiraciones.
+Composición original, sintetizada desde cero. Ninguna muestra procede de terceros.
+
+— English —
+Composed with a root of 432 Hz in just intonation, shin mode.
+To accompany a breathing practice.
+Original composition, synthesized from scratch. No third-party samples.
+
+Capítulos:
+00:00 [completar tras el montaje]",3 HORAS,#MúsicaParaDormir #MúsicaRelajante #432Hz,"432 hz, música 432 hz, música para dormir, sleep music, sueño, shin, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, singing bowls, just intonation",,,432,shin,505716,180,python3 03-composicion/compositor.py --minutos 180 --raiz 432 --modo shin --semilla 505716,pendiente,,,,
+OBRA-010,Música para dormir · 396 Hz · Cuarto oscuro · 2 horas,Sueño,"Cuarto oscuro · 2 horas
+
+Compuesta con raíz en 396 Hz, en entonación justa, modo kumoi.
+Para acompañar una práctica de respiración.
+
+Ciclo respiratorio: de 4.5 a 3.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
+Cuencos sintetizados cada 4 respiraciones.
+Composición original, sintetizada desde cero. Ninguna muestra procede de terceros.
+
+— English —
+Composed with a root of 396 Hz in just intonation, kumoi mode.
+To accompany a breathing practice.
+Original composition, synthesized from scratch. No third-party samples.
+
+Capítulos:
+00:00 [completar tras el montaje]",2 HORAS,#MúsicaParaDormir #MúsicaRelajante #396Hz,"396 hz, música 396 hz, música para dormir, sleep music, sueño, kumoi, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, singing bowls, just intonation",,,396,kumoi,692584,120,python3 03-composicion/compositor.py --minutos 120 --raiz 396 --modo kumoi --semilla 692584,pendiente,,,,
+OBRA-011,Música para dormir · 432 Hz · Respiración de invierno · 2 horas,Sueño,"Respiración de invierno · 2 horas
+
+Compuesta con raíz en 432 Hz, en entonación justa, modo kumoi.
+Para acompañar una práctica de respiración.
+
+Ciclo respiratorio: de 4.5 a 3.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
+Cuencos sintetizados cada 4 respiraciones.
+Composición original, sintetizada desde cero. Ninguna muestra procede de terceros.
+
+— English —
+Composed with a root of 432 Hz in just intonation, kumoi mode.
+To accompany a breathing practice.
+Original composition, synthesized from scratch. No third-party samples.
+
+Capítulos:
+00:00 [completar tras el montaje]",2 HORAS,#MúsicaParaDormir #MúsicaRelajante #432Hz,"432 hz, música 432 hz, música para dormir, sleep music, sueño, kumoi, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, singing bowls, just intonation",,,432,kumoi,531725,120,python3 03-composicion/compositor.py --minutos 120 --raiz 432 --modo kumoi --semilla 531725,pendiente,,,,
+OBRA-012,Música para dormir · 528 Hz · Nadie despierto · 3 horas,Sueño,"Nadie despierto · 3 horas
+
+Compuesta con raíz en 528 Hz, en entonación justa, modo shin.
+Para acompañar una práctica de respiración.
+
+Ciclo respiratorio: de 4.5 a 3.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
+Cuencos sintetizados cada 4 respiraciones.
+Composición original, sintetizada desde cero. Ninguna muestra procede de terceros.
+
+— English —
+Composed with a root of 528 Hz in just intonation, shin mode.
+To accompany a breathing practice.
+Original composition, synthesized from scratch. No third-party samples.
+
+Capítulos:
+00:00 [completar tras el montaje]",3 HORAS,#MúsicaParaDormir #MúsicaRelajante #528Hz,"528 hz, música 528 hz, música para dormir, sleep music, sueño, shin, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, singing bowls, just intonation",,,528,shin,751043,180,python3 03-composicion/compositor.py --minutos 180 --raiz 528 --modo shin --semilla 751043,pendiente,,,,
+OBRA-013,Música para dormir · 417 Hz · Antes del alba · 90 minutos,Sueño,"Antes del alba · 90 minutos
+
+Compuesta con raíz en 417 Hz, en entonación justa, modo kumoi.
+Para acompañar una práctica de respiración.
+
+Ciclo respiratorio: de 4.5 a 3.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
+Cuencos sintetizados cada 4 respiraciones.
+Composición original, sintetizada desde cero. Ninguna muestra procede de terceros.
+
+— English —
+Composed with a root of 417 Hz in just intonation, kumoi mode.
+To accompany a breathing practice.
+Original composition, synthesized from scratch. No third-party samples.
+
+Capítulos:
+00:00 [completar tras el montaje]",90 MIN,#MúsicaParaDormir #MúsicaRelajante #417Hz,"417 hz, música 417 hz, música para dormir, sleep music, sueño, kumoi, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, singing bowls, just intonation",,,417,kumoi,813147,90,python3 03-composicion/compositor.py --minutos 90 --raiz 417 --modo kumoi --semilla 813147,pendiente,,,,
+OBRA-014,Música para dormir · 396 Hz · Peso lento · 2 horas,Sueño,"Peso lento · 2 horas
+
+Compuesta con raíz en 396 Hz, en entonación justa, modo shin.
+Para acompañar una práctica de respiración.
+
+Ciclo respiratorio: de 4.5 a 3.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
+Cuencos sintetizados cada 4 respiraciones.
+Composición original, sintetizada desde cero. Ninguna muestra procede de terceros.
+
+— English —
+Composed with a root of 396 Hz in just intonation, shin mode.
+To accompany a breathing practice.
+Original composition, synthesized from scratch. No third-party samples.
+
+Capítulos:
+00:00 [completar tras el montaje]",2 HORAS,#MúsicaParaDormir #MúsicaRelajante #396Hz,"396 hz, música 396 hz, música para dormir, sleep music, sueño, shin, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, singing bowls, just intonation",,,396,shin,885916,120,python3 03-composicion/compositor.py --minutos 120 --raiz 396 --modo shin --semilla 885916,pendiente,,,,
+OBRA-015,Música para dormir · 432 Hz · La casa dormida · 3 horas,Sueño,"La casa dormida · 3 horas
+
+Compuesta con raíz en 432 Hz, en entonación justa, modo kumoi.
+Para acompañar una práctica de respiración.
+
+Ciclo respiratorio: de 4.5 a 3.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
+Cuencos sintetizados cada 4 respiraciones.
+Composición original, sintetizada desde cero. Ninguna muestra procede de terceros.
+
+— English —
+Composed with a root of 432 Hz in just intonation, kumoi mode.
+To accompany a breathing practice.
+Original composition, synthesized from scratch. No third-party samples.
+
+Capítulos:
+00:00 [completar tras el montaje]",3 HORAS,#MúsicaParaDormir #MúsicaRelajante #432Hz,"432 hz, música 432 hz, música para dormir, sleep music, sueño, kumoi, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, singing bowls, just intonation",,,432,kumoi,295910,180,python3 03-composicion/compositor.py --minutos 180 --raiz 432 --modo kumoi --semilla 295910,pendiente,,,,
+OBRA-016,Música para dormir · 528 Hz · Marea baja · 2 horas,Sueño,"Marea baja · 2 horas
+
+Compuesta con raíz en 528 Hz, en entonación justa, modo kumoi.
+Para acompañar una práctica de respiración.
+
+Ciclo respiratorio: de 4.5 a 3.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
+Cuencos sintetizados cada 4 respiraciones.
+Composición original, sintetizada desde cero. Ninguna muestra procede de terceros.
+
+— English —
+Composed with a root of 528 Hz in just intonation, kumoi mode.
+To accompany a breathing practice.
+Original composition, synthesized from scratch. No third-party samples.
+
+Capítulos:
+00:00 [completar tras el montaje]",2 HORAS,#MúsicaParaDormir #MúsicaRelajante #528Hz,"528 hz, música 528 hz, música para dormir, sleep music, sueño, kumoi, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, singing bowls, just intonation",,,528,kumoi,443547,120,python3 03-composicion/compositor.py --minutos 120 --raiz 528 --modo kumoi --semilla 443547,pendiente,,,,
+OBRA-017,Música para meditar · 528 Hz · Cuatro y seis · 20 minutos,Respiración,"Cuatro y seis · 20 minutos
+
+Compuesta con raíz en 528 Hz, en entonación justa, modo hirajoshi.
+Para acompañar una práctica de respiración.
+
+Ciclo respiratorio: de 6.0 a 4.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
+Cuencos sintetizados cada 4 respiraciones.
+Composición original, sintetizada desde cero. Ninguna muestra procede de terceros.
+
+— English —
+Composed with a root of 528 Hz in just intonation, hirajoshi mode.
+To accompany a breathing practice.
+Original composition, synthesized from scratch. No third-party samples.
+
+Capítulos:
+00:00 [completar tras el montaje]",20 MIN,#Respiración #MúsicaRelajante #528Hz,"528 hz, música 528 hz, música para meditar, meditation music, respiración, hirajoshi, música relajante, meditación, relajación, entonación justa, composición original, relaxing music, sleep music, singing bowls, just intonation",,,528,hirajoshi,913368,20,python3 03-composicion/compositor.py --minutos 20 --raiz 528 --modo hirajoshi --semilla 913368,pendiente,,,,
+OBRA-018,Música para meditar · 432 Hz · Bajar el ritmo · 30 minutos,Respiración,"Bajar el ritmo · 30 minutos
+
+Compuesta con raíz en 432 Hz, en entonación justa, modo hirajoshi.
+Para acompañar una práctica de respiración.
+
+Ciclo respiratorio: de 6.0 a 4.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
+Cuencos sintetizados cada 4 respiraciones.
+Composición original, sintetizada desde cero. Ninguna muestra procede de terceros.
+
+— English —
+Composed with a root of 432 Hz in just intonation, hirajoshi mode.
+To accompany a breathing practice.
+Original composition, synthesized from scratch. No third-party samples.
+
+Capítulos:
+00:00 [completar tras el montaje]",30 MIN,#Respiración #MúsicaRelajante #432Hz,"432 hz, música 432 hz, música para meditar, meditation music, respiración, hirajoshi, música relajante, meditación, relajación, entonación justa, composición original, relaxing music, sleep music, singing bowls, just intonation",,,432,hirajoshi,739461,30,python3 03-composicion/compositor.py --minutos 30 --raiz 432 --modo hirajoshi --semilla 739461,pendiente,,,,
+OBRA-019,Música para meditar · 528 Hz · Entrada y salida · 20 minutos,Respiración,"Entrada y salida · 20 minutos
+
+Compuesta con raíz en 528 Hz, en entonación justa, modo yo.
+Para acompañar una práctica de respiración.
+
+Ciclo respiratorio: de 6.0 a 4.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
+Cuencos sintetizados cada 4 respiraciones.
+Composición original, sintetizada desde cero. Ninguna muestra procede de terceros.
+
+— English —
+Composed with a root of 528 Hz in just intonation, yo mode.
+To accompany a breathing practice.
+Original composition, synthesized from scratch. No third-party samples.
+
+Capítulos:
+00:00 [completar tras el montaje]",20 MIN,#Respiración #MúsicaRelajante #528Hz,"528 hz, música 528 hz, música para meditar, meditation music, respiración, yo, música relajante, meditación, relajación, entonación justa, composición original, relaxing music, sleep music, singing bowls, just intonation",,,528,yo,310137,20,python3 03-composicion/compositor.py --minutos 20 --raiz 528 --modo yo --semilla 310137,pendiente,,,,
+OBRA-020,Música para meditar · 528 Hz · Diez minutos · 10 minutos,Respiración,"Diez minutos · 10 minutos
+
+Compuesta con raíz en 528 Hz, en entonación justa, modo shin.
+Para acompañar una práctica de respiración.
+
+Ciclo respiratorio: de 6.0 a 4.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
+Cuencos sintetizados cada 4 respiraciones.
+Composición original, sintetizada desde cero. Ninguna muestra procede de terceros.
+
+— English —
+Composed with a root of 528 Hz in just intonation, shin mode.
+To accompany a breathing practice.
+Original composition, synthesized from scratch. No third-party samples.
+
+Capítulos:
+00:00 [completar tras el montaje]",10 MIN,#Respiración #MúsicaRelajante #528Hz,"528 hz, música 528 hz, música para meditar, meditation music, respiración, shin, música relajante, meditación, relajación, entonación justa, composición original, relaxing music, sleep music, singing bowls, just intonation",,,528,shin,207307,10,python3 03-composicion/compositor.py --minutos 10 --raiz 528 --modo shin --semilla 207307,pendiente,,,,
+OBRA-021,Música para meditar · 639 Hz · Antes de empezar · 15 minutos,Respiración,"Antes de empezar · 15 minutos
+
+Compuesta con raíz en 639 Hz, en entonación justa, modo yo.
+Para acompañar una práctica de respiración.
+
+Ciclo respiratorio: de 6.0 a 4.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
+Cuencos sintetizados cada 4 respiraciones.
+Composición original, sintetizada desde cero. Ninguna muestra procede de terceros.
+
+— English —
+Composed with a root of 639 Hz in just intonation, yo mode.
+To accompany a breathing practice.
+Original composition, synthesized from scratch. No third-party samples.
+
+Capítulos:
+00:00 [completar tras el montaje]",15 MIN,#Respiración #MúsicaRelajante #639Hz,"639 hz, música 639 hz, música para meditar, meditation music, respiración, yo, música relajante, meditación, relajación, entonación justa, composición original, relaxing music, sleep music, singing bowls, just intonation",,,639,yo,592463,15,python3 03-composicion/compositor.py --minutos 15 --raiz 639 --modo yo --semilla 592463,pendiente,,,,
+OBRA-022,Música para meditar · 396 Hz · Solo exhalar · 25 minutos,Respiración,"Solo exhalar · 25 minutos
+
+Compuesta con raíz en 396 Hz, en entonación justa, modo kumoi.
+Para acompañar una práctica de respiración.
+
+Ciclo respiratorio: de 6.0 a 4.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
+Cuencos sintetizados cada 4 respiraciones.
+Composición original, sintetizada desde cero. Ninguna muestra procede de terceros.
+
+— English —
+Composed with a root of 396 Hz in just intonation, kumoi mode.
+To accompany a breathing practice.
+Original composition, synthesized from scratch. No third-party samples.
+
+Capítulos:
+00:00 [completar tras el montaje]",25 MIN,#Respiración #MúsicaRelajante #396Hz,"396 hz, música 396 hz, música para meditar, meditation music, respiración, kumoi, música relajante, meditación, relajación, entonación justa, composición original, relaxing music, sleep music, singing bowls, just intonation",,,396,kumoi,555819,25,python3 03-composicion/compositor.py --minutos 25 --raiz 396 --modo kumoi --semilla 555819,pendiente,,,,
+OBRA-023,Música para meditar · 432 Hz · Contar hasta seis · 20 minutos,Respiración,"Contar hasta seis · 20 minutos
+
+Compuesta con raíz en 432 Hz, en entonación justa, modo hirajoshi.
+Para acompañar una práctica de respiración.
+
+Ciclo respiratorio: de 6.0 a 4.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
+Cuencos sintetizados cada 4 respiraciones.
+Composición original, sintetizada desde cero. Ninguna muestra procede de terceros.
+
+— English —
+Composed with a root of 432 Hz in just intonation, hirajoshi mode.
+To accompany a breathing practice.
+Original composition, synthesized from scratch. No third-party samples.
+
+Capítulos:
+00:00 [completar tras el montaje]",20 MIN,#Respiración #MúsicaRelajante #432Hz,"432 hz, música 432 hz, música para meditar, meditation music, respiración, hirajoshi, música relajante, meditación, relajación, entonación justa, composición original, relaxing music, sleep music, singing bowls, just intonation",,,432,hirajoshi,627771,20,python3 03-composicion/compositor.py --minutos 20 --raiz 432 --modo hirajoshi --semilla 627771,pendiente,,,,
+OBRA-024,Música para meditar · 417 Hz · El final del día · 30 minutos,Respiración,"El final del día · 30 minutos
+
+Compuesta con raíz en 417 Hz, en entonación justa, modo kumoi.
+Para acompañar una práctica de respiración.
+
+Ciclo respiratorio: de 6.0 a 4.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
+Cuencos sintetizados cada 4 respiraciones.
+Composición original, sintetizada desde cero. Ninguna muestra procede de terceros.
+
+— English —
+Composed with a root of 417 Hz in just intonation, kumoi mode.
+To accompany a breathing practice.
+Original composition, synthesized from scratch. No third-party samples.
+
+Capítulos:
+00:00 [completar tras el montaje]",30 MIN,#Respiración #MúsicaRelajante #417Hz,"417 hz, música 417 hz, música para meditar, meditation music, respiración, kumoi, música relajante, meditación, relajación, entonación justa, composición original, relaxing music, sleep music, singing bowls, just intonation",,,417,kumoi,250697,30,python3 03-composicion/compositor.py --minutos 30 --raiz 417 --modo kumoi --semilla 250697,pendiente,,,,
+OBRA-025,Cuencos tibetanos · 528 Hz · Siete cuencos · 45 minutos,Cuencos,"Siete cuencos · 45 minutos
+
+Compuesta con raíz en 528 Hz, en entonación justa, modo hirajoshi.
+Para acompañar una práctica de respiración.
+
+Ciclo respiratorio: de 5.5 a 4.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
+Cuencos sintetizados cada 4 respiraciones.
+Composición original, sintetizada desde cero. Ninguna muestra procede de terceros.
+
+— English —
+Composed with a root of 528 Hz in just intonation, hirajoshi mode.
+To accompany a breathing practice.
+Original composition, synthesized from scratch. No third-party samples.
+
+Capítulos:
+00:00 [completar tras el montaje]",CUENCOS,#CuencosTibetanos #MúsicaRelajante #528Hz,"528 hz, música 528 hz, cuencos tibetanos, singing bowls, cuencos, hirajoshi, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, sleep music, just intonation",,,528,hirajoshi,1186,45,python3 03-composicion/compositor.py --minutos 45 --raiz 528 --modo hirajoshi --semilla 1186,pendiente,,,,
+OBRA-026,Cuencos tibetanos · 432 Hz · Metal y aire · 1 hora,Cuencos,"Metal y aire · 1 hora
+
+Compuesta con raíz en 432 Hz, en entonación justa, modo shin.
+Para acompañar una práctica de respiración.
+
+Ciclo respiratorio: de 5.5 a 4.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
+Cuencos sintetizados cada 4 respiraciones.
+Composición original, sintetizada desde cero. Ninguna muestra procede de terceros.
+
+— English —
+Composed with a root of 432 Hz in just intonation, shin mode.
+To accompany a breathing practice.
+Original composition, synthesized from scratch. No third-party samples.
+
+Capítulos:
+00:00 [completar tras el montaje]",CUENCOS,#CuencosTibetanos #MúsicaRelajante #432Hz,"432 hz, música 432 hz, cuencos tibetanos, singing bowls, cuencos, shin, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, sleep music, just intonation",,,432,shin,627577,60,python3 03-composicion/compositor.py --minutos 60 --raiz 432 --modo shin --semilla 627577,pendiente,,,,
+OBRA-027,Cuencos tibetanos · 528 Hz · Golpe y silencio · 30 minutos,Cuencos,"Golpe y silencio · 30 minutos
+
+Compuesta con raíz en 528 Hz, en entonación justa, modo shin.
+Para acompañar una práctica de respiración.
+
+Ciclo respiratorio: de 5.5 a 4.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
+Cuencos sintetizados cada 4 respiraciones.
+Composición original, sintetizada desde cero. Ninguna muestra procede de terceros.
+
+— English —
+Composed with a root of 528 Hz in just intonation, shin mode.
+To accompany a breathing practice.
+Original composition, synthesized from scratch. No third-party samples.
+
+Capítulos:
+00:00 [completar tras el montaje]",CUENCOS,#CuencosTibetanos #MúsicaRelajante #528Hz,"528 hz, música 528 hz, cuencos tibetanos, singing bowls, cuencos, shin, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, sleep music, just intonation",,,528,shin,632595,30,python3 03-composicion/compositor.py --minutos 30 --raiz 528 --modo shin --semilla 632595,pendiente,,,,
+OBRA-028,Cuencos tibetanos · 396 Hz · Cuenco de bronce · 45 minutos,Cuencos,"Cuenco de bronce · 45 minutos
+
+Compuesta con raíz en 396 Hz, en entonación justa, modo kumoi.
+Para acompañar una práctica de respiración.
+
+Ciclo respiratorio: de 5.5 a 4.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
+Cuencos sintetizados cada 4 respiraciones.
+Composición original, sintetizada desde cero. Ninguna muestra procede de terceros.
+
+— English —
+Composed with a root of 396 Hz in just intonation, kumoi mode.
+To accompany a breathing practice.
+Original composition, synthesized from scratch. No third-party samples.
+
+Capítulos:
+00:00 [completar tras el montaje]",CUENCOS,#CuencosTibetanos #MúsicaRelajante #396Hz,"396 hz, música 396 hz, cuencos tibetanos, singing bowls, cuencos, kumoi, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, sleep music, just intonation",,,396,kumoi,894001,45,python3 03-composicion/compositor.py --minutos 45 --raiz 396 --modo kumoi --semilla 894001,pendiente,,,,
+OBRA-029,Cuencos tibetanos · 639 Hz · Resonancia larga · 1 hora,Cuencos,"Resonancia larga · 1 hora
+
+Compuesta con raíz en 639 Hz, en entonación justa, modo yo.
+Para acompañar una práctica de respiración.
+
+Ciclo respiratorio: de 5.5 a 4.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
+Cuencos sintetizados cada 4 respiraciones.
+Composición original, sintetizada desde cero. Ninguna muestra procede de terceros.
+
+— English —
+Composed with a root of 639 Hz in just intonation, yo mode.
+To accompany a breathing practice.
+Original composition, synthesized from scratch. No third-party samples.
+
+Capítulos:
+00:00 [completar tras el montaje]",CUENCOS,#CuencosTibetanos #MúsicaRelajante #639Hz,"639 hz, música 639 hz, cuencos tibetanos, singing bowls, cuencos, yo, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, sleep music, just intonation",,,639,yo,335798,60,python3 03-composicion/compositor.py --minutos 60 --raiz 639 --modo yo --semilla 335798,pendiente,,,,
+OBRA-030,Cuencos tibetanos · 528 Hz · Uno solo · 20 minutos,Cuencos,"Uno solo · 20 minutos
+
+Compuesta con raíz en 528 Hz, en entonación justa, modo shin.
+Para acompañar una práctica de respiración.
+
+Ciclo respiratorio: de 5.5 a 4.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
+Cuencos sintetizados cada 4 respiraciones.
+Composición original, sintetizada desde cero. Ninguna muestra procede de terceros.
+
+— English —
+Composed with a root of 528 Hz in just intonation, shin mode.
+To accompany a breathing practice.
+Original composition, synthesized from scratch. No third-party samples.
+
+Capítulos:
+00:00 [completar tras el montaje]",CUENCOS,#CuencosTibetanos #MúsicaRelajante #528Hz,"528 hz, música 528 hz, cuencos tibetanos, singing bowls, cuencos, shin, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, sleep music, just intonation",,,528,shin,299306,20,python3 03-composicion/compositor.py --minutos 20 --raiz 528 --modo shin --semilla 299306,pendiente,,,,
+OBRA-031,Cuencos tibetanos · 417 Hz · Templo vacío · 45 minutos,Cuencos,"Templo vacío · 45 minutos
+
+Compuesta con raíz en 417 Hz, en entonación justa, modo hirajoshi.
+Para acompañar una práctica de respiración.
+
+Ciclo respiratorio: de 5.5 a 4.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
+Cuencos sintetizados cada 4 respiraciones.
+Composición original, sintetizada desde cero. Ninguna muestra procede de terceros.
+
+— English —
+Composed with a root of 417 Hz in just intonation, hirajoshi mode.
+To accompany a breathing practice.
+Original composition, synthesized from scratch. No third-party samples.
+
+Capítulos:
+00:00 [completar tras el montaje]",CUENCOS,#CuencosTibetanos #MúsicaRelajante #417Hz,"417 hz, música 417 hz, cuencos tibetanos, singing bowls, cuencos, hirajoshi, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, sleep music, just intonation",,,417,hirajoshi,714152,45,python3 03-composicion/compositor.py --minutos 45 --raiz 417 --modo hirajoshi --semilla 714152,pendiente,,,,
+OBRA-032,Cuencos tibetanos · 432 Hz · Lo que queda del sonido · 1 hora,Cuencos,"Lo que queda del sonido · 1 hora
+
+Compuesta con raíz en 432 Hz, en entonación justa, modo kumoi.
+Para acompañar una práctica de respiración.
+
+Ciclo respiratorio: de 5.5 a 4.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
+Cuencos sintetizados cada 4 respiraciones.
+Composición original, sintetizada desde cero. Ninguna muestra procede de terceros.
+
+— English —
+Composed with a root of 432 Hz in just intonation, kumoi mode.
+To accompany a breathing practice.
+Original composition, synthesized from scratch. No third-party samples.
+
+Capítulos:
+00:00 [completar tras el montaje]",CUENCOS,#CuencosTibetanos #MúsicaRelajante #432Hz,"432 hz, música 432 hz, cuencos tibetanos, singing bowls, cuencos, kumoi, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, sleep music, just intonation",,,432,kumoi,926202,60,python3 03-composicion/compositor.py --minutos 60 --raiz 432 --modo kumoi --semilla 926202,pendiente,,,,
+OBRA-033,Música para concentrarse · 639 Hz · Mesa limpia · 2 horas,Foco,"Mesa limpia · 2 horas
+
+Compuesta con raíz en 639 Hz, en entonación justa, modo yo.
+Para acompañar una práctica de respiración.
+
+Ciclo respiratorio: de 6.0 a 5.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
+Cuencos sintetizados cada 4 respiraciones.
+Composición original, sintetizada desde cero. Ninguna muestra procede de terceros.
+
+— English —
+Composed with a root of 639 Hz in just intonation, yo mode.
+To accompany a breathing practice.
+Original composition, synthesized from scratch. No third-party samples.
+
+Capítulos:
+00:00 [completar tras el montaje]",2 HORAS,#Concentración #MúsicaRelajante #639Hz,"639 hz, música 639 hz, música para concentrarse, focus music, foco, yo, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, sleep music, singing bowls, just intonation",,,639,yo,112334,120,python3 03-composicion/compositor.py --minutos 120 --raiz 639 --modo yo --semilla 112334,pendiente,,,,
+OBRA-034,Música para concentrarse · 528 Hz · Tres horas · 3 horas,Foco,"Tres horas · 3 horas
+
+Compuesta con raíz en 528 Hz, en entonación justa, modo yo.
+Para acompañar una práctica de respiración.
+
+Ciclo respiratorio: de 6.0 a 5.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
+Cuencos sintetizados cada 4 respiraciones.
+Composición original, sintetizada desde cero. Ninguna muestra procede de terceros.
+
+— English —
+Composed with a root of 528 Hz in just intonation, yo mode.
+To accompany a breathing practice.
+Original composition, synthesized from scratch. No third-party samples.
+
+Capítulos:
+00:00 [completar tras el montaje]",3 HORAS,#Concentración #MúsicaRelajante #528Hz,"528 hz, música 528 hz, música para concentrarse, focus music, foco, yo, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, sleep music, singing bowls, just intonation",,,528,yo,935486,180,python3 03-composicion/compositor.py --minutos 180 --raiz 528 --modo yo --semilla 935486,pendiente,,,,
+OBRA-035,Música para concentrarse · 741 Hz · Sin interrupciones · 2 horas,Foco,"Sin interrupciones · 2 horas
+
+Compuesta con raíz en 741 Hz, en entonación justa, modo yo.
+Para acompañar una práctica de respiración.
+
+Ciclo respiratorio: de 6.0 a 5.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
+Cuencos sintetizados cada 4 respiraciones.
+Composición original, sintetizada desde cero. Ninguna muestra procede de terceros.
+
+— English —
+Composed with a root of 741 Hz in just intonation, yo mode.
+To accompany a breathing practice.
+Original composition, synthesized from scratch. No third-party samples.
+
+Capítulos:
+00:00 [completar tras el montaje]",2 HORAS,#Concentración #MúsicaRelajante #741Hz,"741 hz, música 741 hz, música para concentrarse, focus music, foco, yo, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, sleep music, singing bowls, just intonation",,,741,yo,74636,120,python3 03-composicion/compositor.py --minutos 120 --raiz 741 --modo yo --semilla 74636,pendiente,,,,
+OBRA-036,Música para concentrarse · 852 Hz · Luz de mañana · 90 minutos,Foco,"Luz de mañana · 90 minutos
+
+Compuesta con raíz en 852 Hz, en entonación justa, modo yo.
+Para acompañar una práctica de respiración.
+
+Ciclo respiratorio: de 6.0 a 5.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
+Cuencos sintetizados cada 4 respiraciones.
+Composición original, sintetizada desde cero. Ninguna muestra procede de terceros.
+
+— English —
+Composed with a root of 852 Hz in just intonation, yo mode.
+To accompany a breathing practice.
+Original composition, synthesized from scratch. No third-party samples.
+
+Capítulos:
+00:00 [completar tras el montaje]",90 MIN,#Concentración #MúsicaRelajante #852Hz,"852 hz, música 852 hz, música para concentrarse, focus music, foco, yo, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, sleep music, singing bowls, just intonation",,,852,yo,903477,90,python3 03-composicion/compositor.py --minutos 90 --raiz 852 --modo yo --semilla 903477,pendiente,,,,
+OBRA-037,Música para concentrarse · 432 Hz · Trabajo lento · 2 horas,Foco,"Trabajo lento · 2 horas
+
+Compuesta con raíz en 432 Hz, en entonación justa, modo yo.
+Para acompañar una práctica de respiración.
+
+Ciclo respiratorio: de 6.0 a 5.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
+Cuencos sintetizados cada 4 respiraciones.
+Composición original, sintetizada desde cero. Ninguna muestra procede de terceros.
+
+— English —
+Composed with a root of 432 Hz in just intonation, yo mode.
+To accompany a breathing practice.
+Original composition, synthesized from scratch. No third-party samples.
+
+Capítulos:
+00:00 [completar tras el montaje]",2 HORAS,#Concentración #MúsicaRelajante #432Hz,"432 hz, música 432 hz, música para concentrarse, focus music, foco, yo, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, sleep music, singing bowls, just intonation",,,432,yo,718809,120,python3 03-composicion/compositor.py --minutos 120 --raiz 432 --modo yo --semilla 718809,pendiente,,,,
+OBRA-038,Música para concentrarse · 528 Hz · Una sola cosa · 2 horas,Foco,"Una sola cosa · 2 horas
+
+Compuesta con raíz en 528 Hz, en entonación justa, modo shin.
+Para acompañar una práctica de respiración.
+
+Ciclo respiratorio: de 6.0 a 5.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
+Cuencos sintetizados cada 4 respiraciones.
+Composición original, sintetizada desde cero. Ninguna muestra procede de terceros.
+
+— English —
+Composed with a root of 528 Hz in just intonation, shin mode.
+To accompany a breathing practice.
+Original composition, synthesized from scratch. No third-party samples.
+
+Capítulos:
+00:00 [completar tras el montaje]",2 HORAS,#Concentración #MúsicaRelajante #528Hz,"528 hz, música 528 hz, música para concentrarse, focus music, foco, shin, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, sleep music, singing bowls, just intonation",,,528,shin,203246,120,python3 03-composicion/compositor.py --minutos 120 --raiz 528 --modo shin --semilla 203246,pendiente,,,,
+OBRA-039,Música para concentrarse · 639 Hz · Ventana abierta · 90 minutos,Foco,"Ventana abierta · 90 minutos
+
+Compuesta con raíz en 639 Hz, en entonación justa, modo yo.
+Para acompañar una práctica de respiración.
+
+Ciclo respiratorio: de 6.0 a 5.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
+Cuencos sintetizados cada 4 respiraciones.
+Composición original, sintetizada desde cero. Ninguna muestra procede de terceros.
+
+— English —
+Composed with a root of 639 Hz in just intonation, yo mode.
+To accompany a breathing practice.
+Original composition, synthesized from scratch. No third-party samples.
+
+Capítulos:
+00:00 [completar tras el montaje]",90 MIN,#Concentración #MúsicaRelajante #639Hz,"639 hz, música 639 hz, música para concentrarse, focus music, foco, yo, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, sleep music, singing bowls, just intonation",,,639,yo,281608,90,python3 03-composicion/compositor.py --minutos 90 --raiz 639 --modo yo --semilla 281608,pendiente,,,,
+OBRA-040,Música para concentrarse · 741 Hz · Hasta terminar · 3 horas,Foco,"Hasta terminar · 3 horas
+
+Compuesta con raíz en 741 Hz, en entonación justa, modo yo.
+Para acompañar una práctica de respiración.
+
+Ciclo respiratorio: de 6.0 a 5.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
+Cuencos sintetizados cada 4 respiraciones.
+Composición original, sintetizada desde cero. Ninguna muestra procede de terceros.
+
+— English —
+Composed with a root of 741 Hz in just intonation, yo mode.
+To accompany a breathing practice.
+Original composition, synthesized from scratch. No third-party samples.
+
+Capítulos:
+00:00 [completar tras el montaje]",3 HORAS,#Concentración #MúsicaRelajante #741Hz,"741 hz, música 741 hz, música para concentrarse, focus music, foco, yo, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, sleep music, singing bowls, just intonation",,,741,yo,883876,180,python3 03-composicion/compositor.py --minutos 180 --raiz 741 --modo yo --semilla 883876,pendiente,,,,
