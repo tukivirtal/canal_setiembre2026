@@ -1,7 +1,14 @@
-# Cuenco — canal de música de meditación
+# Rin — canal de música de meditación
+
+> **Música de meditación compuesta, no ensamblada.**
+> *Meditation music, composed — not assembled.*
 
 Canal de YouTube de música de meditación **compuesta desde cero**, construido siguiendo
 los 7 pasos del PDF *"Armado canal YouTube"* aplicados a este nicho.
+
+**Rin (鈴)** es el nombre japonés del cuenco cantor — y del sonido que hace. Es el
+instrumento insignia del canal, lo primero que se oye en cada obra, e idéntico en
+español, inglés y japonés.
 
 > **Compuesta con raíz en 528 Hz. Para acompañar una práctica de respiración.**
 > No se promete curar nada. Se compone música de calidad para relajarse.

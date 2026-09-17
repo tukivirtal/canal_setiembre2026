@@ -47,16 +47,41 @@ El pilar **Frecuencias** es el que trae tráfico de búsqueda: "música 528 Hz" 
 equivalentes tienen volumen alto y constante. Los demás pilares retienen. Se necesitan
 los dos.
 
-## Nombre
+## Nombre: **Rin**
 
-| Opción | Por qué | Contra |
-|---|---|---|
-| **Cuenco** *(recomendado)* | Corto, memorable, zen, funciona igual en inglés como palabra exótica | Poco descriptivo por sí solo |
-| Sala de Silencio | Evocador, describe el espacio | Largo, no traduce limpio |
-| Raíz | Enlaza con el lenguaje del canal ("raíz 528 Hz") | Demasiado genérico para buscar |
+**Rin (鈴)** es el nombre japonés del cuenco cantor — y del sonido que hace.
 
-Recomendado: **Cuenco**. La descriptividad la aporta el título de cada obra, no el nombre
-del canal.
+Cuatro razones por las que gana:
+
+1. **Es el instrumento insignia del canal** y lo primero que se oye en cada obra.
+   El nombre y el sonido son la misma cosa.
+2. **Idéntico en español, inglés y japonés.** Nunca hay que traducirlo, lo que importa
+   en un canal que apunta a los dos mercados desde la primera obra.
+3. **Tres letras.** Entra en cualquier esquina de una portada sin competir con la imagen,
+   que es exactamente lo que pide el sistema visual.
+4. No suena a bienestar ni a autoayuda. Suena a sello.
+
+**El riesgo, dicho claro:** como palabra suelta compite con nombres de anime. No importa
+para lo que hace este canal —el nombre no posiciona, posicionan los títulos de cada obra—
+pero sí significa que **el handle `@rin` estará ocupado**.
+
+### Handle
+
+El nombre visible puede ser **Rin** aunque el handle sea otro. Candidatos, por orden:
+
+`@rin.sonido` · `@canalrin` · `@rin.musica` · `@rinsound`
+
+### Lema
+
+> **Música de meditación compuesta, no ensamblada.**
+> *Meditation music, composed — not assembled.*
+
+Dice en cinco palabras lo único que de verdad separa este canal del resto del nicho.
+
+### Logo
+
+Las tres letras en **Cinzel**, finas, blancas, sobre negro. Nada más: ni cuenco dibujado,
+ni círculo enso, ni flor de loto. La contención es la marca.
 
 ## Fórmula de título
 
