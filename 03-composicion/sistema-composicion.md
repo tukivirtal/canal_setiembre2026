@@ -207,7 +207,89 @@ La segunda es mejor para sueño, porque una obra de tres horas sobre un solo rec
 respiratorio termina demasiado lenta. La condición sigue siendo la misma: **esas tres
 obras se componen para ese video y no reaparecen en ningún otro.**
 
-## 7. Uso
+## 7. Registro: la altura de la obra
+
+El registro por defecto deja el sub en **raíz / 2**. Con raíz 528 Hz eso son **264 Hz**, y
+ahí está el problema: un drone de sueño vive entre **60 y 120 Hz**. El canal, tal como
+estaba, sonaba **dos octavas por encima** de donde debería sonar la música de dormir.
+
+```bash
+--registro grave       # ×0,5 — raíz 264 Hz, sub en 132 Hz
+--registro medio       # ×1   — por defecto
+--registro brillante   # ×2
+```
+
+Medido comparando la misma obra en los dos registros:
+
+| Registro | Energía bajo 200 Hz | Energía sobre 2 kHz |
+|---|---|---|
+| medio (528 Hz) | −9,4 dB | −10,6 dB |
+| **grave (264 Hz)** | **−3,9 dB** | **−16,2 dB** |
+
+**+5,5 dB de graves y −5,6 dB de agudos.** No es una impresión: es otra música.
+
+### Qué registro lleva cada pilar
+
+| Pilar | Registro | Por qué |
+|---|---|---|
+| **Sueño** | **grave** | Se escucha de noche, a volumen bajo y con la pantalla apagada |
+| **Foco** | grave o medio | Tiene que desaparecer del primer plano |
+| **Respiración** | medio | Se escucha despierto y con atención |
+| **Cuencos** | medio | El cuenco necesita su registro natural |
+| **Frecuencias** | medio | La raíz anunciada es el producto |
+
+> **Y una nota de honestidad en la descripción:** si una obra usa `--registro grave` con
+> raíz 528, la raíz real es **264 Hz**. Lo correcto es escribir *"raíz en 264 Hz, octava
+> grave de 528 Hz"*. Poner "528 Hz" a secas sería inexacto, y la exactitud es el argumento
+> del canal.
+
+## 8. Aves
+
+```bash
+--aves 1.5     # 0 = ninguna · 1 = dispersas · 2 = más
+```
+
+**Sintetizadas, no grabadas.** Un canto de pájaro es, en el fondo, un **barrido rápido de
+frecuencia**: un tono que se desliza de 3.000 a 4.300 Hz en 120 milisegundos. Eso se
+construye. Cada frase junta de dos a cinco gorjeos con silencios entre ellos, con la
+dirección del barrido al azar, así que **ningún pájaro se repite jamás**.
+
+Tres detalles hacen que suenen a pájaro lejano y no a sintetizador:
+
+1. **El segundo armónico al 30 %** da el timbre metálico del canto real.
+2. **Un paso bajo a 2,6 kHz** les quita el filo. Un gorjeo crudo es penetrante; lo que se
+   busca es un pájaro *lejos*, no uno en la ventana.
+3. **Pasan por la misma reverberación** que el resto, así que comparten sala con los
+   cuencos en vez de sonar pegados encima.
+
+### Dos reglas
+
+**Nunca a menos de 3 segundos de un cuenco.** Los dos son transitorios agudos: si
+coinciden, el pájaro le roba el golpe al cuenco, que es lo que marca la respiración.
+El planificador lo impone.
+
+**Aves y sueño no se mezclan.** El canto es del amanecer. Va bien en Foco, y abre un
+sub-pilar propio —**Amanecer**: registro grave, modo cálido, aves dispersas— pero en una
+obra de dormir es una contradicción: nadie quiere pájaros a las tres de la mañana.
+
+### Por qué no se usan grabaciones
+
+Una grabación de biblioteca rompe las dos reglas que sostienen el canal: deja de ser
+íntegramente propio —con el riesgo de reclamo de Content ID que eso implica, documentado
+incluso sobre sonido ambiente— y **cierra la puerta a la distribución a streaming**, que
+es la vía de ingresos real del nicho.
+
+La alternativa legítima es **grabarlos vos mismo**. Si algún día lo hacés, entra sin
+problema: sería tuyo.
+
+### Sobre la reproducibilidad
+
+Las aves usan un **generador aleatorio propio**, sembrado aparte del de las secciones y
+los cuencos. Si compartieran el mismo, activar las aves cambiaría la obra entera y las
+semillas ya publicadas dejarían de reproducir el mismo audio. Comprobado: el plan de una
+semilla dada es idéntico antes y después de añadir esta función.
+
+## 9. Uso
 
 ```bash
 python3 compositor.py --listar
@@ -231,7 +313,7 @@ se regenera idéntica, así que el catálogo se versiona sin guardar los WAV.
 **Rendimiento:** ~0,47× tiempo real. Una hora de obra son unos 21 minutos de cómputo.
 Conviene generar por lotes de noche.
 
-## 8. Lo que se dice y lo que no
+## 10. Lo que se dice y lo que no
 
 | ✅ Se dice | ❌ Nunca |
 |---|---|

@@ -72,6 +72,12 @@ FRAC_INHALAR = 0.40      # inhalar más corto que exhalar: patrón de relajació
 
 NIVEL_PAD = 0.55
 NIVEL_CUENCO = 0.42
+NIVEL_AVE = 0.085
+
+# Transposición por octavas. El registro por defecto (medio) deja el sub en
+# raiz/2: con raíz 528 Hz son 264 Hz, dos octavas por encima de donde vive un
+# drone de sueño (60-120 Hz). Para las obras del pilar Sueño hace falta "grave".
+REGISTROS = {"grave": 0.5, "medio": 1.0, "brillante": 2.0}
 REVERB_WET = 0.42
 
 
@@ -186,6 +192,67 @@ def cuenco(frecuencia, duracion=24.0):
 
 
 # --------------------------------------------------------------------------
+# Aves
+# --------------------------------------------------------------------------
+
+def gorjeo(f_ini, f_fin, dur):
+    """
+    Un gorjeo: un tono que se desliza de una frecuencia a otra en menos de
+    un quinto de segundo. Es la forma básica de casi todo canto de pájaro —
+    un barrido rápido, no una nota sostenida.
+    """
+    n = int(dur * SR)
+    buf = array.array("d", [0.0]) * n
+    fase = 0.0
+    for i in range(n):
+        x = i / n
+        f = f_ini + (f_fin - f_ini) * x
+        fase += 2.0 * math.pi * f / SR
+        # Envolvente: ataque casi instantáneo, caída suave. Y el segundo
+        # armónico da el timbre metálico característico.
+        env = min(1.0, i / (0.004 * SR)) * math.exp(-3.2 * x)
+        buf[i] = (math.sin(fase) + 0.3 * math.sin(2 * fase)) * env
+    return buf
+
+
+def frase_ave(rnd):
+    """
+    Una frase de canto: dos a cinco gorjeos con silencios entre ellos.
+    Cada frase es distinta, así que ningún pájaro se repite jamás.
+    """
+    gorjeos = []
+    n_g = rnd.randint(2, 5)
+    base = rnd.uniform(2100, 4200)
+    for _ in range(n_g):
+        f0 = base * rnd.uniform(0.85, 1.15)
+        # Dirección del barrido al azar: subida, bajada o casi plano.
+        f1 = f0 * rnd.choice([1.45, 1.25, 0.72, 0.85, 1.0])
+        gorjeos.append((gorjeo(f0, f1, rnd.uniform(0.06, 0.17)),
+                        rnd.uniform(0.05, 0.19)))
+
+    total = sum(len(g) + int(p * SR) for g, p in gorjeos)
+    buf = array.array("d", [0.0]) * total
+    pos = 0
+    for g, pausa in gorjeos:
+        for i, v in enumerate(g):
+            buf[pos + i] += v
+        pos += len(g) + int(pausa * SR)
+
+    # Paso bajo de un polo: quita el filo. Un gorjeo crudo a 4 kHz es
+    # penetrante, y lo que se busca es un pájaro LEJOS, no uno en la ventana.
+    a = 1.0 - math.exp(-2.0 * math.pi * 2600.0 / SR)
+    y = 0.0
+    for i in range(total):
+        y += a * (buf[i] - y)
+        buf[i] = y
+
+    pico = max(abs(v) for v in buf) or 1.0
+    for i in range(total):
+        buf[i] /= pico
+    return buf
+
+
+# --------------------------------------------------------------------------
 # Reverberación
 # --------------------------------------------------------------------------
 
@@ -293,6 +360,29 @@ def planificar(segundos, modo, semilla, raiz, resp):
     return secciones, eventos, rpm_en
 
 
+def planificar_aves(segundos, semilla, densidad, eventos_cuenco):
+    """
+    Dónde canta un pájaro.
+
+    Usa un generador aleatorio PROPIO, sembrado aparte. Si compartiera el de
+    las secciones y los cuencos, activar las aves cambiaría toda la obra y las
+    semillas ya publicadas dejarían de reproducir el mismo audio.
+
+    Nunca a menos de 3 s de un cuenco: los dos son transitorios agudos y, si
+    coinciden, el pájaro le roba el golpe al cuenco.
+    """
+    if densidad <= 0:
+        return []
+    rnd = random.Random(semilla * 7919 + 13)
+    intervalo = 48.0 / densidad
+    tiempos, t = [], rnd.uniform(10.0, 25.0)
+    while t < segundos - 12.0:
+        if all(abs(t - e[0]) > 3.0 for e in eventos_cuenco):
+            tiempos.append((t, rnd.uniform(0.15, 0.85), rnd.uniform(0.55, 1.0)))
+        t += intervalo * rnd.uniform(0.55, 1.6)
+    return [(t, pan, vol, rnd) for t, pan, vol in tiempos]
+
+
 def imprimir_plan(segundos, raiz, modo, semilla, resp):
     """Muestra la estructura de la obra sin sintetizarla."""
     secciones, eventos, rpm_en = planificar(segundos, modo, semilla, raiz, resp)
@@ -328,7 +418,8 @@ def imprimir_plan(segundos, raiz, modo, semilla, resp):
 
 
 def componer(ruta, segundos, raiz, modo, semilla, aire, rt60,
-             binaural=0.0, resp=(RESP_INICIAL, RESP_FINAL), verbose=True):
+             binaural=0.0, resp=(RESP_INICIAL, RESP_FINAL), aves=0.0,
+             verbose=True):
     grados = MODOS[modo]
     total = int(segundos * SR)
     resp_ini, resp_fin = resp
@@ -356,6 +447,11 @@ def componer(ruta, segundos, raiz, modo, semilla, aire, rt60,
 
     t_resp = tabla_respiracion()
     rev = Reverb(rt60=rt60)
+
+    # Aves
+    aves_ev = planificar_aves(segundos, semilla, aves, eventos)
+    if verbose and aves_ev:
+        print(f"  {len(aves_ev)} frases de ave")
 
     cache = {}
     for _, f, _, _ in eventos:
@@ -395,6 +491,17 @@ def componer(ruta, segundos, raiz, modo, semilla, aire, rt60,
                 pend_i[off + i] += v * (1.0 - pan)
                 pend_d[off + i] += v * pan
             ev_i += 1
+
+        # Volcar las frases de ave que empiezan en este bloque
+        while aves_ev and aves_ev[0][0] * SR < inicio_bloque + n:
+            t_av, pan, vol, rnd = aves_ev.pop(0)
+            buf = frase_ave(rnd)
+            off = int(t_av * SR) - inicio_bloque
+            g = NIVEL_AVE * vol
+            for i in range(min(len(buf), len(pend_i) - off)):
+                v = buf[i] * g
+                pend_i[off + i] += v * (1.0 - pan)
+                pend_d[off + i] += v * pan
 
         bloque_i = array.array("d", [0.0]) * n
         bloque_d = array.array("d", [0.0]) * n
@@ -509,6 +616,10 @@ def main():
     p.add_argument("--modo", default="hirajoshi", choices=list(MODOS))
     p.add_argument("--semilla", type=int, default=None)
     p.add_argument("--rt60", type=float, default=6.0, help="cola de reverb en segundos")
+    p.add_argument("--registro", default="medio", choices=list(REGISTROS),
+                   help="grave baja una octava (pilar Sueño), brillante sube una")
+    p.add_argument("--aves", type=float, default=0.0,
+                   help="densidad de canto de pájaro (0 = ninguno, 1 = disperso, 2 = más)")
     p.add_argument("--aire", type=float, default=0.0,
                    help="ruido de fondo (0 = ninguno). Por encima de 0,02 ensucia el drone")
     p.add_argument("--binaural", type=float, default=0.0,
@@ -541,6 +652,14 @@ def main():
     else:
         ini, fin = RESP_INICIAL, RESP_FINAL
 
+    factor = REGISTROS[a.registro]
+    raiz_real = raiz * factor
+    if factor != 1.0:
+        print(f"Registro {a.registro}: raíz {raiz_real:.1f} Hz "
+              f"(octava {'grave' if factor < 1 else 'aguda'} de {raiz:.0f} Hz) "
+              f"· sub en {raiz_real/2:.0f} Hz")
+    raiz = raiz_real
+
     if a.plan:
         imprimir_plan(a.minutos * 60, raiz, a.modo, semilla, (ini, fin))
         return
@@ -548,9 +667,25 @@ def main():
     print(f"Componiendo {a.minutos:g} min · raíz {raiz:.1f} Hz · modo {a.modo} "
           f"· semilla {semilla}")
     componer(ruta, a.minutos * 60, raiz, a.modo, semilla, a.aire, a.rt60,
-             binaural=a.binaural, resp=(ini, fin))
+             binaural=a.binaural, resp=(ini, fin), aves=a.aves)
     print(f"{ruta}")
-    print(f"Repetir esta obra: --raiz {a.raiz} --modo {a.modo} --semilla {semilla}")
+    # El comando tiene que llevar TODOS los parámetros que afectan al audio,
+    # o no reproduce la misma obra.
+    extras = ""
+    if a.registro != "medio":
+        extras += f" --registro {a.registro}"
+    if a.aves:
+        extras += f" --aves {a.aves:g}"
+    if a.binaural:
+        extras += f" --binaural {a.binaural:g}"
+    if a.aire:
+        extras += f" --aire {a.aire:g}"
+    if a.rt60 != 6.0:
+        extras += f" --rt60 {a.rt60:g}"
+    if a.respiracion:
+        extras += f" --respiracion {a.respiracion}"
+    print(f"Repetir esta obra: --minutos {a.minutos:g} --raiz {a.raiz} "
+          f"--modo {a.modo} --semilla {semilla}{extras}")
 
 
 if __name__ == "__main__":
