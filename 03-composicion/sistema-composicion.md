@@ -133,7 +133,81 @@ silenciosa y dinámica: el oyente pone el volumen donde quiere, normalmente bajo
 noche. Comprimir hasta −9 dBFS, que es lo normal en música comercial, destruiría el
 swell respiratorio — que es la pieza entera.
 
-## 6. Uso
+## 6. Cómo se compone un video
+
+La pregunta importante: **¿un video es una mezcla de composiciones?**
+
+**No. Un video es UNA composición continua.** Y conviene separar tres cosas que en
+castellano se llaman igual "mezcla", porque una de las tres es justo la que hunde canales.
+
+| Sentido de "mezcla" | ¿Se hace? | Qué es |
+|---|---|---|
+| **Mezclar capas** | **Sí, siempre** | Colchón + sub + cuencos + reverb suenan a la vez. Es mezcla de audio, y es como se construye cada obra |
+| **Mezclar fragmentos entre videos** | **Nunca** | Tener una biblioteca de trozos y recombinarlos. **Es exactamente lo que la política penaliza**: si el video A y el B comparten material, no son dos obras, son dos variantes de una plantilla |
+| **Encadenar obras distintas** | Sí, en obras largas | Un video de 3 horas puede ser tres obras de una hora con fundidos cruzados. Es un disco, no un bucle — siempre que cada obra sea única de ese video |
+
+La regla de fondo: **una obra no se reutiliza jamás entre videos.** El compositor genera
+material nuevo cada vez, así que no hay biblioteca que recombinar. Es lo que mantiene el
+catálogo del lado correcto sin esfuerzo.
+
+### Un video de 8 minutos, sección a sección
+
+`--plan` imprime la estructura sin sintetizar, para poder revisarla antes de gastar
+minutos de cómputo:
+
+```bash
+python3 compositor.py --plan --minutos 8 --raiz 528 --modo hirajoshi --semilla 42
+```
+
+```
+ #    desde    dura  resp/min    grado                 acorde (Hz)
+ 1    0.00'   60.0s      6.00      1/1   264.0  528.0  633.6  844.8
+ 2    1.00'   61.9s      5.81      9/8   297.0  594.0  792.0  528.0
+ 3    2.03'   64.1s      5.62      9/8   297.0  594.0  792.0  528.0
+ 4    3.10'   66.4s      5.42      1/1   264.0  528.0  633.6  844.8
+ 5    4.21'   69.1s      5.21      3/2   396.0  792.0  528.0  633.6
+ 6    5.36'   72.1s      5.00      6/5   316.8  633.6  844.8  594.0
+ 7    6.56'   86.4s      4.77      1/1   264.0  528.0  633.6  844.8
+
+7 secciones · 42 respiraciones · 10 cuencos
+```
+
+Lo que hay que leer en esa tabla:
+
+- **Las secciones se alargan solas**: 60,0 s → 86,4 s. No es una decisión estética, es
+  consecuencia de que cada sección son siempre **6 respiraciones** y la respiración se
+  va ralentizando. La estructura la dicta el cuerpo, no un reloj.
+- **El acorde se mueve y vuelve.** Secciones 1, 4 y 7 son la tónica (1/1); entre medias
+  se va a 9/8, 3/2 y 6/5. Hay ida y regreso — o sea, hay forma.
+- **Los cuencos también se espacian**: del minuto 0,67 al 1,35 hay 41 s; del 6,61 al 7,45
+  hay 50 s. Siempre cada 4 respiraciones.
+- **La última sección absorbe el resto** (86,4 s en vez de 75,5 + un muñón de 11 s). Un
+  cambio de acorde diez segundos antes del fundido final se oye como un error.
+
+### Por qué 8 minutos concretamente
+
+Es el **umbral de los anuncios intermedios**: por debajo de 8 minutos YouTube no permite
+mid-rolls. Un video de 8 minutos es el más corto que puede llevar más de un anuncio.
+
+Dicho eso, para este nicho 8 minutos es corto. Encaja bien en el pilar Respiración —una
+práctica guiada breve— pero el catálogo se apoya en obras de 45 a 180 minutos, que es
+donde se acumulan las horas. Los 8 minutos sirven como **puerta de entrada**: alguien
+prueba una pieza corta y de ahí pasa a las largas.
+
+### Encadenar obras en un video largo
+
+Para un video de 3 horas hay dos caminos válidos:
+
+1. **Una sola obra de 180 minutos.** El compositor la genera entera: ~63 min de cómputo.
+   Las secciones siguen alargándose y la respiración baja hasta el final.
+2. **Tres obras de 60 minutos encadenadas** con fundidos cruzados de 20-30 s. Más variedad
+   armónica, y cada obra con su propia raíz o modo.
+
+La segunda es mejor para sueño, porque una obra de tres horas sobre un solo recorrido
+respiratorio termina demasiado lenta. La condición sigue siendo la misma: **esas tres
+obras se componen para ese video y no reaparecen en ningún otro.**
+
+## 7. Uso
 
 ```bash
 python3 compositor.py --listar
@@ -157,7 +231,7 @@ se regenera idéntica, así que el catálogo se versiona sin guardar los WAV.
 **Rendimiento:** ~0,47× tiempo real. Una hora de obra son unos 21 minutos de cómputo.
 Conviene generar por lotes de noche.
 
-## 7. Lo que se dice y lo que no
+## 8. Lo que se dice y lo que no
 
 | ✅ Se dice | ❌ Nunca |
 |---|---|

@@ -65,6 +65,7 @@ ESPECTRO_PAD = [(1, 1.00), (3, 0.26), (5, 0.11), (7, 0.05), (9, 0.025)]
 # lenta documenta como asociado a mayor variabilidad de la frecuencia cardíaca,
 # con 0,1 Hz (6 por minuto) como el valor más usado en los protocolos.
 # Ver base-cientifica.md. Configurable con --respiracion.
+RESP_POR_SECCION = 6
 RESP_INICIAL = 6.0
 RESP_FINAL = 4.5
 FRAC_INHALAR = 0.40      # inhalar más corto que exhalar: patrón de relajación
@@ -244,9 +245,90 @@ class Reverb:
 # Composición
 # --------------------------------------------------------------------------
 
+def planificar(segundos, modo, semilla, raiz, resp):
+    """
+    Decide la ESTRUCTURA de la obra: dónde empieza cada sección, sobre qué grado,
+    y en qué instante cae cada cuenco. No sintetiza nada.
+
+    Está separado de la síntesis para poder inspeccionar una obra antes de
+    invertir minutos de cómputo en renderizarla (ver --plan).
+    """
+    random.seed(semilla)
+    grados = MODOS[modo]
+    resp_ini, resp_fin = resp
+
+    def rpm_en(t):
+        prog = (t / segundos) if segundos else 0.0
+        return resp_ini + (resp_fin - resp_ini) * prog
+
+    # Secciones: siempre un número ENTERO de respiraciones, así que su duración
+    # crece sola a medida que la respiración se ralentiza.
+    secciones = []
+    t = 0.0
+    idx = 0
+    while t < segundos - 0.5:
+        completa = RESP_POR_SECCION * 60.0 / rpm_en(t)
+        restante = segundos - t
+        # Si lo que queda no da para media sección, se absorbe en la actual en
+        # lugar de dejar un muñón: un cambio de acorde de diez segundos justo
+        # antes del fundido final se oye como un error, no como una sección.
+        dur = restante if restante < completa * 1.5 else completa
+        grado = 0 if idx % 3 == 0 else random.choice([1, 2, 3, 4]) % len(grados)
+        secciones.append((t, dur, grado))
+        t += dur
+        idx += 1
+
+    # Cuencos: cada 4 respiraciones. También se espacian solos.
+    eventos = []
+    t = 0.0
+    while t < segundos - 8.0:
+        ciclo = 60.0 / rpm_en(t)
+        if t > 4.0:
+            num, den = random.choice(grados)
+            octava = random.choice([0.5, 1.0, 1.0])
+            eventos.append((t, raiz * num / den * octava,
+                            random.uniform(0.55, 1.0), random.uniform(0.3, 0.7)))
+        t += ciclo * 4
+
+    return secciones, eventos, rpm_en
+
+
+def imprimir_plan(segundos, raiz, modo, semilla, resp):
+    """Muestra la estructura de la obra sin sintetizarla."""
+    secciones, eventos, rpm_en = planificar(segundos, modo, semilla, raiz, resp)
+    grados = MODOS[modo]
+
+    print(f"\nOBRA DE {segundos/60:g} MINUTOS")
+    print(f"raíz {raiz:.1f} Hz · modo {modo} · semilla {semilla}")
+    print(f"respiración {resp[0]:.1f} → {resp[1]:.1f} por minuto\n")
+    print(f"{'#':>2}  {'desde':>7}  {'dura':>6}  {'resp/min':>8}  "
+          f"{'grado':>7}  {'acorde (Hz)':>26}")
+    print("-" * 70)
+
+    for i, (ini, dur, grado) in enumerate(secciones, 1):
+        rpm = rpm_en(ini)
+        base = grados[grado]
+        voces = [(base[0], base[1] * 2)]
+        for k in (0, 2, 4):
+            voces.append(grados[(grado + k) % len(grados)])
+        hz = " ".join(f"{raiz*n/d:6.1f}" for n, d in voces)
+        razon = f"{base[0]}/{base[1]}"
+        print(f"{i:>2}  {ini/60:6.2f}'  {dur:5.1f}s  {rpm:8.2f}  "
+              f"{razon:>7}  {hz:>26}")
+
+    print(f"\n{len(eventos)} cuencos:")
+    for i, (t, f, vol, pan) in enumerate(eventos, 1):
+        lado = "izq" if pan < 0.45 else ("der" if pan > 0.55 else "centro")
+        print(f"  {i:>2}  {t/60:6.2f}'  {f:7.1f} Hz  vol {vol:.2f}  {lado}")
+
+    total_resp = sum(RESP_POR_SECCION for _ in secciones)
+    print(f"\n{len(secciones)} secciones · {total_resp} respiraciones · "
+          f"{len(eventos)} cuencos")
+    print(f"cómputo estimado: ~{segundos/60*21/60:.1f} min")
+
+
 def componer(ruta, segundos, raiz, modo, semilla, aire, rt60,
              binaural=0.0, resp=(RESP_INICIAL, RESP_FINAL), verbose=True):
-    random.seed(semilla)
     grados = MODOS[modo]
     total = int(segundos * SR)
     resp_ini, resp_fin = resp
@@ -263,46 +345,17 @@ def componer(ruta, segundos, raiz, modo, semilla, aire, rt60,
     paso_bi_d = (portadora + binaural / 2.0) * TABLA / SR
     NIVEL_BI = 0.09
 
-    # --- Estructura: secciones de un número ENTERO de respiraciones ---
-    resp_por_seccion = 6
-    secciones = []
-    t = 0.0
-    idx = 0
-    while t < segundos:
-        prog = (t / segundos) if segundos else 0.0
-        rpm = resp_ini + (resp_fin - resp_ini) * prog
-        dur = resp_por_seccion * 60.0 / rpm
-        dur = min(dur, segundos - t)
-        if dur < 4.0:
-            break
-        # Grado fundamental de la sección: se mueve poco, y vuelve a la tónica.
-        grado = 0 if idx % 3 == 0 else random.choice([1, 2, 3, 4]) % len(grados)
-        secciones.append((t, dur, grado))
-        t += dur
-        idx += 1
+    secciones, eventos, _ = planificar(segundos, modo, semilla, raiz, resp)
 
     if verbose:
-        print(f"  {len(secciones)} secciones de {resp_por_seccion} respiraciones")
+        print(f"  {len(secciones)} secciones de {RESP_POR_SECCION} respiraciones")
         print(f"  respiración {resp_ini:.1f} → {resp_fin:.1f} por minuto")
         if binaural:
-            print(f"  binaural {binaural:.1f} Hz sobre portadora de {portadora:.1f} Hz (requiere auriculares)")
+            print(f"  binaural {binaural:.1f} Hz sobre portadora de {portadora:.1f} Hz "
+                  f"(requiere auriculares)")
 
     t_resp = tabla_respiracion()
     rev = Reverb(rt60=rt60)
-
-    # --- Cuencos: cada 4 respiraciones, alineados con el ciclo ---
-    eventos = []
-    t = 0.0
-    while t < segundos - 8.0:
-        prog = t / segundos
-        rpm = resp_ini + (resp_fin - resp_ini) * prog
-        ciclo = 60.0 / rpm
-        if t > 4.0:
-            num, den = random.choice(grados)
-            octava = random.choice([0.5, 1.0, 1.0])
-            eventos.append((t, raiz * num / den * octava,
-                            random.uniform(0.55, 1.0), random.uniform(0.3, 0.7)))
-        t += ciclo * 4
 
     cache = {}
     for _, f, _, _ in eventos:
@@ -465,6 +518,8 @@ def main():
                    help="ritmo inicial,final en resp/min. Por defecto 6,4.5")
     p.add_argument("--salida", default=None)
     p.add_argument("--listar", action="store_true")
+    p.add_argument("--plan", action="store_true",
+                   help="imprime la estructura de la obra sin sintetizarla")
     a = p.parse_args()
 
     if a.listar:
@@ -485,6 +540,10 @@ def main():
         ini, fin = (float(x) for x in a.respiracion.split(","))
     else:
         ini, fin = RESP_INICIAL, RESP_FINAL
+
+    if a.plan:
+        imprimir_plan(a.minutos * 60, raiz, a.modo, semilla, (ini, fin))
+        return
 
     print(f"Componiendo {a.minutos:g} min · raíz {raiz:.1f} Hz · modo {a.modo} "
           f"· semilla {semilla}")
