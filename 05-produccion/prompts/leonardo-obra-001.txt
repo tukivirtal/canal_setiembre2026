@@ -1,0 +1,80 @@
+PROMPTS PARA LEONARDO — obra de 8 min · 528 Hz · hirajoshi · semilla 42
+================================================================================
+
+Siete escenas, una por sección musical. Los cortes caen donde cambia el acorde.
+Las escenas 1, 4 y 7 son la tónica: repiten material cálido (bronce, piedra, oro).
+
+Ajustes: 16:9 · modelo fotorrealista · exportar 1920x1080
+El texto NUNCA va en el prompt. Se añade después en Photopea.
+
+Subí 2-3 de tus referencias de Cloudinary como STYLE REFERENCE. El prompt define
+QUÉ se ve; la referencia define CÓMO.
+
+--------------------------------------------------------------------------------
+NEGATIVE PROMPT (el mismo para las siete)
+--------------------------------------------------------------------------------
+purple gradient, pink gradient, neon, mandala, chakra symbols, lotus clipart, glowing orbs, text, letters, watermark, people, faces, hands, smooth plastic, glossy, cgi render, cartoon, illustration, digital painting, flat lighting, front lighting, even lighting, busy composition, multiple subjects, oversaturated, pastel, lens flare, bokeh circles
+
+================================================================================
+ESCENA 1 · 0:00 · 60,0 s · acorde tónica · Rin — cuenco cantor
+================================================================================
+extreme close-up photograph of a single weathered bronze rin singing bowl resting on a round silk zabuton cushion, deep patina, hammered surface with visible dents and tarnish, a wooden mallet lying beside it, isolated in empty dark space, deep black background with strong vignette, volumetric mist drifting slowly through the darkness, ONE dominant subject filling 45% of the frame, lit ONLY from the extreme left at a ten degree grazing angle, no fill light, the entire right half of the subject in complete darkness, only the left edge catching the light, extreme chiaroscuro, weathered natural material with visible relief, surface pitting and fine grain, subsurface light in the material, desaturated warm stone and bronze tones, shot on 85mm macro lens, shallow depth of field, physically based rendering, photograph of a real object, not an illustration, hyper-tactile, you could touch it, 8k, 16:9
+
+MOVIMIENTO (Leonardo Motion): almost imperceptible drift of mist, the bowl completely still
+
+================================================================================
+ESCENA 2 · 1:00 · 61,9 s · acorde 9/8 · Piedras apiladas
+================================================================================
+extreme close-up photograph of four wet river stones stacked VERTICALLY one on top of another in balance, water droplets clearly visible on every surface, wet reflective sheen, one stone slightly out of alignment, isolated in empty dark space, deep black background with strong vignette, volumetric mist drifting slowly through the darkness, ONE dominant subject filling 45% of the frame, lit ONLY from the extreme left at a ten degree grazing angle, no fill light, the entire right half of the subject in complete darkness, only the left edge catching the light, extreme chiaroscuro, weathered natural material with visible relief, surface pitting and fine grain, subsurface light in the material, desaturated warm stone and bronze tones, shot on 85mm macro lens, shallow depth of field, physically based rendering, photograph of a real object, not an illustration, hyper-tactile, you could touch it, 8k, 16:9
+
+MOVIMIENTO (Leonardo Motion): a single drop of water slides down the stone, mist drifts
+
+================================================================================
+ESCENA 3 · 2:03 · 64,1 s · acorde 9/8 · Tsukubai — pila de piedra
+================================================================================
+extreme close-up photograph of a low stone water basin carved from a single rough granite block, a thin bamboo spout above it, one expanding ripple ring on the still black water, wet moss on the stone rim, isolated in empty dark space, deep black background with strong vignette, volumetric mist drifting slowly through the darkness, ONE dominant subject filling 45% of the frame, lit ONLY from the extreme left at a ten degree grazing angle, no fill light, the entire right half of the subject in complete darkness, only the left edge catching the light, extreme chiaroscuro, weathered natural material with visible relief, surface pitting and fine grain, subsurface light in the material, desaturated warm stone and bronze tones, shot on 85mm macro lens, shallow depth of field, physically based rendering, photograph of a real object, not an illustration, hyper-tactile, you could touch it, 8k, 16:9
+
+MOVIMIENTO (Leonardo Motion): the ripple ring expands slowly outward across the black water
+
+================================================================================
+ESCENA 4 · 3:06 · 66,4 s · acorde tónica · Karesansui — jardín seco
+================================================================================
+extreme close-up photograph of raked white sand in a dry zen garden, deep parallel grooves curving around a single dark standing stone, a bamboo rake resting at the edge, low sun raking across the sand ridges, isolated in empty dark space, deep black background with strong vignette, volumetric mist drifting slowly through the darkness, ONE dominant subject filling 45% of the frame, lit ONLY from the extreme left at a ten degree grazing angle, no fill light, the entire right half of the subject in complete darkness, only the left edge catching the light, extreme chiaroscuro, weathered natural material with visible relief, surface pitting and fine grain, subsurface light in the material, desaturated warm stone and bronze tones, shot on 85mm macro lens, shallow depth of field, physically based rendering, photograph of a real object, not an illustration, hyper-tactile, you could touch it, 8k, 16:9
+
+MOVIMIENTO (Leonardo Motion): mist crawls low across the sand, the grooves perfectly still
+
+================================================================================
+ESCENA 5 · 4:13 · 69,1 s · acorde 3/2 · Shishi-odoshi — bambú y agua
+================================================================================
+extreme close-up photograph of a bamboo shishi-odoshi water fountain, thick weathered bamboo with visible nodes, water pouring from the spout, wet dark stones below, thick mist between the stalks, isolated in empty dark space, deep black background with strong vignette, volumetric mist drifting slowly through the darkness, ONE dominant subject filling 45% of the frame, lit ONLY from the extreme left at a ten degree grazing angle, no fill light, the entire right half of the subject in complete darkness, only the left edge catching the light, extreme chiaroscuro, weathered natural material with visible relief, surface pitting and fine grain, subsurface light in the material, desaturated warm stone and bronze tones, shot on 85mm macro lens, shallow depth of field, physically based rendering, photograph of a real object, not an illustration, hyper-tactile, you could touch it, 8k, 16:9
+
+MOVIMIENTO (Leonardo Motion): water pours steadily from the bamboo spout, mist rolls
+
+================================================================================
+ESCENA 6 · 5:22 · 72,1 s · acorde 6/5 · Kōro — incensario
+================================================================================
+extreme close-up photograph of a single incense stick standing UPRIGHT AND VERTICAL in a small ceramic koro incense burner filled with grey ash, glowing ember tip, a thick ribbon of smoke rising and curling upward, isolated in empty dark space, deep black background with strong vignette, volumetric mist drifting slowly through the darkness, ONE dominant subject filling 45% of the frame, lit ONLY from the extreme left at a ten degree grazing angle, no fill light, the entire right half of the subject in complete darkness, only the left edge catching the light, extreme chiaroscuro, weathered natural material with visible relief, surface pitting and fine grain, subsurface light in the material, desaturated warm stone and bronze tones, shot on 85mm macro lens, shallow depth of field, physically based rendering, photograph of a real object, not an illustration, hyper-tactile, you could touch it, 8k, 16:9
+
+MOVIMIENTO (Leonardo Motion): the smoke ribbon rises and curls continuously
+
+================================================================================
+ESCENA 7 · 6:34 · 86,4 s · acorde tónica · Chawan con kintsugi
+================================================================================
+extreme close-up photograph of a dark ceramic chawan tea bowl repaired with kintsugi, golden lacquer seams tracing the cracks across the glaze, crackled matte surface, resting on a folded linen cloth, isolated in empty dark space, deep black background with strong vignette, volumetric mist drifting slowly through the darkness, ONE dominant subject filling 45% of the frame, lit ONLY from the extreme left at a ten degree grazing angle, no fill light, the entire right half of the subject in complete darkness, only the left edge catching the light, extreme chiaroscuro, weathered natural material with visible relief, surface pitting and fine grain, subsurface light in the material, desaturated warm stone and bronze tones, shot on 85mm macro lens, shallow depth of field, physically based rendering, photograph of a real object, not an illustration, hyper-tactile, you could touch it, 8k, 16:9
+
+MOVIMIENTO (Leonardo Motion): the mist drifts, the bowl completely still, gold seams catching light
+
+================================================================================
+DESPUÉS DE GENERAR
+================================================================================
+1. Descartar cualquier imagen con superficie lisa o luz frontal: falló lo táctil.
+2. Exportar a 1920x1080.
+3. Mirarlas a 168x94 px. Si el objeto no se distingue a ese tamaño, no sirve.
+4. Guardar el prompt que funcionó.
+
+Los clips de Motion duran pocos segundos y las escenas duran 60-86 s: se cubren
+con un bucle de vaivén (adelante y atrás), que no tiene punto de corte visible.
+
+  ffmpeg -i clip.mp4 -filter_complex "[0]reverse[r];[0][r]concat=n=2" vaiven.mp4
+
+Regla de oro: si el movimiento se nota, es demasiado.
