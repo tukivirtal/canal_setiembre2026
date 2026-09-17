@@ -1,0 +1,448 @@
+#!/usr/bin/env python3
+"""
+Compositor de música de meditación — entonación justa y pulso respiratorio.
+
+Tres decisiones lo separan del ambient sintético corriente:
+
+1. ENTONACIÓN JUSTA. Los intervalos son razones de enteros exactas (3/2, 5/4, 9/8),
+   no las aproximaciones del temperamento igual. Sobre un drone sostenido, la tercera
+   del temperamento igual está 14 centésimas alta y produce un batido áspero de ~21 Hz
+   entre parciales agudos. En entonación justa los parciales coinciden exactamente y el
+   acorde se funde en un solo cuerpo sonoro. Es la diferencia audible entre "sintetizador"
+   y "instrumento".
+
+2. PULSO RESPIRATORIO. La obra no tiene compás: tiene respiración. La amplitud sigue un
+   ciclo asimétrico (inhalar 40 %, exhalar 60 %) que empieza a 6 respiraciones por minuto
+   y baja gradualmente a 4,5. Las secciones y los cuencos caen en múltiplos enteros del
+   ciclo, así que nada llega a destiempo.
+
+3. ESPACIO. Reverberación larga y oscura (RT60 configurable, ~6 s por defecto) con
+   amortiguación de agudos. Es el factor que más separa una mezcla cara de una barata.
+
+El ruido de fondo está DESACTIVADO por defecto: ensucia el drone y no aporta nada.
+
+Uso:
+    python3 compositor.py --listar
+    python3 compositor.py --minutos 3 --raiz 528 --modo hirajoshi
+    python3 compositor.py --minutos 60 --raiz 528 --modo yo --semilla 7
+
+Sin dependencias: solo Python 3.
+"""
+
+import argparse
+import array
+import math
+import random
+import wave
+
+SR = 44100
+TABLA = 8192
+
+# --- Escalas en ENTONACIÓN JUSTA. Cada grado es una razón exacta de enteros. ---
+# Se eligieron modos pentatónicos: sin semitonos no hay tensión que resolver,
+# que es justo lo que se busca en música de meditación.
+MODOS = {
+    # Pentatónica mayor: luminosa, abierta.
+    "yo":        [(1, 1), (9, 8), (5, 4), (3, 2), (5, 3)],
+    # Hirajoshi, escala japonesa de koto: contemplativa, con la segunda menor justa.
+    "hirajoshi": [(1, 1), (9, 8), (6, 5), (3, 2), (8, 5)],
+    # Pentatónica menor: grave, introspectiva.
+    "kumoi":     [(1, 1), (6, 5), (4, 3), (3, 2), (9, 5)],
+    # Drone puro: solo la serie armónica baja. Lo más estable posible.
+    "shin":      [(1, 1), (3, 2), (2, 1)],
+}
+
+SOLFEGGIO = {"396": 396.0, "417": 417.0, "528": 528.0,
+             "639": 639.0, "741": 741.0, "852": 852.0}
+
+# Espectro del pad: armónicos impares con caída 1/n^1.6.
+# Los impares dan cuerpo tipo órgano; la caída pronunciada evita el brillo
+# metálico que delata al sintetizador barato.
+ESPECTRO_PAD = [(1, 1.00), (3, 0.26), (5, 0.11), (7, 0.05), (9, 0.025)]
+
+# Respiración: 6 resp/min al inicio, 4,5 al final. Descenso gradual.
+RESP_INICIAL = 6.0
+RESP_FINAL = 4.5
+FRAC_INHALAR = 0.40      # inhalar más corto que exhalar: patrón de relajación
+
+NIVEL_PAD = 0.55
+NIVEL_CUENCO = 0.42
+REVERB_WET = 0.42
+
+
+def mcm(a, b):
+    return a * b // math.gcd(a, b)
+
+
+# --------------------------------------------------------------------------
+# Wavetable del acorde completo
+# --------------------------------------------------------------------------
+
+def tabla_acorde(voces):
+    """
+    Construye UNA wavetable con el acorde entero.
+
+    Esto sólo es posible gracias a la entonación justa: como todas las voces son
+    razones de enteros respecto de la raíz, el acorde completo es periódico, con
+    un período común igual al de una frecuencia fundamental grave. Se sintetiza
+    un único período y después basta una lectura de tabla por muestra, en lugar
+    de una por voz.
+
+    La pureza armónica y el coste de cómputo mejoran por el mismo motivo.
+
+    Devuelve (tabla, divisor) donde la frecuencia de lectura es raiz/divisor.
+    """
+    L = 1
+    for _, den in voces:
+        L = mcm(L, den)
+
+    parciales = {}
+    for i, (num, den) in enumerate(voces):
+        k = num * (L // den)                  # la voz es el armónico k de raiz/L
+        peso = 1.0 / (1.0 + 0.45 * i)         # las voces agudas, más discretas
+        for h, amp in ESPECTRO_PAD:
+            idx = k * h
+            if idx * (1.0 / L) > 17:          # recorte suave de agudos
+                continue
+            parciales[idx] = parciales.get(idx, 0.0) + amp * peso
+
+    tabla = array.array("d", [0.0]) * TABLA
+    for idx, amp in parciales.items():
+        w = 2.0 * math.pi * idx / TABLA
+        fase = random.uniform(0, 2 * math.pi)   # fases dispersas: baja el factor de cresta
+        for i in range(TABLA):
+            tabla[i] += amp * math.sin(w * i + fase)
+
+    pico = max(abs(v) for v in tabla) or 1.0
+    for i in range(TABLA):
+        tabla[i] /= pico
+    return tabla, L
+
+
+def tabla_respiracion():
+    """
+    Un ciclo de respiración, como envolvente de amplitud.
+    Inhalar 40 % / exhalar 60 %, con curvas de coseno elevado para que no haya
+    ninguna esquina: una esquina en la envolvente se oye como un clic.
+    """
+    n = 4096
+    t = array.array("d", [0.0]) * n
+    corte = int(n * FRAC_INHALAR)
+    for i in range(n):
+        if i < corte:
+            x = i / corte
+            v = 0.5 - 0.5 * math.cos(math.pi * x)          # sube
+        else:
+            x = (i - corte) / (n - corte)
+            v = 0.5 + 0.5 * math.cos(math.pi * x)          # baja, más lento
+        t[i] = 0.55 + 0.45 * (v ** 1.4)
+    return t
+
+
+# --------------------------------------------------------------------------
+# Cuenco tibetano
+# --------------------------------------------------------------------------
+
+def cuenco(frecuencia, duracion=24.0):
+    """
+    Cuenco cantor sintetizado.
+
+    Dos detalles hacen la diferencia frente a una campana genérica:
+
+    - Parciales INARMÓNICOS (1 : 2.75 : 5.38 : 8.9), medidos típicamente en cuencos
+      de metal. Una serie armónica sonaría a órgano, no a metal.
+    - Cada modo se desdobla en dos parciales separados un 0,35 %. Ese par produce
+      un batido lento de ~1,8 Hz que es EXACTAMENTE el bamboleo característico
+      del cuenco. Sin él suena a sintetizador.
+    """
+    n = int(duracion * SR)
+    buf = array.array("d", [0.0]) * n
+    modos = [(1.00, 1.00, 0.9), (2.75, 0.42, 1.5),
+             (5.38, 0.18, 2.4), (8.90, 0.07, 3.6)]
+    ataque = int(0.012 * SR)
+
+    for ratio, amp, veloc in modos:
+        for desdoble in (1.0, 1.0035):        # el par que produce el batido
+            w = 2.0 * math.pi * frecuencia * ratio * desdoble / SR
+            decaim = veloc * 3.0 / n
+            for i in range(n):
+                buf[i] += amp * 0.5 * math.sin(w * i) * math.exp(-decaim * i)
+
+    pico = max(abs(v) for v in buf) or 1.0
+    for i in range(n):
+        env = min(1.0, i / ataque)
+        buf[i] = buf[i] / pico * env
+    return buf
+
+
+# --------------------------------------------------------------------------
+# Reverberación
+# --------------------------------------------------------------------------
+
+class Reverb:
+    """
+    Reverberación de Schroeder: cuatro filtros peine en paralelo, dos paso-todo
+    en serie. Los retardos son primos entre sí para que las reflexiones no se
+    agrupen en un eco audible.
+
+    La amortiguación es lo importante acá: sin ella la cola brilla y silba, que
+    es el sonido inconfundible del reverb barato.
+    """
+
+    def __init__(self, rt60=6.0, damp=0.42, ancho=23):
+        self.combs = []
+        for d in (1557, 1617, 1491, 1422):
+            for canal, off in ((0, 0), (1, ancho)):
+                largo = d + off
+                # Realimentación para el RT60 pedido: g = 10^(-3·T/RT60)
+                fb = 10 ** (-3.0 * (largo / SR) / rt60)
+                self.combs.append({
+                    "buf": array.array("d", [0.0]) * largo,
+                    "i": 0, "fb": fb, "filtro": 0.0, "canal": canal,
+                })
+        self.aps = []
+        for d in (225, 556, 341):
+            for canal, off in ((0, 0), (1, 11)):
+                self.aps.append({
+                    "buf": array.array("d", [0.0]) * (d + off),
+                    "i": 0, "canal": canal,
+                })
+        self.damp = damp
+
+    def procesar(self, izq, der):
+        húmedo = [0.0, 0.0]
+        entrada = (izq + der) * 0.5
+        for c in self.combs:
+            b, i = c["buf"], c["i"]
+            y = b[i]
+            c["filtro"] = y * (1.0 - self.damp) + c["filtro"] * self.damp
+            b[i] = entrada + c["filtro"] * c["fb"]
+            c["i"] = (i + 1) % len(b)
+            húmedo[c["canal"]] += y
+        húmedo[0] *= 0.25
+        húmedo[1] *= 0.25
+        for a in self.aps:
+            b, i = a["buf"], a["i"]
+            ch = a["canal"]
+            y = b[i]
+            b[i] = húmedo[ch] + y * 0.5
+            a["i"] = (i + 1) % len(b)
+            húmedo[ch] = y - húmedo[ch]
+        return húmedo[0], húmedo[1]
+
+
+# --------------------------------------------------------------------------
+# Composición
+# --------------------------------------------------------------------------
+
+def componer(ruta, segundos, raiz, modo, semilla, aire, rt60, verbose=True):
+    random.seed(semilla)
+    grados = MODOS[modo]
+    total = int(segundos * SR)
+
+    # --- Estructura: secciones de un número ENTERO de respiraciones ---
+    resp_por_seccion = 6
+    secciones = []
+    t = 0.0
+    idx = 0
+    while t < segundos:
+        prog = (t / segundos) if segundos else 0.0
+        rpm = RESP_INICIAL + (RESP_FINAL - RESP_INICIAL) * prog
+        dur = resp_por_seccion * 60.0 / rpm
+        dur = min(dur, segundos - t)
+        if dur < 4.0:
+            break
+        # Grado fundamental de la sección: se mueve poco, y vuelve a la tónica.
+        grado = 0 if idx % 3 == 0 else random.choice([1, 2, 3, 4]) % len(grados)
+        secciones.append((t, dur, grado))
+        t += dur
+        idx += 1
+
+    if verbose:
+        print(f"  {len(secciones)} secciones de {resp_por_seccion} respiraciones")
+        print(f"  respiración {RESP_INICIAL:.1f} → {RESP_FINAL:.1f} por minuto")
+
+    t_resp = tabla_respiracion()
+    rev = Reverb(rt60=rt60)
+
+    # --- Cuencos: cada 4 respiraciones, alineados con el ciclo ---
+    eventos = []
+    t = 0.0
+    while t < segundos - 8.0:
+        prog = t / segundos
+        rpm = RESP_INICIAL + (RESP_FINAL - RESP_INICIAL) * prog
+        ciclo = 60.0 / rpm
+        if t > 4.0:
+            num, den = random.choice(grados)
+            octava = random.choice([0.5, 1.0, 1.0])
+            eventos.append((t, raiz * num / den * octava,
+                            random.uniform(0.55, 1.0), random.uniform(0.3, 0.7)))
+        t += ciclo * 4
+
+    cache = {}
+    for _, f, _, _ in eventos:
+        k = round(f, 1)
+        if k not in cache:
+            cache[k] = cuenco(f)
+    if verbose:
+        print(f"  {len(eventos)} cuencos · {len(cache)} timbres sintetizados")
+
+    # --- Síntesis por bloques, para no cargar la obra entera en memoria ---
+    BLOQUE = SR
+    cola = int(26.0 * SR)
+    pend_i = array.array("d", [0.0]) * (BLOQUE + cola)
+    pend_d = array.array("d", [0.0]) * (BLOQUE + cola)
+
+    muestras = array.array("h")
+    fundido = int(8.0 * SR)
+    ev_i = 0
+    fase_tabla = 0.0
+    fase_resp = 0.0
+    tabla, divisor, paso_tabla = None, None, None
+    sec_i = -1
+    pico_global = 0.0
+    salida = []
+
+    for inicio_bloque in range(0, total, BLOQUE):
+        n = min(BLOQUE, total - inicio_bloque)
+
+        # Volcar los cuencos que empiezan en este bloque
+        while ev_i < len(eventos) and eventos[ev_i][0] * SR < inicio_bloque + n:
+            t_ev, frec, vol, pan = eventos[ev_i]
+            buf = cache[round(frec, 1)]
+            off = int(t_ev * SR) - inicio_bloque
+            g = NIVEL_CUENCO * vol
+            for i in range(min(len(buf), len(pend_i) - off)):
+                v = buf[i] * g
+                pend_i[off + i] += v * (1.0 - pan)
+                pend_d[off + i] += v * pan
+            ev_i += 1
+
+        bloque_i = array.array("d", [0.0]) * n
+        bloque_d = array.array("d", [0.0]) * n
+
+        for i in range(n):
+            pos = inicio_bloque + i
+            t_seg = pos / SR
+
+            # ¿Cambió la sección? Reconstruir la tabla del acorde.
+            # Se avanza el índice al cruzar el límite, en vez de buscarlo en cada
+            # muestra: con una hora de obra la búsqueda costaría más que la síntesis.
+            if sec_i + 1 < len(secciones) and t_seg >= secciones[sec_i + 1][0]:
+                sec_i += 1
+                nueva_seccion = True
+            elif sec_i < 0:
+                sec_i = 0
+                nueva_seccion = True
+            else:
+                nueva_seccion = False
+            if nueva_seccion:
+                s = sec_i
+                _, _, grado = secciones[s]
+                base = grados[grado]
+                voces = [(base[0], base[1] * 2)]          # sub, una octava abajo
+                for k in (0, 2, 4):
+                    g2 = grados[(grado + k) % len(grados)]
+                    voces.append(g2)
+                tabla, divisor = tabla_acorde(voces)
+                paso_tabla = (raiz / divisor) * TABLA / SR
+
+            # Envolvente respiratoria, con la frecuencia descendiendo
+            prog = t_seg / segundos if segundos else 0.0
+            rpm = RESP_INICIAL + (RESP_FINAL - RESP_INICIAL) * prog
+            fase_resp += (rpm / 60.0) * 4096.0 / SR
+            if fase_resp >= 4096.0:
+                fase_resp -= 4096.0
+            env_resp = t_resp[int(fase_resp)]
+
+            # Lectura de la tabla del acorde con interpolación lineal
+            i0 = int(fase_tabla)
+            frac = fase_tabla - i0
+            a = tabla[i0 % TABLA]
+            b = tabla[(i0 + 1) % TABLA]
+            pad = (a + (b - a) * frac) * NIVEL_PAD * env_resp
+            fase_tabla += paso_tabla
+            if fase_tabla >= TABLA:
+                fase_tabla -= TABLA
+
+            seco_i = pad + pend_i[i]
+            seco_d = pad + pend_d[i]
+            if aire:
+                seco_i += random.uniform(-1, 1) * aire
+                seco_d += random.uniform(-1, 1) * aire
+
+            h_i, h_d = rev.procesar(seco_i, seco_d)
+            vi = seco_i * (1 - REVERB_WET) + h_i * REVERB_WET
+            vd = seco_d * (1 - REVERB_WET) + h_d * REVERB_WET
+
+            env = min(1.0, pos / fundido, (total - pos) / fundido)
+            vi *= env
+            vd *= env
+            bloque_i[i] = vi
+            bloque_d[i] = vd
+            pico_global = max(pico_global, abs(vi), abs(vd))
+
+        salida.append((bloque_i, bloque_d))
+
+        # Desplazar la cola de los cuencos
+        resto = len(pend_i) - n
+        for i in range(resto):
+            pend_i[i] = pend_i[i + n]
+            pend_d[i] = pend_d[i + n]
+        for i in range(resto, len(pend_i)):
+            pend_i[i] = 0.0
+            pend_d[i] = 0.0
+
+    # --- Normalización a -3 dBFS de pico. Sin limitador, sin saturación. ---
+    objetivo = 10 ** (-3.0 / 20.0)
+    g = objetivo / pico_global if pico_global else 1.0
+    for bi, bd in salida:
+        for i in range(len(bi)):
+            muestras.append(int(max(-1.0, min(1.0, bi[i] * g)) * 32767))
+            muestras.append(int(max(-1.0, min(1.0, bd[i] * g)) * 32767))
+
+    with wave.open(ruta, "w") as w:
+        w.setnchannels(2)
+        w.setsampwidth(2)
+        w.setframerate(SR)
+        w.writeframes(muestras.tobytes())
+
+    return len(secciones), len(eventos)
+
+
+def main():
+    p = argparse.ArgumentParser(description="Compositor de música de meditación")
+    p.add_argument("--minutos", type=float, default=1.0)
+    p.add_argument("--raiz", default="528")
+    p.add_argument("--modo", default="hirajoshi", choices=list(MODOS))
+    p.add_argument("--semilla", type=int, default=None)
+    p.add_argument("--rt60", type=float, default=6.0, help="cola de reverb en segundos")
+    p.add_argument("--aire", type=float, default=0.0,
+                   help="ruido de fondo (0 = ninguno). Por encima de 0,02 ensucia el drone")
+    p.add_argument("--salida", default=None)
+    p.add_argument("--listar", action="store_true")
+    a = p.parse_args()
+
+    if a.listar:
+        print("Modos (entonación justa, razones exactas):\n")
+        for nombre, grados in MODOS.items():
+            r = "  ".join(f"{n}/{d}" for n, d in grados)
+            hz = "  ".join(f"{528.0*n/d:.1f}" for n, d in grados)
+            print(f"  {nombre:11} {r}")
+            print(f"  {'':11} {hz}  Hz sobre raíz 528\n")
+        print("Raíces solfeggio:", "  ".join(SOLFEGGIO))
+        return
+
+    raiz = SOLFEGGIO.get(a.raiz) or float(a.raiz)
+    semilla = a.semilla if a.semilla is not None else random.randrange(1, 10 ** 6)
+    ruta = a.salida or f"obra_{a.raiz}_{a.modo}_{semilla}.wav"
+
+    print(f"Componiendo {a.minutos:g} min · raíz {raiz:.1f} Hz · modo {a.modo} "
+          f"· semilla {semilla}")
+    componer(ruta, a.minutos * 60, raiz, a.modo, semilla, a.aire, a.rt60)
+    print(f"{ruta}")
+    print(f"Repetir esta obra: --raiz {a.raiz} --modo {a.modo} --semilla {semilla}")
+
+
+if __name__ == "__main__":
+    main()

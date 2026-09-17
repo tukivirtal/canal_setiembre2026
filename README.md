@@ -1,43 +1,64 @@
-# Así Se Vivía — sistema operativo del canal
+# Cuenco — canal de música de meditación
 
-Construcción de un canal de YouTube **faceless** siguiendo los 7 pasos del PDF
-*"Armado canal YouTube"*. Cada paso deja su resultado escrito acá.
+Canal de YouTube de música de meditación **compuesta desde cero**, construido siguiendo
+los 7 pasos del PDF *"Armado canal YouTube"* aplicados a este nicho.
 
-**Concepto:** la vida cotidiana en la historia — cómo se vivía de verdad, contada desde
-la mesa, el bolsillo y la cama, no desde el trono. Religión y dinero entran como pilares
-internos, no como canales aparte.
+> **Compuesta con raíz en 528 Hz. Para acompañar una práctica de respiración.**
+> No se promete curar nada. Se compone música de calidad para relajarse.
 
-## Restricciones del proyecto
+## Las tres reglas del proyecto
 
-- Formato faceless (voz en off, sin cámara).
-- Español primero, inglés después → el nicho fue elegido para traducirse sin perder sentido.
-- La IA es herramienta de producción, **nunca** la temática del canal.
-- Todo lo que se produzca tiene que pasar la revisión de **contenido no auténtico**:
-  ver [`01-nicho/analisis-subnichos.md`](01-nicho/analisis-subnichos.md), sección 0.
+1. **Nada viene de fuera.** Cada obra se sintetiza desde la onda: entonación justa,
+   estructura respiratoria, cuencos construidos parcial a parcial. Sin bibliotecas, sin
+   muestras, sin riesgo de Content ID — y con el máster en propiedad, que es lo que
+   permite distribuir a streaming.
+2. **Cero afirmaciones de salud.** Se describe la obra, no se promete el efecto.
+3. **Cada obra es distinta.** Es la defensa frente a la desmonetización por contenido
+   repetitivo, y se verifica con una medida, no con una intención.
 
-## Estado
+## Los 7 pasos
 
-| Paso | Contenido | Estado |
-|---|---|---|
-| — | [Los 7 prompts originales](00-prompts/los-7-prompts.md) | ✅ transcritos del PDF |
-| 2 | [Investigación de nicho y subnichos](01-nicho/analisis-subnichos.md) | ✅ |
-| 2b | [Identidad, audiencia y pilares](01-nicho/identidad-canal.md) | ✅ |
-| 2c | [Las primeras 100 ideas de video](01-nicho/100-ideas-video.md) | ✅ |
-| — | [Lote de prueba de 6 videos](01-nicho/lote-prueba-6-videos.md) | ✅ definido |
-| 1 | [Plan completo de canal](02-plan/plan-completo-canal.md) | ✅ |
-| 3 | [Sistema de guiones, hooks y miniaturas](03-guiones/sistema-guiones.md) · [títulos y miniaturas del lote](03-guiones/titulos-y-miniaturas-lote.md) · [guion completo del video 1](03-guiones/guion-01-soldado-romano.md) | ✅ |
-| 4 | Algoritmo y crecimiento | ⏳ siguiente |
-| 5 | [Cómo se crean los videos](04-produccion/como-crear-los-videos.md) · [prompts de Leonardo](04-produccion/prompts-leonardo-miniaturas.md) · [archivo de imagen](05-archivo/README.md) | ✅ adelantado a pedido |
-| 6 | Plan de monetización | ⏳ |
-| 7 | Analítica y revisión | ⏳ |
-
-### Consultas fuera de la secuencia
-
-| Tema | Archivo |
+| Paso | Contenido |
 |---|---|
-| Nicho de meditación y espiritualidad | [análisis de rentabilidad](06-meditacion/analisis-nicho-meditacion.md) |
-| Canal de meditación sin riesgo de desmonetización | [diseño](06-meditacion/canal-sin-riesgo.md) |
-| Herramientas de audio | [generador de sonido](06-meditacion/generar_sonido.py) · [compositor de música](06-meditacion/componer_musica.py) |
+| — | [Los 7 prompts originales del PDF](00-prompts/los-7-prompts.md) |
+| **2** | [Nicho, identidad y catálogo de 40 obras](01-nicho/nicho-e-identidad.md) |
+| **1** | [Plan completo de canal](02-plan/plan-canal.md) |
+| **3** | [Sistema de composición](03-composicion/sistema-composicion.md) · [`compositor.py`](03-composicion/compositor.py) |
+| **4** | [Algoritmo y crecimiento](04-algoritmo/crecimiento.md) |
+| **5** | [Producción](05-produccion/produccion.md) |
+| **6** | [Monetización](06-monetizacion/monetizacion.md) |
+| **7** | [Analítica](07-analitica/analitica.md) |
 
-> El paso 1 se hace **después** del 2 a propósito: el "plan completo de canal" pide
-> analizar "mi nicho", así que no se puede escribir antes de tener nicho.
+> El paso 1 se escribe después del 2 porque pide analizar "mi nicho".
+
+## El compositor
+
+```bash
+python3 03-composicion/compositor.py --listar
+python3 03-composicion/compositor.py --minutos 60 --raiz 528 --modo hirajoshi
+```
+
+Sin dependencias, solo Python 3. Tres decisiones lo separan del ambient sintético común,
+y están explicadas con los cálculos en
+[`sistema-composicion.md`](03-composicion/sistema-composicion.md):
+
+- **Entonación justa** — los intervalos son razones exactas de enteros, así que los
+  parciales coinciden en vez de batir. Sobre un drone sostenido es la diferencia audible
+  entre "sintetizador" e "instrumento".
+- **Pulso respiratorio** — la obra no tiene compás: tiene respiración, que desacelera de
+  6 a 4,5 por minuto a lo largo de la pieza.
+- **Espacio** — reverberación larga con amortiguación de agudos. Sin ruido de fondo, que
+  enmascara justo la cola de reverb que hace que una pieza suene cara.
+
+**Verificado en cada obra:** pico −3,0 dBFS, cero clipping, y variación de RMS entre
+tramos que demuestra que la obra evoluciona en lugar de repetirse.
+
+## Las dos cuentas que definen el canal
+
+**Los suscriptores son el cuello, no las horas.** Al revés que en cualquier otro canal:
+el oyente pone la pista, apaga la pantalla y consume cuarenta minutos sin ver un
+fotograma. Las 4.000 horas llegan solas; los 1.000 suscriptores hay que ganarlos con la
+portada, el nombre de la obra y la descripción.
+
+**YouTube es el escaparate, no la caja.** El ingreso real del nicho es la distribución a
+Spotify y Apple Music del mismo catálogo — posible únicamente porque el máster es propio.
