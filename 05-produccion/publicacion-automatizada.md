@@ -22,7 +22,7 @@ La imagen de producción sale de Leonardo a 1920 × 1080.
 | ~~ElevenLabs~~ | — | **Fuera.** Este canal no tiene voz: la música se sintetiza |
 | `compositor.py` | El audio | Propio, sin dependencias, sin coste |
 | **Leonardo** | Las 7 escenas y la portada | Créditos ya contratados |
-| **Cloudinary** | Almacenar y servir el MP4 y las portadas por URL | — |
+| **Google Drive** | Almacenar las portadas, el MP4 y los shorts | Ya en uso |
 | **Make** | Orquestar la subida a YouTube y escribir el resultado al catálogo | — |
 | `ffmpeg` | Montar el video | Gratis. Viene en Codespaces |
 
@@ -31,25 +31,17 @@ salida. Ahora el audio es gratis e ilimitado.
 
 ## Dónde se monta el video — y por qué no en Cloudinary
 
-Cloudinary **puede** componer video, pero para este catálogo no sale a cuenta. Los números
-del plan gratuito son 25 créditos al mes, donde 1 crédito equivale a 1 GB de
-almacenamiento, 1 GB de tráfico, o **250 segundos de video HD transformado**.
+Se monta con **`ffmpeg`**, gratis y sin límites de duración, y el resultado se guarda en
+**Drive** hasta que YouTube lo confirma.
 
-| Uso de Cloudinary | Coste del catálogo completo (53,7 h) | Cuota |
-|---|---|---|
-| **Montar** el video con transformaciones | 193.200 s HD ÷ 250 = **773 créditos** | 25 |
-| **Almacenar y servir** el MP4 ya montado | 7,7 GB + 7,7 GB ≈ **15 créditos** | 25 |
+Se evaluó montarlo en Cloudinary con transformaciones y no sale a cuenta: el catálogo
+completo costaría **773 créditos** frente a los 25 mensuales del plan gratuito, y la
+transformación de video tiene un tope de 30 minutos que deja fuera todo el pilar Sueño.
 
-Montarlo allí cuesta **31 veces la cuota mensual entera**. Almacenarlo y servirlo entra.
-Además, la transformación de video tiene un límite de **30 minutos** para MP4 progresivo,
-lo que deja fuera de entrada todas las obras del pilar Sueño.
+> **La decisión: montar con `ffmpeg`, guardar en Drive, publicar con Make.**
 
-> **La decisión: montar con `ffmpeg`, guardar en Cloudinary, publicar con Make.**
-> Cloudinary es el disco y la URL, no el taller.
-
-**Y una consecuencia que ahorra créditos:** en cuanto YouTube confirma la subida, se borra
-el MP4 de Cloudinary. El almacenamiento se cobra mientras el archivo esté ahí. No se pierde
-nada: el video se rehace desde la semilla y las portadas.
+**Y la regla que no cambia:** en cuanto YouTube confirma la subida, se borra el MP4. No se
+pierde nada — el audio se regenera con la semilla y el video se remonta con las portadas.
 
 ### Tamaños reales
 
@@ -71,11 +63,10 @@ Casi todo el peso es el audio. El video de imagen fija a 1 fps apenas suma.
 [3] YouTube            Upload a Video  ← con URL directa, no con el archivo
 [4] YouTube            Set Thumbnail   ← URL de la portada
 [5] Google Sheets      Escribir url_video, estado = "publicada", fecha
-[6] Cloudinary         Borrar el MP4 (ya está en YouTube)
+[6] Google Drive       Borrar el MP4 (ya está en YouTube)
 
-Las URLs de [3] y [4] **no se consultan**: se construyen con la columna `id`
-siguiendo la convención de nombres (ver cloudinary.md). Eso ahorra un módulo
-entero y un punto de fallo.
+Los archivos de [3] y [4] se localizan por nombre dentro de la carpeta de la
+obra, que se llama igual que su `id` (ver almacenamiento.md).
 ```
 
 **El módulo clave es el [3].** La versión 1.1 de *Upload a Video* de Make admite

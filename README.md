@@ -35,7 +35,7 @@ español, inglés y japonés.
 | **1** | [Plan completo de canal](02-plan/plan-canal.md) |
 | **3** | [Sistema de composición](03-composicion/sistema-composicion.md) · [base científica](03-composicion/base-cientifica.md) · [`compositor.py`](03-composicion/compositor.py) |
 | **4** | [Algoritmo y crecimiento](04-algoritmo/crecimiento.md) |
-| **5** | [Producción](05-produccion/produccion.md) · [prompts de video en Leonardo](05-produccion/prompts-leonardo-video.md) · [publicación automatizada](05-produccion/publicacion-automatizada.md) · [shorts](05-produccion/shorts.md) · [Cloudinary](05-produccion/cloudinary.md) |
+| **5** | [Producción](05-produccion/produccion.md) · [prompts de video en Leonardo](05-produccion/prompts-leonardo-video.md) · [publicación automatizada](05-produccion/publicacion-automatizada.md) · [shorts](05-produccion/shorts.md) · [almacenamiento](05-produccion/almacenamiento.md) |
 | **6** | [Monetización](06-monetizacion/monetizacion.md) |
 | **7** | [Analítica](07-analitica/analitica.md) |
 | — | [Control de catálogo, lotes y Codespaces](08-catalogo/README.md) · [Excel](08-catalogo/catalogo_canal.xlsx) |
