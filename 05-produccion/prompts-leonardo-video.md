@@ -244,3 +244,44 @@ mueven la aguja. Describir la ausencia de luz funciona mejor que describir su á
 **Conclusión:** el sistema de objeto zen sobre negro funciona mejor que el de relieve
 tallado para este contenido. Más tactilidad, más elegancia, y cero riesgo de parecer
 autoayuda.
+
+
+---
+
+## Prueba de dos portadas
+
+Se generaron las escenas 2 y 6 antes de pasar nada a Leonardo. Dos hallazgos, y el
+segundo cambia la herramienta.
+
+### Escena 6 · humo de incienso — funciona
+
+Fondo negro profundo, cinta de humo subiendo y curvándose, ceniza granulada sobre piedra
+oscura con relieve visible, brasa ámbar. Mucho espacio negativo, que es exactamente lo
+que pide una escena de meditación. Y cero estética de autoayuda: ni un degradado morado,
+ni un mandala.
+
+**El fallo:** la varilla salió **tumbada en horizontal**, no de pie. El prompt decía
+"incense stick" y el generador fue a la composición de stock más frecuente.
+
+**La corrección, aplicada a los siete sujetos:** hay que **decir la orientación
+explícitamente** (`standing UPRIGHT AND VERTICAL in a small ceramic holder`,
+`stacked VERTICALLY one on top of another`). El generador no la deduce del contexto; toma
+la pose más común de su entrenamiento. Es la misma lección que la luz: **lo que no se
+dice, se pierde.**
+
+### Escena 2 · piedras — la herramienta falló, no el prompt
+
+La imagen de debajo estaba bien —piedras mojadas apiladas, fondo oscuro, luz lateral—
+pero **Canva le montó encima una plantilla de miniatura**: un titular en grande, un
+subtítulo, papel rasgado y una estrella.
+
+**Conclusión práctica:** el tipo `youtube_thumbnail` de Canva a veces devuelve un diseño
+*compuesto*, no una imagen limpia, y no hay forma de garantizar cuál de las dos cosas
+sale. **Para este canal eso lo descarta como herramienta de portadas.**
+
+Leonardo es la elección correcta justamente por lo contrario: devuelve la imagen cruda,
+sin texto ni adornos, que es lo que hace falta. El texto se añade después en Photopea,
+igual en todas las portadas.
+
+Las pruebas hechas en Canva sirven para validar **el sujeto y la iluminación** del
+prompt. La composición final y la limpieza dependen de Leonardo.
