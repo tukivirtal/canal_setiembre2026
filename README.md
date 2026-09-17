@@ -12,7 +12,10 @@ los 7 pasos del PDF *"Armado canal YouTube"* aplicados a este nicho.
    estructura respiratoria, cuencos construidos parcial a parcial. Sin bibliotecas, sin
    muestras, sin riesgo de Content ID — y con el máster en propiedad, que es lo que
    permite distribuir a streaming.
-2. **Cero afirmaciones de salud.** Se describe la obra, no se promete el efecto.
+2. **Cero afirmaciones de salud, y evidencia citada.** El canal no afirma que la música
+   produzca un efecto: describe cómo está construida y cita la investigación sobre las
+   técnicas que usa, separando lo bien respaldado de lo preliminar y de lo que no tiene
+   evidencia. Ver [base científica](03-composicion/base-cientifica.md).
 3. **Cada obra es distinta.** Es la defensa frente a la desmonetización por contenido
    repetitivo, y se verifica con una medida, no con una intención.
 
@@ -23,7 +26,7 @@ los 7 pasos del PDF *"Armado canal YouTube"* aplicados a este nicho.
 | — | [Los 7 prompts originales del PDF](00-prompts/los-7-prompts.md) |
 | **2** | [Nicho, identidad y catálogo de 40 obras](01-nicho/nicho-e-identidad.md) |
 | **1** | [Plan completo de canal](02-plan/plan-canal.md) |
-| **3** | [Sistema de composición](03-composicion/sistema-composicion.md) · [`compositor.py`](03-composicion/compositor.py) |
+| **3** | [Sistema de composición](03-composicion/sistema-composicion.md) · [base científica](03-composicion/base-cientifica.md) · [`compositor.py`](03-composicion/compositor.py) |
 | **4** | [Algoritmo y crecimiento](04-algoritmo/crecimiento.md) |
 | **5** | [Producción](05-produccion/produccion.md) |
 | **6** | [Monetización](06-monetizacion/monetizacion.md) |

@@ -61,6 +61,10 @@ SOLFEGGIO = {"396": 396.0, "417": 417.0, "528": 528.0,
 ESPECTRO_PAD = [(1, 1.00), (3, 0.26), (5, 0.11), (7, 0.05), (9, 0.025)]
 
 # Respiración: 6 resp/min al inicio, 4,5 al final. Descenso gradual.
+# El rango 4,5-6 no es arbitrario: es el que la investigación sobre respiración
+# lenta documenta como asociado a mayor variabilidad de la frecuencia cardíaca,
+# con 0,1 Hz (6 por minuto) como el valor más usado en los protocolos.
+# Ver base-cientifica.md. Configurable con --respiracion.
 RESP_INICIAL = 6.0
 RESP_FINAL = 4.5
 FRAC_INHALAR = 0.40      # inhalar más corto que exhalar: patrón de relajación
@@ -117,6 +121,11 @@ def tabla_acorde(voces):
     for i in range(TABLA):
         tabla[i] /= pico
     return tabla, L
+
+
+def tabla_seno():
+    """Seno puro, para las portadoras binaurales. Una lectura en vez de un math.sin."""
+    return array.array("d", [math.sin(2.0 * math.pi * i / TABLA) for i in range(TABLA)])
 
 
 def tabla_respiracion():
@@ -235,10 +244,24 @@ class Reverb:
 # Composición
 # --------------------------------------------------------------------------
 
-def componer(ruta, segundos, raiz, modo, semilla, aire, rt60, verbose=True):
+def componer(ruta, segundos, raiz, modo, semilla, aire, rt60,
+             binaural=0.0, resp=(RESP_INICIAL, RESP_FINAL), verbose=True):
     random.seed(semilla)
     grados = MODOS[modo]
     total = int(segundos * SR)
+    resp_ini, resp_fin = resp
+
+    # Portadora binaural: se baja el root por octavas hasta 150-300 Hz. El efecto
+    # binaural se documenta mejor con portadoras graves, por debajo de ~500 Hz.
+    # Nivel bajo: acompaña la obra, no la protagoniza.
+    portadora = raiz
+    while portadora > 300:
+        portadora /= 2.0
+    t_seno = tabla_seno() if binaural > 0 else None
+    fase_bi_i = fase_bi_d = 0.0
+    paso_bi_i = (portadora - binaural / 2.0) * TABLA / SR
+    paso_bi_d = (portadora + binaural / 2.0) * TABLA / SR
+    NIVEL_BI = 0.09
 
     # --- Estructura: secciones de un número ENTERO de respiraciones ---
     resp_por_seccion = 6
@@ -247,7 +270,7 @@ def componer(ruta, segundos, raiz, modo, semilla, aire, rt60, verbose=True):
     idx = 0
     while t < segundos:
         prog = (t / segundos) if segundos else 0.0
-        rpm = RESP_INICIAL + (RESP_FINAL - RESP_INICIAL) * prog
+        rpm = resp_ini + (resp_fin - resp_ini) * prog
         dur = resp_por_seccion * 60.0 / rpm
         dur = min(dur, segundos - t)
         if dur < 4.0:
@@ -260,7 +283,9 @@ def componer(ruta, segundos, raiz, modo, semilla, aire, rt60, verbose=True):
 
     if verbose:
         print(f"  {len(secciones)} secciones de {resp_por_seccion} respiraciones")
-        print(f"  respiración {RESP_INICIAL:.1f} → {RESP_FINAL:.1f} por minuto")
+        print(f"  respiración {resp_ini:.1f} → {resp_fin:.1f} por minuto")
+        if binaural:
+            print(f"  binaural {binaural:.1f} Hz sobre portadora de {portadora:.1f} Hz (requiere auriculares)")
 
     t_resp = tabla_respiracion()
     rev = Reverb(rt60=rt60)
@@ -270,7 +295,7 @@ def componer(ruta, segundos, raiz, modo, semilla, aire, rt60, verbose=True):
     t = 0.0
     while t < segundos - 8.0:
         prog = t / segundos
-        rpm = RESP_INICIAL + (RESP_FINAL - RESP_INICIAL) * prog
+        rpm = resp_ini + (resp_fin - resp_ini) * prog
         ciclo = 60.0 / rpm
         if t > 4.0:
             num, den = random.choice(grados)
@@ -349,7 +374,7 @@ def componer(ruta, segundos, raiz, modo, semilla, aire, rt60, verbose=True):
 
             # Envolvente respiratoria, con la frecuencia descendiendo
             prog = t_seg / segundos if segundos else 0.0
-            rpm = RESP_INICIAL + (RESP_FINAL - RESP_INICIAL) * prog
+            rpm = resp_ini + (resp_fin - resp_ini) * prog
             fase_resp += (rpm / 60.0) * 4096.0 / SR
             if fase_resp >= 4096.0:
                 fase_resp -= 4096.0
@@ -367,6 +392,20 @@ def componer(ruta, segundos, raiz, modo, semilla, aire, rt60, verbose=True):
 
             seco_i = pad + pend_i[i]
             seco_d = pad + pend_d[i]
+
+            if binaural > 0:
+                # Dos portadoras a distinta frecuencia, una por oído. La diferencia
+                # es el pulso percibido. Sigue la envolvente respiratoria para que
+                # no aparezca como una capa ajena a la obra.
+                g_bi = NIVEL_BI * env_resp
+                seco_i += t_seno[int(fase_bi_i) % TABLA] * g_bi
+                seco_d += t_seno[int(fase_bi_d) % TABLA] * g_bi
+                fase_bi_i += paso_bi_i
+                fase_bi_d += paso_bi_d
+                if fase_bi_i >= TABLA:
+                    fase_bi_i -= TABLA
+                if fase_bi_d >= TABLA:
+                    fase_bi_d -= TABLA
             if aire:
                 seco_i += random.uniform(-1, 1) * aire
                 seco_d += random.uniform(-1, 1) * aire
@@ -419,6 +458,11 @@ def main():
     p.add_argument("--rt60", type=float, default=6.0, help="cola de reverb en segundos")
     p.add_argument("--aire", type=float, default=0.0,
                    help="ruido de fondo (0 = ninguno). Por encima de 0,02 ensucia el drone")
+    p.add_argument("--binaural", type=float, default=0.0,
+                   help="pulso binaural en Hz (0 = ninguno). Evidencia preliminar, "
+                        "requiere auriculares. Ver base-cientifica.md")
+    p.add_argument("--respiracion", default=None,
+                   help="ritmo inicial,final en resp/min. Por defecto 6,4.5")
     p.add_argument("--salida", default=None)
     p.add_argument("--listar", action="store_true")
     a = p.parse_args()
@@ -437,9 +481,15 @@ def main():
     semilla = a.semilla if a.semilla is not None else random.randrange(1, 10 ** 6)
     ruta = a.salida or f"obra_{a.raiz}_{a.modo}_{semilla}.wav"
 
+    if a.respiracion:
+        ini, fin = (float(x) for x in a.respiracion.split(","))
+    else:
+        ini, fin = RESP_INICIAL, RESP_FINAL
+
     print(f"Componiendo {a.minutos:g} min · raíz {raiz:.1f} Hz · modo {a.modo} "
           f"· semilla {semilla}")
-    componer(ruta, a.minutos * 60, raiz, a.modo, semilla, a.aire, a.rt60)
+    componer(ruta, a.minutos * 60, raiz, a.modo, semilla, a.aire, a.rt60,
+             binaural=a.binaural, resp=(ini, fin))
     print(f"{ruta}")
     print(f"Repetir esta obra: --raiz {a.raiz} --modo {a.modo} --semilla {semilla}")
 
