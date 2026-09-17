@@ -9,16 +9,16 @@ sin inventarlos.
 
 | Escena | Desde | Dura | Acorde | Sujeto |
 |---|---|---|---|---|
-| 1 | 0:00 | 60,0 s | 1/1 tónica | Cuenco de bronce |
+| 1 | 0:00 | 60,0 s | **1/1 tónica** | Rin — cuenco cantor japonés |
 | 2 | 1:00 | 61,9 s | 9/8 | Piedras apiladas mojadas |
-| 3 | 2:03 | 64,1 s | 9/8 | Agua quieta con una onda |
-| 4 | 3:06 | 66,4 s | 1/1 tónica | Arena rastrillada |
-| 5 | 4:13 | 69,1 s | 3/2 | Bambú entre niebla |
-| 6 | 5:22 | 72,1 s | 6/5 | Humo de incienso |
-| 7 | 6:34 | 86,4 s | 1/1 tónica | Lino plegado |
+| 3 | 2:03 | 64,1 s | 9/8 | Tsukubai — pila de piedra |
+| 4 | 3:06 | 66,4 s | **1/1 tónica** | Karesansui — arena rastrillada |
+| 5 | 4:13 | 69,1 s | 3/2 | Shishi-odoshi — bambú y agua |
+| 6 | 5:22 | 72,1 s | 6/5 | Kōro — incensario |
+| 7 | 6:34 | 86,4 s | **1/1 tónica** | Chawan con kintsugi |
 
-Las escenas 1, 4 y 7 son la tónica: **el mismo material vuelve** (bronce, piedra, tela
-en el mismo tono cálido). La imagen sigue la armonía.
+Las escenas 1, 4 y 7 son la tónica: **el mismo material vuelve** — bronce, piedra, y el
+oro del kintsugi respondiendo al bronce del principio. La imagen sigue la armonía.
 
 ---
 
@@ -59,49 +59,114 @@ oversaturated, pastel, lens flare, bokeh circles
 
 ## Los siete sujetos
 
-**1 · Cuenco de bronce** — *0:00, tónica*
+Todos del mismo mundo: **piedra, madera, cerámica, bambú, metal envejecido, agua y humo.**
+Esa es la regla de armonía — ver la sección siguiente.
+
+**1 · Rin (cuenco cantor japonés)** — *0:00, tónica*
 ```
-a single weathered bronze singing bowl seen from a low angle, deep patina,
-hammered surface with visible dents and tarnish, a wooden mallet resting beside it
+a single weathered bronze rin singing bowl resting on a round silk zabuton cushion,
+deep patina, hammered surface with visible dents and tarnish,
+a wooden mallet lying beside it
 ```
 
 **2 · Piedras apiladas** — *1:00*
 ```
-four wet river stones stacked in balance, water beading on the dark surfaces,
+four wet river stones stacked VERTICALLY one on top of another in balance,
+water droplets clearly visible on every surface, wet reflective sheen,
 one stone slightly out of alignment
 ```
 
-**3 · Agua quieta** — *2:03*
+**3 · Tsukubai (pila de piedra)** — *2:03*
 ```
-the surface of still black water with a single expanding ripple ring,
-reflecting one distant point of warm light
-```
-
-**4 · Arena rastrillada** — *3:06, tónica*
-```
-raked sand in a dry zen garden, deep parallel grooves curving around a single
-dark stone, low sun raking across the ridges
+a low stone water basin carved from a single rough granite block,
+a thin bamboo spout above it, one expanding ripple ring on the still black water,
+wet moss on the stone rim
 ```
 
-**5 · Bambú entre niebla** — *4:13*
+**4 · Karesansui (jardín seco)** — *3:06, tónica*
 ```
-three bamboo stalks with visible nodes and weathered green-grey skin,
-thick mist between them, dark forest depth behind
-```
-
-**6 · Humo de incienso** — *5:22*
-```
-a single incense stick with a glowing ember tip, a thick ribbon of smoke rising
-and curling, ash fallen on dark stone below
+raked white sand in a dry zen garden, deep parallel grooves curving around
+a single dark standing stone, a bamboo rake resting at the edge,
+low sun raking across the sand ridges
 ```
 
-**7 · Lino plegado** — *6:34, tónica*
+**5 · Shishi-odoshi (bambú y agua)** — *4:13*
 ```
-heavy folded linen cloth with deep creases and visible weave texture,
-one fold catching the light, the rest falling into shadow
+a bamboo shishi-odoshi water fountain, thick weathered bamboo with visible nodes,
+water pouring from the spout, wet dark stones below, thick mist between the stalks
 ```
 
----
+**6 · Kōro (incensario)** — *5:22*
+```
+a single incense stick standing UPRIGHT AND VERTICAL in a small ceramic kōro
+incense burner filled with grey ash, glowing ember tip,
+a thick ribbon of smoke rising and curling upward
+```
+
+**7 · Chawan con kintsugi** — *6:34, tónica*
+```
+a dark ceramic chawan tea bowl repaired with kintsugi, golden lacquer seams
+tracing the cracks across the glaze, crackled matte surface,
+resting on a folded linen cloth
+```
+
+> **Por qué el kintsugi cierra la obra.** Las escenas 1, 4 y 7 son la tónica, así que
+> deben devolver el mismo material. El oro de las costuras del chawan responde al bronce
+> del rin de la escena 1 — la imagen vuelve a casa a la vez que la armonía. Y el kintsugi
+> dice, sin una palabra, exactamente lo que el canal quiere decir.
+
+## Regla de armonía
+
+Todo sujeto del canal sale de **un único inventario de materiales**:
+
+**piedra · madera · cerámica · bambú · metal envejecido · papel · lino · agua · humo · musgo**
+
+Si un objeto no está hecho de uno de esos, no entra. Es lo que hace que siete escenas
+distintas parezcan la misma habitación.
+
+Cuatro reglas más, y son las que sostienen la coherencia:
+
+1. **Nada nuevo, nada brillante.** Todo con desgaste, pátina, grietas o musgo. Un objeto
+   recién comprado rompe el tono entero.
+2. **Un solo acento de color: el ámbar** de la luz o de una brasa. Ningún otro color
+   saturado, nunca.
+3. **Verde solo como musgo**, apagado y oscuro. El verde de planta viva es demasiado
+   vivo para este canal.
+4. **Cero figuras humanas y cero símbolos.** Ni manos, ni budas, ni mandalas, ni enso.
+   **El objeto solo.** Esa contención es lo que separa este canal de la estantería de
+   autoayuda.
+
+## Repertorio de sujetos
+
+Veinte objetos que cumplen las reglas. Cada obra nueva toma siete de aquí, y siempre
+armonizan porque todos vienen del mismo inventario.
+
+| Sujeto | Material | Nota |
+|---|---|---|
+| Rin (cuenco cantor) | metal envejecido | El sujeto insignia del canal |
+| Chawan con kintsugi | cerámica, oro | Ideal para cerrar |
+| Tetsubin (tetera de hierro) | hierro colado | Vapor, textura granulada |
+| Kōro (incensario) | cerámica, humo | El mejor para movimiento |
+| Tsukubai (pila de piedra) | piedra, agua | Ondas lentas |
+| Shishi-odoshi | bambú, agua | Movimiento real |
+| Karesansui (arena rastrillada) | arena, piedra | Relieve puro |
+| Suiseki (piedra de contemplación) | piedra | Un objeto, cero adorno |
+| Tōrō (farol de piedra) | piedra, musgo | Con niebla, excelente |
+| Fude y sumi (pincel y tinta) | madera, pelo, piedra | Negro sobre negro |
+| Shoji (panel de papel) | papel, madera | Luz atravesando |
+| Fūrin (campana de viento) | vidrio, papel | Movimiento mínimo |
+| Bonsái de pino | madera, musgo | Solo silueta, sin verde vivo |
+| Musgo sobre piedra | musgo, piedra | Textura extrema en macro |
+| Tatami (esterilla) | paja tejida | Trama en luz rasante |
+| Bambú cortado | bambú | Nudos, corte limpio |
+| Cuenco de madera torneada | madera | Vetas, grano |
+| Hoja de arce sobre agua oscura | agua, hoja | El único objeto frágil |
+| Cuerda de cáñamo anudada | fibra | Nudo shimenawa, textura |
+| Ceniza y brasa | ceniza | El más abstracto |
+
+**Para elegir los siete de una obra:** uno insignia (rin o chawan), dos de piedra, uno de
+agua, uno de humo o vapor, uno de madera o bambú, uno de textura pura. Ese reparto da
+variedad sin que nada desentone.
 
 ## El movimiento
 
@@ -142,13 +207,13 @@ casi siempre: muy poco.
 
 | Escena | Prompt de movimiento | Intensidad |
 |---|---|---|
-| 1 · Cuenco | `almost imperceptible drift of mist, the bowl completely still` | mínima |
+| 1 · Rin | `almost imperceptible drift of mist, the bowl completely still` | mínima |
 | 2 · Piedras | `a single drop of water slides down the stone, mist drifts` | mínima |
-| 3 · Agua | `the ripple ring expands slowly outward across the water` | baja |
-| 4 · Arena | `mist crawls low across the sand, grooves perfectly still` | mínima |
-| 5 · Bambú | `thick mist rolls slowly between the stalks, a faint sway` | media |
-| 6 · Humo | `the smoke ribbon rises and curls continuously` | media |
-| 7 · Lino | `the mist drifts, the cloth completely still` | mínima |
+| 3 · Tsukubai | `the ripple ring expands slowly outward across the black water` | baja |
+| 4 · Karesansui | `mist crawls low across the sand, the grooves perfectly still` | mínima |
+| 5 · Shishi-odoshi | `water pours steadily from the bamboo spout, mist rolls` | media |
+| 6 · Kōro | `the smoke ribbon rises and curls continuously` | media |
+| 7 · Chawan | `the mist drifts, the bowl completely still, gold seams catching light` | mínima |
 
 **Regla de oro:** si el movimiento se nota, es demasiado. En un video de meditación,
 cualquier movimiento que llame la atención rompe lo que la música construye — y el
