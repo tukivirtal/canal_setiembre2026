@@ -55,6 +55,29 @@ CLAVE = {  # palabra clave de búsqueda por pilar, en los dos idiomas
 }
 RESP = {"Frecuencias": (6.0, 4.5), "Sueño": (4.5, 3.5), "Respiración": (6.0, 4.5),
         "Cuencos": (5.5, 4.5), "Foco": (6.0, 5.5)}
+
+# Registro por pilar. Sueño y Foco bajan una octava: el sub pasa de 264 a
+# 132 Hz, que es donde vive un drone de dormir. Ver sistema-composicion.md.
+REGISTRO = {"Frecuencias": "medio", "Sueño": "grave", "Respiración": "medio",
+            "Cuencos": "medio", "Foco": "grave"}
+FACTOR = {"grave": 0.5, "medio": 1.0, "brillante": 2.0}
+
+# Para qué es cada obra. Decir "práctica de respiración" en una pieza de
+# estudio de dos horas sería copiar y pegar, no describir.
+PROPOSITO = {
+    "Frecuencias": "Para acompañar una práctica de respiración.",
+    "Sueño": "Para acompañar el sueño.",
+    "Respiración": "Para acompañar una práctica de respiración.",
+    "Cuencos": "Para acompañar una práctica de meditación.",
+    "Foco": "Para acompañar el trabajo o el estudio.",
+}
+PROPOSITO_EN = {
+    "Frecuencias": "To accompany a breathing practice.",
+    "Sueño": "To accompany sleep.",
+    "Respiración": "To accompany a breathing practice.",
+    "Cuencos": "To accompany a meditation practice.",
+    "Foco": "To accompany work or study.",
+}
 ETIQ_BASE = ["música relajante", "meditación", "relajación", "entonación justa",
              "composición original", "meditation music", "relaxing music", "sleep music",
              "singing bowls", "just intonation"]
@@ -81,18 +104,24 @@ def miniatura(o):
 
 def descripcion(o):
     ri, rf = RESP[o["pilar"]]
+    reg = REGISTRO[o["pilar"]]
+    raiz_real = o["raiz"] * FACTOR[reg]
+    # En registro grave la raíz REAL no es la nominal. Decir "528 Hz" a
+    # secas sería inexacto, y la exactitud es el argumento del canal.
+    afinacion = (f'raíz en {round(raiz_real, 1):g} Hz, la octava grave de {o["raiz"]} Hz'
+                 if reg == "grave" else f'raíz en {o["raiz"]} Hz')
     return (
         f'{o["nombre"]} · {dur_txt(o["dur"])}\n\n'
-        f'Compuesta con raíz en {o["raiz"]} Hz, en entonación justa, modo {o["modo"]}.\n'
-        f'Para acompañar una práctica de respiración.\n\n'
+        f'Compuesta con {afinacion}, en entonación justa, modo {o["modo"]}.\n'
+        f'{PROPOSITO[o["pilar"]]}\n\n'
         f'Ciclo respiratorio: de {ri:.1f} a {rf:.1f} respiraciones por minuto, '
         f'inhalar 40 % / exhalar 60 %.\n'
-        f'Cuencos sintetizados cada 4 respiraciones.\n'
+        f'Cuencos y canto de ave sintetizados, sin grabaciones.\n'
         f'Composición original, sintetizada desde cero. '
         f'Ninguna muestra procede de terceros.\n\n'
         f'— English —\n'
         f'Composed with a root of {o["raiz"]} Hz in just intonation, {o["modo"]} mode.\n'
-        f'To accompany a breathing practice.\n'
+        f'{PROPOSITO_EN[o["pilar"]]}\n'
         f'Original composition, synthesized from scratch. No third-party samples.\n\n'
         f'Capítulos:\n00:00 [completar tras el montaje]'
     )
@@ -114,7 +143,8 @@ COLS = [
     ("id", 11), ("titulo", 52), ("tema", 13), ("descripcion_optimizada", 60),
     ("titulo_miniatura", 17), ("hashtags", 34), ("etiquetas", 60),
     ("imagen_miniatura", 24), ("url_video", 30),
-    ("raiz_hz", 9), ("modo", 12), ("semilla", 10), ("duracion_min", 13),
+    ("raiz_hz", 9), ("modo", 12), ("registro", 11), ("semilla", 10),
+    ("duracion_min", 13),
     ("comando_regeneracion", 62), ("estado", 13), ("fecha_publicacion", 18),
     ("vistas", 10), ("suscriptores", 13), ("subs_por_1000", 14),
 ]
@@ -135,9 +165,14 @@ def construir_filas():
             "hashtags": hashtags(o),
             "etiquetas": etiquetas(o),
             "imagen_miniatura": "", "url_video": "",
-            "raiz_hz": o["raiz"], "modo": o["modo"], "semilla": s, "duracion_min": o["dur"],
-            "comando_regeneracion": (f'python3 03-composicion/compositor.py --minutos {o["dur"]} '
-                                     f'--raiz {o["raiz"]} --modo {o["modo"]} --semilla {s}'),
+            "raiz_hz": o["raiz"], "modo": o["modo"],
+            "registro": REGISTRO[o["pilar"]], "semilla": s,
+            "duracion_min": o["dur"],
+            "comando_regeneracion": (
+                f'python3 03-composicion/compositor.py --minutos {o["dur"]} '
+                f'--raiz {o["raiz"]} --modo {o["modo"]} --semilla {s}'
+                + (f' --registro {REGISTRO[o["pilar"]]}'
+                   if REGISTRO[o["pilar"]] != "medio" else "")),
             "estado": "pendiente", "fecha_publicacion": "",
             "vistas": "", "suscriptores": "", "subs_por_1000": "",
         })
@@ -155,6 +190,10 @@ if HACER_CSV:
 
 if not HACER_XLSX:
     raise SystemExit
+
+# Letras de columna derivadas de COLS: al añadir una columna, las fórmulas
+# siguen apuntando al sitio correcto sin tocarlas una por una.
+L = {nombre: get_column_letter(i) for i, (nombre, _) in enumerate(COLS, 1)}
 
 wb = Workbook()
 ws = wb.active
@@ -178,7 +217,9 @@ for fila, valores in enumerate(FILAS, start=2):
     for i, (nombre, _) in enumerate(COLS, 1):
         if nombre == "subs_por_1000":
             # Se guarda el denominador para no dividir por cero antes de publicar.
-            c = ws.cell(fila, i, f'=IFERROR(R{fila}/Q{fila}*1000,"")')
+            c = ws.cell(fila, i,
+                        f'=IFERROR({L["suscriptores"]}{fila}/'
+                        f'{L["vistas"]}{fila}*1000,"")')
             c.number_format = "0.0"
         else:
             c = ws.cell(fila, i, valores[nombre])
@@ -210,8 +251,8 @@ for i, (et, val) in enumerate([("Total de obras", None), ("Pendientes", "pendien
                                ("Compuestas", "compuesta"), ("Montadas", "montada"),
                                ("Publicadas", "publicada")], start=2):
     rs.cell(i, 1, et).font = negro
-    f = (f"=COUNTA(Catálogo!A2:A{ult})" if val is None
-         else f'=COUNTIF(Catálogo!O2:O{ult},"{val}")')
+    f = (f'=COUNTA(Catálogo!{L["id"]}2:{L["id"]}{ult})' if val is None
+         else f'=COUNTIF(Catálogo!{L["estado"]}2:{L["estado"]}{ult},"{val}")')
     c = rs.cell(i, 2, f); c.font = negro
 
 tit(8, "Por pilar")
@@ -219,9 +260,12 @@ for i, et in enumerate(["Pilar", "Obras", "Publicadas", "Minutos totales"], star
     c = rs.cell(9, i, et); c.font = Font(name=ARIAL, size=10, bold=True)
 for i, p in enumerate(["Frecuencias", "Sueño", "Respiración", "Cuencos", "Foco"], start=10):
     rs.cell(i, 1, p).font = negro
-    rs.cell(i, 2, f'=COUNTIF(Catálogo!C2:C{ult},A{i})').font = negro
-    rs.cell(i, 3, f'=COUNTIFS(Catálogo!C2:C{ult},A{i},Catálogo!O2:O{ult},"publicada")').font = negro
-    rs.cell(i, 4, f'=SUMIF(Catálogo!C2:C{ult},A{i},Catálogo!M2:M{ult})').font = negro
+    T, E, D = L["tema"], L["estado"], L["duracion_min"]
+    rs.cell(i, 2, f'=COUNTIF(Catálogo!{T}2:{T}{ult},A{i})').font = negro
+    rs.cell(i, 3, f'=COUNTIFS(Catálogo!{T}2:{T}{ult},A{i},'
+                  f'Catálogo!{E}2:{E}{ult},"publicada")').font = negro
+    rs.cell(i, 4, f'=SUMIF(Catálogo!{T}2:{T}{ult},A{i},'
+                  f'Catálogo!{D}2:{D}{ult})').font = negro
 rs.cell(15, 1, "TOTAL").font = Font(name=ARIAL, size=10, bold=True)
 for col, letra in ((2, "B"), (3, "C"), (4, "D")):
     c = rs.cell(15, col, f"=SUM({letra}10:{letra}14)")
@@ -229,9 +273,10 @@ for col, letra in ((2, "B"), (3, "C"), (4, "D")):
 
 tit(17, "Rendimiento")
 rs.cell(18, 1, "Vistas totales").font = negro
-rs.cell(18, 2, f"=SUM(Catálogo!Q2:Q{ult})").font = negro
+rs.cell(18, 2, f'=SUM(Catálogo!{L["vistas"]}2:{L["vistas"]}{ult})').font = negro
 rs.cell(19, 1, "Suscriptores totales").font = negro
-rs.cell(19, 2, f"=SUM(Catálogo!R2:R{ult})").font = negro
+rs.cell(19, 2, f'=SUM(Catálogo!{L["suscriptores"]}2:'
+               f'{L["suscriptores"]}{ult})').font = negro
 rs.cell(20, 1, "Subs por 1.000 vistas").font = negro
 c = rs.cell(20, 2, '=IFERROR(B19/B18*1000,"")'); c.number_format = "0.00"; c.font = negro
 rs.cell(20, 3, "← la métrica que decide el canal").font = Font(name=ARIAL, size=9, italic=True)
@@ -255,7 +300,7 @@ texto = [
     ("etiquetas", "Etiquetas del video, separadas por coma."),
     ("imagen_miniatura", "AMARILLA. Ruta o URL de la portada una vez generada."),
     ("url_video", "AMARILLA. URL de YouTube una vez publicado."),
-    ("raiz_hz / modo / semilla", "Parámetros de composición. La semilla regenera la obra idéntica."),
+    ("raiz_hz / modo / registro / semilla", "Parámetros de composición. El registro grave baja una octava (pilares Sueño y Foco). La semilla regenera la obra idéntica."),
     ("comando_regeneracion", "Comando exacto. Copiar, pegar y ejecutar: devuelve el mismo audio bit a bit."),
     ("estado", "AMARILLA. pendiente / compuesta / montada / publicada"),
     ("fecha_publicacion", "AMARILLA. Formato AAAA-MM-DD."),

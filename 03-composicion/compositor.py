@@ -374,11 +374,19 @@ def planificar_aves(segundos, semilla, densidad, eventos_cuenco):
     if densidad <= 0:
         return []
     rnd = random.Random(semilla * 7919 + 13)
-    intervalo = 48.0 / densidad
+    base = 48.0 / densidad
     tiempos, t = [], rnd.uniform(10.0, 25.0)
     while t < segundos - 12.0:
+        prog = t / segundos
+        # Las aves se RARIFICAN a lo largo de la obra: al final cantan cuatro
+        # veces menos que al principio, y bajan de volumen.
+        # Es el mundo que se va quedando en silencio mientras la respiración
+        # se hace más lenta. Además resuelve solo el problema de las obras de
+        # sueño: hay pájaros, pero se han ido para cuando el oyente se duerme.
+        intervalo = base * (1.0 + 3.0 * prog)
         if all(abs(t - e[0]) > 3.0 for e in eventos_cuenco):
-            tiempos.append((t, rnd.uniform(0.15, 0.85), rnd.uniform(0.55, 1.0)))
+            vol = rnd.uniform(0.55, 1.0) * (1.0 - 0.55 * prog)
+            tiempos.append((t, rnd.uniform(0.15, 0.85), vol))
         t += intervalo * rnd.uniform(0.55, 1.6)
     return [(t, pan, vol, rnd) for t, pan, vol in tiempos]
 
@@ -618,8 +626,9 @@ def main():
     p.add_argument("--rt60", type=float, default=6.0, help="cola de reverb en segundos")
     p.add_argument("--registro", default="medio", choices=list(REGISTROS),
                    help="grave baja una octava (pilar Sueño), brillante sube una")
-    p.add_argument("--aves", type=float, default=0.0,
-                   help="densidad de canto de pájaro (0 = ninguno, 1 = disperso, 2 = más)")
+    p.add_argument("--aves", type=float, default=1.0,
+                   help="densidad de canto de pájaro (0 = ninguno, 1 = por defecto, 2 = más). "
+                        "Se rarifican solas hacia el final de la obra")
     p.add_argument("--aire", type=float, default=0.0,
                    help="ruido de fondo (0 = ninguno). Por encima de 0,02 ensucia el drone")
     p.add_argument("--binaural", type=float, default=0.0,
@@ -674,7 +683,7 @@ def main():
     extras = ""
     if a.registro != "medio":
         extras += f" --registro {a.registro}"
-    if a.aves:
+    if a.aves != 1.0:
         extras += f" --aves {a.aves:g}"
     if a.binaural:
         extras += f" --binaural {a.binaural:g}"

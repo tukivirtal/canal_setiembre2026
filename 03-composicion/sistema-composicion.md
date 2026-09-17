@@ -262,15 +262,27 @@ Tres detalles hacen que suenen a pájaro lejano y no a sintetizador:
 3. **Pasan por la misma reverberación** que el resto, así que comparten sala con los
    cuencos en vez de sonar pegados encima.
 
-### Dos reglas
+### Activadas por defecto, en todas las obras
+
+Decisión del canal: **todas las obras llevan canto de ave**. Aporta una armonía distinta
+y descansa el oído del drone sostenido.
+
+**Y se rarifican solas.** El intervalo entre frases crece a lo largo de la obra y el
+volumen baja: al final cantan **cuatro veces menos** que al principio y un 55 % más bajo.
+
+Medido en una obra de 60 minutos: **16 frases en el primer tercio, 7 en el segundo,
+6 en el último**, con el volumen cayendo de 0,77 a 0,39.
+
+Es el mundo que se va quedando en silencio mientras la respiración se hace más lenta. Y
+resuelve solo la única objeción que tenía ponerlas en todas partes: en una obra de dormir
+**hay pájaros, pero ya se han ido** para cuando el oyente se duerme. El canto del atardecer,
+no el de las tres de la mañana.
+
+### La otra regla
 
 **Nunca a menos de 3 segundos de un cuenco.** Los dos son transitorios agudos: si
 coinciden, el pájaro le roba el golpe al cuenco, que es lo que marca la respiración.
 El planificador lo impone.
-
-**Aves y sueño no se mezclan.** El canto es del amanecer. Va bien en Foco, y abre un
-sub-pilar propio —**Amanecer**: registro grave, modo cálido, aves dispersas— pero en una
-obra de dormir es una contradicción: nadie quiere pájaros a las tres de la mañana.
 
 ### Por qué no se usan grabaciones
 
