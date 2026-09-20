@@ -1,0 +1,464 @@
+<title>Campo de Motas</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&display=swap">
+<style>
+  :root {
+    --ground: #07080b;
+    --panel: #0e1016;
+    --line: #1d2029;
+    --ink: #c8cad2;
+    --ink-dim: #6e7280;
+    --amber: #c9a06a;
+    --warm: #d9b382;
+  }
+
+  html, body { height: 100%; }
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font: 400 13px/1.5 ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 16px;
+    padding-block: 18px 22px;
+    box-sizing: border-box;
+  }
+
+  /* --- El lienzo, encuadrado a 16:9 como el video real --- */
+  .stage {
+    position: relative;
+    width: 100%;
+    max-width: 1180px;
+    margin-inline: auto;
+    aspect-ratio: 16 / 9;
+    max-height: 72vh;
+    background: #000;
+    border: 1px solid var(--line);
+    overflow: hidden;
+  }
+  .stage canvas { display: block; width: 100%; height: 100%; }
+
+  .mark {
+    position: absolute;
+    left: clamp(14px, 2.4vw, 30px);
+    bottom: clamp(12px, 2.2vw, 26px);
+    font-family: Cinzel, Georgia, serif;
+    font-size: clamp(11px, 1.35vw, 17px);
+    letter-spacing: .22em;
+    color: rgba(217, 179, 130, .62);
+    pointer-events: none;
+  }
+
+  /* Marcador del bucle: una línea finísima que cruza en 48 s exactos */
+  .seam {
+    position: absolute;
+    left: 0; bottom: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(201,160,106,.85));
+    width: 0;
+    pointer-events: none;
+  }
+  .seam[hidden] { display: none !important; }
+
+  /* --- Controles --- */
+  .panel {
+    width: 100%;
+    max-width: 1180px;
+    margin-inline: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(178px, 1fr));
+    gap: 14px 20px;
+    padding: 14px 16px;
+    box-sizing: border-box;
+    background: var(--panel);
+    border: 1px solid var(--line);
+  }
+  .ctl { display: flex; flex-direction: column; gap: 6px; }
+  .ctl label {
+    font-size: 10px;
+    letter-spacing: .13em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    display: flex; justify-content: space-between; gap: 10px;
+  }
+  .ctl output { color: var(--warm); font-variant-numeric: tabular-nums; }
+  input[type=range] {
+    -webkit-appearance: none; appearance: none;
+    width: 100%; height: 2px; background: var(--line); outline: none;
+  }
+  input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none; appearance: none;
+    width: 13px; height: 13px; border-radius: 50%;
+    background: var(--amber); cursor: pointer; border: 0;
+  }
+  input[type=range]::-moz-range-thumb {
+    width: 13px; height: 13px; border-radius: 50%;
+    background: var(--amber); cursor: pointer; border: 0;
+  }
+  input[type=range]:focus-visible { outline: 2px solid var(--amber); outline-offset: 4px; }
+
+  .toggles { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .toggles button {
+    font: inherit; font-size: 11px; letter-spacing: .06em;
+    color: var(--ink); background: transparent;
+    border: 1px solid var(--line); padding: 7px 12px; cursor: pointer;
+  }
+  .toggles button[aria-pressed="true"] { border-color: var(--amber); color: var(--warm); }
+  .toggles button:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+
+  .note {
+    max-width: 1180px; margin-inline: auto;
+    font-size: 12px; color: var(--ink-dim);
+  }
+  .note b { color: var(--ink); font-weight: 500; }
+  .note code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 11px; color: var(--warm);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .seam { transition: none; }
+  }
+</style>
+
+<div class="wrap">
+  <div class="stage">
+    <canvas id="cv"></canvas>
+    <div class="mark">RIN · 528 Hz</div>
+    <div class="seam" id="seam"></div>
+  </div>
+
+  <div class="panel">
+    <div class="ctl">
+      <label for="dens">Densidad <output id="oDens">150</output></label>
+      <input type="range" id="dens" min="40" max="320" step="10" value="150">
+    </div>
+    <div class="ctl">
+      <label for="vel">Deriva <output id="oVel">1.00×</output></label>
+      <input type="range" id="vel" min="0.3" max="2.2" step="0.1" value="1">
+    </div>
+    <div class="ctl">
+      <label for="resp">Respiración <output id="oResp">5.0 / min</output></label>
+      <input type="range" id="resp" min="3.5" max="7" step="0.5" value="5">
+    </div>
+    <div class="ctl">
+      <label for="brillo">Brillo <output id="oBrillo">100%</output></label>
+      <input type="range" id="brillo" min="40" max="160" step="5" value="100">
+    </div>
+    <div class="ctl">
+      <label for="nitidez">Nitidez <output id="oNitidez">0.72</output></label>
+      <input type="range" id="nitidez" min="0" max="1" step="0.02" value="0.72">
+    </div>
+    <div class="ctl" style="justify-content:flex-end">
+      <div class="toggles">
+        <button id="bOndas" aria-pressed="true">Ondas</button>
+        <button id="bDest" aria-pressed="true">Destellos</button>
+        <button id="bSeam" aria-pressed="false">Ver bucle</button>
+      </div>
+    </div>
+  </div>
+
+  <p class="note">
+    Bucle exacto de <b>48 segundos</b> = 4 respiraciones a 5/min = <b>un intervalo de cuenco</b>.
+    Cada mota recorre un número entero de ciclos en ese tiempo, así que el último fotograma
+    empalma con el primero sin costura. Con <code>ffmpeg -stream_loop</code> se repite para
+    cubrir los 8 minutos, o las 3 horas, sin que se note.
+    Activá <b>Ver bucle</b> para seguir la barra: cuando llega al final, todo ha vuelto al inicio.
+  </p>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  const LOOP = 48;                 // segundos: 4 respiraciones a 5/min
+  const FRAC_INHALAR = 0.40;       // mismo reparto que el compositor
+  const cv = document.getElementById("cv");
+  const ctx = cv.getContext("2d", { alpha: false });
+  const seam = document.getElementById("seam");
+  const quieto = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  const cfg = { dens: 150, vel: 1, resp: 5, brillo: 1, nitidez: 0.72,
+               ondas: true, destellos: true, verSeam: false };
+
+  // --- Aleatorio con semilla: el campo es siempre el mismo ---
+  function mulberry32(a) {
+    return function () {
+      a |= 0; a = a + 0x6D2B79F5 | 0;
+      let t = Math.imul(a ^ a >>> 15, 1 | a);
+      t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+      return ((t ^ t >>> 14) >>> 0) / 4294967296;
+    };
+  }
+
+  // --- Sprite de mota ---
+  // Un punto de luz real NO es un degradado suave: es un núcleo diminuto que
+  // se quema a blanco, rodeado de un halo mucho más tenue que lleva el color.
+  // Se construye pixel a pixel para controlar la curva exacta de caída.
+  //   nitidez 0 -> gamma 2.0, núcleo 2 %  (neblina)
+  //   nitidez 1 -> gamma 7.5, núcleo 11 % (punto brillante)
+  const SPR = 96;
+  function hacerSprite(r, g, b, nitidez) {
+    const c = document.createElement("canvas");
+    c.width = c.height = SPR;
+    const x = c.getContext("2d");
+    const img = x.createImageData(SPR, SPR);
+    const d = img.data;
+    const gamma = 2.0 + nitidez * 5.5;
+    const core = 0.02 + nitidez * 0.09;
+    const mid = SPR / 2;
+
+    for (let j = 0; j < SPR; j++) {
+      for (let i = 0; i < SPR; i++) {
+        const dx = (i - mid + 0.5) / mid, dy = (j - mid + 0.5) / mid;
+        const rr = Math.sqrt(dx * dx + dy * dy);
+        let a;
+        if (rr >= 1) a = 0;
+        else if (rr <= core) a = 1;
+        else a = Math.pow(1 - (rr - core) / (1 - core), gamma);
+
+        // El centro tira a blanco y el color aparece al alejarse: así es
+        // como una luz cálida se fotografía de verdad.
+        const blanco = Math.pow(a, 1.9);
+        const k = (j * SPR + i) * 4;
+        d[k]     = Math.round(r + (255 - r) * blanco);
+        d[k + 1] = Math.round(g + (255 - g) * blanco);
+        d[k + 2] = Math.round(b + (255 - b) * blanco);
+        d[k + 3] = Math.round(a * 255);
+      }
+    }
+    x.putImageData(img, 0, 0);
+    return c;
+  }
+
+  let spriteWarm, spriteCool;
+  function rehacerSprites() {
+    spriteWarm = hacerSprite(214, 158, 92, cfg.nitidez);
+    spriteCool = hacerSprite(132, 152, 178, cfg.nitidez);
+  }
+
+  // --- El campo de motas ---
+  // Cada mota: deriva lineal que envuelve en LOOP + oscilación senoidal de
+  // periodo entero. Las dos son periódicas en LOOP -> el bucle cierra exacto.
+  let motas = [];
+  function construir(n) {
+    const rnd = mulberry32(20260917);
+    motas = [];
+    for (let i = 0; i < n; i++) {
+      const capa = i % 3;                    // 0 lejos · 1 medio · 2 cerca
+      motas.push({
+        x0: rnd(), y0: rnd(),
+        capa,
+        // vueltas enteras en un LOOP: garantiza periodicidad
+        vx: (rnd() < 0.5 ? -1 : 1) * (1 + Math.floor(rnd() * 2)) * 0.06,
+        ky: 1 + Math.floor(rnd() * 3),
+        ax: 0.012 + rnd() * 0.05,
+        ay: 0.010 + rnd() * 0.045,
+        fase: rnd() * Math.PI * 2,
+        r: (capa === 0 ? 0.9 : capa === 1 ? 1.7 : 3.1) * (0.7 + rnd() * 0.8),
+        alfa: (capa === 0 ? 0.20 : capa === 1 ? 0.38 : 0.62) * (0.6 + rnd() * 0.6),
+        calida: rnd() < 0.62,
+        // parpadeo lentísimo, también periódico
+        kb: 1 + Math.floor(rnd() * 2),
+        fb: rnd() * Math.PI * 2
+      });
+    }
+  }
+
+  // --- Envolvente de respiración: inhalar 40 %, exhalar 60 % ---
+  function respiracion(p) {
+    p -= Math.floor(p);
+    let v;
+    if (p < FRAC_INHALAR) {
+      v = 0.5 - 0.5 * Math.cos(Math.PI * (p / FRAC_INHALAR));
+    } else {
+      v = 0.5 + 0.5 * Math.cos(Math.PI * ((p - FRAC_INHALAR) / (1 - FRAC_INHALAR)));
+    }
+    return 0.74 + 0.26 * Math.pow(v, 1.4);
+  }
+
+  let W = 0, H = 0, dpr = 1;
+  function medir() {
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const r = cv.getBoundingClientRect();
+    W = Math.max(1, Math.round(r.width));
+    H = Math.max(1, Math.round(r.height));
+    cv.width = Math.round(W * dpr);
+    cv.height = Math.round(H * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+
+  function pintar(t) {
+    const p = (t % LOOP) / LOOP;                  // 0..1 dentro del bucle
+    const ciclosResp = LOOP / (60 / cfg.resp);    // respiraciones por bucle
+    const env = respiracion(p * ciclosResp) * cfg.brillo;
+
+    // Fondo: negro con una bruma cálida bajísima a la izquierda, que es de
+    // donde viene la luz en todas las escenas del canal.
+    ctx.fillStyle = "#000";
+    ctx.fillRect(0, 0, W, H);
+    const bruma = ctx.createRadialGradient(W * 0.14, H * 0.58, 0, W * 0.14, H * 0.58, W * 0.85);
+    bruma.addColorStop(0, `rgba(74,56,38,${0.46 * env})`);
+    bruma.addColorStop(0.42, `rgba(30,27,30,${0.24 * env})`);
+    bruma.addColorStop(1, "rgba(0,0,0,0)");
+    ctx.fillStyle = bruma;
+    ctx.fillRect(0, 0, W, H);
+
+    // Ondas: nacen una por bucle, que es un intervalo de cuenco.
+    if (cfg.ondas) {
+      ctx.save();
+      ctx.globalCompositeOperation = "lighter";
+      for (let k = 0; k < 3; k++) {
+        const pr = (p + k / 3) % 1;               // tres ondas desfasadas
+        const rad = Math.pow(pr, 0.62) * W * 0.72;
+        const a = Math.pow(1 - pr, 2.1) * 0.24 * env;
+        if (a < 0.002) continue;
+        ctx.beginPath();
+        ctx.arc(W * 0.30, H * 0.54, rad, 0, Math.PI * 2);
+        ctx.strokeStyle = `rgba(201,160,106,${a})`;
+        ctx.lineWidth = 1 + (1 - pr) * 1.6;
+        ctx.stroke();
+      }
+      ctx.restore();
+    }
+
+    // Motas
+    ctx.save();
+    ctx.globalCompositeOperation = "lighter";
+    const ang = p * Math.PI * 2;
+    for (let i = 0; i < motas.length; i++) {
+      const m = motas[i];
+      let x = m.x0 + m.vx * p * cfg.vel + m.ax * Math.sin(ang * m.ky + m.fase);
+      let y = m.y0 - 0.10 * p * cfg.vel * (m.capa + 1) / 2 + m.ay * Math.cos(ang * m.ky + m.fase);
+      x -= Math.floor(x); y -= Math.floor(y);
+
+      const brillo = 0.55 + 0.45 * Math.sin(ang * m.kb + m.fb);
+      const a = m.alfa * brillo * env;
+      if (a <= 0.004) continue;
+
+      // Cuanto más nítido, más pequeño se dibuja: un sprite grande a baja
+      // opacidad es exactamente lo que se ve como mancha borrosa.
+      const escala = 11 - cfg.nitidez * 5.5;
+      const s = m.r * escala * (0.85 + 0.3 * brillo);
+      const px = x * W, py = y * H;
+      ctx.globalAlpha = Math.min(1, a);
+      ctx.drawImage(m.calida ? spriteWarm : spriteCool, px - s / 2, py - s / 2, s, s);
+
+      // Destello en cruz sobre las motas del plano cercano cuando están en
+      // su punto más brillante. Son las púas de difracción de un objetivo:
+      // es lo que hace que una luz se lea como BRILLANTE y no como borrón.
+      // Sólo las motas grandes del plano cercano, y sólo en su pico real:
+      // un destello en cada punto convierte el polvo en campo de estrellas.
+      if (cfg.destellos && m.capa === 2 && m.r > 2.6 && brillo > 0.90) {
+        const g = (brillo - 0.90) / 0.10;
+        const L = s * (0.9 + g * 1.0);
+        ctx.globalAlpha = Math.min(1, a * g * 0.26);
+        ctx.strokeStyle = m.calida ? "rgba(255,236,206,1)" : "rgba(226,238,255,1)";
+        ctx.lineWidth = Math.max(0.5, s * 0.022);
+        ctx.beginPath();
+        ctx.moveTo(px - L, py); ctx.lineTo(px + L, py);
+        ctx.moveTo(px, py - L * 0.62); ctx.lineTo(px, py + L * 0.62);
+        ctx.stroke();
+      }
+    }
+    ctx.restore();
+    ctx.globalAlpha = 1;
+
+    // Viñeta: cierra los bordes y empuja la mirada al centro
+    const vig = ctx.createRadialGradient(W * 0.42, H * 0.5, Math.min(W, H) * 0.18,
+                                         W * 0.42, H * 0.5, Math.max(W, H) * 0.78);
+    vig.addColorStop(0, "rgba(0,0,0,0)");
+    vig.addColorStop(1, "rgba(0,0,0,0.80)");
+    ctx.fillStyle = vig;
+    ctx.fillRect(0, 0, W, H);
+
+    if (cfg.verSeam) seam.style.width = (p * 100).toFixed(2) + "%";
+  }
+
+  let t0 = null;
+  function frame(ms) {
+    if (t0 === null) t0 = ms;
+    pintar((ms - t0) / 1000);
+    requestAnimationFrame(frame);
+  }
+
+  // --- Controles ---
+  function enlazar(id, salida, prop, fmt) {
+    const el = document.getElementById(id), out = document.getElementById(salida);
+    const aplicar = () => {
+      const v = parseFloat(el.value);
+      cfg[prop] = prop === "brillo" ? v / 100 : v;
+      out.textContent = fmt(v);
+      if (prop === "dens") construir(Math.round(v));
+      if (prop === "nitidez") rehacerSprites();
+      if (quieto) pintar(0);
+    };
+    el.addEventListener("input", aplicar);
+    aplicar();
+  }
+  enlazar("dens", "oDens", "dens", v => String(Math.round(v)));
+  enlazar("vel", "oVel", "vel", v => v.toFixed(2) + "×");
+  enlazar("resp", "oResp", "resp", v => v.toFixed(1) + " / min");
+  enlazar("brillo", "oBrillo", "brillo", v => Math.round(v) + "%");
+  enlazar("nitidez", "oNitidez", "nitidez", v => v.toFixed(2));
+
+  function alternar(id, prop, alEncender) {
+    const b = document.getElementById(id);
+    b.addEventListener("click", () => {
+      cfg[prop] = !cfg[prop];
+      b.setAttribute("aria-pressed", String(cfg[prop]));
+      if (alEncender) alEncender(cfg[prop]);
+      if (quieto) pintar(0);
+    });
+  }
+  alternar("bOndas", "ondas");
+  alternar("bDest", "destellos");
+  alternar("bSeam", "verSeam", on => { seam.hidden = !on; if (!on) seam.style.width = "0"; });
+  seam.hidden = true;
+
+  // --- Enganches para el renderizado por lotes ---
+  // El script de render pinta un instante EXACTO en vez de depender del reloj,
+  // para que los fotogramas sean deterministas y el bucle cierre al milisegundo.
+  window.RIN = {
+    LOOP,
+    pintar: t => pintar(t),
+    config: o => {
+      Object.assign(cfg, o);
+      if (o.dens) construir(Math.round(o.dens));
+      if (o.nitidez !== undefined) rehacerSprites();
+    },
+    medir: () => medir()
+  };
+
+  // ?render=1 oculta la interfaz y deja el lienzo a pantalla completa.
+  const q = new URLSearchParams(location.search);
+  if (q.get("render") === "1") {
+    document.querySelector(".panel").hidden = true;
+    document.querySelector(".note").hidden = true;
+    if (q.get("marca") === "0") document.querySelector(".mark").hidden = true;
+    const w = document.querySelector(".wrap"), st = document.querySelector(".stage");
+    w.style.padding = "0"; w.style.gap = "0";
+    st.style.maxWidth = "none"; st.style.maxHeight = "none";
+    st.style.height = "100vh"; st.style.border = "0";
+    document.documentElement.style.setProperty("padding", "0");
+  }
+  for (const [k, v] of q) {
+    if (k in cfg) cfg[k] = (v === "true") ? true : (v === "false") ? false : parseFloat(v);
+  }
+
+  addEventListener("resize", () => { medir(); if (quieto) pintar(0); });
+  medir();
+  rehacerSprites();
+  construir(Math.round(cfg.dens));
+
+  // En reposo se pinta un fotograma y se queda quieto: la página tiene que
+  // verse completa al abrirla, incluso sin animación.
+  if (quieto) pintar(LOOP * 0.32);
+  else requestAnimationFrame(frame);
+})();
+</script>
