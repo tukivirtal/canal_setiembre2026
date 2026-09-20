@@ -1,0 +1,108 @@
+PROMPTS PARA LEONARDO — las 4 escenas de objeto real
+Pilares Respiración y Cuencos · calibradas contra el fondo generativo
+================================================================================
+
+COLORIMETRÍA — medida, no estimada
+--------------------------------------------------------------------------------
+Se muestrearon 6 instantes del bucle del fondo generativo a 1280x720.
+Estos son los valores reales que tienen que igualar las fotografías:
+
+  negro de fondo    #020202    54,1 % del cuadro
+  bruma cálida      #0c0908    45,4 % del cuadro
+  halo de mota      #231e18     0,5 % del cuadro
+  núcleo de mota    #5e5b59
+  pixel más brillante  #bab8b4   luminancia 72 %
+
+Cuatro reglas que salen de esos números, y ninguna es opcional:
+
+1. NADA DE BLANCO PURO. El punto más brillante del fondo generativo llega al
+   72 % de luminancia, no al 100 %. Si una escena trae blancos quemados, el
+   corte entre fondo e imagen da un fogonazo. Techo: 72 %.
+
+2. LAS ALTAS LUCES SON CASI NEUTRAS. El pixel más brillante es #bab8b4 —
+   gris cálido, no dorado. El color vive en los medios, no en los picos.
+
+3. MÁS DE LA MITAD DEL CUADRO CASI NEGRO. En el fondo, el 54 % está en
+   #020202. Una escena con fondo gris medio no pega ni de lejos.
+
+4. EL ÁMBAR ES APAGADO. Tono 15-35°, saturación ~30 %, nunca más de 35 %.
+   Un dorado saturado rompe la continuidad del canal.
+
+--------------------------------------------------------------------------------
+BASE COMÚN (va en las cuatro)
+--------------------------------------------------------------------------------
+extreme close-up photograph of [SUJETO], isolated in empty dark space,
+pure black #020202 filling more than half the frame, strong vignette,
+faint warm haze #0c0908 bleeding in from the left only,
+ONE dominant subject filling 45% of the frame,
+lit ONLY from the extreme left at a ten degree grazing angle, no fill light,
+the entire right half of the subject in complete darkness,
+only the left edge catching the light, extreme chiaroscuro,
+highlights never reach pure white, brightest tone is a warm neutral grey #bab8b4,
+desaturated amber midtones, hue 15 to 35 degrees, saturation never above 35%,
+weathered natural material with visible relief, surface pitting and fine grain,
+subsurface light in the material,
+shot on 85mm macro lens, shallow depth of field, physically based rendering,
+photograph of a real object, not an illustration, hyper-tactile, 8k, 16:9
+
+NEGATIVE PROMPT (en las cuatro)
+--------------------------------------------------------------------------------
+blown highlights, pure white, overexposed, bright gold, saturated yellow,
+grey background, studio backdrop, purple gradient, pink gradient, neon,
+mandala, chakra symbols, lotus clipart, glowing orbs, text, letters, watermark,
+people, faces, hands, smooth plastic, glossy, cgi render, cartoon, illustration,
+flat lighting, front lighting, even lighting, busy composition, multiple subjects,
+oversaturated, pastel, lens flare, bokeh circles
+
+================================================================================
+PILAR CUENCOS
+================================================================================
+
+--- ESCENA A · Rin (cuenco cantor) ------------------------------------------
+a single weathered bronze rin singing bowl resting on a round silk zabuton
+cushion, deep dark patina almost black, hammered surface with visible dents
+and tarnish catching only a thin rim of light, a wooden mallet lying beside it
+
+--- ESCENA B · Chawan con kintsugi ------------------------------------------
+a dark ceramic chawan tea bowl repaired with kintsugi, the lacquer seams in
+DULL TARNISHED gold, aged and desaturated, never bright yellow metal,
+tracing hairline cracks across a matte crackled glaze,
+resting on folded linen
+
+  ATENCIÓN: el kintsugi es el mayor riesgo de toda la serie. El oro de
+  catálogo es saturado y brillante — rompería la regla 4 él solo. Hay que
+  insistir en "dull tarnished, aged, desaturated" y descartar sin dudar
+  cualquier resultado con oro vivo.
+
+================================================================================
+PILAR RESPIRACIÓN
+================================================================================
+
+--- ESCENA C · Kōro (incensario) --------------------------------------------
+a single incense stick standing UPRIGHT AND VERTICAL in a small ceramic koro
+incense burner filled with grey ash, a dim ember tip glowing at low intensity,
+one thick ribbon of smoke rising and curling upward through the dark,
+the smoke lit only from the left
+
+  El humo ES la respiración hecha visible. Por eso esta escena abre el pilar.
+
+--- ESCENA D · Tsukubai (pila de piedra) ------------------------------------
+a low stone water basin carved from a single rough granite block,
+a thin bamboo spout above it, one expanding ripple ring on still black water,
+wet dark moss on the stone rim, the water reflecting only one dim warm point
+
+  La onda que se expande es el mismo gesto que la envolvente respiratoria:
+  crece y se disuelve.
+
+================================================================================
+DESPUÉS DE GENERAR — el control que decide
+================================================================================
+Abrí la imagen y mirá el histograma:
+
+  · ¿Toca el extremo derecho? -> hay blanco quemado. DESCARTAR.
+  · ¿Más de la mitad del histograma pegado a la izquierda? -> correcto.
+  · ¿El pico más alto es amarillo saturado? -> DESCARTAR, sobre todo en B.
+
+Y la prueba definitiva: poné la imagen al lado de un fotograma del fondo
+generativo. Si una de las dos parece más clara o más dorada que la otra, el
+corte se va a notar en el video. Tienen que parecer la misma habitación.
