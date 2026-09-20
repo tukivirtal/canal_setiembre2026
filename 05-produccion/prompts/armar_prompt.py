@@ -82,4 +82,9 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except BrokenPipeError:
+        # Pasa al encadenar con `| head`. No es un fallo: se cierra limpio
+        # en vez de escupir una traza que parece un error.
+        os.dup2(os.open(os.devnull, os.O_WRONLY), sys.stdout.fileno())
