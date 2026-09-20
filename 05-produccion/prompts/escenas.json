@@ -1,0 +1,108 @@
+{
+  "version": "1.0",
+  "canal": "Rin",
+  "actualizado": "2026-09-20",
+  "_lee_esto": "Fuente de verdad de los prompts de imagen. Make lo lee crudo desde GitHub y lo recorre con un iterador. No editar a mano en Make: se edita aquí y el escenario recoge el cambio en la siguiente ejecución.",
+
+  "base": {
+    "_comentario": "Parámetros iguales para todas las escenas. modelId y dimensiones: CONFIRMAR contra los que ya usabas — el resultado depende muchísimo del modelo, y este es solo un punto de partida documentado.",
+    "modelId": "aa77f04e-3eec-4034-9c07-d0f619684628",
+    "modelNombre": "Leonardo Kino XL",
+    "width": 1472,
+    "height": 832,
+    "num_images": 1,
+    "alchemy": true,
+    "presetStyle": "CINEMATIC",
+    "guidance_scale": 7,
+    "public": false,
+
+    "estilo": "isolated in empty dark space, pure black #020202 filling more than half the frame, strong vignette, faint warm haze #0c0908 bleeding in from the left only, ONE dominant subject filling 45% of the frame, lit ONLY from the extreme left at a ten degree grazing angle, no fill light, the entire right half of the subject in complete darkness, only the left edge catching the light, extreme chiaroscuro, highlights never reach pure white, brightest tone is a warm neutral grey #bab8b4, desaturated amber midtones, hue 15 to 35 degrees, saturation never above 35%, weathered natural material with visible relief, surface pitting and fine grain, subsurface light in the material, shot on 85mm macro lens, shallow depth of field, physically based rendering, photograph of a real object, not an illustration, hyper-tactile, 8k, 16:9",
+
+    "negative_prompt": "blown highlights, pure white, overexposed, bright gold, saturated yellow, grey background, studio backdrop, purple gradient, pink gradient, neon, mandala, chakra symbols, lotus clipart, glowing orbs, text, letters, watermark, people, faces, hands, smooth plastic, glossy, cgi render, cartoon, illustration, flat lighting, front lighting, even lighting, busy composition, multiple subjects, oversaturated, pastel, lens flare, bokeh circles"
+  },
+
+  "colorimetria": {
+    "_comentario": "Medida sobre 6 instantes del bucle del fondo generativo a 1280x720. Las escenas se cortan contra ese fondo en el mismo video: si no coinciden, el corte se ve.",
+    "negro_fondo": "#020202",
+    "negro_fondo_porcentaje_cuadro": 54.1,
+    "bruma_calida": "#0c0908",
+    "halo": "#231e18",
+    "mas_brillante": "#bab8b4",
+    "luminancia_maxima": 0.72,
+    "hue_ambar": [15, 35],
+    "saturacion_maxima": 0.35
+  },
+
+  "escenas": [
+    {
+      "id": "rin",
+      "nombre": "Rin — cuenco cantor",
+      "pilares": ["Cuencos", "Frecuencias"],
+      "orden_obra_001": 1,
+      "acorde": "tonica",
+      "sujeto": "a single weathered bronze rin singing bowl resting on a round silk zabuton cushion, deep dark patina almost black, hammered surface with visible dents and tarnish catching only a thin rim of light, a wooden mallet lying beside it",
+      "movimiento": "almost imperceptible drift of mist, the bowl completely still",
+      "riesgo": null
+    },
+    {
+      "id": "chawan",
+      "nombre": "Chawan con kintsugi",
+      "pilares": ["Cuencos"],
+      "orden_obra_001": 7,
+      "acorde": "tonica",
+      "sujeto": "a dark ceramic chawan tea bowl repaired with kintsugi, the lacquer seams in DULL TARNISHED gold, aged and desaturated, never bright yellow metal, tracing hairline cracks across a matte crackled glaze, resting on folded linen",
+      "movimiento": "the mist drifts, the bowl completely still, the seams catching a thin light",
+      "riesgo": "El oro de catálogo sale saturado y rompe la regla de saturación. Reforzar 'dull tarnished, aged, desaturated' y descartar cualquier resultado con oro vivo."
+    },
+    {
+      "id": "koro",
+      "nombre": "Kōro — incensario",
+      "pilares": ["Respiración"],
+      "orden_obra_001": 6,
+      "acorde": "6/5",
+      "sujeto": "a single incense stick standing UPRIGHT AND VERTICAL in a small ceramic koro incense burner filled with grey ash, a dim ember tip glowing at low intensity, one thick ribbon of smoke rising and curling upward through the dark, the smoke lit only from the left",
+      "movimiento": "the smoke ribbon rises and curls continuously",
+      "riesgo": "Sin 'UPRIGHT AND VERTICAL' la varilla sale tumbada: el generador va a la composición de stock más común."
+    },
+    {
+      "id": "tsukubai",
+      "nombre": "Tsukubai — pila de piedra",
+      "pilares": ["Respiración"],
+      "orden_obra_001": 3,
+      "acorde": "9/8",
+      "sujeto": "a low stone water basin carved from a single rough granite block, a thin bamboo spout above it, one expanding ripple ring on still black water, wet dark moss on the stone rim, the water reflecting only one dim warm point",
+      "movimiento": "the ripple ring expands slowly outward across the black water",
+      "riesgo": null
+    },
+    {
+      "id": "piedras",
+      "nombre": "Piedras apiladas",
+      "pilares": ["Frecuencias"],
+      "orden_obra_001": 2,
+      "acorde": "9/8",
+      "sujeto": "four wet river stones stacked VERTICALLY one on top of another in balance, water droplets clearly visible on every surface, wet reflective sheen, one stone slightly out of alignment",
+      "movimiento": "a single drop of water slides down the stone, mist drifts",
+      "riesgo": "Sin insistir en el agua salen secas, y el brillo especular es la mitad de la sensación táctil."
+    },
+    {
+      "id": "karesansui",
+      "nombre": "Karesansui — jardín seco",
+      "pilares": ["Frecuencias"],
+      "orden_obra_001": 4,
+      "acorde": "tonica",
+      "sujeto": "raked white sand in a dry zen garden, deep parallel grooves curving around a single dark standing stone, a bamboo rake resting at the edge, low sun raking across the sand ridges",
+      "movimiento": "mist crawls low across the sand, the grooves perfectly still",
+      "riesgo": "La arena blanca tiende a quemarse. Vigilar el techo de luminancia del 72 %."
+    },
+    {
+      "id": "shishi-odoshi",
+      "nombre": "Shishi-odoshi — bambú y agua",
+      "pilares": ["Frecuencias"],
+      "orden_obra_001": 5,
+      "acorde": "3/2",
+      "sujeto": "a bamboo shishi-odoshi water fountain, thick weathered bamboo with visible nodes, water pouring from the spout, wet dark stones below, thick mist between the stalks",
+      "movimiento": "water pours steadily from the bamboo spout, mist rolls",
+      "riesgo": null
+    }
+  ]
+}
