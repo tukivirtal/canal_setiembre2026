@@ -43,6 +43,37 @@ python3 armar_prompt.py koro      # el prompt completo de una
 La validación comprueba ids únicos, campos obligatorios y que ningún prompt pase de
 1.500 caracteres. Los siete están entre 1.020 y 1.114, con holgura.
 
+## Modelo y ajustes
+
+**Phoenix 0.9**, y la razón es una sola: **acepta el juego completo de parámetros sobre
+el que está construido este JSON** — `negative_prompt`, `contrast`, `alchemy`,
+`presetStyle`. El negative prompt hace la mitad del trabajo acá (nada de blancos
+quemados, nada de oro vivo, nada de degradados morados), así que un modelo que lo ignore
+obliga a rehacer el enfoque entero.
+
+**Nano Banana** es Gemini 2.5 Flash Image. Su ventaja real es la **consistencia entre
+imágenes de una misma serie** y la edición conversacional — para siete escenas que deben
+parecer la misma habitación, eso no es poca cosa. Su problema es que los modelos Gemini
+**no aceptan negative prompt**. Si el conjunto no cuaja con Phoenix, es el plan B, pero
+hay que reescribir el negative en positivo antes.
+
+> **Sin verificar:** no pude leer `docs.leonardo.ai` — la red de esta sesión la bloquea.
+> Que Phoenix acepta `contrast` y `alchemy` está confirmado por la documentación citada
+> en búsqueda. Lo del negative prompt en Nano Banana es una propiedad conocida de los
+> modelos Gemini, pero **compruébalo en el módulo de Make** antes de depender de ello.
+
+### Los tres ajustes que explicaban la inconsistencia
+
+| Ajuste | Estaba | Debe estar | Por qué |
+|---|---|---|---|
+| **Prompt Enhance** | `Auto` | **OFF** | **Este es el grande.** Reescribe tu prompt antes de generar, y cada vez lo reescribe distinto. Destruye la repetibilidad y pisa alegremente un "saturation never above 35%" |
+| **Dimensiones** | `1:1 896×896` | **16:9** | Un cuadrado para un video 16:9 obliga a recortar o rellenar |
+| **Generation Mode** | `Fast` | **Quality** | Son siete imágenes que definen el canal. El escalón de créditos vale la pena |
+| Contrast | `Medium` | **4.0** | La paleta pide claroscuro extremo, no contraste medio |
+
+Prompt Enhance en Auto es, por sí solo, explicación suficiente de por qué dos
+generaciones con el mismo prompt salían distintas.
+
 ## El escenario de Make
 
 ```

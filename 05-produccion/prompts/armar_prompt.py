@@ -63,8 +63,9 @@ def main():
             print(f'\nRIESGO: {e["riesgo"]}')
         return
 
-    print(f'{len(escenas)} escenas · modelo {base["modelNombre"]} · '
-          f'{base["width"]}x{base["height"]} · alchemy {base["alchemy"]}\n')
+    print(f'{len(escenas)} escenas · {base["modelo"]} · '
+          f'{base["width"]}x{base["height"]} · {base["generationMode"]} · '
+          f'contraste {base["contrast"]} · enhance {base["enhancePrompt"]}\n')
     for e in escenas:
         n = len(armar(base, e))
         marca = "⚠" if e.get("riesgo") else " "
