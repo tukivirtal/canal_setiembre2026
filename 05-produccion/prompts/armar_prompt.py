@@ -63,9 +63,16 @@ def main():
             print(f'\nRIESGO: {e["riesgo"]}')
         return
 
-    print(f'{len(escenas)} escenas · {base["modelo"]} · '
-          f'{base["width"]}x{base["height"]} · {base["generationMode"]} · '
+    modo = ("PhotoReal" if base.get("photoReal") else
+            "Ultra" if base.get("ultra") else
+            "Alchemy" if base.get("alchemy") else "base")
+    print(f'{len(escenas)} escenas · {base["modelo"]} · {modo} / '
+          f'{base["presetStyle"]} · {base["width"]}x{base["height"]} · '
           f'contraste {base["contrast"]} · enhance {base["enhancePrompt"]}\n')
+
+    # Ultra y Alchemy no pueden convivir: lo dice el propio módulo de Make.
+    if base.get("ultra") and base.get("alchemy"):
+        print("  ⚠ ULTRA Y ALCHEMY A LA VEZ: el módulo lo rechaza.\n")
     for e in escenas:
         n = len(armar(base, e))
         marca = "⚠" if e.get("riesgo") else " "

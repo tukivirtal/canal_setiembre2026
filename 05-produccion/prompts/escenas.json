@@ -4,18 +4,23 @@
   "actualizado": "2026-09-20",
   "_lee_esto": "Fuente de verdad de los prompts de imagen. Make lo lee crudo desde GitHub y lo recorre con un iterador. No editar a mano en Make: se edita aquí y el escenario recoge el cambio en la siguiente ejecución.",
   "base": {
-    "_comentario": "Phoenix 0.9. En el módulo nativo de Leonardo en Make el modelo se elige por nombre en un desplegable, así que normalmente NO hace falta el UUID. Solo si se usa HTTP crudo: sacalo de tu cuenta, no lo inventes.",
+    "_comentario": "Parámetros tal como los pide el módulo Leonardo.Ai de Make. El modelo se elige en el desplegable del módulo, no por UUID.",
     "modelo": "Phoenix 0.9",
-    "modelId": "",
-    "_ajustes_criticos": "Los tres primeros son los que explican por qué la web daba resultados distintos.",
+    "_conflicto_resuelto": "Ultra y Alchemy son EXCLUYENTES — lo dice el propio módulo: 'Cannot be used with Alchemy'. Y el estilo Cinematic solo aparece bajo PhotoReal, no bajo Alchemy. Como el encargo es realismo táctil y Cinematic, la combinación es PhotoReal + Cinematic, con Alchemy y Ultra en No.",
+    "photoReal": true,
+    "presetStyle": "CINEMATIC",
+    "alchemy": false,
+    "ultra": false,
+    "promptMagic": false,
+    "_enhance": "El equivalente de 'Prompt Enhance: Auto' de la web. Reescribe el prompt y lo reescribe distinto cada vez: es lo que rompía la repetibilidad. Siempre desactivado.",
     "enhancePrompt": false,
+    "_dimensiones": "Validado contra la regla del módulo: entre 32 y 1536, múltiplo de 8. 1472 = 184x8 y 832 = 104x8. Es el 16:9 más grande que admite.",
     "width": 1472,
     "height": 832,
-    "generationMode": "quality",
-    "contrast": 4.0,
-    "presetStyle": "CINEMATIC",
-    "alchemy": true,
+    "_num_images": "El módulo avisa: si ancho o alto pasan de 768, el máximo es 4. Con 1 basta y es lo más barato por iteración.",
     "num_images": 1,
+    "contrast": 4.0,
+    "unzoom": false,
     "public": false,
     "estilo": "isolated in empty dark space, pure black #020202 filling more than half the frame, strong vignette, faint warm haze #0c0908 bleeding in from the left only, ONE dominant subject filling 45% of the frame, lit ONLY from the extreme left at a ten degree grazing angle, no fill light, the entire right half of the subject in complete darkness, only the left edge catching the light, extreme chiaroscuro, highlights never reach pure white, brightest tone is a warm neutral grey #bab8b4, desaturated amber midtones, hue 15 to 35 degrees, saturation never above 35%, weathered natural material with visible relief, surface pitting and fine grain, subsurface light in the material, shot on 85mm macro lens, shallow depth of field, physically based rendering, photograph of a real object, not an illustration, hyper-tactile, 8k, 16:9",
     "negative_prompt": "blown highlights, pure white, overexposed, bright gold, saturated yellow, grey background, studio backdrop, purple gradient, pink gradient, neon, mandala, chakra symbols, lotus clipart, glowing orbs, text, letters, watermark, people, faces, hands, smooth plastic, glossy, cgi render, cartoon, illustration, flat lighting, front lighting, even lighting, busy composition, multiple subjects, oversaturated, pastel, lens flare, bokeh circles"
@@ -126,5 +131,21 @@
     "nano_banana": "Nano Banana es Gemini 2.5 Flash Image. Su ventaja real es la consistencia entre imágenes de una misma serie y la edición conversacional, que para siete escenas que deben parecer la misma habitación no es poca cosa. Su problema: los modelos de la familia Gemini no aceptan negative prompt, y acá el negative prompt hace la mitad del trabajo. Si se usa, hay que reescribirlo en positivo.",
     "sin_verificar": "No pude leer docs.leonardo.ai: la red de la sesión la bloquea. Lo de Phoenix con contrast y alchemy está confirmado por la documentación citada en búsqueda; lo del negative prompt en Nano Banana es una propiedad conocida de los modelos Gemini, pero conviene comprobarlo en el módulo de Make antes de depender de ello.",
     "dimensiones": "1472x832 es el 16:9 objetivo. Si el modelo ofrece otro preset 16:9, usá ese: de todos modos se escala a 1920x1080 en el montaje. Lo que NO sirve es 1:1."
+  },
+  "_variantes_a_probar": {
+    "_comentario": "Una sola escena, dos configuraciones, y se decide con la imagen delante en vez de discutiendo. Usar 'rin' como banco de pruebas.",
+    "A_photoreal": {
+      "photoReal": true,
+      "presetStyle": "CINEMATIC",
+      "alchemy": false,
+      "ultra": false
+    },
+    "B_ultra": {
+      "photoReal": false,
+      "presetStyle": "NONE",
+      "alchemy": false,
+      "ultra": true
+    },
+    "por_que": "A es la apuesta: PhotoReal es literalmente el modo de fotorrealismo y Cinematic solo existe ahí. B es la alternativa: Ultra da más resolución y detalle, solo en modelos Phoenix, pero renuncia a Cinematic. Alchemy queda fuera de las dos porque choca con Ultra y no ofrece Cinematic."
   }
 }

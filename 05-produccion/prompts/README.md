@@ -76,6 +76,8 @@ generaciones con el mismo prompt salían distintas.
 
 ## El escenario de Make
 
+Detalle completo, campo por campo, en [`escenario-make.md`](escenario-make.md).
+
 ```
 [1] HTTP · Get a file
       https://raw.githubusercontent.com/tukivirtal/canal_setiembre2026/
