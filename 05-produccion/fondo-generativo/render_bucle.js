@@ -9,7 +9,8 @@
  *
  *   npm i playwright          (los navegadores ya están en Codespaces)
  *   node render_bucle.js
- *   node render_bucle.js --fps 30 --nitidez 0.85 --dens 200
+ *   node render_bucle.js --fps 30            (los valores del canal ya son
+ *                                             nitidez 0.85 y densidad 200)
  *   node render_bucle.js --salida frames/ --ancho 1920 --alto 1080
  *
  * Después, con ffmpeg:
@@ -53,11 +54,11 @@ function args() {
     fps: 25,
     // Parámetros visuales: los mismos nombres que los controles de la página,
     // para poder copiar los valores que te gustaron y renderizar eso exacto.
-    dens: 150,
+    dens: 200,
     vel: 1,
     resp: 5,
     brillo: 1,
-    nitidez: 0.72,
+    nitidez: 0.85,
     ondas: true,
     destellos: true,
     marca: true,

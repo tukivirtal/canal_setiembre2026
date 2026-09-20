@@ -43,12 +43,25 @@ plano cercano y solo en su pico de brillo: tres o cuatro a la vez. Uno en cada p
 convierte el polvo en un campo de estrellas de ciencia ficción, que es lo contrario
 de lo que busca el canal.
 
+## Valores fijos del canal
+
+| Parámetro | Valor | |
+|---|---|---|
+| **Nitidez** | **0,85** | gamma 6,7 · núcleo 9,7 % |
+| **Densidad** | **200** | ~67 motas por plano |
+| Deriva | 1,00× | |
+| Respiración | 5,0 / min | ciclo de 12 s |
+| Brillo | 100 % | |
+
+Son los valores por defecto tanto de la página como del script: `node render_bucle.js`
+sin argumentos ya rinde el aspecto del canal. **No se cambian entre obras** — la
+constancia visual es lo que hace que el catálogo se reconozca.
+
 ## Uso
 
 ```bash
 npm i playwright
 node render_bucle.js                          # 25 fps, 1920x1080, 1200 fotogramas
-node render_bucle.js --nitidez 0.85 --dens 200
 node render_bucle.js --fps 30 --marca false   # sin el sello, para los shorts
 ```
 
