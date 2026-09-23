@@ -73,6 +73,17 @@ siendo propio.
 | **Zen sobre mar lejano** | **"Muy bien"** — identidad del canal |
 | Selva, primera versión | Descartada: "suena a batidora". Tenía modulaciones rápidas y periódicas (arroyo a ~4 Hz, grillos a 26 Hz); lo periódico y rápido se oye como un motor |
 
+## Ancestral: lo que se oye no es fuego
+
+En la escucha del 23/09 gustó, pero **no se percibió como fuego sino como lluvia cayendo
+sobre hojas**. Los chasquidos son demasiado densos (~7 por segundo) y parejos: así
+suenan las gotas. El fuego real crepita más espaciado, irregular, con estallidos
+ocasionales.
+
+Queda así: esta combinación se publica como **lluvia sobre hojas**, que es como se oye.
+Un fuego que se oiga como fuego necesita chasquidos mucho más escasos y estallidos
+sueltos. El título de una obra dice lo que el oyente percibe, no cómo se construyó.
+
 ## Ancestral: cuidado con los graves
 
 La primera mezcla ancestral tenía casi toda la energía por debajo de 100 Hz, entre el
