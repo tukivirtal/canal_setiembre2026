@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<link rel="stylesheet" href="fuentes.css">
+<style>
+  @font-face{font-family:Cinzel;font-weight:600;src:url(fuentes/cinzel-600-normal-latin.woff2) format('woff2')}
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{background:#000}
+  #m{position:relative;width:1280px;height:720px;overflow:hidden}
+  #m iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+  /* Oscurece arriba, donde va el texto: el mandala tiene que acompañar, no competir. */
+  .velo{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.72) 0%,rgba(0,0,0,.35) 42%,rgba(0,0,0,0) 62%,rgba(0,0,0,.35) 100%)}
+  .arriba{position:absolute;top:34px;left:0;right:0;text-align:center}
+  .grande{font-family:Inter,sans-serif;font-weight:900;font-size:150px;line-height:.95;color:#fff;
+    letter-spacing:-.02em;text-shadow:0 6px 24px rgba(0,0,0,.65),0 0 2px rgba(0,0,0,.9)}
+  .palabra{font-family:Inter,sans-serif;font-weight:800;font-size:54px;letter-spacing:.14em;color:var(--oro);
+    margin-top:8px;padding-left:.14em;text-shadow:0 4px 18px rgba(0,0,0,.8)}
+  .pastilla{display:inline-block;margin-top:18px;padding:10px 26px;border-radius:40px;
+    font-family:Inter,sans-serif;font-weight:600;font-size:30px;color:#fff;
+    background:rgba(0,0,0,.55);border:2px solid rgba(255,255,255,.35)}
+  .firma{position:absolute;left:30px;bottom:26px;display:flex;align-items:center;gap:12px;
+    font-family:Cinzel,serif;font-weight:600;font-size:34px;color:#f6e7b8;text-shadow:0 2px 10px rgba(0,0,0,.8)}
+  .firma i{width:38px;height:38px;border-radius:50%;border:3px solid #f6e7b8;display:grid;place-items:center}
+  .firma i::after{content:"";width:14px;height:14px;border-radius:50%;background:var(--oro)}
+</style></head><body>
+<div id="m">
+  <iframe id="f"></iframe>
+  <div class="velo"></div>
+  <div class="arriba">
+    <div class="grande" id="grande"></div>
+    <div class="palabra" id="palabra"></div>
+    <div class="pastilla" id="pastilla"></div>
+  </div>
+  <div class="firma"><i></i>Rin</div>
+</div>
+<script>
+  // ?paleta=zen&grande=432 Hz&palabra=DEEP SLEEP&pastilla=Ocean Waves · 3 Hours&t=6
+  const Q = new URLSearchParams(location.search);
+  const ORO = {'mar':'#e6c46a','mar-aves':'#f5c877','zen':'#e8c066','selva':'#e8c55e','lluvia-tambor':'#e9b35a'};
+  const pal = Q.get('paleta') || 'mar';
+  document.documentElement.style.setProperty('--oro', ORO[pal] || '#e6c46a');
+  for (const k of ['grande', 'palabra', 'pastilla']) document.getElementById(k).textContent = Q.get(k) || '';
+  document.getElementById('f').src = `../fondo-mandala/mandala.html?w=1280&h=720&r=0.78&firma=0&vineta=0.6&paleta=${pal}&t=${Q.get('t') || 6}`;
+</script>
+</body></html>

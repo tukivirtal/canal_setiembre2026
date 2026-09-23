@@ -26,11 +26,24 @@ const cv = document.getElementById('c'), cx = cv.getContext('2d');
 cv.width = +(Q.get('w') || 1920); cv.height = +(Q.get('h') || 1080);
 const W = cv.width, H = cv.height, R = H * +(Q.get('r') || 0.5);
 const FIRMA = Q.get('firma') !== '0', VINETA = +(Q.get('vineta') || 0.75);
-const C = {
-  fondo1: '#0b1c26', fondo2: '#050b10',
-  turquesa: '#2a8f9b', turquesaClaro: '#58c1c4', petroleo: '#154d59',
-  oro: '#e6c46a', crema: '#f6e7b8', rosa: '#c65a72', azul: '#223d6b',
+// Una paleta por ambiente: cada video del canal se distingue del anterior a
+// primera vista, como hace Meditative Mind. ?paleta=mar|mar-aves|zen|selva|lluvia-tambor
+const PALETAS = {
+  'mar': { fondo1: '#0b1c26', fondo2: '#050b10', turquesa: '#2a8f9b', turquesaClaro: '#58c1c4',
+    petroleo: '#154d59', oro: '#e6c46a', crema: '#f6e7b8', rosa: '#c65a72', azul: '#223d6b' },
+  // Cielo de mañana: azul claro y durazno. Tiene que distinguirse de 'mar'
+  // (turquesa oscuro) y de 'zen' (rojo) en una miniatura de 160 px; en turquesa
+  // se confundía con el mar y en coral con el templo.
+  'mar-aves': { fondo1: '#1b3a5c', fondo2: '#0b1a2e', turquesa: '#5fa8d8', turquesaClaro: '#a8d6f0',
+    petroleo: '#2b5f8f', oro: '#f5c877', crema: '#fdf1d8', rosa: '#f09a7a', azul: '#1d3b66' },
+  'zen': { fondo1: '#1f0b10', fondo2: '#0c0406', turquesa: '#9e2f3c', turquesaClaro: '#d4636b',
+    petroleo: '#5a1a24', oro: '#e8c066', crema: '#f7e3b5', rosa: '#f09a5a', azul: '#3a1f3f' },
+  'selva': { fondo1: '#0b1f14', fondo2: '#040b07', turquesa: '#2f8f5b', turquesaClaro: '#7cc88f',
+    petroleo: '#1a4f35', oro: '#e8c55e', crema: '#f3ecc0', rosa: '#e07a4f', azul: '#1f4d4a' },
+  'lluvia-tambor': { fondo1: '#12112b', fondo2: '#06060f', turquesa: '#4b4fa3', turquesaClaro: '#8e8fe0',
+    petroleo: '#2a2b66', oro: '#e9b35a', crema: '#f1e2c4', rosa: '#c9608a', azul: '#2a1f55' },
 };
+const C = PALETAS[new URLSearchParams(location.search).get('paleta') || 'mar'] || PALETAS['mar'];
 const ciclo = (t, k, fase = 0) => Math.sin(2 * Math.PI * k * t / L + fase);
 
 function gajo(dibujar) {

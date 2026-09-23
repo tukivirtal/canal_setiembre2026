@@ -13,3 +13,6 @@ portadas/
 __pycache__/
 *.pyc
 *.mp3
+
+# Miniaturas generadas: se regeneran con render_miniaturas.py
+05-produccion/miniaturas/export/
