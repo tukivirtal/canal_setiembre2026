@@ -24,6 +24,7 @@ from openpyxl.utils import get_column_letter
 
 RAIZ_REPO = _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__)))
 MD = _os.path.join(RAIZ_REPO, "01-nicho", "nicho-e-identidad.md")
+PUBLICADAS = _os.path.join(RAIZ_REPO, "08-catalogo", "publicadas.csv")
 OUT = _os.path.join(RAIZ_REPO, "08-catalogo", "catalogo_canal.xlsx")
 OUT_CSV = _os.path.join(RAIZ_REPO, "08-catalogo", "catalogo.csv")
 
@@ -261,6 +262,13 @@ def construir_filas():
             "estado": "pendiente", "fecha_publicacion": "",
             "vistas": "", "suscriptores": "", "subs_por_1000": "",
         })
+    # Lo publicado vive en publicadas.csv: si se escribiera solo en el catálogo,
+    # regenerarlo lo borraría.
+    for p in _csv.DictReader(open(PUBLICADAS, encoding="utf-8")):
+        for f in filas:
+            if f["id"] == p["id"]:
+                f.update(url_video=p["url_video"], fecha_publicacion=p["fecha_publicacion"],
+                         estado="publicada")
     return filas
 
 
