@@ -43,7 +43,20 @@ const PALETAS = {
   'lluvia-tambor': { fondo1: '#12112b', fondo2: '#06060f', turquesa: '#4b4fa3', turquesaClaro: '#8e8fe0',
     petroleo: '#2a2b66', oro: '#e9b35a', crema: '#f1e2c4', rosa: '#c9608a', azul: '#2a1f55' },
 };
-const C = PALETAS[new URLSearchParams(location.search).get('paleta') || 'mar'] || PALETAS['mar'];
+const PALETA = PALETAS[Q.get('paleta')] ? Q.get('paleta') : 'mar';
+const C = PALETAS[PALETA];
+// Y un ritmo por ambiente, para que dos videos seguidos no se muevan igual.
+//   olas     cuántas ondas de luz por bucle (entero: el bucle sigue cerrando)
+//   sentido  1 salen del centro, -1 entran hacia él, como la marea
+//   brazos   0 la onda es un anillo; k > 0 es una espiral de k brazos que gira
+const RITMOS = {
+  'zen':           { olas: 8,  sentido: 1,  brazos: 0 },   // cada 6 s, hacia afuera
+  'mar-aves':      { olas: 6,  sentido: -1, brazos: 3 },   // cada 8 s, espiral que entra
+  'mar':           { olas: 4,  sentido: -1, brazos: 0 },   // cada 12 s, marea lenta
+  'selva':         { olas: 8,  sentido: 1,  brazos: 5 },
+  'lluvia-tambor': { olas: 12, sentido: 1,  brazos: 0 },   // cada 4 s, como el tambor
+};
+const RITMO = RITMOS[PALETA];
 const ciclo = (t, k, fase = 0) => Math.sin(2 * Math.PI * k * t / L + fase);
 
 function gajo(dibujar) {
@@ -144,7 +157,7 @@ function motivo(tipo, r, M, t, i) {
 }
 
 window.pintar = function (t) {
-  const g = cx.createRadialGradient(W / 2, H / 2, 0, W / 2, H / 2, W * 0.62);
+  const g = cx.createRadialGradient(W / 2, H / 2, 0, W / 2, H / 2, Math.max(W, H) * 0.62);
   g.addColorStop(0, C.fondo1); g.addColorStop(1, C.fondo2);
   cx.fillStyle = g; cx.fillRect(0, 0, W, H);
   const respira = 1 + 0.05 * ciclo(t, 4);      // cuatro respiraciones por bucle
@@ -153,12 +166,15 @@ window.pintar = function (t) {
   for (let a = ANILLOS.length - 1; a >= 0; a--) {
     const [r, M, tipo, sentido, pasos = 1] = ANILLOS[a];
     const giro = sentido * pasos * (t / L) * (2 * Math.PI / M);
-    // la cresta de la onda pasa por los anillos de adentro primero
-    const cresta = Math.max(0, Math.sin(2 * Math.PI * 8 * t / L - r * 4.2));
-    OLA = 1 + 0.14 * cresta * cresta;
-    cx.globalAlpha = 0.78 + 0.22 * cresta;
     for (let i = 0; i < M; i++) {
-      cx.save(); cx.rotate(giro + i * 2 * Math.PI / M);
+      const angulo = giro + i * 2 * Math.PI / M;
+      // la cresta recorre los anillos hacia afuera o hacia adentro; con brazos,
+      // además depende del ángulo y dibuja una espiral
+      const cresta = Math.max(0, Math.sin(2 * Math.PI * RITMO.olas * t / L
+                                          - RITMO.sentido * r * 4.2 + RITMO.brazos * angulo));
+      OLA = 1 + 0.14 * cresta * cresta;
+      cx.globalAlpha = 0.78 + 0.22 * cresta;
+      cx.save(); cx.rotate(angulo);
       motivo(tipo, r, M, t, i);
       cx.restore();
     }
@@ -168,7 +184,9 @@ window.pintar = function (t) {
   cx.restore();
 
   // Viñeta: oscurece los bordes para que el ojo vuelva al centro.
-  const v = cx.createRadialGradient(W / 2, H / 2, H * 0.35, W / 2, H / 2, W * 0.62);
+  // Con min/max el mismo código sirve en horizontal y en vertical (Shorts):
+  // en horizontal da exactamente H * 0.35 y W * 0.62, como antes.
+  const v = cx.createRadialGradient(W / 2, H / 2, Math.min(W, H) * 0.35, W / 2, H / 2, Math.max(W, H) * 0.62);
   v.addColorStop(0, 'rgba(5,11,16,0)'); v.addColorStop(1, `rgba(5,11,16,${VINETA})`);
   cx.fillStyle = v; cx.fillRect(0, 0, W, H);
 

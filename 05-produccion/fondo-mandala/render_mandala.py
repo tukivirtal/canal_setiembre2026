@@ -27,14 +27,18 @@ def main():
                    help='mar, mar-aves, zen, selva o lluvia-tambor: una por ambiente')
     p.add_argument('--segundos', type=float, default=None,
                    help='solo los primeros N segundos: para previsualizar sin renderizar el bucle entero')
+    p.add_argument('--vertical', action='store_true',
+                   help='1080x1920 para Shorts, sin firma y con el mandala más chico, entero en el ancho')
     p.add_argument('--crf', type=int, default=28,
                    help='calidad x264. Con 28 una obra de 3 h pesa unos 2,5 GB; con 24, unos 4,5')
     a = p.parse_args()
     tmp = pathlib.Path(tempfile.mkdtemp())
     with sync_playwright() as pw:
         nav = pw.chromium.launch(executable_path=CHROMIUM)
-        pag = nav.new_page(viewport={'width': 1920, 'height': 1080})
-        pag.goto(f"file://{AQUI / 'mandala.html'}?paleta={a.paleta}")
+        ancho, alto = (1080, 1920) if a.vertical else (1920, 1080)
+        extra = f'&w={ancho}&h={alto}&r=0.34&firma=0' if a.vertical else ''
+        pag = nav.new_page(viewport={'width': ancho, 'height': alto})
+        pag.goto(f"file://{AQUI / 'mandala.html'}?paleta={a.paleta}{extra}")
         largo = pag.evaluate('BUCLE')
         total = int((a.segundos or largo) * a.fps)
         lienzo = pag.query_selector('canvas')
