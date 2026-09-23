@@ -59,7 +59,32 @@ def fondo_selva(d):
         f"[aire][arroyo]amix=inputs=2:normalize=0:weights=0.8 0.6[fondo];")
 
 
-FONDOS = {'mar': fondo_mar, 'selva': fondo_selva}
+def fondo_fuego(d):
+    """Hoguera: el rumor grave del fuego (los chasquidos van en la capa
+    ancestral) y un zumbido tipo didgeridoo en 66 Hz, que es 528 Hz dos octavas
+    abajo, afinado con el resto del canal.
+
+    El zumbido entra recién a los 25 s y crece en 45: un grave sostenido que
+    aparece de golpe es justo lo que "retumba" en el oído. Sus "vocales" (el
+    peso de los armónicos 2 a 5) se mueven con ondas lentas que no coinciden,
+    así nunca se repite igual."""
+    w = "(0.5+0.5*sin(2*PI*t/5.7)*sin(2*PI*t/3.1+1))"
+    zumbido = (f"sin(2*PI*66*t+0.3*sin(2*PI*t/7))"
+               f"+(0.35+0.30*{w})*sin(2*PI*132*t)"
+               f"+(0.15+0.30*{w})*sin(2*PI*198*t)"
+               f"+(0.05+0.22*{w})*sin(2*PI*264*t)"
+               f"+(0.10*{w})*sin(2*PI*330*t)")
+    entra = "pow(min(1,max(0,(t-25)/45)),2)"
+    return (
+        f"anoisesrc=c=brown:r=44100:d={d}:s=71,highpass=f=110,lowpass=f=700,"
+        f"volume='0.55+0.12*sin(2*PI*t/4.1)+0.08*sin(2*PI*t/6.7+1)':eval=frame,"
+        f"pan=stereo|c0=c0|c1=c0[rumor];"
+        f"aevalsrc='0.06*{entra}*({zumbido})':s=44100:d={d},highpass=f=45,"
+        f"pan=stereo|c0=c0|c1=c0[zumbido];"
+        f"[rumor][zumbido]amix=inputs=2:normalize=0:weights=0.7 1[fondo];")
+
+
+FONDOS = {'mar': fondo_mar, 'selva': fondo_selva, 'fuego': fondo_fuego}
 
 
 def duracion(ruta):
@@ -79,7 +104,7 @@ def main():
                    help='segundos que tarda el tono en aparecer bajo el mar')
     p.add_argument('--nivel-obra', type=float, default=-16.0,
                    help='cuántos dB se baja la obra bajo la naturaleza')
-    p.add_argument('--fondo', choices=['mar', 'selva'], default='mar')
+    p.add_argument('--fondo', choices=['mar', 'selva', 'fuego'], default='mar')
     p.add_argument('--nivel-fondo', type=float, default=0.0,
                    help='dB del fondo. Negativo para que la capa mande (zen)')
     p.add_argument('--capa', default=None,

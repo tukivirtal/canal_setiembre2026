@@ -9,7 +9,8 @@ Después se mezclan con ambiente.py (--capa). Todo se sintetiza acá, sin
 grabaciones ajenas, así que el máster sigue siendo propio.
 
 Pedido de la prueba de escucha del 23/09: que la obra empiece con pájaros, o con
-"golpecitos de objetos asiáticos". Las dos capas son deliberadamente escasas y
+"golpecitos de objetos asiáticos". Después, "ancestral": fuego, tambor
+chamánico y palo de lluvia. Las capas son deliberadamente escasas y
 bajas: acompañan, no llaman la atención. Arrancan más densas en los primeros
 20 segundos, cuando todavía no entró la obra, y se van espaciando.
 """
@@ -85,6 +86,50 @@ def madera(f, rnd):
     return b
 
 
+def tambor(rnd):
+    """Tambor chamánico de parche: un golpe grave que cae de tono (de ~105 a
+    ~62 Hz), como el cuero que se afloja después del golpe. Ataque de 8 ms,
+    suave: tiene que sonar a mazo forrado, no a palo."""
+    n = int(0.9 * SR); b = array.array('d', [0.0]) * n; fase = 0.0
+    f_ini, f_fin = rnd.uniform(98, 110), rnd.uniform(58, 66)
+    for i in range(n):
+        t = i / SR
+        f = f_fin + (f_ini - f_fin) * math.exp(-t / 0.06)
+        fase += 2 * math.pi * f / SR
+        b[i] = (math.sin(fase) + 0.18 * math.sin(1.5 * fase)) * math.exp(-t / 0.28)
+    at = int(0.008 * SR)
+    for i in range(at):
+        x = i / at; b[i] *= x * x * (3 - 2 * x)
+    return b
+
+
+def chasquido(rnd):
+    """Un chasquido de leña: un grano de ruido cortísimo, oscurecido con un filtro
+    de un polo para que no pinche."""
+    n = int(rnd.uniform(0.002, 0.012) * SR); b = array.array('d', [0.0]) * n
+    y, a = 0.0, rnd.uniform(0.25, 0.55)
+    for i in range(n):
+        y += a * (rnd.uniform(-1, 1) - y)
+        b[i] = y * math.exp(-i / (n * 0.3))
+    return b
+
+
+def palo_de_lluvia(rnd, dur):
+    """Granitos que caen por dentro de una caña: cientos de chasquidos mínimos
+    con una envolvente que sube, se sostiene y se apaga."""
+    n = int(dur * SR); b = array.array('d', [0.0]) * n
+    for _ in range(int(dur * 180)):
+        o = int(rnd.uniform(0, dur - 0.02) * SR)
+        x = o / n
+        g = math.sin(math.pi * x) ** 0.7 * rnd.uniform(0.2, 1.0)
+        y, a = 0.0, rnd.uniform(0.35, 0.6)
+        for i in range(int(0.004 * SR)):
+            y += a * (rnd.uniform(-1, 1) - y)
+            if o + i < n:
+                b[o + i] += g * y * math.exp(-i / 40)
+    return b
+
+
 def poner(izq, der, buf, t, vol, pan):
     o = int(t * SR)
     for i in range(min(len(buf), len(izq) - o)):
@@ -94,7 +139,7 @@ def poner(izq, der, buf, t, vol, pan):
 
 def main():
     p = argparse.ArgumentParser()
-    p.add_argument('tipo', choices=['aves', 'zen'])
+    p.add_argument('tipo', choices=['aves', 'zen', 'ancestral'])
     p.add_argument('segundos', type=float)
     p.add_argument('salida')
     p.add_argument('--raiz', type=float, default=528.0)
@@ -107,7 +152,35 @@ def main():
     izq = array.array('d', [0.0]) * n; der = array.array('d', [0.0]) * n
 
     t, eventos = 1.5, 0
-    while t < a.segundos - 6:
+    if a.tipo == 'ancestral':
+        # Fuego: chasquidos al azar desde el primer segundo, con rachas.
+        tt = 0.3
+        while tt < a.segundos - 1:
+            poner(izq, der, chasquido(rnd), tt, rnd.uniform(0.15, 0.9) ** 2,
+                  rnd.uniform(0.3, 0.7))
+            tt += rnd.expovariate(7) * (0.4 if rnd.random() < 0.1 else 1)
+            eventos += 1
+        # Tambor: un latido que entra a los 20 s, crece durante 40 y se va
+        # desacelerando de 62 a 54 golpes por minuto, como la respiración de
+        # la obra. Nunca exactamente a tiempo: lo perfectamente regular suena
+        # a máquina.
+        tt, fin = 20.0, a.segundos - 22
+        while tt < fin:
+            prog = (tt - 20) / max(1, fin - 20)
+            entra = min(1.0, (tt - 20) / 40) ** 2
+            sale = min(1.0, (fin - tt) / 15)
+            poner(izq, der, tambor(rnd), tt + rnd.uniform(-0.03, 0.03),
+                  0.38 * entra * sale * rnd.uniform(0.8, 1.0), rnd.uniform(0.45, 0.55))
+            tt += 60 / (62 - 8 * prog)
+            eventos += 1
+        # Palo de lluvia, dos o tres veces en toda la obra.
+        tt = rnd.uniform(35, 50)
+        while tt < a.segundos - 30:
+            dur = rnd.uniform(3, 5)
+            poner(izq, der, palo_de_lluvia(rnd, dur), tt, 0.35, rnd.choice([0.25, 0.75]))
+            tt += rnd.uniform(40, 60)
+            eventos += 1
+    while a.tipo != 'ancestral' and t < a.segundos - 6:
         denso = t < 25                   # más presencia antes de que entre la obra
         if a.tipo == 'aves':
             pan, vol = rnd.uniform(0.1, 0.9), rnd.uniform(0.35, 1.0)

@@ -43,8 +43,10 @@ python3 03-composicion/ambiente.py obra.wav final.wav --fondo mar --nivel-fondo 
 - La obra entra **en 50 s, en curva exponencial**, y 16 dB por debajo del fondo.
 - Volumen final **fijo, en dos pasadas** (−22 LUFS). El ajuste dinámico hacía que el
   mar bajara de golpe cuando llegaba el tono.
-- Fondos: **`mar`** (oleaje + viento) y **`selva`** (aire húmedo + arroyo). Alternar el
-  fondo entre obras suma a la regla 3: cada obra distinta.
+- Fondos: **`mar`** (oleaje + viento), **`selva`** (aire húmedo + agua cercana, que en
+  la escucha sonó más a cascada que a arroyo) y **`fuego`** (rumor de hoguera + zumbido
+  tipo didgeridoo en 66 Hz, que entra a los 25 s). Alternar el fondo entre obras suma
+  a la regla 3: cada obra distinta.
 
 ### `capas.py` — lo que se oye encima
 
@@ -56,6 +58,9 @@ python3 03-composicion/capas.py zen  160 capa-zen.wav  --densidad 1.4
 - **`aves`**: trinos cortos y silbidos, más densos en los primeros 20 s.
 - **`zen`**: racimos de campanitas tipo *furin* afinadas en hirajoshi, y tres golpes
   lentos de bloque de madera (*mokugyo*).
+- **`ancestral`**: chasquidos de leña desde el primer segundo, tambor chamánico como un
+  latido (entra a los 20 s y baja de 62 a 54 por minuto, nunca exactamente a tiempo) y
+  un palo de lluvia cada 40-60 s. Se usa con `--fondo fuego`.
 
 Todo se sintetiza desde ruido y ondas: **no hay grabaciones ajenas**, el máster sigue
 siendo propio.
@@ -68,9 +73,19 @@ siendo propio.
 | **Zen sobre mar lejano** | **"Muy bien"** — identidad del canal |
 | Selva, primera versión | Descartada: "suena a batidora". Tenía modulaciones rápidas y periódicas (arroyo a ~4 Hz, grillos a 26 Hz); lo periódico y rápido se oye como un motor |
 
+## Ancestral: cuidado con los graves
+
+La primera mezcla ancestral tenía casi toda la energía por debajo de 100 Hz, entre el
+tambor, el zumbido y el rumor del fuego. Es lo que produce la presión de "retumba el
+oído" con auriculares. Se bajaron el tambor (0,55 → 0,38) y el zumbido (0,12 → 0,06), y
+el rumor del fuego se cortó por debajo de 110 Hz. Aun así el tambor lleva graves por
+naturaleza: es la capa a vigilar en la escucha.
+
 ## Reglas que salieron de esto
 
 - **Nada periódico y rápido en un fondo.** Si se repite más de una vez por segundo, suena a máquina.
 - **Nada agudo al frente.** Lo que pasa de ~5 kHz va bajo, lejano o no va.
+- **Nada grave de más.** Los graves sostenidos presionan el oído: lo que está por debajo
+  de 100 Hz se mide en cada mezcla.
 - **Las mediciones no reemplazan la escucha.** Pico, clipping y RMS daban bien en la
   versión que sobresaltaba.
