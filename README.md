@@ -33,7 +33,7 @@ español, inglés y japonés.
 | — | [Los 7 prompts originales del PDF](00-prompts/los-7-prompts.md) |
 | **2** | [Nicho, identidad y catálogo de 40 obras](01-nicho/nicho-e-identidad.md) |
 | **1** | [Plan completo de canal](02-plan/plan-canal.md) |
-| **3** | [Sistema de composición](03-composicion/sistema-composicion.md) · [base científica](03-composicion/base-cientifica.md) · [`compositor.py`](03-composicion/compositor.py) |
+| **3** | [Sistema de composición](03-composicion/sistema-composicion.md) · [base científica](03-composicion/base-cientifica.md) · [`compositor.py`](03-composicion/compositor.py) · [carácter, fondos y capas](03-composicion/sonido-ambiente.md) |
 | **4** | [Algoritmo y crecimiento](04-algoritmo/crecimiento.md) |
 | **5** | [Producción](05-produccion/produccion.md) · [prompts de video en Leonardo](05-produccion/prompts-leonardo-video.md) · [publicación automatizada](05-produccion/publicacion-automatizada.md) · [shorts](05-produccion/shorts.md) · [almacenamiento](05-produccion/almacenamiento.md) · [fondo generativo](05-produccion/fondo-generativo/README.md) |
 | **6** | [Monetización](06-monetizacion/monetizacion.md) |

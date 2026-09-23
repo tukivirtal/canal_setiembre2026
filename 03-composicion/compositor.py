@@ -74,6 +74,65 @@ NIVEL_PAD = 0.55
 NIVEL_CUENCO = 0.42
 NIVEL_AVE = 0.085
 
+# Carácter del cuenco. Lo que separa un golpe que sobresalta de uno que acompaña
+# no es el volumen: es el ataque y los dos parciales agudos.
+#
+# El cuenco real tiene parciales inarmónicos en 1 : 2,75 : 5,38 : 8,90. Para una
+# raíz de 792 Hz eso pone energía en 4.261 y 7.049 Hz, justo donde el oído es más
+# sensible y donde aparece la sensación de "pincha". El perfil suave no los borra
+# —sin ellos deja de sonar a metal— los baja.
+#
+# El ataque de 12 ms es un martillazo. Un mazo de fieltro sobre un cuenco tarda
+# entre 150 y 250 ms en entregar toda la energía.
+#
+# Pero el sobresalto principal no era el cuenco: era la respiración. Con piso
+# 0,55 el fondo entero sube y baja 5,2 dB cada diez segundos, y eso no se oye
+# como respirar, se oye como un bombeo. Medido en la OBRA-020 el 22/09: los
+# picos que molestaban eran los inhalar, no los golpes. Con piso 0,82 la
+# oscilación queda en 1,7 dB: se siente el pulso sin que el volumen se mueva.
+CARACTERES = {
+    # Como se compuso hasta el 22/09. Se conserva para poder reproducir
+    # cualquier obra vieja tal cual era.
+    "original": {
+        "ataque": 0.012,
+        "parciales": (1.00, 1.00, 1.00, 1.00),
+        "nivel_cuenco": 1.00,
+        "fundido": 8.0,
+        "piso_respiracion": 0.55,
+        "curva_ataque": "recta",
+    },
+    # El del canal. Mismo cuenco, sin el sobresalto. El 23/09 la prueba de
+    # escucha dijo que 180 ms y 0,62 seguían sobresaltando: el cuenco aparece
+    # ahora en más de medio segundo y queda apenas por encima del fondo.
+    "suave": {
+        "ataque": 0.650,
+        "parciales": (1.00, 0.55, 0.22, 0.08),
+        "nivel_cuenco": 0.28,
+        "fundido": 25.0,
+        "piso_respiracion": 0.82,
+        "curva_ataque": "curva",
+    },
+    # Solo el fondo, sin cuencos. Sirve para comparar: si esto tranquiliza y
+    # con cuenco no, el problema es el cuenco y no el resto de la obra.
+    "sin-cuenco": {
+        "ataque": 0.650,
+        "parciales": (1.00, 0.55, 0.22, 0.08),
+        "nivel_cuenco": 0.0,
+        "fundido": 25.0,
+        "piso_respiracion": 0.82,
+        "curva_ataque": "curva",
+    },
+    # Para las obras de dormir, donde cualquier transitorio despierta.
+    "muy-suave": {
+        "ataque": 0.320,
+        "parciales": (1.00, 0.68, 0.28, 0.12),
+        "nivel_cuenco": 0.45,
+        "fundido": 40.0,
+        "piso_respiracion": 0.90,
+        "curva_ataque": "curva",
+    },
+}
+
 # Transposición por octavas. El registro por defecto (medio) deja el sub en
 # raiz/2: con raíz 528 Hz son 264 Hz, dos octavas por encima de donde vive un
 # drone de sueño (60-120 Hz). Para las obras del pilar Sueño hace falta "grave".
@@ -135,7 +194,7 @@ def tabla_seno():
     return array.array("d", [math.sin(2.0 * math.pi * i / TABLA) for i in range(TABLA)])
 
 
-def tabla_respiracion():
+def tabla_respiracion(piso=0.55):
     """
     Un ciclo de respiración, como envolvente de amplitud.
     Inhalar 40 % / exhalar 60 %, con curvas de coseno elevado para que no haya
@@ -151,7 +210,7 @@ def tabla_respiracion():
         else:
             x = (i - corte) / (n - corte)
             v = 0.5 + 0.5 * math.cos(math.pi * x)          # baja, más lento
-        t[i] = 0.55 + 0.45 * (v ** 1.4)
+        t[i] = piso + (1.0 - piso) * (v ** 1.4)
     return t
 
 
@@ -159,7 +218,7 @@ def tabla_respiracion():
 # Cuenco tibetano
 # --------------------------------------------------------------------------
 
-def cuenco(frecuencia, duracion=24.0):
+def cuenco(frecuencia, duracion=24.0, caracter="suave"):
     """
     Cuenco cantor sintetizado.
 
@@ -171,11 +230,16 @@ def cuenco(frecuencia, duracion=24.0):
       un batido lento de ~1,8 Hz que es EXACTAMENTE el bamboleo característico
       del cuenco. Sin él suena a sintetizador.
     """
+    perfil = CARACTERES[caracter]
     n = int(duracion * SR)
     buf = array.array("d", [0.0]) * n
     modos = [(1.00, 1.00, 0.9), (2.75, 0.42, 1.5),
              (5.38, 0.18, 2.4), (8.90, 0.07, 3.6)]
-    ataque = int(0.012 * SR)
+    # Cada parcial se pesa según el carácter: el fundamental queda entero y los
+    # agudos bajan, que es lo que quita el filo sin quitar el metal.
+    modos = [(r, a * peso, v)
+             for (r, a, v), peso in zip(modos, perfil["parciales"])]
+    ataque = int(perfil["ataque"] * SR)
 
     for ratio, amp, veloc in modos:
         for desdoble in (1.0, 1.0035):        # el par que produce el batido
@@ -186,7 +250,11 @@ def cuenco(frecuencia, duracion=24.0):
 
     pico = max(abs(v) for v in buf) or 1.0
     for i in range(n):
-        env = min(1.0, i / ataque)
+        # Ataque en curva, no en rampa recta: el oído lee la rampa recta como
+        # un golpe igual, aunque dure más. El perfil original conserva la recta
+        # para que las obras viejas salgan idénticas.
+        x = min(1.0, i / ataque)
+        env = x if perfil["curva_ataque"] == "recta" else x * x * (3.0 - 2.0 * x)
         buf[i] = buf[i] / pico * env
     return buf
 
@@ -425,7 +493,7 @@ def imprimir_plan(segundos, raiz, modo, semilla, resp):
     print(f"cómputo estimado: ~{segundos/60*21/60:.1f} min")
 
 
-def componer(ruta, segundos, raiz, modo, semilla, aire, rt60,
+def componer(ruta, segundos, raiz, modo, semilla, aire, rt60, caracter="suave",
              binaural=0.0, resp=(RESP_INICIAL, RESP_FINAL), aves=0.0,
              verbose=True):
     grados = MODOS[modo]
@@ -453,7 +521,7 @@ def componer(ruta, segundos, raiz, modo, semilla, aire, rt60,
             print(f"  binaural {binaural:.1f} Hz sobre portadora de {portadora:.1f} Hz "
                   f"(requiere auriculares)")
 
-    t_resp = tabla_respiracion()
+    t_resp = tabla_respiracion(CARACTERES[caracter]["piso_respiracion"])
     rev = Reverb(rt60=rt60)
 
     # Aves
@@ -465,7 +533,7 @@ def componer(ruta, segundos, raiz, modo, semilla, aire, rt60,
     for _, f, _, _ in eventos:
         k = round(f, 1)
         if k not in cache:
-            cache[k] = cuenco(f)
+            cache[k] = cuenco(f, caracter=caracter)
     if verbose:
         print(f"  {len(eventos)} cuencos · {len(cache)} timbres sintetizados")
 
@@ -476,7 +544,10 @@ def componer(ruta, segundos, raiz, modo, semilla, aire, rt60,
     pend_d = array.array("d", [0.0]) * (BLOQUE + cola)
 
     muestras = array.array("h")
-    fundido = int(8.0 * SR)
+    perfil = CARACTERES[caracter]
+    # La entrada y la salida. Ocho segundos se oyen como un arranque; veinticinco
+    # se oyen como que la obra ya estaba sonando y uno llegó.
+    fundido = int(perfil["fundido"] * SR)
     ev_i = 0
     fase_tabla = 0.0
     fase_resp = 0.0
@@ -493,7 +564,7 @@ def componer(ruta, segundos, raiz, modo, semilla, aire, rt60,
             t_ev, frec, vol, pan = eventos[ev_i]
             buf = cache[round(frec, 1)]
             off = int(t_ev * SR) - inicio_bloque
-            g = NIVEL_CUENCO * vol
+            g = NIVEL_CUENCO * perfil["nivel_cuenco"] * vol
             for i in range(min(len(buf), len(pend_i) - off)):
                 v = buf[i] * g
                 pend_i[off + i] += v * (1.0 - pan)
@@ -636,6 +707,10 @@ def main():
                         "requiere auriculares. Ver base-cientifica.md")
     p.add_argument("--respiracion", default=None,
                    help="ritmo inicial,final en resp/min. Por defecto 6,4.5")
+    p.add_argument("--caracter", choices=list(CARACTERES), default="suave",
+                   help="cuánto sobresale el golpe del cuenco. suave es el del "
+                        "canal; muy-suave para dormir; original reproduce las "
+                        "obras anteriores al 22/09")
     p.add_argument("--salida", default=None)
     p.add_argument("--listar", action="store_true")
     p.add_argument("--plan", action="store_true",
@@ -674,13 +749,16 @@ def main():
         return
 
     print(f"Componiendo {a.minutos:g} min · raíz {raiz:.1f} Hz · modo {a.modo} "
-          f"· semilla {semilla}")
+          f"· semilla {semilla} · carácter {a.caracter}")
     componer(ruta, a.minutos * 60, raiz, a.modo, semilla, a.aire, a.rt60,
+             caracter=a.caracter,
              binaural=a.binaural, resp=(ini, fin), aves=a.aves)
     print(f"{ruta}")
     # El comando tiene que llevar TODOS los parámetros que afectan al audio,
     # o no reproduce la misma obra.
     extras = ""
+    if a.caracter != "suave":
+        extras += f" --caracter {a.caracter}"
     if a.registro != "medio":
         extras += f" --registro {a.registro}"
     if a.aves != 1.0:
