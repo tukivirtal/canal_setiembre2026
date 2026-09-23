@@ -4,30 +4,44 @@ Todo listo para pegar en **YouTube Studio → Personalización**.
 
 ## Descripción del canal
 
-**Idioma principal: inglés** (decidido el 23/09), con el español abajo. Límite 1.000
-caracteres; los primeros ~150 son los que aparecen en la búsqueda.
+**En inglés.** Límite 1.000 caracteres; los primeros ~150 son los que aparecen en la
+búsqueda.
 
 ```
 Sleep music, meditation music, calming music for anxious moments and focus music. Long original pieces with ocean waves, rain on leaves, tropical rainforest and zen temple ambiences.
 
-Rin (鈴) is the Japanese name of the singing bowl. Every piece is composed from scratch — no loops, no borrowed sounds. Just intonation, a slow breathing pulse, and natural ambiences synthesized sound by sound.
+Rin (鈴) is the Japanese name of the singing bowl. Every piece is composed from scratch: no loops, no borrowed sounds. Just intonation, a slow breathing pulse, and natural ambiences synthesized sound by sound.
 
 Each piece has its own name and its own purpose: sleep, a pause when your mind won't stop, a meditation practice, or long hours of work and study.
 
 We don't promise to heal anything. We compose music to keep you company.
 
-— Español —
-Música para dormir, meditar, calmar la ansiedad y concentrarte, compuesta desde cero. Cada obra también tiene su título y descripción en español.
-
 Subscribe for every new piece.
+```
+
+### La traducción al español
+
+Va aparte, como traducción del canal: **Studio → Configuración → Canal → Información
+básica → Agregar idioma → Español**. Quien tenga YouTube en español ve esta:
+
+```
+Música para dormir, música para meditar, música para calmar momentos de ansiedad y música para concentrarte. Obras largas y originales con ambientes de olas del mar, lluvia sobre hojas, selva tropical y templo zen.
+
+Rin (鈴) es el nombre japonés del cuenco cantor. Cada obra se compone desde cero: sin loops ni sonidos prestados. Entonación justa, un pulso de respiración lenta y ambientes naturales sintetizados sonido por sonido.
+
+Cada obra tiene su nombre y su propósito: dormir, una pausa cuando la cabeza no para, una práctica de meditación o largas horas de trabajo y estudio.
+
+No prometemos curar nada. Componemos música para acompañarte.
+
+Suscríbete para recibir cada obra nueva.
 ```
 
 ## Palabras clave del canal
 
-**Studio → Configuración → Canal → Palabras clave.** Límite 500 caracteres.
+**Studio → Configuración → Canal → Palabras clave.** En inglés, límite 500 caracteres.
 
 ```
-"sleep music" "meditation music" "relaxing music" "music for anxiety" "focus music" "study music" "ocean waves" "rain sounds" "zen music" "528 Hz" "432 Hz" "música para dormir" "música para meditar" "música relajante" "música zen" Rin
+"sleep music" "meditation music" "relaxing music" "calming music" "music for anxiety" "focus music" "study music" "deep sleep" "ocean waves" "rain sounds" "nature sounds" "zen music" "tibetan bowls" "528 Hz" "432 Hz" "solfeggio frequencies" "ambient music" "yoga music" Rin
 ```
 
 Pesan poco para posicionar: posicionan el título y la descripción de cada obra. Ayudan a
