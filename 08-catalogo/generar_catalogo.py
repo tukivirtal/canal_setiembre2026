@@ -97,9 +97,25 @@ PROPOSITO_EN = {
     "Soltar": "To accompany some time to let go of the day's tension.",
     "Concentración": "To accompany work or study.",
 }
-ETIQ_BASE = ["música relajante", "meditación", "relajación", "entonación justa",
-             "composición original", "meditation music", "relaxing music", "sleep music",
-             "singing bowls", "just intonation"]
+# Las etiquetas van en inglés, como títulos y descripciones; la palabra clave
+# en español va al final, para la búsqueda de Latinoamérica.
+ETIQ_BASE = ["relaxing music", "meditation music", "calming music", "ambient music",
+             "just intonation", "original composition", "Rin"]
+ETIQ_PILAR = {
+    "Dormir":        ["deep sleep", "sleep music", "insomnia"],
+    "Ansiedad":      ["anxiety relief", "stress relief", "calming music"],
+    "Meditar":       ["mindfulness", "zen music", "yoga music"],
+    "Soltar":        ["stress relief", "let go", "healing music"],
+    "Concentración": ["study music", "deep focus", "work music"],
+}
+ETIQ_AMBIENTE = {
+    "mar":           ["ocean waves", "sea sounds"],
+    "mar-aves":      ["ocean waves", "birdsong", "nature sounds"],
+    "zen":           ["zen temple", "temple bells", "wind chimes"],
+    "selva":         ["rainforest sounds", "birdsong", "nature sounds"],
+    "lluvia-tambor": ["rain sounds", "rain on leaves", "shamanic drum"],
+}
+SUSCRIBIR = "https://www.youtube.com/@rinchanneloficial?sub_confirmation=1"
 
 def dur_txt(m):
     if m >= 60 and m % 60 == 0:
@@ -143,7 +159,9 @@ def descripcion_es(o):
         f'inhalar 40 % / exhalar 60 %.\n'
         f'Composición original, sintetizada desde cero: el ambiente también. '
         f'Ninguna muestra procede de terceros.\n\n'
-        f'Capítulos:\n00:00 [completar tras el montaje]'
+        f'Mejor a volumen bajo.\n'
+        f'Suscríbete para las próximas obras: {SUSCRIBIR}\n\n'
+        f'{hashtags(o)}'
     )
 
 def descripcion(o):
@@ -162,12 +180,15 @@ def descripcion(o):
         f'40 % inhale / 60 % exhale.\n'
         f'Original composition, synthesized from scratch, ambience included. '
         f'No third-party samples.\n\n'
-        f'Chapters:\n00:00 [fill in after editing]'
+        f'Best at low volume.\n'
+        f'Subscribe for new pieces: {SUSCRIBIR}\n\n'
+        f'{hashtags(o)}'
     )
 
 def etiquetas(o):
-    e = [f'{o["raiz"]} hz', f'música {o["raiz"]} hz', CLAVE[o["pilar"]][0].lower(),
-         CLAVE[o["pilar"]][1].lower(), o["pilar"].lower(), o["modo"]] + ETIQ_BASE
+    e = ([CLAVE[o["pilar"]][1].lower(), f'{o["raiz"]} hz', f'{o["raiz"]} hz music']
+         + ETIQ_PILAR[o["pilar"]] + ETIQ_AMBIENTE[o["ambiente"]] + ETIQ_BASE
+         + [CLAVE[o["pilar"]][0].lower()])
     return ", ".join(dict.fromkeys(e))
 
 def hashtags(o):

@@ -27,8 +27,8 @@ def main():
                    help='mar, mar-aves, zen, selva o lluvia-tambor: una por ambiente')
     p.add_argument('--segundos', type=float, default=None,
                    help='solo los primeros N segundos: para previsualizar sin renderizar el bucle entero')
-    p.add_argument('--crf', type=int, default=24,
-                   help='calidad x264. 24 deja una obra de 3 h en unos 3 GB en vez de 7')
+    p.add_argument('--crf', type=int, default=28,
+                   help='calidad x264. Con 28 una obra de 3 h pesa unos 2,5 GB; con 24, unos 4,5')
     a = p.parse_args()
     tmp = pathlib.Path(tempfile.mkdtemp())
     with sync_playwright() as pw:
@@ -46,7 +46,7 @@ def main():
         nav.close()
     subprocess.run(['ffmpeg', '-hide_banner', '-v', 'error', '-y', '-framerate', str(a.fps),
                     '-i', str(tmp / 'f%05d.png'), '-c:v', 'libx264', '-crf', str(a.crf),
-                    '-preset', 'slow', '-pix_fmt', 'yuv420p', a.salida], check=True)
+                    '-preset', 'slow', '-tune', 'animation', '-pix_fmt', 'yuv420p', a.salida], check=True)
     shutil.rmtree(tmp)
     print(a.salida)
 
