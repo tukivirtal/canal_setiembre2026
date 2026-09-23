@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<link rel="stylesheet" href="fuentes.css">
+<style>
+  :root{ --crema:#f6e7b8; --oro:#e6c46a; --noche:#070f16; }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:transparent}
+  .pieza{position:relative;overflow:hidden}
+  .pieza iframe{position:absolute;inset:0;border:0;width:100%;height:100%}
+
+  /* ---------- Banner 2560x1440 ----------
+     Zona segura en TODOS los dispositivos: 1546x423 al centro. Lo que importa
+     (nombre y lema) va adentro; el mandala llena el resto para la TV. */
+  #banner{width:2560px;height:1440px}
+  #banner .velo{position:absolute;inset:0;
+    background:radial-gradient(ellipse 1000px 300px at 50% 50%, rgba(7,15,22,.97), rgba(7,15,22,.9) 45%, rgba(7,15,22,.45) 75%, rgba(7,15,22,0) 100%)}
+  #banner .texto{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+    width:1546px;height:423px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+  #banner .nombre{font-family:Cinzel,serif;font-weight:400;font-size:150px;letter-spacing:.14em;
+    color:var(--crema);line-height:1;padding-left:.14em;text-shadow:0 0 40px rgba(230,196,106,.35)}
+  #banner .kanji{font-family:"IPAGothic","IPAPGothic",serif;font-size:28px;color:var(--oro);opacity:.85;margin-top:2px;letter-spacing:.4em;padding-left:.4em}
+  #banner .lema{font-family:"Cormorant Garamond",serif;font-style:italic;font-weight:500;font-size:40px;color:var(--crema);margin-top:14px}
+  #banner .temas{font-family:Cinzel,serif;font-size:22px;letter-spacing:.32em;color:var(--crema);margin-top:14px;opacity:.8;padding-left:.32em}
+
+  /* ---------- Perfil 800x800, se ve en círculo ---------- */
+  #perfil{width:800px;height:800px;background:var(--noche)}
+  #perfil .anillo{position:absolute;inset:0}
+  #perfil .nombre{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    font-family:Cinzel,serif;font-weight:600;font-size:250px;letter-spacing:.06em;color:var(--crema);padding-left:.06em;
+    text-shadow:0 0 30px rgba(230,196,106,.35)}
+
+  /* ---------- Marca de agua 150x150, fondo transparente ---------- */
+  #agua{width:150px;height:150px;background:transparent}
+</style></head><body>
+
+<div id="banner" class="pieza">
+  <iframe src="../05-produccion/fondo-mandala/mandala.html?w=2560&h=1440&r=0.62&firma=0&vineta=0.55&t=6"></iframe>
+  <div class="velo"></div>
+  <div class="texto">
+    <div class="nombre">RIN</div>
+    <div class="kanji">鈴</div>
+    <div class="lema">Música de meditación compuesta, no ensamblada</div>
+    <div class="temas">DORMIR · MEDITAR · SOLTAR · CONCENTRARSE</div>
+  </div>
+</div>
+
+<div id="perfil" class="pieza">
+  <svg class="anillo" viewBox="0 0 800 800">
+    <defs><radialGradient id="g" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#11303a"/><stop offset="1" stop-color="#070f16"/></radialGradient></defs>
+    <rect width="800" height="800" fill="url(#g)"/>
+    <circle cx="400" cy="400" r="318" fill="none" stroke="#e6c46a" stroke-width="5"/>
+    <circle cx="400" cy="400" r="296" fill="none" stroke="#2a8f9b" stroke-width="2"/>
+    <g id="cuentas"></g>
+  </svg>
+  <div class="nombre">Rin</div>
+</div>
+
+<div id="agua" class="pieza">
+  <svg viewBox="0 0 150 150" width="150" height="150">
+    <circle cx="75" cy="75" r="68" fill="rgba(7,15,22,.55)" stroke="#f6e7b8" stroke-width="3"/>
+    <text x="75" y="88" text-anchor="middle" font-family="Cinzel" font-weight="600" font-size="44" fill="#f6e7b8" letter-spacing="2">Rin</text>
+  </svg>
+</div>
+
+<script>
+  // Corona de cuentas doradas del perfil: el eco del mandala en miniatura.
+  const g = document.getElementById('cuentas'), NS = 'http://www.w3.org/2000/svg';
+  for (let i = 0; i < 36; i++) {
+    const a = i / 36 * 2 * Math.PI, c = document.createElementNS(NS, 'circle');
+    c.setAttribute('cx', 400 + 345 * Math.cos(a)); c.setAttribute('cy', 400 + 345 * Math.sin(a));
+    c.setAttribute('r', i % 3 ? 7 : 11); c.setAttribute('fill', i % 3 ? '#e6c46a' : '#f6e7b8');
+    g.appendChild(c);
+  }
+</script>
+</body></html>

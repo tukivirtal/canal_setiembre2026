@@ -2,7 +2,7 @@
 <html lang="es"><head><meta charset="utf-8"><title>Rin · mandala</title>
 <style>html,body{margin:0;background:#070f16;overflow:hidden}canvas{display:block}</style>
 </head><body>
-<canvas id="c" width="1920" height="1080"></canvas>
+<canvas id="c"></canvas>
 <script>
 /*
  * Fondo caleidoscópico para los videos de Rin.
@@ -19,8 +19,13 @@
  * cada fotograma, así que el resultado es determinista.
  */
 const L = 48, N = 12, GAJO = 2 * Math.PI / N;
+// Parámetros por URL, para reutilizar el mismo diseño en el banner y el perfil:
+// ?w=2560&h=1440&r=0.4&firma=0&vineta=0.9
+const Q = new URLSearchParams(location.search);
 const cv = document.getElementById('c'), cx = cv.getContext('2d');
-const W = cv.width, H = cv.height, R = H * 0.5;
+cv.width = +(Q.get('w') || 1920); cv.height = +(Q.get('h') || 1080);
+const W = cv.width, H = cv.height, R = H * +(Q.get('r') || 0.5);
+const FIRMA = Q.get('firma') !== '0', VINETA = +(Q.get('vineta') || 0.75);
 const C = {
   fondo1: '#0b1c26', fondo2: '#050b10',
   turquesa: '#2a8f9b', turquesaClaro: '#58c1c4', petroleo: '#154d59',
@@ -59,23 +64,26 @@ function punto(x, y, r, color, brillo) {
 // anillos vecinos giren al revés es lo que da el efecto hipnótico de
 // Meditative Mind sin que nada se mueva rápido.
 const ANILLOS = [
-  // radio, cantidad, motivo, sentido
+  // radio, cantidad, motivo, sentido, pasos por bucle (1 si se omite).
+  // Las burbujas alternan color y latido cada 4: su anillo tiene que girar 4
+  // pasos por bucle para volver a quedar idéntico. Con 1 paso, la costura del
+  // bucle saltaba (medido: 4x el cambio entre dos fotogramas normales).
   [0.15, 12, 'petaloOro', 1],
   [0.24, 24, 'cuenta', -1],
   [0.36, 12, 'loto', 1],
   [0.36, 12, 'lotoFino', 1],
-  [0.52, 36, 'burbuja', -1],
+  [0.52, 36, 'burbuja', -1, 4],
   [0.60, 24, 'festón', 1],
   [0.72, 12, 'hoja', -1],
   [0.72, 24, 'cuentaRosa', -1],
-  [0.88, 48, 'burbuja', 1],
+  [0.88, 48, 'burbuja', 1, 4],
   [0.98, 24, 'loto', -1],
   [1.18, 36, 'festón', 1],
   [1.30, 18, 'hojaGrande', -1],
-  [1.52, 60, 'burbuja', -1],
+  [1.52, 60, 'burbuja', -1, 4],
   [1.62, 24, 'loto', 1],
   [1.88, 30, 'hojaGrande', 1],
-  [2.02, 72, 'burbuja', -1],
+  [2.02, 72, 'burbuja', -1, 4],
 ];
 
 function motivo(tipo, r, M, t, i) {
@@ -89,7 +97,7 @@ function motivo(tipo, r, M, t, i) {
     case 'cuentaRosa':
       punto(r * R, w * R * 0.5, R * 0.012, C.rosa, 8); break;
     case 'burbuja': {
-      const d = R * w * 0.34 * (1 + 0.3 * ciclo(t, 4, i * 0.7));
+      const d = R * w * 0.34 * (1 + 0.3 * ciclo(t, 4, (i % 4) * 0.7));
       cx.globalAlpha = 0.9;
       punto(r * R, 0, d, i % 4 ? C.oro : C.crema, 0);
       punto(r * R, 0, d * 0.45, 'rgba(255,248,220,0.8)', 0);
@@ -122,8 +130,8 @@ window.pintar = function (t) {
   cx.save(); cx.translate(W / 2, H / 2); cx.scale(respira, respira);
   // De afuera hacia adentro: lo del centro queda encima.
   for (let a = ANILLOS.length - 1; a >= 0; a--) {
-    const [r, M, tipo, sentido] = ANILLOS[a];
-    const giro = sentido * (t / L) * (2 * Math.PI / M);
+    const [r, M, tipo, sentido, pasos = 1] = ANILLOS[a];
+    const giro = sentido * pasos * (t / L) * (2 * Math.PI / M);
     for (let i = 0; i < M; i++) {
       cx.save(); cx.rotate(giro + i * 2 * Math.PI / M);
       motivo(tipo, r, M, t, i);
@@ -135,10 +143,11 @@ window.pintar = function (t) {
 
   // Viñeta: oscurece los bordes para que el ojo vuelva al centro.
   const v = cx.createRadialGradient(W / 2, H / 2, H * 0.35, W / 2, H / 2, W * 0.62);
-  v.addColorStop(0, 'rgba(5,11,16,0)'); v.addColorStop(1, 'rgba(5,11,16,0.75)');
+  v.addColorStop(0, 'rgba(5,11,16,0)'); v.addColorStop(1, `rgba(5,11,16,${VINETA})`);
   cx.fillStyle = v; cx.fillRect(0, 0, W, H);
 
   // Firma, discreta, abajo a la izquierda.
+  if (!FIRMA) return;
   cx.save();
   cx.globalAlpha = 0.85; cx.strokeStyle = C.crema; cx.lineWidth = 2;
   cx.beginPath(); cx.arc(92, H - 84, 22, 0, 2 * Math.PI); cx.stroke();
@@ -148,5 +157,5 @@ window.pintar = function (t) {
   cx.restore();
 };
 window.BUCLE = L;
-pintar(0);
+pintar(+(Q.get('t') || 0));
 </script></body></html>
