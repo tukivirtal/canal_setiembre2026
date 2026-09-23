@@ -32,51 +32,68 @@ HACER_XLSX = "--csv" not in _sys.argv
 
 # --- Parsear el catálogo ---
 pilar_actual, obras = None, []
-PILARES = {"Frecuencias": "Frecuencias", "Sueño": "Sueño", "Respiración": "Respiración",
-           "Cuencos": "Cuencos", "Foco": "Foco"}
+# Las intenciones. Desde el 23/09 el catálogo se ordena por lo que la obra
+# acompaña, no por la técnica. Internamente sigue llamándose "pilar".
+PILARES = {"Dormir": "Dormir", "Ansiedad": "Ansiedad", "Meditar": "Meditar",
+           "Soltar": "Soltar", "Concentración": "Concentración"}
 for linea in open(MD, encoding="utf-8"):
     m = re.match(r"^### (\w+[\wáéíóúñ]*)", linea.strip())
     if m and m.group(1) in PILARES:
         pilar_actual = PILARES[m.group(1)]
         continue
-    m = re.match(r"^\|\s*(\d+)\s*\|\s*([^|]+?)\s*\|\s*(\d+)\s*\|\s*(\w+)\s*\|\s*(\d+) min\s*\|", linea)
+    m = re.match(r"^\|\s*(\d+)\s*\|\s*([^|]+?)\s*\|\s*(\d+)\s*\|\s*(\w+)\s*\|\s*(\d+) min\s*\|\s*([\w-]+)\s*\|", linea)
     if m and pilar_actual:
         obras.append({"n": int(m.group(1)), "nombre": m.group(2), "raiz": int(m.group(3)),
-                      "modo": m.group(4), "dur": int(m.group(5)), "pilar": pilar_actual})
+                      "modo": m.group(4), "dur": int(m.group(5)), "pilar": pilar_actual,
+                      "ambiente": m.group(6)})
 assert len(obras) == 40, f"se esperaban 40 obras, se encontraron {len(obras)}"
 
 # --- Derivar los campos ---
-CLAVE = {  # palabra clave de búsqueda por pilar, en los dos idiomas
-    "Frecuencias": ("Música de meditación", "Meditation music"),
-    "Sueño":       ("Música para dormir", "Sleep music"),
-    "Respiración": ("Música para meditar", "Meditation music"),
-    "Cuencos":     ("Cuencos tibetanos", "Singing bowls"),
-    "Foco":        ("Música para concentrarse", "Focus music"),
+CLAVE = {  # palabra clave de búsqueda por intención, en los dos idiomas
+    "Dormir":        ("Música para dormir", "Sleep music"),
+    "Ansiedad":      ("Música para momentos de ansiedad", "Music for anxiety"),
+    "Meditar":       ("Música para meditar", "Meditation music"),
+    "Soltar":        ("Música para soltar tensión", "Music to release tension"),
+    "Concentración": ("Música para concentrarse", "Focus music"),
 }
-RESP = {"Frecuencias": (6.0, 4.5), "Sueño": (4.5, 3.5), "Respiración": (6.0, 4.5),
-        "Cuencos": (5.5, 4.5), "Foco": (6.0, 5.5)}
+RESP = {"Dormir": (4.5, 3.5), "Ansiedad": (6.0, 4.5), "Meditar": (5.5, 4.5),
+        "Soltar": (6.0, 4.5), "Concentración": (6.0, 5.5)}
 
-# Registro por pilar. Sueño y Foco bajan una octava: el sub pasa de 264 a
+# Los cinco ambientes aprobados en escucha: cómo se llaman en el título y con
+# qué parámetros se arma cada uno (ver 03-composicion/sonido-ambiente.md).
+AMBIENTES = {
+    "mar":           ("Olas del mar", "Ocean waves", None, "--fondo mar"),
+    "mar-aves":      ("Mar y pájaros", "Ocean and birds", "aves", "--fondo mar --nivel-capa -4"),
+    "zen":           ("Templo zen", "Zen temple", "zen",
+                      "--fondo mar --nivel-fondo -7 --nivel-capa 2"),
+    "selva":         ("Selva tropical", "Tropical rainforest", "aves",
+                      "--fondo selva --nivel-capa -2"),
+    "lluvia-tambor": ("Lluvia sobre hojas", "Rain on leaves", "ancestral",
+                      "--fondo fuego --nivel-capa 0 --nivel-obra -20"),
+}
+DENSIDAD_CAPA = {"selva": " --densidad 2", "zen": " --densidad 1.4"}
+
+# Registro por intención. Dormir y Concentración bajan una octava: el sub pasa de 264 a
 # 132 Hz, que es donde vive un drone de dormir. Ver sistema-composicion.md.
-REGISTRO = {"Frecuencias": "medio", "Sueño": "grave", "Respiración": "medio",
-            "Cuencos": "medio", "Foco": "grave"}
+REGISTRO = {"Dormir": "grave", "Ansiedad": "medio", "Meditar": "medio",
+            "Soltar": "medio", "Concentración": "grave"}
 FACTOR = {"grave": 0.5, "medio": 1.0, "brillante": 2.0}
 
 # Para qué es cada obra. Decir "práctica de respiración" en una pieza de
 # estudio de dos horas sería copiar y pegar, no describir.
 PROPOSITO = {
-    "Frecuencias": "Para acompañar una práctica de respiración.",
-    "Sueño": "Para acompañar el sueño.",
-    "Respiración": "Para acompañar una práctica de respiración.",
-    "Cuencos": "Para acompañar una práctica de meditación.",
-    "Foco": "Para acompañar el trabajo o el estudio.",
+    "Dormir": "Para acompañar el sueño.",
+    "Ansiedad": "Para acompañar un momento de pausa cuando la cabeza no para.",
+    "Meditar": "Para acompañar una práctica de meditación.",
+    "Soltar": "Para acompañar un rato de soltar la tensión del día.",
+    "Concentración": "Para acompañar el trabajo o el estudio.",
 }
 PROPOSITO_EN = {
-    "Frecuencias": "To accompany a breathing practice.",
-    "Sueño": "To accompany sleep.",
-    "Respiración": "To accompany a breathing practice.",
-    "Cuencos": "To accompany a meditation practice.",
-    "Foco": "To accompany work or study.",
+    "Dormir": "To accompany sleep.",
+    "Ansiedad": "To accompany a pause when your mind won't stop.",
+    "Meditar": "To accompany a meditation practice.",
+    "Soltar": "To accompany some time to let go of the day's tension.",
+    "Concentración": "To accompany work or study.",
 }
 ETIQ_BASE = ["música relajante", "meditación", "relajación", "entonación justa",
              "composición original", "meditation music", "relaxing music", "sleep music",
@@ -93,12 +110,10 @@ def semilla(o):
     return int(hashlib.sha256(o["nombre"].encode()).hexdigest()[:6], 16) % 999_999 + 1
 
 def miniatura(o):
-    if o["pilar"] == "Frecuencias":
+    if o["pilar"] == "Soltar":
         return f'{o["raiz"]} HZ'
-    if o["pilar"] == "Respiración":
+    if o["pilar"] in ("Ansiedad", "Meditar"):
         return f'{o["dur"]} MIN'
-    if o["pilar"] == "Cuencos":
-        return "CUENCOS"
     h = o["dur"] // 60
     return f"{h} HORAS" if h > 1 else f'{o["dur"]} MIN'
 
@@ -116,7 +131,7 @@ def descripcion(o):
         f'{PROPOSITO[o["pilar"]]}\n\n'
         f'Ciclo respiratorio: de {ri:.1f} a {rf:.1f} respiraciones por minuto, '
         f'inhalar 40 % / exhalar 60 %.\n'
-        f'Cuencos y canto de ave sintetizados, sin grabaciones.\n'
+        f'Ambiente: {AMBIENTES[o["ambiente"]][0].lower()}, sintetizado, sin grabaciones.\n'
         f'Composición original, sintetizada desde cero. '
         f'Ninguna muestra procede de terceros.\n\n'
         f'— English —\n'
@@ -132,24 +147,41 @@ def etiquetas(o):
     return ", ".join(dict.fromkeys(e))
 
 def hashtags(o):
-    base = {"Frecuencias": "#Meditación", "Sueño": "#MúsicaParaDormir",
-            "Respiración": "#Respiración", "Cuencos": "#CuencosTibetanos",
-            "Foco": "#Concentración"}[o["pilar"]]
+    base = {"Dormir": "#MúsicaParaDormir", "Ansiedad": "#Relajación",
+            "Meditar": "#Meditación", "Soltar": "#MúsicaRelajante",
+            "Concentración": "#Concentración"}[o["pilar"]]
     # dict.fromkeys quita duplicados conservando el orden: sin esto, el pilar
     # Frecuencias repetía la etiqueta de la raíz dos veces.
     return " ".join(dict.fromkeys([base, "#MúsicaRelajante", f'#{o["raiz"]}Hz']))
 
 COLS = [
-    ("id", 11), ("titulo", 52), ("tema", 13), ("descripcion_optimizada", 60),
+    ("id", 11), ("titulo", 70), ("tema", 13), ("ambiente", 14),
+    ("descripcion_optimizada", 60),
     ("titulo_miniatura", 17), ("hashtags", 34), ("etiquetas", 60),
     ("imagen_miniatura", 24), ("url_video", 30),
     ("raiz_hz", 9), ("modo", 12), ("registro", 11), ("semilla", 10),
     ("duracion_min", 13),
-    ("comando_regeneracion", 62), ("estado", 13), ("fecha_publicacion", 18),
+    ("comando_regeneracion", 62), ("comando_ambiente", 62),
+    ("estado", 13), ("fecha_publicacion", 18),
     ("vistas", 10), ("suscriptores", 13), ("subs_por_1000", 14),
 ]
 LLENAR = {"imagen_miniatura", "url_video", "estado", "fecha_publicacion",
           "vistas", "suscriptores"}
+
+def comando_ambiente(o, s):
+    """El segundo paso: envolver la obra en su ambiente. La capa dura la obra
+    más los 20 s de entrada y los 20 de salida que agrega ambiente.py."""
+    _, _, capa, params = AMBIENTES[o["ambiente"]]
+    base = f'OBRA-{o["n"]:03d}'
+    obra = f'audio/{base}_{o["raiz"]}_{o["modo"]}.wav'     # como la guarda lote.py
+    cmd = ""
+    if capa:
+        cmd = (f'python3 03-composicion/capas.py {capa} {o["dur"] * 60 + 40} '
+               f'audio/{base}_capa.wav --semilla {s}{DENSIDAD_CAPA.get(o["ambiente"], "")} && ')
+    return (cmd + f'python3 03-composicion/ambiente.py {obra} '
+                  f'audio/{base}_final.wav {params}'
+                  + (f' --capa audio/{base}_capa.wav' if capa else ""))
+
 
 # --- Construir las filas una sola vez, para CSV y Excel ---
 def construir_filas():
@@ -158,8 +190,10 @@ def construir_filas():
         s = semilla(o)
         filas.append({
             "id": f'OBRA-{o["n"]:03d}',
-            "titulo": f'{CLAVE[o["pilar"]][0]} · {o["raiz"]} Hz · {o["nombre"]} · {dur_txt(o["dur"])}',
+            "titulo": (f'{CLAVE[o["pilar"]][0]} · {AMBIENTES[o["ambiente"]][0]} · '
+                       f'{o["raiz"]} Hz · {o["nombre"]} · {dur_txt(o["dur"])}'),
             "tema": o["pilar"],
+            "ambiente": o["ambiente"],
             "descripcion_optimizada": descripcion(o),
             "titulo_miniatura": miniatura(o),
             "hashtags": hashtags(o),
@@ -168,11 +202,14 @@ def construir_filas():
             "raiz_hz": o["raiz"], "modo": o["modo"],
             "registro": REGISTRO[o["pilar"]], "semilla": s,
             "duracion_min": o["dur"],
+            # Sin cuenco hasta que haya uno que pase la escucha.
             "comando_regeneracion": (
                 f'python3 03-composicion/compositor.py --minutos {o["dur"]} '
-                f'--raiz {o["raiz"]} --modo {o["modo"]} --semilla {s}'
+                f'--raiz {o["raiz"]} --modo {o["modo"]} --semilla {s} '
+                f'--caracter sin-cuenco'
                 + (f' --registro {REGISTRO[o["pilar"]]}'
                    if REGISTRO[o["pilar"]] != "medio" else "")),
+            "comando_ambiente": comando_ambiente(o, s),
             "estado": "pendiente", "fecha_publicacion": "",
             "vistas": "", "suscriptores": "", "subs_por_1000": "",
         })
@@ -255,10 +292,10 @@ for i, (et, val) in enumerate([("Total de obras", None), ("Pendientes", "pendien
          else f'=COUNTIF(Catálogo!{L["estado"]}2:{L["estado"]}{ult},"{val}")')
     c = rs.cell(i, 2, f); c.font = negro
 
-tit(8, "Por pilar")
-for i, et in enumerate(["Pilar", "Obras", "Publicadas", "Minutos totales"], start=1):
+tit(8, "Por intención")
+for i, et in enumerate(["Intención", "Obras", "Publicadas", "Minutos totales"], start=1):
     c = rs.cell(9, i, et); c.font = Font(name=ARIAL, size=10, bold=True)
-for i, p in enumerate(["Frecuencias", "Sueño", "Respiración", "Cuencos", "Foco"], start=10):
+for i, p in enumerate(list(PILARES), start=10):
     rs.cell(i, 1, p).font = negro
     T, E, D = L["tema"], L["estado"], L["duracion_min"]
     rs.cell(i, 2, f'=COUNTIF(Catálogo!{T}2:{T}{ult},A{i})').font = negro
@@ -293,14 +330,16 @@ texto = [
     ("", None),
     ("id", "Identificador fijo de la obra. No cambia nunca."),
     ("titulo", "Título de YouTube: palabra clave · raíz · nombre propio · duración."),
-    ("tema", "Pilar de contenido. Determina la palabra clave y el ciclo respiratorio."),
+    ("tema", "Intención: qué acompaña la obra. Determina la palabra clave y el ciclo respiratorio."),
+    ("ambiente", "Ambiente aprobado en escucha: mar, mar-aves, zen, selva o lluvia-tambor."),
+    ("comando_ambiente", "Segundo paso: envuelve la obra compuesta en su ambiente."),
     ("descripcion_optimizada", "Descripción bilingüe lista para pegar. Solo falta añadir los capítulos tras el montaje."),
     ("titulo_miniatura", "Texto de la miniatura: 2-4 palabras que COMPLETAN el título, nunca lo repiten."),
     ("hashtags", "Tres, al final de la descripción."),
     ("etiquetas", "Etiquetas del video, separadas por coma."),
     ("imagen_miniatura", "AMARILLA. Ruta o URL de la portada una vez generada."),
     ("url_video", "AMARILLA. URL de YouTube una vez publicado."),
-    ("raiz_hz / modo / registro / semilla", "Parámetros de composición. El registro grave baja una octava (pilares Sueño y Foco). La semilla regenera la obra idéntica."),
+    ("raiz_hz / modo / registro / semilla", "Parámetros de composición. El registro grave baja una octava (Dormir y Concentración). La semilla regenera la obra idéntica."),
     ("comando_regeneracion", "Comando exacto. Copiar, pegar y ejecutar: devuelve el mismo audio bit a bit."),
     ("estado", "AMARILLA. pendiente / compuesta / montada / publicada"),
     ("fecha_publicacion", "AMARILLA. Formato AAAA-MM-DD."),

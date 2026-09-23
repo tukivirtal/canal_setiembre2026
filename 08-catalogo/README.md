@@ -21,8 +21,8 @@ python3 08-catalogo/generar_catalogo.py          # ambos
 
 ## El Excel
 
-Tres hojas: **Catálogo** (40 obras × 19 columnas), **Resumen** (recuentos por estado y
-pilar) y **Leyenda**.
+Tres hojas: **Catálogo** (40 obras × 22 columnas), **Resumen** (recuentos por estado y
+intención) y **Leyenda**.
 
 Las **celdas amarillas son las únicas que se rellenan a mano**: `imagen_miniatura`,
 `url_video`, `estado`, `fecha_publicacion`, `vistas` y `suscriptores`. Todo lo demás
@@ -30,7 +30,7 @@ viene generado o calculado.
 
 Ya vienen escritos, obra por obra: el título con la fórmula de búsqueda, la descripción
 bilingüe completa lista para pegar, el texto de miniatura, hashtags, etiquetas, los
-parámetros de composición y **el comando exacto que regenera esa obra**.
+parámetros de composición y **el comando exacto que regenera esa obra** y el que la envuelve en su ambiente.
 
 `subs_por_1000` se calcula sola. Es la métrica que decide el canal: por debajo de 1, el
 problema es la portada, no la música.
@@ -40,7 +40,7 @@ problema es la portada, no la música.
 ```bash
 python3 03-composicion/lote.py --listar              # qué falta
 python3 03-composicion/lote.py --n 3                 # las 3 siguientes
-python3 03-composicion/lote.py --pilar Frecuencias   # un pilar entero
+python3 03-composicion/lote.py --pilar Dormir         # una intención entera
 ```
 
 Salta lo que ya existe, así que se puede interrumpir y relanzar sin perder trabajo.
@@ -49,13 +49,13 @@ Salta lo que ya existe, así que se puede interrumpir y relanzar sin perder trab
 
 Medido en este proyecto: **28 minutos de CPU por hora de audio**, en un solo núcleo.
 
-| Pilar | Obras | Audio | Cómputo |
+| Intención | Obras | Audio | Cómputo |
 |---|---|---|---|
-| Frecuencias | 8 | 9,3 h | **4,3 h** |
-| Sueño | 8 | 18,5 h | 8,6 h |
-| Respiración | 8 | 2,8 h | 1,3 h |
-| Cuencos | 8 | 6,1 h | 2,8 h |
-| Foco | 8 | 17,0 h | 7,9 h |
+| Dormir | 8 | 18,5 h | 8,6 h |
+| Ansiedad | 8 | 2,8 h | 1,3 h |
+| Meditar | 8 | 6,1 h | 2,8 h |
+| Soltar | 8 | 9,2 h | 4,3 h |
+| Concentración | 8 | 17,0 h | 7,9 h |
 | **Total** | **40** | **53,7 h** | **25,0 h** |
 
 ---

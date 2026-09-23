@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><title>Rin · mandala</title>
+<style>html,body{margin:0;background:#070f16;overflow:hidden}canvas{display:block}</style>
+</head><body>
+<canvas id="c" width="1920" height="1080"></canvas>
+<script>
+/*
+ * Fondo caleidoscópico para los videos de Rin.
+ *
+ * Anillos concéntricos de motivos (pétalos, burbujas doradas, festones, hojas)
+ * que llenan la pantalla hasta las esquinas. Todo lo que se mueve es periódico
+ * en L segundos con un número entero de ciclos, y cada anillo gira exactamente
+ * un paso de su motivo por bucle: el último fotograma empalma con el primero
+ * sin costura, y el bucle se repite con -stream_loop.
+ *
+ * L = 48 s: cuatro respiraciones a 5 por minuto, el mismo pulso de la música.
+ *
+ * pintar(t) dibuja el instante t. No depende del reloj: el render le pide
+ * cada fotograma, así que el resultado es determinista.
+ */
+const L = 48, N = 12, GAJO = 2 * Math.PI / N;
+const cv = document.getElementById('c'), cx = cv.getContext('2d');
+const W = cv.width, H = cv.height, R = H * 0.5;
+const C = {
+  fondo1: '#0b1c26', fondo2: '#050b10',
+  turquesa: '#2a8f9b', turquesaClaro: '#58c1c4', petroleo: '#154d59',
+  oro: '#e6c46a', crema: '#f6e7b8', rosa: '#c65a72', azul: '#223d6b',
+};
+const ciclo = (t, k, fase = 0) => Math.sin(2 * Math.PI * k * t / L + fase);
+
+function gajo(dibujar) {
+  // Repite un motivo en los 12 gajos, alternando espejo: eso es lo que lo
+  // vuelve caleidoscopio y no una simple rotación.
+  for (let k = 0; k < N; k++) {
+    cx.save(); cx.rotate(k * GAJO);
+    if (k % 2) cx.scale(1, -1);
+    dibujar(); cx.restore();
+  }
+}
+
+function petalo(r0, r1, ancho, relleno, borde, grosor) {
+  cx.beginPath();
+  cx.moveTo(r0, 0);
+  cx.bezierCurveTo(r0 + (r1 - r0) * 0.3, ancho, r0 + (r1 - r0) * 0.75, ancho * 0.9, r1, 0);
+  cx.bezierCurveTo(r0 + (r1 - r0) * 0.75, -ancho * 0.9, r0 + (r1 - r0) * 0.3, -ancho, r0, 0);
+  if (relleno) { cx.fillStyle = relleno; cx.fill(); }
+  if (borde) { cx.strokeStyle = borde; cx.lineWidth = grosor; cx.stroke(); }
+}
+
+function punto(x, y, r, color, brillo) {
+  cx.shadowColor = color; cx.shadowBlur = brillo;
+  cx.beginPath(); cx.arc(x, y, r, 0, 2 * Math.PI); cx.fillStyle = color; cx.fill();
+  cx.shadowBlur = 0;
+}
+
+// Anillos concéntricos, de adentro hacia afuera hasta pasar las esquinas.
+// Cada anillo repite su motivo M veces y gira exactamente un paso (2π/M) por
+// bucle, en un sentido o en el otro: por eso todo empalma sin costura. Que los
+// anillos vecinos giren al revés es lo que da el efecto hipnótico de
+// Meditative Mind sin que nada se mueva rápido.
+const ANILLOS = [
+  // radio, cantidad, motivo, sentido
+  [0.15, 12, 'petaloOro', 1],
+  [0.24, 24, 'cuenta', -1],
+  [0.36, 12, 'loto', 1],
+  [0.36, 12, 'lotoFino', 1],
+  [0.52, 36, 'burbuja', -1],
+  [0.60, 24, 'festón', 1],
+  [0.72, 12, 'hoja', -1],
+  [0.72, 24, 'cuentaRosa', -1],
+  [0.88, 48, 'burbuja', 1],
+  [0.98, 24, 'loto', -1],
+  [1.18, 36, 'festón', 1],
+  [1.30, 18, 'hojaGrande', -1],
+  [1.52, 60, 'burbuja', -1],
+  [1.62, 24, 'loto', 1],
+  [1.88, 30, 'hojaGrande', 1],
+  [2.02, 72, 'burbuja', -1],
+];
+
+function motivo(tipo, r, M, t, i) {
+  const paso = 2 * Math.PI / M, w = r * paso;
+  const abre = 1 + 0.16 * ciclo(t, 4, r * 3);
+  switch (tipo) {
+    case 'petaloOro':
+      petalo(0, r * R, w * R * 0.28 * abre, C.oro, C.crema, 1.2); break;
+    case 'cuenta':
+      punto(r * R, 0, R * 0.011, C.crema, 10); break;
+    case 'cuentaRosa':
+      punto(r * R, w * R * 0.5, R * 0.012, C.rosa, 8); break;
+    case 'burbuja': {
+      const d = R * w * 0.34 * (1 + 0.3 * ciclo(t, 4, i * 0.7));
+      cx.globalAlpha = 0.9;
+      punto(r * R, 0, d, i % 4 ? C.oro : C.crema, 0);
+      punto(r * R, 0, d * 0.45, 'rgba(255,248,220,0.8)', 0);
+      cx.globalAlpha = 1; break;
+    }
+    case 'loto':
+      petalo((r - 0.13) * R, (r + 0.13) * R, w * R * 0.42 * abre, C.turquesa, C.oro, 1.8); break;
+    case 'lotoFino':
+      petalo((r - 0.09) * R, (r + 0.07) * R, w * R * 0.2 * abre, C.turquesaClaro, null, 0); break;
+    case 'festón':
+      cx.strokeStyle = C.oro; cx.lineWidth = 1.4; cx.globalAlpha = 0.8;
+      cx.beginPath(); cx.arc(r * R, 0, w * R * 0.5, -Math.PI / 2, Math.PI / 2); cx.stroke();
+      cx.globalAlpha = 1; break;
+    case 'hoja':
+      petalo((r - 0.1) * R, (r + 0.12) * R, w * R * 0.45, C.petroleo, C.turquesaClaro, 1.4);
+      petalo((r - 0.06) * R, (r + 0.08) * R, w * R * 0.18, C.azul, null, 0); break;
+    case 'hojaGrande':
+      cx.globalAlpha = 0.7;
+      petalo((r - 0.18) * R, (r + 0.2) * R, w * R * 0.46 * abre, C.petroleo, C.turquesa, 1.6);
+      petalo((r - 0.1) * R, (r + 0.12) * R, w * R * 0.2, C.azul, C.oro, 1);
+      cx.globalAlpha = 1; break;
+  }
+}
+
+window.pintar = function (t) {
+  const g = cx.createRadialGradient(W / 2, H / 2, 0, W / 2, H / 2, W * 0.62);
+  g.addColorStop(0, C.fondo1); g.addColorStop(1, C.fondo2);
+  cx.fillStyle = g; cx.fillRect(0, 0, W, H);
+  const respira = 1 + 0.03 * ciclo(t, 4);      // cuatro respiraciones por bucle
+  cx.save(); cx.translate(W / 2, H / 2); cx.scale(respira, respira);
+  // De afuera hacia adentro: lo del centro queda encima.
+  for (let a = ANILLOS.length - 1; a >= 0; a--) {
+    const [r, M, tipo, sentido] = ANILLOS[a];
+    const giro = sentido * (t / L) * (2 * Math.PI / M);
+    for (let i = 0; i < M; i++) {
+      cx.save(); cx.rotate(giro + i * 2 * Math.PI / M);
+      motivo(tipo, r, M, t, i);
+      cx.restore();
+    }
+  }
+  punto(0, 0, R * 0.045, C.crema, 40);
+  cx.restore();
+
+  // Viñeta: oscurece los bordes para que el ojo vuelva al centro.
+  const v = cx.createRadialGradient(W / 2, H / 2, H * 0.35, W / 2, H / 2, W * 0.62);
+  v.addColorStop(0, 'rgba(5,11,16,0)'); v.addColorStop(1, 'rgba(5,11,16,0.75)');
+  cx.fillStyle = v; cx.fillRect(0, 0, W, H);
+
+  // Firma, discreta, abajo a la izquierda.
+  cx.save();
+  cx.globalAlpha = 0.85; cx.strokeStyle = C.crema; cx.lineWidth = 2;
+  cx.beginPath(); cx.arc(92, H - 84, 22, 0, 2 * Math.PI); cx.stroke();
+  cx.beginPath(); cx.arc(92, H - 84, 9, 0, 2 * Math.PI); cx.fillStyle = C.oro; cx.fill();
+  cx.fillStyle = C.crema; cx.font = '600 34px "DejaVu Serif", Georgia, serif';
+  cx.textBaseline = 'middle'; cx.fillText('Rin', 128, H - 82);
+  cx.restore();
+};
+window.BUCLE = L;
+pintar(0);
+</script></body></html>

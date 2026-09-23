@@ -18,6 +18,7 @@ perder trabajo. Sin dependencias: solo Python 3.
 
 import argparse
 import csv
+import shlex
 import os
 import subprocess
 import sys
@@ -100,12 +101,13 @@ def main():
         print(f'[{i}/{len(cola)}] {fila["id"]} · {fila["duracion_min"]} min · '
               f'{fila["raiz_hz"]} Hz {fila["modo"]}', flush=True)
         t0 = time.time()
-        cmd = [sys.executable, COMPOSITOR,
-               "--minutos", fila["duracion_min"],
-               "--raiz", fila["raiz_hz"],
-               "--modo", fila["modo"],
-               "--semilla", fila["semilla"],
-               "--salida", salida]
+        # Los parámetros salen del comando del catálogo tal cual, no de columnas
+        # sueltas: así --registro y --caracter no se pueden perder. Antes del
+        # 23/09 se armaba a mano y faltaba --registro, así que las obras de
+        # dormir iban a salir una octava más agudas de lo planeado.
+        args = shlex.split(fila["comando_regeneracion"])
+        args = args[args.index("03-composicion/compositor.py") + 1:]
+        cmd = [sys.executable, COMPOSITOR, *args, "--salida", salida]
         r = subprocess.run(cmd, capture_output=True, text=True)
         if r.returncode != 0:
             print(f"    ERROR: {r.stderr.strip().splitlines()[-1] if r.stderr else 'sin detalle'}")
