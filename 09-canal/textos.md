@@ -39,9 +39,10 @@ Suscríbete para recibir cada obra nueva.
 ## Palabras clave del canal
 
 **Studio → Configuración → Canal → Palabras clave.** En inglés, límite 500 caracteres.
+El campo las toma sueltas: se pegan separadas por coma, sin comillas.
 
 ```
-"sleep music" "meditation music" "relaxing music" "calming music" "music for anxiety" "focus music" "study music" "deep sleep" "ocean waves" "rain sounds" "nature sounds" "zen music" "tibetan bowls" "528 Hz" "432 Hz" "solfeggio frequencies" "ambient music" "yoga music" Rin
+sleep music, meditation music, relaxing music, calming music, music for anxiety, focus music, study music, deep sleep, ocean waves, rain sounds, nature sounds, zen music, tibetan bowls, 528 Hz, 432 Hz, solfeggio frequencies, ambient music, yoga music, Rin
 ```
 
 Pesan poco para posicionar: posicionan el título y la descripción de cada obra. Ayudan a
