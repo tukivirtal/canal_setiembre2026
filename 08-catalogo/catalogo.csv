@@ -230,7 +230,7 @@ Composición original, sintetizada desde cero: el ambiente también. Ninguna mue
 
 Capítulos:
 00:00 [completar tras el montaje]",20 MIN,#RelaxingMusic #Meditation #528Hz,"528 hz, música 528 hz, música para momentos de ansiedad, music for anxiety, ansiedad, hirajoshi, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, sleep music, singing bowls, just intonation",,,528,hirajoshi,medio,913368,20,python3 03-composicion/compositor.py --minutos 20 --raiz 528 --modo hirajoshi --semilla 913368 --caracter sin-cuenco,python3 03-composicion/capas.py aves 1240 audio/OBRA-011_capa.wav --semilla 913368 && python3 03-composicion/ambiente.py audio/OBRA-011_528_hirajoshi.wav audio/OBRA-011_final.wav --fondo mar --nivel-capa -4 --capa audio/OBRA-011_capa.wav,pendiente,,,,
-OBRA-012,Music for Anxiety · Zen Temple · 528 Hz · Ten Minutes · 10 Minutes,Música para momentos de ansiedad · Templo zen · 528 Hz · Diez minutos · 10 minutos,Ansiedad,zen,"Ten Minutes · 10 Minutes
+OBRA-012,Music for Anxiety · Zen Temple · 528 Hz · A Brief Pause · 10 Minutes,Música para momentos de ansiedad · Templo zen · 528 Hz · Pausa breve · 10 minutos,Ansiedad,zen,"A Brief Pause · 10 Minutes
 
 To accompany a pause when your mind won't stop.
 Ambience: zen temple.
@@ -240,7 +240,7 @@ Breathing cycle: from 6.0 down to 4.5 breaths per minute, 40 % inhale / 60 % exh
 Original composition, synthesized from scratch, ambience included. No third-party samples.
 
 Chapters:
-00:00 [fill in after editing]","Diez minutos · 10 minutos
+00:00 [fill in after editing]","Pausa breve · 10 minutos
 
 Para acompañar un momento de pausa cuando la cabeza no para.
 Ambiente: templo zen.
@@ -250,7 +250,7 @@ Ciclo respiratorio: de 6.0 a 4.5 respiraciones por minuto, inhalar 40 % / exhala
 Composición original, sintetizada desde cero: el ambiente también. Ninguna muestra procede de terceros.
 
 Capítulos:
-00:00 [completar tras el montaje]",10 MIN,#RelaxingMusic #Meditation #528Hz,"528 hz, música 528 hz, música para momentos de ansiedad, music for anxiety, ansiedad, shin, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, sleep music, singing bowls, just intonation",,,528,shin,medio,207307,10,python3 03-composicion/compositor.py --minutos 10 --raiz 528 --modo shin --semilla 207307 --caracter sin-cuenco,python3 03-composicion/capas.py zen 640 audio/OBRA-012_capa.wav --semilla 207307 --densidad 1.4 && python3 03-composicion/ambiente.py audio/OBRA-012_528_shin.wav audio/OBRA-012_final.wav --fondo mar --nivel-fondo -7 --nivel-capa 2 --capa audio/OBRA-012_capa.wav,pendiente,,,,
+00:00 [completar tras el montaje]",10 MIN,#RelaxingMusic #Meditation #528Hz,"528 hz, música 528 hz, música para momentos de ansiedad, music for anxiety, ansiedad, shin, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, sleep music, singing bowls, just intonation",,,528,shin,medio,43734,10,python3 03-composicion/compositor.py --minutos 10 --raiz 528 --modo shin --semilla 43734 --caracter sin-cuenco,python3 03-composicion/capas.py zen 640 audio/OBRA-012_capa.wav --semilla 43734 --densidad 1.4 && python3 03-composicion/ambiente.py audio/OBRA-012_528_shin.wav audio/OBRA-012_final.wav --fondo mar --nivel-fondo -7 --nivel-capa 2 --capa audio/OBRA-012_capa.wav,pendiente,,,,
 OBRA-013,Music for Anxiety · Ocean and Birds · 432 Hz · Count to Six · 20 Minutes,Música para momentos de ansiedad · Mar y pájaros · 432 Hz · Contar hasta seis · 20 minutos,Ansiedad,mar-aves,"Count to Six · 20 Minutes
 
 To accompany a pause when your mind won't stop.
@@ -692,7 +692,7 @@ Composición original, sintetizada desde cero: el ambiente también. Ninguna mue
 
 Capítulos:
 00:00 [completar tras el montaje]",2 HOURS,#FocusMusic #Meditation #639Hz,"639 hz, música 639 hz, música para concentrarse, focus music, concentración, yo, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, sleep music, singing bowls, just intonation",,,639,yo,grave,112334,120,python3 03-composicion/compositor.py --minutos 120 --raiz 639 --modo yo --semilla 112334 --caracter sin-cuenco --registro grave,python3 03-composicion/capas.py aves 7240 audio/OBRA-033_capa.wav --semilla 112334 --densidad 2 && python3 03-composicion/ambiente.py audio/OBRA-033_639_yo.wav audio/OBRA-033_final.wav --fondo selva --nivel-capa -2 --capa audio/OBRA-033_capa.wav,pendiente,,,,
-OBRA-034,Focus Music · Ocean and Birds · 528 Hz · Three Hours · 3 Hours,Música para concentrarse · Mar y pájaros · 528 Hz · Tres horas · 3 horas,Concentración,mar-aves,"Three Hours · 3 Hours
+OBRA-034,Focus Music · Ocean and Birds · 528 Hz · Deep Work · 3 Hours,Música para concentrarse · Mar y pájaros · 528 Hz · Trabajo profundo · 3 horas,Concentración,mar-aves,"Deep Work · 3 Hours
 
 To accompany work or study.
 Ambience: ocean and birds.
@@ -702,7 +702,7 @@ Breathing cycle: from 6.0 down to 5.5 breaths per minute, 40 % inhale / 60 % exh
 Original composition, synthesized from scratch, ambience included. No third-party samples.
 
 Chapters:
-00:00 [fill in after editing]","Tres horas · 3 horas
+00:00 [fill in after editing]","Trabajo profundo · 3 horas
 
 Para acompañar el trabajo o el estudio.
 Ambiente: mar y pájaros.
@@ -712,7 +712,7 @@ Ciclo respiratorio: de 6.0 a 5.5 respiraciones por minuto, inhalar 40 % / exhala
 Composición original, sintetizada desde cero: el ambiente también. Ninguna muestra procede de terceros.
 
 Capítulos:
-00:00 [completar tras el montaje]",3 HOURS,#FocusMusic #Meditation #528Hz,"528 hz, música 528 hz, música para concentrarse, focus music, concentración, yo, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, sleep music, singing bowls, just intonation",,,528,yo,grave,935486,180,python3 03-composicion/compositor.py --minutos 180 --raiz 528 --modo yo --semilla 935486 --caracter sin-cuenco --registro grave,python3 03-composicion/capas.py aves 10840 audio/OBRA-034_capa.wav --semilla 935486 && python3 03-composicion/ambiente.py audio/OBRA-034_528_yo.wav audio/OBRA-034_final.wav --fondo mar --nivel-capa -4 --capa audio/OBRA-034_capa.wav,pendiente,,,,
+00:00 [completar tras el montaje]",3 HOURS,#FocusMusic #Meditation #528Hz,"528 hz, música 528 hz, música para concentrarse, focus music, concentración, yo, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, sleep music, singing bowls, just intonation",,,528,yo,grave,249239,180,python3 03-composicion/compositor.py --minutos 180 --raiz 528 --modo yo --semilla 249239 --caracter sin-cuenco --registro grave,python3 03-composicion/capas.py aves 10840 audio/OBRA-034_capa.wav --semilla 249239 && python3 03-composicion/ambiente.py audio/OBRA-034_528_yo.wav audio/OBRA-034_final.wav --fondo mar --nivel-capa -4 --capa audio/OBRA-034_capa.wav,pendiente,,,,
 OBRA-035,Focus Music · Tropical Rainforest · 741 Hz · No Interruptions · 2 Hours,Música para concentrarse · Selva tropical · 741 Hz · Sin interrupciones · 2 horas,Concentración,selva,"No Interruptions · 2 Hours
 
 To accompany work or study.

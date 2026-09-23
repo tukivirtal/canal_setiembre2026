@@ -1,128 +1,86 @@
-# Publicación automatizada — Leonardo, Cloudinary y Make
+# Publicación automatizada — montar.py, Drive y Metricool
 
-## Qué es prueba y qué es producción
+> Reemplaza la versión anterior (Leonardo + Make). El video ya no es una imagen fija:
+> es el mandala animado, y eso cambia el peso de los archivos y, con él, la herramienta.
 
-| Pieza | Estado | Nota |
-|---|---|---|
-| Compositor | **Producción** | Verificado: −3,0 dBFS, sin clipping, respiración medible |
-| Obra de 8 min | **Producción** | Generada y comprobada. Se regenera con la semilla |
-| Catálogo de 40 obras, Excel y CSV | **Producción** | Títulos, descripciones, etiquetas listos |
-| Prompts de las 7 escenas | **Producción** | Corregidos tras dos rondas de prueba |
-| **Las imágenes generadas hasta ahora** | **Solo prueba** | Hechas en Canva a 595 px para validar el prompt. **No se usan** |
-| Montaje y publicación | **Pendiente** | Es lo que define este documento |
-
-Las dos portadas que se generaron sirvieron para **corregir los prompts** —la orientación
-de los sujetos, y descartar Canva como herramienta—, no como material publicable.
-La imagen de producción sale de Leonardo a 1920 × 1080.
-
-## El stack
-
-| Herramienta | Para qué | Estado |
-|---|---|---|
-| ~~ElevenLabs~~ | — | **Fuera.** Este canal no tiene voz: la música se sintetiza |
-| `compositor.py` | El audio | Propio, sin dependencias, sin coste |
-| **Leonardo** | Las 7 escenas y la portada | Créditos ya contratados |
-| **Google Drive** | Almacenar las portadas, el MP4 y los shorts | Ya en uso |
-| **Make** | Orquestar la subida a YouTube y escribir el resultado al catálogo | — |
-| `ffmpeg` | Montar el video | Gratis. Viene en Codespaces |
-
-Que desaparezca ElevenLabs no es un detalle: era el único coste recurrente por minuto de
-salida. Ahora el audio es gratis e ilimitado.
-
-## Dónde se monta el video — y por qué no en Cloudinary
-
-Se monta con **`ffmpeg`**, gratis y sin límites de duración, y el resultado se guarda en
-**Drive** hasta que YouTube lo confirma.
-
-Se evaluó montarlo en Cloudinary con transformaciones y no sale a cuenta: el catálogo
-completo costaría **773 créditos** frente a los 25 mensuales del plan gratuito, y la
-transformación de video tiene un tope de 30 minutos que deja fuera todo el pilar Sueño.
-
-> **La decisión: montar con `ffmpeg`, guardar en Drive, publicar con Make.**
-
-**Y la regla que no cambia:** en cuanto YouTube confirma la subida, se borra el MP4. No se
-pierde nada — el audio se regenera con la semilla y el video se remonta con las portadas.
-
-### Tamaños reales
-
-Con audio AAC a 320 kbps y video de imagen fija a 1 fps:
-
-| Duración | MP4 aproximado |
-|---|---|
-| 8 min | ~25 MB |
-| 60 min | ~155 MB |
-| 180 min | ~445 MB |
-
-Casi todo el peso es el audio. El video de imagen fija a 1 fps apenas suma.
-
-## El escenario de Make
+## El flujo
 
 ```
-[1] Trigger            Programado, o manual por obra
-[2] Google Sheets      Buscar la primera fila con estado = "montada"
-[3] YouTube            Upload a Video  ← con URL directa, no con el archivo
-[4] YouTube            Set Thumbnail   ← URL de la portada
-[5] Google Sheets      Escribir url_video, estado = "publicada", fecha
-[6] Google Drive       Borrar el MP4 (ya está en YouTube)
-
-Los archivos de [3] y [4] se localizan por nombre dentro de la carpeta de la
-obra, que se llama igual que su `id` (ver almacenamiento.md).
+montar.py OBRA-012           →  produccion/OBRA-012/
+                                   video.mp4        obra + ambiente + mandala, 1080p
+                                   miniatura.jpg    1280×720
+                                   metadatos.json   título, descripción, etiquetas,
+                                                    categoría, traducción al español
+        │
+        ▼
+Google Drive  Rin/OBRA-012/    el video y la miniatura
+        │
+        ▼
+Metricool     programa el video en YouTube: título, descripción, etiquetas,
+              categoría Música, "no es para niños", miniatura, fecha y hora
+        │
+        ▼
+catálogo      url_video, estado = publicada, fecha_publicacion
 ```
 
-**El módulo clave es el [3].** La versión 1.1 de *Upload a Video* de Make admite
-**subida directa desde una URL de video, con bajo consumo de transferencia**. Eso es lo
-que hace viable el flujo: el archivo **no pasa por dentro de Make**, que es donde se
-atascan los videos grandes. Si se usa el módulo en modo archivo, un MP4 de 445 MB del
-pilar Sueño es un problema; por URL, no.
+## Por qué Metricool y no Make
 
-Los campos del [3] salen tal cual del catálogo:
+| | Make (plan actual) | Metricool |
+|---|---|---|
+| Tamaño máximo de archivo | **5 MB** (plan Free) | El de YouTube |
+| Mueve el video por dentro | Sí: el MP4 atraviesa Make | No: lo toma de Drive o de una URL |
+| App verificada por YouTube | Sí | Sí |
+| Miniatura personalizada | Módulo aparte | Campo del mismo post |
+| Programar fecha y hora | Con `publishAt` | Nativo, con calendario |
+| Conectado a esta sesión | Sí | Sí: puedo programar yo cada video |
 
-| Campo de YouTube | Columna del Excel |
-|---|---|
-| Title | `titulo` |
-| Description | `descripcion_optimizada` |
-| Tags | `etiquetas` |
-| Category | Música |
-| Privacy | (ver la trampa 1) |
+El límite de 5 MB lo dice la licencia de la organización de Make (`fslimit: 5242880`),
+y además el módulo *Upload a Video* de la versión 4 solo acepta el archivo, no una URL.
+Un video de 10 minutos con el mandala ya supera ese límite por mucho. Make queda para lo
+que ya hace en stoicreset; para Rin no sirve sin pasar a un plan de pago.
 
-### El Excel tiene que ser una hoja de Google, no un .xlsx
+**Una app verificada importa.** Si la subida se hiciera con un proyecto propio de Google
+Cloud sin auditar, YouTube deja los videos **bloqueados en privado**. Metricool, como Make,
+es una app auditada: el video sale público o programado.
 
-El archivo subido a Drive está como **`.xlsx`**, no como hoja de Google nativa. Los módulos
-de Google Sheets de Make **no leen un .xlsx guardado en Drive**: necesitan una hoja nativa.
+## Lo que tiene que hacer la dueña del canal, una sola vez
 
-Se arregla en diez segundos: abrir el archivo en Drive y usar
-**Archivo → Guardar como Hojas de cálculo de Google**. Eso crea una copia nativa, que es la
-que apunta Make. El .xlsx original puede quedarse o borrarse.
+1. **Conectar YouTube (el canal Rin) en Metricool.**
+   `app.metricool.com → Conexiones → YouTube`. Te lleva a la página oficial de Google
+   para autorizar; elegís la cuenta de Google dueña de @rinchanneloficial y el canal Rin.
+   Nunca se escribe una contraseña en un chat ni en otro sitio que no sea Google.
+2. **Vincular Google Drive en Metricool**, con la misma pantalla de conexiones. Así
+   Metricool toma el video directamente de la carpeta de Drive.
+3. **Verificar el canal por teléfono** en `youtube.com/verify`. Sin esto YouTube no acepta
+   miniaturas personalizadas, y el video sale con un fotograma automático.
 
-## Los cuatro puntos donde esto se rompe
+## Lo que sigue siendo manual (y por qué)
 
-**1 · El video puede quedar bloqueado en privado.** La API de YouTube restringe a privado
-las subidas hechas desde proyectos no verificados. Si se usa la **conexión propia de Make
-con YouTube**, normalmente no aplica, porque es una aplicación ya auditada; si se crea un
-proyecto propio en Google Cloud, sí. **Es lo primero que hay que comprobar con un solo
-video**, antes de automatizar cuarenta.
+- **La traducción al español de cada video.** Metricool no escribe las traducciones de
+  título y descripción de YouTube. Están en `metadatos.json` (`localizations.es`) y en
+  el catálogo (`titulo_es`, `descripcion_es`); pegarlas en YouTube Studio →
+  *Subtítulos/Traducciones* lleva un minuto por video. Es opcional: el canal ya tiene la
+  traducción general al español.
+- **El primer video, entero a mano.** Ver abajo.
 
-**2 · La miniatura exige canal verificado.** Poner miniatura personalizada requiere tener
-el canal verificado por teléfono. Sin eso, el módulo [5] falla y el video sale con un
-fotograma automático.
+## Antes de automatizar: el primer video a mano
 
-**3 · La cuota diaria de la API.** Una subida consume del orden de **1.600 unidades** de
-las 10.000 diarias por defecto: unas **6 subidas al día**. Con una cadencia de 3 obras por
-semana sobra, pero descarta de plano cualquier idea de subir el catálogo entero en un día.
+Se sube la obra de prueba (OBRA-012, 10 minutos) desde YouTube Studio, pegando título,
+descripción y etiquetas de su `metadatos.json` y subiendo `miniatura.jpg`. Sirve para
+confirmar tres cosas con un solo video y no con cuarenta:
 
-**4 · Los créditos de Cloudinary se van en silencio.** El almacenamiento se cobra aunque
-el archivo no se use. Sin el paso [7] —borrar tras publicar—, la cuota se agota sola en
-dos meses.
+- que el video se ve y se oye bien una vez que YouTube lo procesa;
+- que la miniatura se acepta (canal verificado);
+- que YouTube no marca nada raro en el audio sintetizado (derechos, avisos).
 
-## Antes de automatizar nada
+A partir del segundo, cada video se programa por Metricool.
 
-**Publicá una obra entera a mano.** Las siete escenas en Leonardo, el montaje con ffmpeg,
-la subida manual a YouTube.
+## Límites que conviene saber
 
-Sirve para dos cosas: confirmar que el resultado se ve y se oye como debe, y descubrir
-las trampas 1 y 2 con un video en lugar de con cuarenta. Automatizar un proceso que
-todavía no diste por bueno es la forma más rápida de producir cuarenta videos con el
-mismo defecto.
-
-Una vez publicada la primera y validado el resultado, el escenario de Make convierte las
-39 restantes en un trámite.
+- **Cadencia.** YouTube pone un tope diario de subidas por API a cada app; con 2–3 obras
+  por semana no se roza.
+- **Peso.** El video de una obra de 3 horas es grande (el bucle del mandala a 1080p más
+  el audio). Se mide con la primera obra de Dormir montada; si hiciera falta, se sube el
+  `--crf` del mandala o se baja a 720p.
+- **Qué se borra y cuándo.** En cuanto YouTube confirma la subida se borra el MP4 de
+  Drive. No se pierde nada: `montar.py` lo regenera idéntico con la semilla del catálogo.

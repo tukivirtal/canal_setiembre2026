@@ -23,14 +23,20 @@ def main():
     p = argparse.ArgumentParser()
     p.add_argument('--fps', type=int, default=24)
     p.add_argument('--salida', default=str(AQUI / 'mandala_bucle.mp4'))
+    p.add_argument('--paleta', default='mar',
+                   help='mar, mar-aves, zen, selva o lluvia-tambor: una por ambiente')
+    p.add_argument('--segundos', type=float, default=None,
+                   help='solo los primeros N segundos: para previsualizar sin renderizar el bucle entero')
+    p.add_argument('--crf', type=int, default=24,
+                   help='calidad x264. 24 deja una obra de 3 h en unos 3 GB en vez de 7')
     a = p.parse_args()
     tmp = pathlib.Path(tempfile.mkdtemp())
     with sync_playwright() as pw:
         nav = pw.chromium.launch(executable_path=CHROMIUM)
         pag = nav.new_page(viewport={'width': 1920, 'height': 1080})
-        pag.goto(f"file://{AQUI / 'mandala.html'}")
+        pag.goto(f"file://{AQUI / 'mandala.html'}?paleta={a.paleta}")
         largo = pag.evaluate('BUCLE')
-        total = largo * a.fps
+        total = int((a.segundos or largo) * a.fps)
         lienzo = pag.query_selector('canvas')
         for i in range(total):              # el fotograma "total" sería el 0 otra vez
             pag.evaluate(f'pintar({i / a.fps})')
@@ -39,7 +45,7 @@ def main():
                 print(f'  {i}/{total}', flush=True)
         nav.close()
     subprocess.run(['ffmpeg', '-hide_banner', '-v', 'error', '-y', '-framerate', str(a.fps),
-                    '-i', str(tmp / 'f%05d.png'), '-c:v', 'libx264', '-crf', '18',
+                    '-i', str(tmp / 'f%05d.png'), '-c:v', 'libx264', '-crf', str(a.crf),
                     '-preset', 'slow', '-pix_fmt', 'yuv420p', a.salida], check=True)
     shutil.rmtree(tmp)
     print(a.salida)

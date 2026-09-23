@@ -148,7 +148,7 @@ lluvia sin tambor para dormir queda pendiente de escucha.
 | 9 | Solo exhalar | Just Exhale | 396 | kumoi | 25 min | mar-aves |
 | 10 | Bajar el ritmo | Slowing Down | 432 | hirajoshi | 30 min | zen |
 | 11 | Cuatro y seis | Four and Six | 528 | hirajoshi | 20 min | mar-aves |
-| 12 | Diez minutos | Ten Minutes | 528 | shin | 10 min | zen |
+| 12 | Pausa breve | A Brief Pause | 528 | shin | 10 min | zen |
 | 13 | Contar hasta seis | Count to Six | 432 | hirajoshi | 20 min | mar-aves |
 | 14 | Entrada y salida | In and Out | 528 | yo | 20 min | zen |
 | 15 | Antes de empezar | Before You Begin | 639 | yo | 15 min | mar-aves |
@@ -188,7 +188,7 @@ título porque se busca, pero ya no es el tema.
 | # | Obra | Name | Raíz | Modo | Duración | Ambiente |
 |---|---|---|---|---|---|---|
 | 33 | Mesa limpia | Clean Desk | 639 | yo | 120 min | selva |
-| 34 | Tres horas | Three Hours | 528 | yo | 180 min | mar-aves |
+| 34 | Trabajo profundo | Deep Work | 528 | yo | 180 min | mar-aves |
 | 35 | Sin interrupciones | No Interruptions | 741 | yo | 120 min | selva |
 | 36 | Luz de mañana | Morning Light | 852 | yo | 90 min | mar-aves |
 | 37 | Trabajo lento | Slow Work | 432 | yo | 120 min | selva |

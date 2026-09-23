@@ -16,3 +16,6 @@ __pycache__/
 
 # Miniaturas generadas: se regeneran con render_miniaturas.py
 05-produccion/miniaturas/export/
+
+# Lo que produce montar.py: video, miniatura y metadatos por obra. Se regenera.
+produccion/

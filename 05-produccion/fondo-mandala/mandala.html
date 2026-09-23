@@ -72,36 +72,44 @@ function punto(x, y, r, color, brillo) {
 }
 
 // Anillos concéntricos, de adentro hacia afuera hasta pasar las esquinas.
+//
+// Lo hipnótico (pedido del 23/09: "más ritmo"): los anillos vecinos giran en
+// sentidos opuestos y a velocidades distintas, y una ONDA sale del centro hacia
+// afuera ocho veces por bucle (cada 6 s), agrandando y encendiendo cada anillo
+// a su paso. Todo sigue siendo periódico en 48 s, así que el bucle empalma.
+//
+// Pasos por bucle: cuántos lugares de su motivo avanza cada anillo en 48 s.
+// Tiene que ser entero, y en las burbujas múltiplo de 4, porque alternan color
+// y latido cada 4: si no, la costura del bucle salta.
 // Cada anillo repite su motivo M veces y gira exactamente un paso (2π/M) por
 // bucle, en un sentido o en el otro: por eso todo empalma sin costura. Que los
 // anillos vecinos giren al revés es lo que da el efecto hipnótico de
 // Meditative Mind sin que nada se mueva rápido.
 const ANILLOS = [
-  // radio, cantidad, motivo, sentido, pasos por bucle (1 si se omite).
-  // Las burbujas alternan color y latido cada 4: su anillo tiene que girar 4
-  // pasos por bucle para volver a quedar idéntico. Con 1 paso, la costura del
-  // bucle saltaba (medido: 4x el cambio entre dos fotogramas normales).
-  [0.15, 12, 'petaloOro', 1],
-  [0.24, 24, 'cuenta', -1],
-  [0.36, 12, 'loto', 1],
-  [0.36, 12, 'lotoFino', 1],
-  [0.52, 36, 'burbuja', -1, 4],
-  [0.60, 24, 'festón', 1],
-  [0.72, 12, 'hoja', -1],
-  [0.72, 24, 'cuentaRosa', -1],
-  [0.88, 48, 'burbuja', 1, 4],
-  [0.98, 24, 'loto', -1],
-  [1.18, 36, 'festón', 1],
-  [1.30, 18, 'hojaGrande', -1],
-  [1.52, 60, 'burbuja', -1, 4],
-  [1.62, 24, 'loto', 1],
-  [1.88, 30, 'hojaGrande', 1],
-  [2.02, 72, 'burbuja', -1, 4],
+  // radio, cantidad, motivo, sentido, pasos por bucle
+  [0.15, 12, 'petaloOro', 1, 3],
+  [0.24, 24, 'cuenta', -1, 4],
+  [0.36, 12, 'loto', 1, 2],
+  [0.36, 12, 'lotoFino', 1, 2],
+  [0.52, 36, 'burbuja', -1, 8],
+  [0.60, 24, 'festón', 1, 4],
+  [0.72, 12, 'hoja', -1, 2],
+  [0.72, 24, 'cuentaRosa', -1, 4],
+  [0.88, 48, 'burbuja', 1, 8],
+  [0.98, 24, 'loto', -1, 3],
+  [1.18, 36, 'festón', 1, 4],
+  [1.30, 18, 'hojaGrande', -1, 2],
+  [1.52, 60, 'burbuja', -1, 8],
+  [1.62, 24, 'loto', 1, 3],
+  [1.88, 30, 'hojaGrande', 1, 2],
+  [2.02, 72, 'burbuja', -1, 8],
 ];
 
+let OLA = 1;     // la onda que sale del centro, calculada por anillo en pintar()
+
 function motivo(tipo, r, M, t, i) {
-  const paso = 2 * Math.PI / M, w = r * paso;
-  const abre = 1 + 0.16 * ciclo(t, 4, r * 3);
+  const paso = 2 * Math.PI / M, w = r * paso * OLA;
+  const abre = (1 + 0.16 * ciclo(t, 4, r * 3)) * OLA;
   switch (tipo) {
     case 'petaloOro':
       petalo(0, r * R, w * R * 0.28 * abre, C.oro, C.crema, 1.2); break;
@@ -139,18 +147,23 @@ window.pintar = function (t) {
   const g = cx.createRadialGradient(W / 2, H / 2, 0, W / 2, H / 2, W * 0.62);
   g.addColorStop(0, C.fondo1); g.addColorStop(1, C.fondo2);
   cx.fillStyle = g; cx.fillRect(0, 0, W, H);
-  const respira = 1 + 0.03 * ciclo(t, 4);      // cuatro respiraciones por bucle
+  const respira = 1 + 0.05 * ciclo(t, 4);      // cuatro respiraciones por bucle
   cx.save(); cx.translate(W / 2, H / 2); cx.scale(respira, respira);
   // De afuera hacia adentro: lo del centro queda encima.
   for (let a = ANILLOS.length - 1; a >= 0; a--) {
     const [r, M, tipo, sentido, pasos = 1] = ANILLOS[a];
     const giro = sentido * pasos * (t / L) * (2 * Math.PI / M);
+    // la cresta de la onda pasa por los anillos de adentro primero
+    const cresta = Math.max(0, Math.sin(2 * Math.PI * 8 * t / L - r * 4.2));
+    OLA = 1 + 0.14 * cresta * cresta;
+    cx.globalAlpha = 0.78 + 0.22 * cresta;
     for (let i = 0; i < M; i++) {
       cx.save(); cx.rotate(giro + i * 2 * Math.PI / M);
       motivo(tipo, r, M, t, i);
       cx.restore();
     }
   }
+  cx.globalAlpha = 1; OLA = 1;
   punto(0, 0, R * 0.045, C.crema, 40);
   cx.restore();
 
