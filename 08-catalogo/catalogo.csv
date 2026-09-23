@@ -1,641 +1,841 @@
-id,titulo,tema,ambiente,descripcion_optimizada,titulo_miniatura,hashtags,etiquetas,imagen_miniatura,url_video,raiz_hz,modo,registro,semilla,duracion_min,comando_regeneracion,comando_ambiente,estado,fecha_publicacion,vistas,suscriptores,subs_por_1000
-OBRA-001,Música para dormir · Olas del mar · 432 Hz · Noche sin fondo · 3 horas,Dormir,mar,"Noche sin fondo · 3 horas
+id,titulo,titulo_es,tema,ambiente,descripcion_optimizada,descripcion_es,titulo_miniatura,hashtags,etiquetas,imagen_miniatura,url_video,raiz_hz,modo,registro,semilla,duracion_min,comando_regeneracion,comando_ambiente,estado,fecha_publicacion,vistas,suscriptores,subs_por_1000
+OBRA-001,Sleep Music · Ocean Waves · 432 Hz · Bottomless Night · 3 Hours,Música para dormir · Olas del mar · 432 Hz · Noche sin fondo · 3 horas,Dormir,mar,"Bottomless Night · 3 Hours
+
+To accompany sleep.
+Ambience: ocean waves.
+
+Composed around a root of 216 Hz, the low octave of 432 Hz, in just intonation, shin mode.
+Breathing cycle: from 4.5 down to 3.5 breaths per minute, 40 % inhale / 60 % exhale.
+Original composition, synthesized from scratch, ambience included. No third-party samples.
+
+Chapters:
+00:00 [fill in after editing]","Noche sin fondo · 3 horas
+
+Para acompañar el sueño.
+Ambiente: olas del mar.
 
 Compuesta con raíz en 216 Hz, la octava grave de 432 Hz, en entonación justa, modo shin.
-Para acompañar el sueño.
-
 Ciclo respiratorio: de 4.5 a 3.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
-Ambiente: olas del mar, sintetizado, sin grabaciones.
-Composición original, sintetizada desde cero. Ninguna muestra procede de terceros.
-
-— English —
-Composed with a root of 432 Hz in just intonation, shin mode.
-To accompany sleep.
-Original composition, synthesized from scratch. No third-party samples.
+Composición original, sintetizada desde cero: el ambiente también. Ninguna muestra procede de terceros.
 
 Capítulos:
-00:00 [completar tras el montaje]",3 HORAS,#MúsicaParaDormir #MúsicaRelajante #432Hz,"432 hz, música 432 hz, música para dormir, sleep music, dormir, shin, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, singing bowls, just intonation",,,432,shin,grave,505716,180,python3 03-composicion/compositor.py --minutos 180 --raiz 432 --modo shin --semilla 505716 --caracter sin-cuenco --registro grave,python3 03-composicion/ambiente.py audio/OBRA-001_432_shin.wav audio/OBRA-001_final.wav --fondo mar,pendiente,,,,
-OBRA-002,Música para dormir · Olas del mar · 528 Hz · Marea baja · 2 horas,Dormir,mar,"Marea baja · 2 horas
+00:00 [completar tras el montaje]",3 HOURS,#SleepMusic #Meditation #432Hz,"432 hz, música 432 hz, música para dormir, sleep music, dormir, shin, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, singing bowls, just intonation",,,432,shin,grave,505716,180,python3 03-composicion/compositor.py --minutos 180 --raiz 432 --modo shin --semilla 505716 --caracter sin-cuenco --registro grave,python3 03-composicion/ambiente.py audio/OBRA-001_432_shin.wav audio/OBRA-001_final.wav --fondo mar,pendiente,,,,
+OBRA-002,Sleep Music · Ocean Waves · 528 Hz · Low Tide · 2 Hours,Música para dormir · Olas del mar · 528 Hz · Marea baja · 2 horas,Dormir,mar,"Low Tide · 2 Hours
+
+To accompany sleep.
+Ambience: ocean waves.
+
+Composed around a root of 264 Hz, the low octave of 528 Hz, in just intonation, kumoi mode.
+Breathing cycle: from 4.5 down to 3.5 breaths per minute, 40 % inhale / 60 % exhale.
+Original composition, synthesized from scratch, ambience included. No third-party samples.
+
+Chapters:
+00:00 [fill in after editing]","Marea baja · 2 horas
+
+Para acompañar el sueño.
+Ambiente: olas del mar.
 
 Compuesta con raíz en 264 Hz, la octava grave de 528 Hz, en entonación justa, modo kumoi.
-Para acompañar el sueño.
-
 Ciclo respiratorio: de 4.5 a 3.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
-Ambiente: olas del mar, sintetizado, sin grabaciones.
-Composición original, sintetizada desde cero. Ninguna muestra procede de terceros.
-
-— English —
-Composed with a root of 528 Hz in just intonation, kumoi mode.
-To accompany sleep.
-Original composition, synthesized from scratch. No third-party samples.
+Composición original, sintetizada desde cero: el ambiente también. Ninguna muestra procede de terceros.
 
 Capítulos:
-00:00 [completar tras el montaje]",2 HORAS,#MúsicaParaDormir #MúsicaRelajante #528Hz,"528 hz, música 528 hz, música para dormir, sleep music, dormir, kumoi, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, singing bowls, just intonation",,,528,kumoi,grave,443547,120,python3 03-composicion/compositor.py --minutos 120 --raiz 528 --modo kumoi --semilla 443547 --caracter sin-cuenco --registro grave,python3 03-composicion/ambiente.py audio/OBRA-002_528_kumoi.wav audio/OBRA-002_final.wav --fondo mar,pendiente,,,,
-OBRA-003,Música para dormir · Olas del mar · 396 Hz · Cuarto oscuro · 2 horas,Dormir,mar,"Cuarto oscuro · 2 horas
+00:00 [completar tras el montaje]",2 HOURS,#SleepMusic #Meditation #528Hz,"528 hz, música 528 hz, música para dormir, sleep music, dormir, kumoi, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, singing bowls, just intonation",,,528,kumoi,grave,443547,120,python3 03-composicion/compositor.py --minutos 120 --raiz 528 --modo kumoi --semilla 443547 --caracter sin-cuenco --registro grave,python3 03-composicion/ambiente.py audio/OBRA-002_528_kumoi.wav audio/OBRA-002_final.wav --fondo mar,pendiente,,,,
+OBRA-003,Sleep Music · Ocean Waves · 396 Hz · Dark Room · 2 Hours,Música para dormir · Olas del mar · 396 Hz · Cuarto oscuro · 2 horas,Dormir,mar,"Dark Room · 2 Hours
+
+To accompany sleep.
+Ambience: ocean waves.
+
+Composed around a root of 198 Hz, the low octave of 396 Hz, in just intonation, kumoi mode.
+Breathing cycle: from 4.5 down to 3.5 breaths per minute, 40 % inhale / 60 % exhale.
+Original composition, synthesized from scratch, ambience included. No third-party samples.
+
+Chapters:
+00:00 [fill in after editing]","Cuarto oscuro · 2 horas
+
+Para acompañar el sueño.
+Ambiente: olas del mar.
 
 Compuesta con raíz en 198 Hz, la octava grave de 396 Hz, en entonación justa, modo kumoi.
-Para acompañar el sueño.
-
 Ciclo respiratorio: de 4.5 a 3.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
-Ambiente: olas del mar, sintetizado, sin grabaciones.
-Composición original, sintetizada desde cero. Ninguna muestra procede de terceros.
-
-— English —
-Composed with a root of 396 Hz in just intonation, kumoi mode.
-To accompany sleep.
-Original composition, synthesized from scratch. No third-party samples.
+Composición original, sintetizada desde cero: el ambiente también. Ninguna muestra procede de terceros.
 
 Capítulos:
-00:00 [completar tras el montaje]",2 HORAS,#MúsicaParaDormir #MúsicaRelajante #396Hz,"396 hz, música 396 hz, música para dormir, sleep music, dormir, kumoi, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, singing bowls, just intonation",,,396,kumoi,grave,692584,120,python3 03-composicion/compositor.py --minutos 120 --raiz 396 --modo kumoi --semilla 692584 --caracter sin-cuenco --registro grave,python3 03-composicion/ambiente.py audio/OBRA-003_396_kumoi.wav audio/OBRA-003_final.wav --fondo mar,pendiente,,,,
-OBRA-004,Música para dormir · Olas del mar · 528 Hz · Nadie despierto · 3 horas,Dormir,mar,"Nadie despierto · 3 horas
+00:00 [completar tras el montaje]",2 HOURS,#SleepMusic #Meditation #396Hz,"396 hz, música 396 hz, música para dormir, sleep music, dormir, kumoi, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, singing bowls, just intonation",,,396,kumoi,grave,692584,120,python3 03-composicion/compositor.py --minutos 120 --raiz 396 --modo kumoi --semilla 692584 --caracter sin-cuenco --registro grave,python3 03-composicion/ambiente.py audio/OBRA-003_396_kumoi.wav audio/OBRA-003_final.wav --fondo mar,pendiente,,,,
+OBRA-004,Sleep Music · Ocean Waves · 528 Hz · No One Awake · 3 Hours,Música para dormir · Olas del mar · 528 Hz · Nadie despierto · 3 horas,Dormir,mar,"No One Awake · 3 Hours
+
+To accompany sleep.
+Ambience: ocean waves.
+
+Composed around a root of 264 Hz, the low octave of 528 Hz, in just intonation, shin mode.
+Breathing cycle: from 4.5 down to 3.5 breaths per minute, 40 % inhale / 60 % exhale.
+Original composition, synthesized from scratch, ambience included. No third-party samples.
+
+Chapters:
+00:00 [fill in after editing]","Nadie despierto · 3 horas
+
+Para acompañar el sueño.
+Ambiente: olas del mar.
 
 Compuesta con raíz en 264 Hz, la octava grave de 528 Hz, en entonación justa, modo shin.
-Para acompañar el sueño.
-
 Ciclo respiratorio: de 4.5 a 3.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
-Ambiente: olas del mar, sintetizado, sin grabaciones.
-Composición original, sintetizada desde cero. Ninguna muestra procede de terceros.
-
-— English —
-Composed with a root of 528 Hz in just intonation, shin mode.
-To accompany sleep.
-Original composition, synthesized from scratch. No third-party samples.
+Composición original, sintetizada desde cero: el ambiente también. Ninguna muestra procede de terceros.
 
 Capítulos:
-00:00 [completar tras el montaje]",3 HORAS,#MúsicaParaDormir #MúsicaRelajante #528Hz,"528 hz, música 528 hz, música para dormir, sleep music, dormir, shin, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, singing bowls, just intonation",,,528,shin,grave,751043,180,python3 03-composicion/compositor.py --minutos 180 --raiz 528 --modo shin --semilla 751043 --caracter sin-cuenco --registro grave,python3 03-composicion/ambiente.py audio/OBRA-004_528_shin.wav audio/OBRA-004_final.wav --fondo mar,pendiente,,,,
-OBRA-005,Música para dormir · Olas del mar · 432 Hz · Respiración de invierno · 2 horas,Dormir,mar,"Respiración de invierno · 2 horas
+00:00 [completar tras el montaje]",3 HOURS,#SleepMusic #Meditation #528Hz,"528 hz, música 528 hz, música para dormir, sleep music, dormir, shin, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, singing bowls, just intonation",,,528,shin,grave,751043,180,python3 03-composicion/compositor.py --minutos 180 --raiz 528 --modo shin --semilla 751043 --caracter sin-cuenco --registro grave,python3 03-composicion/ambiente.py audio/OBRA-004_528_shin.wav audio/OBRA-004_final.wav --fondo mar,pendiente,,,,
+OBRA-005,Sleep Music · Ocean Waves · 432 Hz · Winter Breath · 2 Hours,Música para dormir · Olas del mar · 432 Hz · Respiración de invierno · 2 horas,Dormir,mar,"Winter Breath · 2 Hours
+
+To accompany sleep.
+Ambience: ocean waves.
+
+Composed around a root of 216 Hz, the low octave of 432 Hz, in just intonation, kumoi mode.
+Breathing cycle: from 4.5 down to 3.5 breaths per minute, 40 % inhale / 60 % exhale.
+Original composition, synthesized from scratch, ambience included. No third-party samples.
+
+Chapters:
+00:00 [fill in after editing]","Respiración de invierno · 2 horas
+
+Para acompañar el sueño.
+Ambiente: olas del mar.
 
 Compuesta con raíz en 216 Hz, la octava grave de 432 Hz, en entonación justa, modo kumoi.
-Para acompañar el sueño.
-
 Ciclo respiratorio: de 4.5 a 3.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
-Ambiente: olas del mar, sintetizado, sin grabaciones.
-Composición original, sintetizada desde cero. Ninguna muestra procede de terceros.
-
-— English —
-Composed with a root of 432 Hz in just intonation, kumoi mode.
-To accompany sleep.
-Original composition, synthesized from scratch. No third-party samples.
+Composición original, sintetizada desde cero: el ambiente también. Ninguna muestra procede de terceros.
 
 Capítulos:
-00:00 [completar tras el montaje]",2 HORAS,#MúsicaParaDormir #MúsicaRelajante #432Hz,"432 hz, música 432 hz, música para dormir, sleep music, dormir, kumoi, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, singing bowls, just intonation",,,432,kumoi,grave,531725,120,python3 03-composicion/compositor.py --minutos 120 --raiz 432 --modo kumoi --semilla 531725 --caracter sin-cuenco --registro grave,python3 03-composicion/ambiente.py audio/OBRA-005_432_kumoi.wav audio/OBRA-005_final.wav --fondo mar,pendiente,,,,
-OBRA-006,Música para dormir · Olas del mar · 417 Hz · Antes del alba · 90 minutos,Dormir,mar,"Antes del alba · 90 minutos
+00:00 [completar tras el montaje]",2 HOURS,#SleepMusic #Meditation #432Hz,"432 hz, música 432 hz, música para dormir, sleep music, dormir, kumoi, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, singing bowls, just intonation",,,432,kumoi,grave,531725,120,python3 03-composicion/compositor.py --minutos 120 --raiz 432 --modo kumoi --semilla 531725 --caracter sin-cuenco --registro grave,python3 03-composicion/ambiente.py audio/OBRA-005_432_kumoi.wav audio/OBRA-005_final.wav --fondo mar,pendiente,,,,
+OBRA-006,Sleep Music · Ocean Waves · 417 Hz · Before Dawn · 90 Minutes,Música para dormir · Olas del mar · 417 Hz · Antes del alba · 90 minutos,Dormir,mar,"Before Dawn · 90 Minutes
+
+To accompany sleep.
+Ambience: ocean waves.
+
+Composed around a root of 208.5 Hz, the low octave of 417 Hz, in just intonation, kumoi mode.
+Breathing cycle: from 4.5 down to 3.5 breaths per minute, 40 % inhale / 60 % exhale.
+Original composition, synthesized from scratch, ambience included. No third-party samples.
+
+Chapters:
+00:00 [fill in after editing]","Antes del alba · 90 minutos
+
+Para acompañar el sueño.
+Ambiente: olas del mar.
 
 Compuesta con raíz en 208.5 Hz, la octava grave de 417 Hz, en entonación justa, modo kumoi.
-Para acompañar el sueño.
-
 Ciclo respiratorio: de 4.5 a 3.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
-Ambiente: olas del mar, sintetizado, sin grabaciones.
-Composición original, sintetizada desde cero. Ninguna muestra procede de terceros.
-
-— English —
-Composed with a root of 417 Hz in just intonation, kumoi mode.
-To accompany sleep.
-Original composition, synthesized from scratch. No third-party samples.
+Composición original, sintetizada desde cero: el ambiente también. Ninguna muestra procede de terceros.
 
 Capítulos:
-00:00 [completar tras el montaje]",90 MIN,#MúsicaParaDormir #MúsicaRelajante #417Hz,"417 hz, música 417 hz, música para dormir, sleep music, dormir, kumoi, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, singing bowls, just intonation",,,417,kumoi,grave,813147,90,python3 03-composicion/compositor.py --minutos 90 --raiz 417 --modo kumoi --semilla 813147 --caracter sin-cuenco --registro grave,python3 03-composicion/ambiente.py audio/OBRA-006_417_kumoi.wav audio/OBRA-006_final.wav --fondo mar,pendiente,,,,
-OBRA-007,Música para dormir · Olas del mar · 396 Hz · Peso lento · 2 horas,Dormir,mar,"Peso lento · 2 horas
+00:00 [completar tras el montaje]",90 MIN,#SleepMusic #Meditation #417Hz,"417 hz, música 417 hz, música para dormir, sleep music, dormir, kumoi, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, singing bowls, just intonation",,,417,kumoi,grave,813147,90,python3 03-composicion/compositor.py --minutos 90 --raiz 417 --modo kumoi --semilla 813147 --caracter sin-cuenco --registro grave,python3 03-composicion/ambiente.py audio/OBRA-006_417_kumoi.wav audio/OBRA-006_final.wav --fondo mar,pendiente,,,,
+OBRA-007,Sleep Music · Ocean Waves · 396 Hz · Slow Weight · 2 Hours,Música para dormir · Olas del mar · 396 Hz · Peso lento · 2 horas,Dormir,mar,"Slow Weight · 2 Hours
+
+To accompany sleep.
+Ambience: ocean waves.
+
+Composed around a root of 198 Hz, the low octave of 396 Hz, in just intonation, shin mode.
+Breathing cycle: from 4.5 down to 3.5 breaths per minute, 40 % inhale / 60 % exhale.
+Original composition, synthesized from scratch, ambience included. No third-party samples.
+
+Chapters:
+00:00 [fill in after editing]","Peso lento · 2 horas
+
+Para acompañar el sueño.
+Ambiente: olas del mar.
 
 Compuesta con raíz en 198 Hz, la octava grave de 396 Hz, en entonación justa, modo shin.
-Para acompañar el sueño.
-
 Ciclo respiratorio: de 4.5 a 3.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
-Ambiente: olas del mar, sintetizado, sin grabaciones.
-Composición original, sintetizada desde cero. Ninguna muestra procede de terceros.
-
-— English —
-Composed with a root of 396 Hz in just intonation, shin mode.
-To accompany sleep.
-Original composition, synthesized from scratch. No third-party samples.
+Composición original, sintetizada desde cero: el ambiente también. Ninguna muestra procede de terceros.
 
 Capítulos:
-00:00 [completar tras el montaje]",2 HORAS,#MúsicaParaDormir #MúsicaRelajante #396Hz,"396 hz, música 396 hz, música para dormir, sleep music, dormir, shin, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, singing bowls, just intonation",,,396,shin,grave,885916,120,python3 03-composicion/compositor.py --minutos 120 --raiz 396 --modo shin --semilla 885916 --caracter sin-cuenco --registro grave,python3 03-composicion/ambiente.py audio/OBRA-007_396_shin.wav audio/OBRA-007_final.wav --fondo mar,pendiente,,,,
-OBRA-008,Música para dormir · Olas del mar · 432 Hz · La casa dormida · 3 horas,Dormir,mar,"La casa dormida · 3 horas
+00:00 [completar tras el montaje]",2 HOURS,#SleepMusic #Meditation #396Hz,"396 hz, música 396 hz, música para dormir, sleep music, dormir, shin, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, singing bowls, just intonation",,,396,shin,grave,885916,120,python3 03-composicion/compositor.py --minutos 120 --raiz 396 --modo shin --semilla 885916 --caracter sin-cuenco --registro grave,python3 03-composicion/ambiente.py audio/OBRA-007_396_shin.wav audio/OBRA-007_final.wav --fondo mar,pendiente,,,,
+OBRA-008,Sleep Music · Ocean Waves · 432 Hz · The Sleeping House · 3 Hours,Música para dormir · Olas del mar · 432 Hz · La casa dormida · 3 horas,Dormir,mar,"The Sleeping House · 3 Hours
+
+To accompany sleep.
+Ambience: ocean waves.
+
+Composed around a root of 216 Hz, the low octave of 432 Hz, in just intonation, kumoi mode.
+Breathing cycle: from 4.5 down to 3.5 breaths per minute, 40 % inhale / 60 % exhale.
+Original composition, synthesized from scratch, ambience included. No third-party samples.
+
+Chapters:
+00:00 [fill in after editing]","La casa dormida · 3 horas
+
+Para acompañar el sueño.
+Ambiente: olas del mar.
 
 Compuesta con raíz en 216 Hz, la octava grave de 432 Hz, en entonación justa, modo kumoi.
-Para acompañar el sueño.
-
 Ciclo respiratorio: de 4.5 a 3.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
-Ambiente: olas del mar, sintetizado, sin grabaciones.
-Composición original, sintetizada desde cero. Ninguna muestra procede de terceros.
-
-— English —
-Composed with a root of 432 Hz in just intonation, kumoi mode.
-To accompany sleep.
-Original composition, synthesized from scratch. No third-party samples.
+Composición original, sintetizada desde cero: el ambiente también. Ninguna muestra procede de terceros.
 
 Capítulos:
-00:00 [completar tras el montaje]",3 HORAS,#MúsicaParaDormir #MúsicaRelajante #432Hz,"432 hz, música 432 hz, música para dormir, sleep music, dormir, kumoi, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, singing bowls, just intonation",,,432,kumoi,grave,295910,180,python3 03-composicion/compositor.py --minutos 180 --raiz 432 --modo kumoi --semilla 295910 --caracter sin-cuenco --registro grave,python3 03-composicion/ambiente.py audio/OBRA-008_432_kumoi.wav audio/OBRA-008_final.wav --fondo mar,pendiente,,,,
-OBRA-009,Música para momentos de ansiedad · Mar y pájaros · 396 Hz · Solo exhalar · 25 minutos,Ansiedad,mar-aves,"Solo exhalar · 25 minutos
+00:00 [completar tras el montaje]",3 HOURS,#SleepMusic #Meditation #432Hz,"432 hz, música 432 hz, música para dormir, sleep music, dormir, kumoi, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, singing bowls, just intonation",,,432,kumoi,grave,295910,180,python3 03-composicion/compositor.py --minutos 180 --raiz 432 --modo kumoi --semilla 295910 --caracter sin-cuenco --registro grave,python3 03-composicion/ambiente.py audio/OBRA-008_432_kumoi.wav audio/OBRA-008_final.wav --fondo mar,pendiente,,,,
+OBRA-009,Music for Anxiety · Ocean and Birds · 396 Hz · Just Exhale · 25 Minutes,Música para momentos de ansiedad · Mar y pájaros · 396 Hz · Solo exhalar · 25 minutos,Ansiedad,mar-aves,"Just Exhale · 25 Minutes
+
+To accompany a pause when your mind won't stop.
+Ambience: ocean and birds.
+
+Composed around a root of 396 Hz, in just intonation, kumoi mode.
+Breathing cycle: from 6.0 down to 4.5 breaths per minute, 40 % inhale / 60 % exhale.
+Original composition, synthesized from scratch, ambience included. No third-party samples.
+
+Chapters:
+00:00 [fill in after editing]","Solo exhalar · 25 minutos
+
+Para acompañar un momento de pausa cuando la cabeza no para.
+Ambiente: mar y pájaros.
 
 Compuesta con raíz en 396 Hz, en entonación justa, modo kumoi.
-Para acompañar un momento de pausa cuando la cabeza no para.
-
 Ciclo respiratorio: de 6.0 a 4.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
-Ambiente: mar y pájaros, sintetizado, sin grabaciones.
-Composición original, sintetizada desde cero. Ninguna muestra procede de terceros.
-
-— English —
-Composed with a root of 396 Hz in just intonation, kumoi mode.
-To accompany a pause when your mind won't stop.
-Original composition, synthesized from scratch. No third-party samples.
+Composición original, sintetizada desde cero: el ambiente también. Ninguna muestra procede de terceros.
 
 Capítulos:
-00:00 [completar tras el montaje]",25 MIN,#Relajación #MúsicaRelajante #396Hz,"396 hz, música 396 hz, música para momentos de ansiedad, music for anxiety, ansiedad, kumoi, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, sleep music, singing bowls, just intonation",,,396,kumoi,medio,555819,25,python3 03-composicion/compositor.py --minutos 25 --raiz 396 --modo kumoi --semilla 555819 --caracter sin-cuenco,python3 03-composicion/capas.py aves 1540 audio/OBRA-009_capa.wav --semilla 555819 && python3 03-composicion/ambiente.py audio/OBRA-009_396_kumoi.wav audio/OBRA-009_final.wav --fondo mar --nivel-capa -4 --capa audio/OBRA-009_capa.wav,pendiente,,,,
-OBRA-010,Música para momentos de ansiedad · Templo zen · 432 Hz · Bajar el ritmo · 30 minutos,Ansiedad,zen,"Bajar el ritmo · 30 minutos
+00:00 [completar tras el montaje]",25 MIN,#RelaxingMusic #Meditation #396Hz,"396 hz, música 396 hz, música para momentos de ansiedad, music for anxiety, ansiedad, kumoi, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, sleep music, singing bowls, just intonation",,,396,kumoi,medio,555819,25,python3 03-composicion/compositor.py --minutos 25 --raiz 396 --modo kumoi --semilla 555819 --caracter sin-cuenco,python3 03-composicion/capas.py aves 1540 audio/OBRA-009_capa.wav --semilla 555819 && python3 03-composicion/ambiente.py audio/OBRA-009_396_kumoi.wav audio/OBRA-009_final.wav --fondo mar --nivel-capa -4 --capa audio/OBRA-009_capa.wav,pendiente,,,,
+OBRA-010,Music for Anxiety · Zen Temple · 432 Hz · Slowing Down · 30 Minutes,Música para momentos de ansiedad · Templo zen · 432 Hz · Bajar el ritmo · 30 minutos,Ansiedad,zen,"Slowing Down · 30 Minutes
+
+To accompany a pause when your mind won't stop.
+Ambience: zen temple.
+
+Composed around a root of 432 Hz, in just intonation, hirajoshi mode.
+Breathing cycle: from 6.0 down to 4.5 breaths per minute, 40 % inhale / 60 % exhale.
+Original composition, synthesized from scratch, ambience included. No third-party samples.
+
+Chapters:
+00:00 [fill in after editing]","Bajar el ritmo · 30 minutos
+
+Para acompañar un momento de pausa cuando la cabeza no para.
+Ambiente: templo zen.
 
 Compuesta con raíz en 432 Hz, en entonación justa, modo hirajoshi.
-Para acompañar un momento de pausa cuando la cabeza no para.
-
 Ciclo respiratorio: de 6.0 a 4.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
-Ambiente: templo zen, sintetizado, sin grabaciones.
-Composición original, sintetizada desde cero. Ninguna muestra procede de terceros.
-
-— English —
-Composed with a root of 432 Hz in just intonation, hirajoshi mode.
-To accompany a pause when your mind won't stop.
-Original composition, synthesized from scratch. No third-party samples.
+Composición original, sintetizada desde cero: el ambiente también. Ninguna muestra procede de terceros.
 
 Capítulos:
-00:00 [completar tras el montaje]",30 MIN,#Relajación #MúsicaRelajante #432Hz,"432 hz, música 432 hz, música para momentos de ansiedad, music for anxiety, ansiedad, hirajoshi, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, sleep music, singing bowls, just intonation",,,432,hirajoshi,medio,739461,30,python3 03-composicion/compositor.py --minutos 30 --raiz 432 --modo hirajoshi --semilla 739461 --caracter sin-cuenco,python3 03-composicion/capas.py zen 1840 audio/OBRA-010_capa.wav --semilla 739461 --densidad 1.4 && python3 03-composicion/ambiente.py audio/OBRA-010_432_hirajoshi.wav audio/OBRA-010_final.wav --fondo mar --nivel-fondo -7 --nivel-capa 2 --capa audio/OBRA-010_capa.wav,pendiente,,,,
-OBRA-011,Música para momentos de ansiedad · Mar y pájaros · 528 Hz · Cuatro y seis · 20 minutos,Ansiedad,mar-aves,"Cuatro y seis · 20 minutos
+00:00 [completar tras el montaje]",30 MIN,#RelaxingMusic #Meditation #432Hz,"432 hz, música 432 hz, música para momentos de ansiedad, music for anxiety, ansiedad, hirajoshi, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, sleep music, singing bowls, just intonation",,,432,hirajoshi,medio,739461,30,python3 03-composicion/compositor.py --minutos 30 --raiz 432 --modo hirajoshi --semilla 739461 --caracter sin-cuenco,python3 03-composicion/capas.py zen 1840 audio/OBRA-010_capa.wav --semilla 739461 --densidad 1.4 && python3 03-composicion/ambiente.py audio/OBRA-010_432_hirajoshi.wav audio/OBRA-010_final.wav --fondo mar --nivel-fondo -7 --nivel-capa 2 --capa audio/OBRA-010_capa.wav,pendiente,,,,
+OBRA-011,Music for Anxiety · Ocean and Birds · 528 Hz · Four and Six · 20 Minutes,Música para momentos de ansiedad · Mar y pájaros · 528 Hz · Cuatro y seis · 20 minutos,Ansiedad,mar-aves,"Four and Six · 20 Minutes
+
+To accompany a pause when your mind won't stop.
+Ambience: ocean and birds.
+
+Composed around a root of 528 Hz, in just intonation, hirajoshi mode.
+Breathing cycle: from 6.0 down to 4.5 breaths per minute, 40 % inhale / 60 % exhale.
+Original composition, synthesized from scratch, ambience included. No third-party samples.
+
+Chapters:
+00:00 [fill in after editing]","Cuatro y seis · 20 minutos
+
+Para acompañar un momento de pausa cuando la cabeza no para.
+Ambiente: mar y pájaros.
 
 Compuesta con raíz en 528 Hz, en entonación justa, modo hirajoshi.
-Para acompañar un momento de pausa cuando la cabeza no para.
-
 Ciclo respiratorio: de 6.0 a 4.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
-Ambiente: mar y pájaros, sintetizado, sin grabaciones.
-Composición original, sintetizada desde cero. Ninguna muestra procede de terceros.
-
-— English —
-Composed with a root of 528 Hz in just intonation, hirajoshi mode.
-To accompany a pause when your mind won't stop.
-Original composition, synthesized from scratch. No third-party samples.
+Composición original, sintetizada desde cero: el ambiente también. Ninguna muestra procede de terceros.
 
 Capítulos:
-00:00 [completar tras el montaje]",20 MIN,#Relajación #MúsicaRelajante #528Hz,"528 hz, música 528 hz, música para momentos de ansiedad, music for anxiety, ansiedad, hirajoshi, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, sleep music, singing bowls, just intonation",,,528,hirajoshi,medio,913368,20,python3 03-composicion/compositor.py --minutos 20 --raiz 528 --modo hirajoshi --semilla 913368 --caracter sin-cuenco,python3 03-composicion/capas.py aves 1240 audio/OBRA-011_capa.wav --semilla 913368 && python3 03-composicion/ambiente.py audio/OBRA-011_528_hirajoshi.wav audio/OBRA-011_final.wav --fondo mar --nivel-capa -4 --capa audio/OBRA-011_capa.wav,pendiente,,,,
-OBRA-012,Música para momentos de ansiedad · Templo zen · 528 Hz · Diez minutos · 10 minutos,Ansiedad,zen,"Diez minutos · 10 minutos
+00:00 [completar tras el montaje]",20 MIN,#RelaxingMusic #Meditation #528Hz,"528 hz, música 528 hz, música para momentos de ansiedad, music for anxiety, ansiedad, hirajoshi, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, sleep music, singing bowls, just intonation",,,528,hirajoshi,medio,913368,20,python3 03-composicion/compositor.py --minutos 20 --raiz 528 --modo hirajoshi --semilla 913368 --caracter sin-cuenco,python3 03-composicion/capas.py aves 1240 audio/OBRA-011_capa.wav --semilla 913368 && python3 03-composicion/ambiente.py audio/OBRA-011_528_hirajoshi.wav audio/OBRA-011_final.wav --fondo mar --nivel-capa -4 --capa audio/OBRA-011_capa.wav,pendiente,,,,
+OBRA-012,Music for Anxiety · Zen Temple · 528 Hz · Ten Minutes · 10 Minutes,Música para momentos de ansiedad · Templo zen · 528 Hz · Diez minutos · 10 minutos,Ansiedad,zen,"Ten Minutes · 10 Minutes
+
+To accompany a pause when your mind won't stop.
+Ambience: zen temple.
+
+Composed around a root of 528 Hz, in just intonation, shin mode.
+Breathing cycle: from 6.0 down to 4.5 breaths per minute, 40 % inhale / 60 % exhale.
+Original composition, synthesized from scratch, ambience included. No third-party samples.
+
+Chapters:
+00:00 [fill in after editing]","Diez minutos · 10 minutos
+
+Para acompañar un momento de pausa cuando la cabeza no para.
+Ambiente: templo zen.
 
 Compuesta con raíz en 528 Hz, en entonación justa, modo shin.
-Para acompañar un momento de pausa cuando la cabeza no para.
-
 Ciclo respiratorio: de 6.0 a 4.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
-Ambiente: templo zen, sintetizado, sin grabaciones.
-Composición original, sintetizada desde cero. Ninguna muestra procede de terceros.
-
-— English —
-Composed with a root of 528 Hz in just intonation, shin mode.
-To accompany a pause when your mind won't stop.
-Original composition, synthesized from scratch. No third-party samples.
+Composición original, sintetizada desde cero: el ambiente también. Ninguna muestra procede de terceros.
 
 Capítulos:
-00:00 [completar tras el montaje]",10 MIN,#Relajación #MúsicaRelajante #528Hz,"528 hz, música 528 hz, música para momentos de ansiedad, music for anxiety, ansiedad, shin, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, sleep music, singing bowls, just intonation",,,528,shin,medio,207307,10,python3 03-composicion/compositor.py --minutos 10 --raiz 528 --modo shin --semilla 207307 --caracter sin-cuenco,python3 03-composicion/capas.py zen 640 audio/OBRA-012_capa.wav --semilla 207307 --densidad 1.4 && python3 03-composicion/ambiente.py audio/OBRA-012_528_shin.wav audio/OBRA-012_final.wav --fondo mar --nivel-fondo -7 --nivel-capa 2 --capa audio/OBRA-012_capa.wav,pendiente,,,,
-OBRA-013,Música para momentos de ansiedad · Mar y pájaros · 432 Hz · Contar hasta seis · 20 minutos,Ansiedad,mar-aves,"Contar hasta seis · 20 minutos
+00:00 [completar tras el montaje]",10 MIN,#RelaxingMusic #Meditation #528Hz,"528 hz, música 528 hz, música para momentos de ansiedad, music for anxiety, ansiedad, shin, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, sleep music, singing bowls, just intonation",,,528,shin,medio,207307,10,python3 03-composicion/compositor.py --minutos 10 --raiz 528 --modo shin --semilla 207307 --caracter sin-cuenco,python3 03-composicion/capas.py zen 640 audio/OBRA-012_capa.wav --semilla 207307 --densidad 1.4 && python3 03-composicion/ambiente.py audio/OBRA-012_528_shin.wav audio/OBRA-012_final.wav --fondo mar --nivel-fondo -7 --nivel-capa 2 --capa audio/OBRA-012_capa.wav,pendiente,,,,
+OBRA-013,Music for Anxiety · Ocean and Birds · 432 Hz · Count to Six · 20 Minutes,Música para momentos de ansiedad · Mar y pájaros · 432 Hz · Contar hasta seis · 20 minutos,Ansiedad,mar-aves,"Count to Six · 20 Minutes
+
+To accompany a pause when your mind won't stop.
+Ambience: ocean and birds.
+
+Composed around a root of 432 Hz, in just intonation, hirajoshi mode.
+Breathing cycle: from 6.0 down to 4.5 breaths per minute, 40 % inhale / 60 % exhale.
+Original composition, synthesized from scratch, ambience included. No third-party samples.
+
+Chapters:
+00:00 [fill in after editing]","Contar hasta seis · 20 minutos
+
+Para acompañar un momento de pausa cuando la cabeza no para.
+Ambiente: mar y pájaros.
 
 Compuesta con raíz en 432 Hz, en entonación justa, modo hirajoshi.
-Para acompañar un momento de pausa cuando la cabeza no para.
-
 Ciclo respiratorio: de 6.0 a 4.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
-Ambiente: mar y pájaros, sintetizado, sin grabaciones.
-Composición original, sintetizada desde cero. Ninguna muestra procede de terceros.
-
-— English —
-Composed with a root of 432 Hz in just intonation, hirajoshi mode.
-To accompany a pause when your mind won't stop.
-Original composition, synthesized from scratch. No third-party samples.
+Composición original, sintetizada desde cero: el ambiente también. Ninguna muestra procede de terceros.
 
 Capítulos:
-00:00 [completar tras el montaje]",20 MIN,#Relajación #MúsicaRelajante #432Hz,"432 hz, música 432 hz, música para momentos de ansiedad, music for anxiety, ansiedad, hirajoshi, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, sleep music, singing bowls, just intonation",,,432,hirajoshi,medio,627771,20,python3 03-composicion/compositor.py --minutos 20 --raiz 432 --modo hirajoshi --semilla 627771 --caracter sin-cuenco,python3 03-composicion/capas.py aves 1240 audio/OBRA-013_capa.wav --semilla 627771 && python3 03-composicion/ambiente.py audio/OBRA-013_432_hirajoshi.wav audio/OBRA-013_final.wav --fondo mar --nivel-capa -4 --capa audio/OBRA-013_capa.wav,pendiente,,,,
-OBRA-014,Música para momentos de ansiedad · Templo zen · 528 Hz · Entrada y salida · 20 minutos,Ansiedad,zen,"Entrada y salida · 20 minutos
+00:00 [completar tras el montaje]",20 MIN,#RelaxingMusic #Meditation #432Hz,"432 hz, música 432 hz, música para momentos de ansiedad, music for anxiety, ansiedad, hirajoshi, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, sleep music, singing bowls, just intonation",,,432,hirajoshi,medio,627771,20,python3 03-composicion/compositor.py --minutos 20 --raiz 432 --modo hirajoshi --semilla 627771 --caracter sin-cuenco,python3 03-composicion/capas.py aves 1240 audio/OBRA-013_capa.wav --semilla 627771 && python3 03-composicion/ambiente.py audio/OBRA-013_432_hirajoshi.wav audio/OBRA-013_final.wav --fondo mar --nivel-capa -4 --capa audio/OBRA-013_capa.wav,pendiente,,,,
+OBRA-014,Music for Anxiety · Zen Temple · 528 Hz · In and Out · 20 Minutes,Música para momentos de ansiedad · Templo zen · 528 Hz · Entrada y salida · 20 minutos,Ansiedad,zen,"In and Out · 20 Minutes
+
+To accompany a pause when your mind won't stop.
+Ambience: zen temple.
+
+Composed around a root of 528 Hz, in just intonation, yo mode.
+Breathing cycle: from 6.0 down to 4.5 breaths per minute, 40 % inhale / 60 % exhale.
+Original composition, synthesized from scratch, ambience included. No third-party samples.
+
+Chapters:
+00:00 [fill in after editing]","Entrada y salida · 20 minutos
+
+Para acompañar un momento de pausa cuando la cabeza no para.
+Ambiente: templo zen.
 
 Compuesta con raíz en 528 Hz, en entonación justa, modo yo.
-Para acompañar un momento de pausa cuando la cabeza no para.
-
 Ciclo respiratorio: de 6.0 a 4.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
-Ambiente: templo zen, sintetizado, sin grabaciones.
-Composición original, sintetizada desde cero. Ninguna muestra procede de terceros.
-
-— English —
-Composed with a root of 528 Hz in just intonation, yo mode.
-To accompany a pause when your mind won't stop.
-Original composition, synthesized from scratch. No third-party samples.
+Composición original, sintetizada desde cero: el ambiente también. Ninguna muestra procede de terceros.
 
 Capítulos:
-00:00 [completar tras el montaje]",20 MIN,#Relajación #MúsicaRelajante #528Hz,"528 hz, música 528 hz, música para momentos de ansiedad, music for anxiety, ansiedad, yo, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, sleep music, singing bowls, just intonation",,,528,yo,medio,310137,20,python3 03-composicion/compositor.py --minutos 20 --raiz 528 --modo yo --semilla 310137 --caracter sin-cuenco,python3 03-composicion/capas.py zen 1240 audio/OBRA-014_capa.wav --semilla 310137 --densidad 1.4 && python3 03-composicion/ambiente.py audio/OBRA-014_528_yo.wav audio/OBRA-014_final.wav --fondo mar --nivel-fondo -7 --nivel-capa 2 --capa audio/OBRA-014_capa.wav,pendiente,,,,
-OBRA-015,Música para momentos de ansiedad · Mar y pájaros · 639 Hz · Antes de empezar · 15 minutos,Ansiedad,mar-aves,"Antes de empezar · 15 minutos
+00:00 [completar tras el montaje]",20 MIN,#RelaxingMusic #Meditation #528Hz,"528 hz, música 528 hz, música para momentos de ansiedad, music for anxiety, ansiedad, yo, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, sleep music, singing bowls, just intonation",,,528,yo,medio,310137,20,python3 03-composicion/compositor.py --minutos 20 --raiz 528 --modo yo --semilla 310137 --caracter sin-cuenco,python3 03-composicion/capas.py zen 1240 audio/OBRA-014_capa.wav --semilla 310137 --densidad 1.4 && python3 03-composicion/ambiente.py audio/OBRA-014_528_yo.wav audio/OBRA-014_final.wav --fondo mar --nivel-fondo -7 --nivel-capa 2 --capa audio/OBRA-014_capa.wav,pendiente,,,,
+OBRA-015,Music for Anxiety · Ocean and Birds · 639 Hz · Before You Begin · 15 Minutes,Música para momentos de ansiedad · Mar y pájaros · 639 Hz · Antes de empezar · 15 minutos,Ansiedad,mar-aves,"Before You Begin · 15 Minutes
+
+To accompany a pause when your mind won't stop.
+Ambience: ocean and birds.
+
+Composed around a root of 639 Hz, in just intonation, yo mode.
+Breathing cycle: from 6.0 down to 4.5 breaths per minute, 40 % inhale / 60 % exhale.
+Original composition, synthesized from scratch, ambience included. No third-party samples.
+
+Chapters:
+00:00 [fill in after editing]","Antes de empezar · 15 minutos
+
+Para acompañar un momento de pausa cuando la cabeza no para.
+Ambiente: mar y pájaros.
 
 Compuesta con raíz en 639 Hz, en entonación justa, modo yo.
-Para acompañar un momento de pausa cuando la cabeza no para.
-
 Ciclo respiratorio: de 6.0 a 4.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
-Ambiente: mar y pájaros, sintetizado, sin grabaciones.
-Composición original, sintetizada desde cero. Ninguna muestra procede de terceros.
-
-— English —
-Composed with a root of 639 Hz in just intonation, yo mode.
-To accompany a pause when your mind won't stop.
-Original composition, synthesized from scratch. No third-party samples.
+Composición original, sintetizada desde cero: el ambiente también. Ninguna muestra procede de terceros.
 
 Capítulos:
-00:00 [completar tras el montaje]",15 MIN,#Relajación #MúsicaRelajante #639Hz,"639 hz, música 639 hz, música para momentos de ansiedad, music for anxiety, ansiedad, yo, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, sleep music, singing bowls, just intonation",,,639,yo,medio,592463,15,python3 03-composicion/compositor.py --minutos 15 --raiz 639 --modo yo --semilla 592463 --caracter sin-cuenco,python3 03-composicion/capas.py aves 940 audio/OBRA-015_capa.wav --semilla 592463 && python3 03-composicion/ambiente.py audio/OBRA-015_639_yo.wav audio/OBRA-015_final.wav --fondo mar --nivel-capa -4 --capa audio/OBRA-015_capa.wav,pendiente,,,,
-OBRA-016,Música para momentos de ansiedad · Lluvia sobre hojas · 417 Hz · El final del día · 30 minutos,Ansiedad,lluvia-tambor,"El final del día · 30 minutos
+00:00 [completar tras el montaje]",15 MIN,#RelaxingMusic #Meditation #639Hz,"639 hz, música 639 hz, música para momentos de ansiedad, music for anxiety, ansiedad, yo, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, sleep music, singing bowls, just intonation",,,639,yo,medio,592463,15,python3 03-composicion/compositor.py --minutos 15 --raiz 639 --modo yo --semilla 592463 --caracter sin-cuenco,python3 03-composicion/capas.py aves 940 audio/OBRA-015_capa.wav --semilla 592463 && python3 03-composicion/ambiente.py audio/OBRA-015_639_yo.wav audio/OBRA-015_final.wav --fondo mar --nivel-capa -4 --capa audio/OBRA-015_capa.wav,pendiente,,,,
+OBRA-016,Music for Anxiety · Rain on Leaves · 417 Hz · End of the Day · 30 Minutes,Música para momentos de ansiedad · Lluvia sobre hojas · 417 Hz · El final del día · 30 minutos,Ansiedad,lluvia-tambor,"End of the Day · 30 Minutes
+
+To accompany a pause when your mind won't stop.
+Ambience: rain on leaves.
+
+Composed around a root of 417 Hz, in just intonation, kumoi mode.
+Breathing cycle: from 6.0 down to 4.5 breaths per minute, 40 % inhale / 60 % exhale.
+Original composition, synthesized from scratch, ambience included. No third-party samples.
+
+Chapters:
+00:00 [fill in after editing]","El final del día · 30 minutos
+
+Para acompañar un momento de pausa cuando la cabeza no para.
+Ambiente: lluvia sobre hojas.
 
 Compuesta con raíz en 417 Hz, en entonación justa, modo kumoi.
-Para acompañar un momento de pausa cuando la cabeza no para.
-
 Ciclo respiratorio: de 6.0 a 4.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
-Ambiente: lluvia sobre hojas, sintetizado, sin grabaciones.
-Composición original, sintetizada desde cero. Ninguna muestra procede de terceros.
-
-— English —
-Composed with a root of 417 Hz in just intonation, kumoi mode.
-To accompany a pause when your mind won't stop.
-Original composition, synthesized from scratch. No third-party samples.
+Composición original, sintetizada desde cero: el ambiente también. Ninguna muestra procede de terceros.
 
 Capítulos:
-00:00 [completar tras el montaje]",30 MIN,#Relajación #MúsicaRelajante #417Hz,"417 hz, música 417 hz, música para momentos de ansiedad, music for anxiety, ansiedad, kumoi, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, sleep music, singing bowls, just intonation",,,417,kumoi,medio,250697,30,python3 03-composicion/compositor.py --minutos 30 --raiz 417 --modo kumoi --semilla 250697 --caracter sin-cuenco,python3 03-composicion/capas.py ancestral 1840 audio/OBRA-016_capa.wav --semilla 250697 && python3 03-composicion/ambiente.py audio/OBRA-016_417_kumoi.wav audio/OBRA-016_final.wav --fondo fuego --nivel-capa 0 --nivel-obra -20 --capa audio/OBRA-016_capa.wav,pendiente,,,,
-OBRA-017,Música para meditar · Templo zen · 417 Hz · Templo vacío · 45 minutos,Meditar,zen,"Templo vacío · 45 minutos
+00:00 [completar tras el montaje]",30 MIN,#RelaxingMusic #Meditation #417Hz,"417 hz, música 417 hz, música para momentos de ansiedad, music for anxiety, ansiedad, kumoi, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, sleep music, singing bowls, just intonation",,,417,kumoi,medio,250697,30,python3 03-composicion/compositor.py --minutos 30 --raiz 417 --modo kumoi --semilla 250697 --caracter sin-cuenco,python3 03-composicion/capas.py ancestral 1840 audio/OBRA-016_capa.wav --semilla 250697 && python3 03-composicion/ambiente.py audio/OBRA-016_417_kumoi.wav audio/OBRA-016_final.wav --fondo fuego --nivel-capa 0 --nivel-obra -20 --capa audio/OBRA-016_capa.wav,pendiente,,,,
+OBRA-017,Meditation Music · Zen Temple · 417 Hz · Empty Temple · 45 Minutes,Música para meditar · Templo zen · 417 Hz · Templo vacío · 45 minutos,Meditar,zen,"Empty Temple · 45 Minutes
+
+To accompany a meditation practice.
+Ambience: zen temple.
+
+Composed around a root of 417 Hz, in just intonation, hirajoshi mode.
+Breathing cycle: from 5.5 down to 4.5 breaths per minute, 40 % inhale / 60 % exhale.
+Original composition, synthesized from scratch, ambience included. No third-party samples.
+
+Chapters:
+00:00 [fill in after editing]","Templo vacío · 45 minutos
+
+Para acompañar una práctica de meditación.
+Ambiente: templo zen.
 
 Compuesta con raíz en 417 Hz, en entonación justa, modo hirajoshi.
-Para acompañar una práctica de meditación.
-
 Ciclo respiratorio: de 5.5 a 4.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
-Ambiente: templo zen, sintetizado, sin grabaciones.
-Composición original, sintetizada desde cero. Ninguna muestra procede de terceros.
-
-— English —
-Composed with a root of 417 Hz in just intonation, hirajoshi mode.
-To accompany a meditation practice.
-Original composition, synthesized from scratch. No third-party samples.
+Composición original, sintetizada desde cero: el ambiente también. Ninguna muestra procede de terceros.
 
 Capítulos:
-00:00 [completar tras el montaje]",45 MIN,#Meditación #MúsicaRelajante #417Hz,"417 hz, música 417 hz, música para meditar, meditation music, meditar, hirajoshi, música relajante, meditación, relajación, entonación justa, composición original, relaxing music, sleep music, singing bowls, just intonation",,,417,hirajoshi,medio,714152,45,python3 03-composicion/compositor.py --minutos 45 --raiz 417 --modo hirajoshi --semilla 714152 --caracter sin-cuenco,python3 03-composicion/capas.py zen 2740 audio/OBRA-017_capa.wav --semilla 714152 --densidad 1.4 && python3 03-composicion/ambiente.py audio/OBRA-017_417_hirajoshi.wav audio/OBRA-017_final.wav --fondo mar --nivel-fondo -7 --nivel-capa 2 --capa audio/OBRA-017_capa.wav,pendiente,,,,
-OBRA-018,Música para meditar · Templo zen · 528 Hz · Siete campanas · 45 minutos,Meditar,zen,"Siete campanas · 45 minutos
+00:00 [completar tras el montaje]",45 MIN,#MeditationMusic #Meditation #417Hz,"417 hz, música 417 hz, música para meditar, meditation music, meditar, hirajoshi, música relajante, meditación, relajación, entonación justa, composición original, relaxing music, sleep music, singing bowls, just intonation",,,417,hirajoshi,medio,714152,45,python3 03-composicion/compositor.py --minutos 45 --raiz 417 --modo hirajoshi --semilla 714152 --caracter sin-cuenco,python3 03-composicion/capas.py zen 2740 audio/OBRA-017_capa.wav --semilla 714152 --densidad 1.4 && python3 03-composicion/ambiente.py audio/OBRA-017_417_hirajoshi.wav audio/OBRA-017_final.wav --fondo mar --nivel-fondo -7 --nivel-capa 2 --capa audio/OBRA-017_capa.wav,pendiente,,,,
+OBRA-018,Meditation Music · Zen Temple · 528 Hz · Seven Bells · 45 Minutes,Música para meditar · Templo zen · 528 Hz · Siete campanas · 45 minutos,Meditar,zen,"Seven Bells · 45 Minutes
+
+To accompany a meditation practice.
+Ambience: zen temple.
+
+Composed around a root of 528 Hz, in just intonation, hirajoshi mode.
+Breathing cycle: from 5.5 down to 4.5 breaths per minute, 40 % inhale / 60 % exhale.
+Original composition, synthesized from scratch, ambience included. No third-party samples.
+
+Chapters:
+00:00 [fill in after editing]","Siete campanas · 45 minutos
+
+Para acompañar una práctica de meditación.
+Ambiente: templo zen.
 
 Compuesta con raíz en 528 Hz, en entonación justa, modo hirajoshi.
-Para acompañar una práctica de meditación.
-
 Ciclo respiratorio: de 5.5 a 4.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
-Ambiente: templo zen, sintetizado, sin grabaciones.
-Composición original, sintetizada desde cero. Ninguna muestra procede de terceros.
-
-— English —
-Composed with a root of 528 Hz in just intonation, hirajoshi mode.
-To accompany a meditation practice.
-Original composition, synthesized from scratch. No third-party samples.
+Composición original, sintetizada desde cero: el ambiente también. Ninguna muestra procede de terceros.
 
 Capítulos:
-00:00 [completar tras el montaje]",45 MIN,#Meditación #MúsicaRelajante #528Hz,"528 hz, música 528 hz, música para meditar, meditation music, meditar, hirajoshi, música relajante, meditación, relajación, entonación justa, composición original, relaxing music, sleep music, singing bowls, just intonation",,,528,hirajoshi,medio,735455,45,python3 03-composicion/compositor.py --minutos 45 --raiz 528 --modo hirajoshi --semilla 735455 --caracter sin-cuenco,python3 03-composicion/capas.py zen 2740 audio/OBRA-018_capa.wav --semilla 735455 --densidad 1.4 && python3 03-composicion/ambiente.py audio/OBRA-018_528_hirajoshi.wav audio/OBRA-018_final.wav --fondo mar --nivel-fondo -7 --nivel-capa 2 --capa audio/OBRA-018_capa.wav,pendiente,,,,
-OBRA-019,Música para meditar · Templo zen · 432 Hz · Metal y aire · 1 hora,Meditar,zen,"Metal y aire · 1 hora
+00:00 [completar tras el montaje]",45 MIN,#MeditationMusic #Meditation #528Hz,"528 hz, música 528 hz, música para meditar, meditation music, meditar, hirajoshi, música relajante, meditación, relajación, entonación justa, composición original, relaxing music, sleep music, singing bowls, just intonation",,,528,hirajoshi,medio,735455,45,python3 03-composicion/compositor.py --minutos 45 --raiz 528 --modo hirajoshi --semilla 735455 --caracter sin-cuenco,python3 03-composicion/capas.py zen 2740 audio/OBRA-018_capa.wav --semilla 735455 --densidad 1.4 && python3 03-composicion/ambiente.py audio/OBRA-018_528_hirajoshi.wav audio/OBRA-018_final.wav --fondo mar --nivel-fondo -7 --nivel-capa 2 --capa audio/OBRA-018_capa.wav,pendiente,,,,
+OBRA-019,Meditation Music · Zen Temple · 432 Hz · Metal and Air · 1 Hour,Música para meditar · Templo zen · 432 Hz · Metal y aire · 1 hora,Meditar,zen,"Metal and Air · 1 Hour
+
+To accompany a meditation practice.
+Ambience: zen temple.
+
+Composed around a root of 432 Hz, in just intonation, shin mode.
+Breathing cycle: from 5.5 down to 4.5 breaths per minute, 40 % inhale / 60 % exhale.
+Original composition, synthesized from scratch, ambience included. No third-party samples.
+
+Chapters:
+00:00 [fill in after editing]","Metal y aire · 1 hora
+
+Para acompañar una práctica de meditación.
+Ambiente: templo zen.
 
 Compuesta con raíz en 432 Hz, en entonación justa, modo shin.
-Para acompañar una práctica de meditación.
-
 Ciclo respiratorio: de 5.5 a 4.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
-Ambiente: templo zen, sintetizado, sin grabaciones.
-Composición original, sintetizada desde cero. Ninguna muestra procede de terceros.
-
-— English —
-Composed with a root of 432 Hz in just intonation, shin mode.
-To accompany a meditation practice.
-Original composition, synthesized from scratch. No third-party samples.
+Composición original, sintetizada desde cero: el ambiente también. Ninguna muestra procede de terceros.
 
 Capítulos:
-00:00 [completar tras el montaje]",60 MIN,#Meditación #MúsicaRelajante #432Hz,"432 hz, música 432 hz, música para meditar, meditation music, meditar, shin, música relajante, meditación, relajación, entonación justa, composición original, relaxing music, sleep music, singing bowls, just intonation",,,432,shin,medio,627577,60,python3 03-composicion/compositor.py --minutos 60 --raiz 432 --modo shin --semilla 627577 --caracter sin-cuenco,python3 03-composicion/capas.py zen 3640 audio/OBRA-019_capa.wav --semilla 627577 --densidad 1.4 && python3 03-composicion/ambiente.py audio/OBRA-019_432_shin.wav audio/OBRA-019_final.wav --fondo mar --nivel-fondo -7 --nivel-capa 2 --capa audio/OBRA-019_capa.wav,pendiente,,,,
-OBRA-020,Música para meditar · Lluvia sobre hojas · 528 Hz · Golpe y silencio · 30 minutos,Meditar,lluvia-tambor,"Golpe y silencio · 30 minutos
+00:00 [completar tras el montaje]",60 MIN,#MeditationMusic #Meditation #432Hz,"432 hz, música 432 hz, música para meditar, meditation music, meditar, shin, música relajante, meditación, relajación, entonación justa, composición original, relaxing music, sleep music, singing bowls, just intonation",,,432,shin,medio,627577,60,python3 03-composicion/compositor.py --minutos 60 --raiz 432 --modo shin --semilla 627577 --caracter sin-cuenco,python3 03-composicion/capas.py zen 3640 audio/OBRA-019_capa.wav --semilla 627577 --densidad 1.4 && python3 03-composicion/ambiente.py audio/OBRA-019_432_shin.wav audio/OBRA-019_final.wav --fondo mar --nivel-fondo -7 --nivel-capa 2 --capa audio/OBRA-019_capa.wav,pendiente,,,,
+OBRA-020,Meditation Music · Rain on Leaves · 528 Hz · Strike and Silence · 30 Minutes,Música para meditar · Lluvia sobre hojas · 528 Hz · Golpe y silencio · 30 minutos,Meditar,lluvia-tambor,"Strike and Silence · 30 Minutes
+
+To accompany a meditation practice.
+Ambience: rain on leaves.
+
+Composed around a root of 528 Hz, in just intonation, shin mode.
+Breathing cycle: from 5.5 down to 4.5 breaths per minute, 40 % inhale / 60 % exhale.
+Original composition, synthesized from scratch, ambience included. No third-party samples.
+
+Chapters:
+00:00 [fill in after editing]","Golpe y silencio · 30 minutos
+
+Para acompañar una práctica de meditación.
+Ambiente: lluvia sobre hojas.
 
 Compuesta con raíz en 528 Hz, en entonación justa, modo shin.
-Para acompañar una práctica de meditación.
-
 Ciclo respiratorio: de 5.5 a 4.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
-Ambiente: lluvia sobre hojas, sintetizado, sin grabaciones.
-Composición original, sintetizada desde cero. Ninguna muestra procede de terceros.
-
-— English —
-Composed with a root of 528 Hz in just intonation, shin mode.
-To accompany a meditation practice.
-Original composition, synthesized from scratch. No third-party samples.
+Composición original, sintetizada desde cero: el ambiente también. Ninguna muestra procede de terceros.
 
 Capítulos:
-00:00 [completar tras el montaje]",30 MIN,#Meditación #MúsicaRelajante #528Hz,"528 hz, música 528 hz, música para meditar, meditation music, meditar, shin, música relajante, meditación, relajación, entonación justa, composición original, relaxing music, sleep music, singing bowls, just intonation",,,528,shin,medio,632595,30,python3 03-composicion/compositor.py --minutos 30 --raiz 528 --modo shin --semilla 632595 --caracter sin-cuenco,python3 03-composicion/capas.py ancestral 1840 audio/OBRA-020_capa.wav --semilla 632595 && python3 03-composicion/ambiente.py audio/OBRA-020_528_shin.wav audio/OBRA-020_final.wav --fondo fuego --nivel-capa 0 --nivel-obra -20 --capa audio/OBRA-020_capa.wav,pendiente,,,,
-OBRA-021,Música para meditar · Templo zen · 396 Hz · Bronce y madera · 45 minutos,Meditar,zen,"Bronce y madera · 45 minutos
+00:00 [completar tras el montaje]",30 MIN,#MeditationMusic #Meditation #528Hz,"528 hz, música 528 hz, música para meditar, meditation music, meditar, shin, música relajante, meditación, relajación, entonación justa, composición original, relaxing music, sleep music, singing bowls, just intonation",,,528,shin,medio,632595,30,python3 03-composicion/compositor.py --minutos 30 --raiz 528 --modo shin --semilla 632595 --caracter sin-cuenco,python3 03-composicion/capas.py ancestral 1840 audio/OBRA-020_capa.wav --semilla 632595 && python3 03-composicion/ambiente.py audio/OBRA-020_528_shin.wav audio/OBRA-020_final.wav --fondo fuego --nivel-capa 0 --nivel-obra -20 --capa audio/OBRA-020_capa.wav,pendiente,,,,
+OBRA-021,Meditation Music · Zen Temple · 396 Hz · Bronze and Wood · 45 Minutes,Música para meditar · Templo zen · 396 Hz · Bronce y madera · 45 minutos,Meditar,zen,"Bronze and Wood · 45 Minutes
+
+To accompany a meditation practice.
+Ambience: zen temple.
+
+Composed around a root of 396 Hz, in just intonation, kumoi mode.
+Breathing cycle: from 5.5 down to 4.5 breaths per minute, 40 % inhale / 60 % exhale.
+Original composition, synthesized from scratch, ambience included. No third-party samples.
+
+Chapters:
+00:00 [fill in after editing]","Bronce y madera · 45 minutos
+
+Para acompañar una práctica de meditación.
+Ambiente: templo zen.
 
 Compuesta con raíz en 396 Hz, en entonación justa, modo kumoi.
-Para acompañar una práctica de meditación.
-
 Ciclo respiratorio: de 5.5 a 4.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
-Ambiente: templo zen, sintetizado, sin grabaciones.
-Composición original, sintetizada desde cero. Ninguna muestra procede de terceros.
-
-— English —
-Composed with a root of 396 Hz in just intonation, kumoi mode.
-To accompany a meditation practice.
-Original composition, synthesized from scratch. No third-party samples.
+Composición original, sintetizada desde cero: el ambiente también. Ninguna muestra procede de terceros.
 
 Capítulos:
-00:00 [completar tras el montaje]",45 MIN,#Meditación #MúsicaRelajante #396Hz,"396 hz, música 396 hz, música para meditar, meditation music, meditar, kumoi, música relajante, meditación, relajación, entonación justa, composición original, relaxing music, sleep music, singing bowls, just intonation",,,396,kumoi,medio,864630,45,python3 03-composicion/compositor.py --minutos 45 --raiz 396 --modo kumoi --semilla 864630 --caracter sin-cuenco,python3 03-composicion/capas.py zen 2740 audio/OBRA-021_capa.wav --semilla 864630 --densidad 1.4 && python3 03-composicion/ambiente.py audio/OBRA-021_396_kumoi.wav audio/OBRA-021_final.wav --fondo mar --nivel-fondo -7 --nivel-capa 2 --capa audio/OBRA-021_capa.wav,pendiente,,,,
-OBRA-022,Música para meditar · Templo zen · 639 Hz · Resonancia larga · 1 hora,Meditar,zen,"Resonancia larga · 1 hora
+00:00 [completar tras el montaje]",45 MIN,#MeditationMusic #Meditation #396Hz,"396 hz, música 396 hz, música para meditar, meditation music, meditar, kumoi, música relajante, meditación, relajación, entonación justa, composición original, relaxing music, sleep music, singing bowls, just intonation",,,396,kumoi,medio,864630,45,python3 03-composicion/compositor.py --minutos 45 --raiz 396 --modo kumoi --semilla 864630 --caracter sin-cuenco,python3 03-composicion/capas.py zen 2740 audio/OBRA-021_capa.wav --semilla 864630 --densidad 1.4 && python3 03-composicion/ambiente.py audio/OBRA-021_396_kumoi.wav audio/OBRA-021_final.wav --fondo mar --nivel-fondo -7 --nivel-capa 2 --capa audio/OBRA-021_capa.wav,pendiente,,,,
+OBRA-022,Meditation Music · Zen Temple · 639 Hz · Long Resonance · 1 Hour,Música para meditar · Templo zen · 639 Hz · Resonancia larga · 1 hora,Meditar,zen,"Long Resonance · 1 Hour
+
+To accompany a meditation practice.
+Ambience: zen temple.
+
+Composed around a root of 639 Hz, in just intonation, yo mode.
+Breathing cycle: from 5.5 down to 4.5 breaths per minute, 40 % inhale / 60 % exhale.
+Original composition, synthesized from scratch, ambience included. No third-party samples.
+
+Chapters:
+00:00 [fill in after editing]","Resonancia larga · 1 hora
+
+Para acompañar una práctica de meditación.
+Ambiente: templo zen.
 
 Compuesta con raíz en 639 Hz, en entonación justa, modo yo.
-Para acompañar una práctica de meditación.
-
 Ciclo respiratorio: de 5.5 a 4.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
-Ambiente: templo zen, sintetizado, sin grabaciones.
-Composición original, sintetizada desde cero. Ninguna muestra procede de terceros.
-
-— English —
-Composed with a root of 639 Hz in just intonation, yo mode.
-To accompany a meditation practice.
-Original composition, synthesized from scratch. No third-party samples.
+Composición original, sintetizada desde cero: el ambiente también. Ninguna muestra procede de terceros.
 
 Capítulos:
-00:00 [completar tras el montaje]",60 MIN,#Meditación #MúsicaRelajante #639Hz,"639 hz, música 639 hz, música para meditar, meditation music, meditar, yo, música relajante, meditación, relajación, entonación justa, composición original, relaxing music, sleep music, singing bowls, just intonation",,,639,yo,medio,335798,60,python3 03-composicion/compositor.py --minutos 60 --raiz 639 --modo yo --semilla 335798 --caracter sin-cuenco,python3 03-composicion/capas.py zen 3640 audio/OBRA-022_capa.wav --semilla 335798 --densidad 1.4 && python3 03-composicion/ambiente.py audio/OBRA-022_639_yo.wav audio/OBRA-022_final.wav --fondo mar --nivel-fondo -7 --nivel-capa 2 --capa audio/OBRA-022_capa.wav,pendiente,,,,
-OBRA-023,Música para meditar · Templo zen · 528 Hz · Uno solo · 20 minutos,Meditar,zen,"Uno solo · 20 minutos
+00:00 [completar tras el montaje]",60 MIN,#MeditationMusic #Meditation #639Hz,"639 hz, música 639 hz, música para meditar, meditation music, meditar, yo, música relajante, meditación, relajación, entonación justa, composición original, relaxing music, sleep music, singing bowls, just intonation",,,639,yo,medio,335798,60,python3 03-composicion/compositor.py --minutos 60 --raiz 639 --modo yo --semilla 335798 --caracter sin-cuenco,python3 03-composicion/capas.py zen 3640 audio/OBRA-022_capa.wav --semilla 335798 --densidad 1.4 && python3 03-composicion/ambiente.py audio/OBRA-022_639_yo.wav audio/OBRA-022_final.wav --fondo mar --nivel-fondo -7 --nivel-capa 2 --capa audio/OBRA-022_capa.wav,pendiente,,,,
+OBRA-023,Meditation Music · Zen Temple · 528 Hz · Just One · 20 Minutes,Música para meditar · Templo zen · 528 Hz · Uno solo · 20 minutos,Meditar,zen,"Just One · 20 Minutes
+
+To accompany a meditation practice.
+Ambience: zen temple.
+
+Composed around a root of 528 Hz, in just intonation, shin mode.
+Breathing cycle: from 5.5 down to 4.5 breaths per minute, 40 % inhale / 60 % exhale.
+Original composition, synthesized from scratch, ambience included. No third-party samples.
+
+Chapters:
+00:00 [fill in after editing]","Uno solo · 20 minutos
+
+Para acompañar una práctica de meditación.
+Ambiente: templo zen.
 
 Compuesta con raíz en 528 Hz, en entonación justa, modo shin.
-Para acompañar una práctica de meditación.
-
 Ciclo respiratorio: de 5.5 a 4.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
-Ambiente: templo zen, sintetizado, sin grabaciones.
-Composición original, sintetizada desde cero. Ninguna muestra procede de terceros.
-
-— English —
-Composed with a root of 528 Hz in just intonation, shin mode.
-To accompany a meditation practice.
-Original composition, synthesized from scratch. No third-party samples.
+Composición original, sintetizada desde cero: el ambiente también. Ninguna muestra procede de terceros.
 
 Capítulos:
-00:00 [completar tras el montaje]",20 MIN,#Meditación #MúsicaRelajante #528Hz,"528 hz, música 528 hz, música para meditar, meditation music, meditar, shin, música relajante, meditación, relajación, entonación justa, composición original, relaxing music, sleep music, singing bowls, just intonation",,,528,shin,medio,299306,20,python3 03-composicion/compositor.py --minutos 20 --raiz 528 --modo shin --semilla 299306 --caracter sin-cuenco,python3 03-composicion/capas.py zen 1240 audio/OBRA-023_capa.wav --semilla 299306 --densidad 1.4 && python3 03-composicion/ambiente.py audio/OBRA-023_528_shin.wav audio/OBRA-023_final.wav --fondo mar --nivel-fondo -7 --nivel-capa 2 --capa audio/OBRA-023_capa.wav,pendiente,,,,
-OBRA-024,Música para meditar · Lluvia sobre hojas · 432 Hz · Lo que queda del sonido · 1 hora,Meditar,lluvia-tambor,"Lo que queda del sonido · 1 hora
+00:00 [completar tras el montaje]",20 MIN,#MeditationMusic #Meditation #528Hz,"528 hz, música 528 hz, música para meditar, meditation music, meditar, shin, música relajante, meditación, relajación, entonación justa, composición original, relaxing music, sleep music, singing bowls, just intonation",,,528,shin,medio,299306,20,python3 03-composicion/compositor.py --minutos 20 --raiz 528 --modo shin --semilla 299306 --caracter sin-cuenco,python3 03-composicion/capas.py zen 1240 audio/OBRA-023_capa.wav --semilla 299306 --densidad 1.4 && python3 03-composicion/ambiente.py audio/OBRA-023_528_shin.wav audio/OBRA-023_final.wav --fondo mar --nivel-fondo -7 --nivel-capa 2 --capa audio/OBRA-023_capa.wav,pendiente,,,,
+OBRA-024,Meditation Music · Rain on Leaves · 432 Hz · What Remains of Sound · 1 Hour,Música para meditar · Lluvia sobre hojas · 432 Hz · Lo que queda del sonido · 1 hora,Meditar,lluvia-tambor,"What Remains of Sound · 1 Hour
+
+To accompany a meditation practice.
+Ambience: rain on leaves.
+
+Composed around a root of 432 Hz, in just intonation, kumoi mode.
+Breathing cycle: from 5.5 down to 4.5 breaths per minute, 40 % inhale / 60 % exhale.
+Original composition, synthesized from scratch, ambience included. No third-party samples.
+
+Chapters:
+00:00 [fill in after editing]","Lo que queda del sonido · 1 hora
+
+Para acompañar una práctica de meditación.
+Ambiente: lluvia sobre hojas.
 
 Compuesta con raíz en 432 Hz, en entonación justa, modo kumoi.
-Para acompañar una práctica de meditación.
-
 Ciclo respiratorio: de 5.5 a 4.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
-Ambiente: lluvia sobre hojas, sintetizado, sin grabaciones.
-Composición original, sintetizada desde cero. Ninguna muestra procede de terceros.
-
-— English —
-Composed with a root of 432 Hz in just intonation, kumoi mode.
-To accompany a meditation practice.
-Original composition, synthesized from scratch. No third-party samples.
+Composición original, sintetizada desde cero: el ambiente también. Ninguna muestra procede de terceros.
 
 Capítulos:
-00:00 [completar tras el montaje]",60 MIN,#Meditación #MúsicaRelajante #432Hz,"432 hz, música 432 hz, música para meditar, meditation music, meditar, kumoi, música relajante, meditación, relajación, entonación justa, composición original, relaxing music, sleep music, singing bowls, just intonation",,,432,kumoi,medio,926202,60,python3 03-composicion/compositor.py --minutos 60 --raiz 432 --modo kumoi --semilla 926202 --caracter sin-cuenco,python3 03-composicion/capas.py ancestral 3640 audio/OBRA-024_capa.wav --semilla 926202 && python3 03-composicion/ambiente.py audio/OBRA-024_432_kumoi.wav audio/OBRA-024_final.wav --fondo fuego --nivel-capa 0 --nivel-obra -20 --capa audio/OBRA-024_capa.wav,pendiente,,,,
-OBRA-025,Música para soltar tensión · Mar y pájaros · 528 Hz · Raíz de sal · 1 hora,Soltar,mar-aves,"Raíz de sal · 1 hora
+00:00 [completar tras el montaje]",60 MIN,#MeditationMusic #Meditation #432Hz,"432 hz, música 432 hz, música para meditar, meditation music, meditar, kumoi, música relajante, meditación, relajación, entonación justa, composición original, relaxing music, sleep music, singing bowls, just intonation",,,432,kumoi,medio,926202,60,python3 03-composicion/compositor.py --minutos 60 --raiz 432 --modo kumoi --semilla 926202 --caracter sin-cuenco,python3 03-composicion/capas.py ancestral 3640 audio/OBRA-024_capa.wav --semilla 926202 && python3 03-composicion/ambiente.py audio/OBRA-024_432_kumoi.wav audio/OBRA-024_final.wav --fondo fuego --nivel-capa 0 --nivel-obra -20 --capa audio/OBRA-024_capa.wav,pendiente,,,,
+OBRA-025,Music to Release Tension · Ocean and Birds · 528 Hz · Salt Root · 1 Hour,Música para soltar tensión · Mar y pájaros · 528 Hz · Raíz de sal · 1 hora,Soltar,mar-aves,"Salt Root · 1 Hour
+
+To accompany some time to let go of the day's tension.
+Ambience: ocean and birds.
+
+Composed around a root of 528 Hz, in just intonation, hirajoshi mode.
+Breathing cycle: from 6.0 down to 4.5 breaths per minute, 40 % inhale / 60 % exhale.
+Original composition, synthesized from scratch, ambience included. No third-party samples.
+
+Chapters:
+00:00 [fill in after editing]","Raíz de sal · 1 hora
+
+Para acompañar un rato de soltar la tensión del día.
+Ambiente: mar y pájaros.
 
 Compuesta con raíz en 528 Hz, en entonación justa, modo hirajoshi.
-Para acompañar un rato de soltar la tensión del día.
-
 Ciclo respiratorio: de 6.0 a 4.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
-Ambiente: mar y pájaros, sintetizado, sin grabaciones.
-Composición original, sintetizada desde cero. Ninguna muestra procede de terceros.
-
-— English —
-Composed with a root of 528 Hz in just intonation, hirajoshi mode.
-To accompany some time to let go of the day's tension.
-Original composition, synthesized from scratch. No third-party samples.
+Composición original, sintetizada desde cero: el ambiente también. Ninguna muestra procede de terceros.
 
 Capítulos:
-00:00 [completar tras el montaje]",528 HZ,#MúsicaRelajante #528Hz,"528 hz, música 528 hz, música para soltar tensión, music to release tension, soltar, hirajoshi, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, sleep music, singing bowls, just intonation",,,528,hirajoshi,medio,454078,60,python3 03-composicion/compositor.py --minutos 60 --raiz 528 --modo hirajoshi --semilla 454078 --caracter sin-cuenco,python3 03-composicion/capas.py aves 3640 audio/OBRA-025_capa.wav --semilla 454078 && python3 03-composicion/ambiente.py audio/OBRA-025_528_hirajoshi.wav audio/OBRA-025_final.wav --fondo mar --nivel-capa -4 --capa audio/OBRA-025_capa.wav,pendiente,,,,
-OBRA-026,Música para soltar tensión · Olas del mar · 432 Hz · Agua quieta · 1 hora,Soltar,mar,"Agua quieta · 1 hora
+00:00 [completar tras el montaje]",528 HZ,#RelaxingMusic #Meditation #528Hz,"528 hz, música 528 hz, música para soltar tensión, music to release tension, soltar, hirajoshi, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, sleep music, singing bowls, just intonation",,,528,hirajoshi,medio,454078,60,python3 03-composicion/compositor.py --minutos 60 --raiz 528 --modo hirajoshi --semilla 454078 --caracter sin-cuenco,python3 03-composicion/capas.py aves 3640 audio/OBRA-025_capa.wav --semilla 454078 && python3 03-composicion/ambiente.py audio/OBRA-025_528_hirajoshi.wav audio/OBRA-025_final.wav --fondo mar --nivel-capa -4 --capa audio/OBRA-025_capa.wav,pendiente,,,,
+OBRA-026,Music to Release Tension · Ocean Waves · 432 Hz · Still Water · 1 Hour,Música para soltar tensión · Olas del mar · 432 Hz · Agua quieta · 1 hora,Soltar,mar,"Still Water · 1 Hour
+
+To accompany some time to let go of the day's tension.
+Ambience: ocean waves.
+
+Composed around a root of 432 Hz, in just intonation, kumoi mode.
+Breathing cycle: from 6.0 down to 4.5 breaths per minute, 40 % inhale / 60 % exhale.
+Original composition, synthesized from scratch, ambience included. No third-party samples.
+
+Chapters:
+00:00 [fill in after editing]","Agua quieta · 1 hora
+
+Para acompañar un rato de soltar la tensión del día.
+Ambiente: olas del mar.
 
 Compuesta con raíz en 432 Hz, en entonación justa, modo kumoi.
-Para acompañar un rato de soltar la tensión del día.
-
 Ciclo respiratorio: de 6.0 a 4.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
-Ambiente: olas del mar, sintetizado, sin grabaciones.
-Composición original, sintetizada desde cero. Ninguna muestra procede de terceros.
-
-— English —
-Composed with a root of 432 Hz in just intonation, kumoi mode.
-To accompany some time to let go of the day's tension.
-Original composition, synthesized from scratch. No third-party samples.
+Composición original, sintetizada desde cero: el ambiente también. Ninguna muestra procede de terceros.
 
 Capítulos:
-00:00 [completar tras el montaje]",432 HZ,#MúsicaRelajante #432Hz,"432 hz, música 432 hz, música para soltar tensión, music to release tension, soltar, kumoi, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, sleep music, singing bowls, just intonation",,,432,kumoi,medio,146597,60,python3 03-composicion/compositor.py --minutos 60 --raiz 432 --modo kumoi --semilla 146597 --caracter sin-cuenco,python3 03-composicion/ambiente.py audio/OBRA-026_432_kumoi.wav audio/OBRA-026_final.wav --fondo mar,pendiente,,,,
-OBRA-027,Música para soltar tensión · Lluvia sobre hojas · 396 Hz · Ceniza tibia · 1 hora,Soltar,lluvia-tambor,"Ceniza tibia · 1 hora
+00:00 [completar tras el montaje]",432 HZ,#RelaxingMusic #Meditation #432Hz,"432 hz, música 432 hz, música para soltar tensión, music to release tension, soltar, kumoi, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, sleep music, singing bowls, just intonation",,,432,kumoi,medio,146597,60,python3 03-composicion/compositor.py --minutos 60 --raiz 432 --modo kumoi --semilla 146597 --caracter sin-cuenco,python3 03-composicion/ambiente.py audio/OBRA-026_432_kumoi.wav audio/OBRA-026_final.wav --fondo mar,pendiente,,,,
+OBRA-027,Music to Release Tension · Rain on Leaves · 396 Hz · Warm Ash · 1 Hour,Música para soltar tensión · Lluvia sobre hojas · 396 Hz · Ceniza tibia · 1 hora,Soltar,lluvia-tambor,"Warm Ash · 1 Hour
+
+To accompany some time to let go of the day's tension.
+Ambience: rain on leaves.
+
+Composed around a root of 396 Hz, in just intonation, kumoi mode.
+Breathing cycle: from 6.0 down to 4.5 breaths per minute, 40 % inhale / 60 % exhale.
+Original composition, synthesized from scratch, ambience included. No third-party samples.
+
+Chapters:
+00:00 [fill in after editing]","Ceniza tibia · 1 hora
+
+Para acompañar un rato de soltar la tensión del día.
+Ambiente: lluvia sobre hojas.
 
 Compuesta con raíz en 396 Hz, en entonación justa, modo kumoi.
-Para acompañar un rato de soltar la tensión del día.
-
 Ciclo respiratorio: de 6.0 a 4.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
-Ambiente: lluvia sobre hojas, sintetizado, sin grabaciones.
-Composición original, sintetizada desde cero. Ninguna muestra procede de terceros.
-
-— English —
-Composed with a root of 396 Hz in just intonation, kumoi mode.
-To accompany some time to let go of the day's tension.
-Original composition, synthesized from scratch. No third-party samples.
+Composición original, sintetizada desde cero: el ambiente también. Ninguna muestra procede de terceros.
 
 Capítulos:
-00:00 [completar tras el montaje]",396 HZ,#MúsicaRelajante #396Hz,"396 hz, música 396 hz, música para soltar tensión, music to release tension, soltar, kumoi, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, sleep music, singing bowls, just intonation",,,396,kumoi,medio,338018,60,python3 03-composicion/compositor.py --minutos 60 --raiz 396 --modo kumoi --semilla 338018 --caracter sin-cuenco,python3 03-composicion/capas.py ancestral 3640 audio/OBRA-027_capa.wav --semilla 338018 && python3 03-composicion/ambiente.py audio/OBRA-027_396_kumoi.wav audio/OBRA-027_final.wav --fondo fuego --nivel-capa 0 --nivel-obra -20 --capa audio/OBRA-027_capa.wav,pendiente,,,,
-OBRA-028,Música para soltar tensión · Templo zen · 417 Hz · Puerta baja · 45 minutos,Soltar,zen,"Puerta baja · 45 minutos
+00:00 [completar tras el montaje]",396 HZ,#RelaxingMusic #Meditation #396Hz,"396 hz, música 396 hz, música para soltar tensión, music to release tension, soltar, kumoi, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, sleep music, singing bowls, just intonation",,,396,kumoi,medio,338018,60,python3 03-composicion/compositor.py --minutos 60 --raiz 396 --modo kumoi --semilla 338018 --caracter sin-cuenco,python3 03-composicion/capas.py ancestral 3640 audio/OBRA-027_capa.wav --semilla 338018 && python3 03-composicion/ambiente.py audio/OBRA-027_396_kumoi.wav audio/OBRA-027_final.wav --fondo fuego --nivel-capa 0 --nivel-obra -20 --capa audio/OBRA-027_capa.wav,pendiente,,,,
+OBRA-028,Music to Release Tension · Zen Temple · 417 Hz · Low Door · 45 Minutes,Música para soltar tensión · Templo zen · 417 Hz · Puerta baja · 45 minutos,Soltar,zen,"Low Door · 45 Minutes
+
+To accompany some time to let go of the day's tension.
+Ambience: zen temple.
+
+Composed around a root of 417 Hz, in just intonation, hirajoshi mode.
+Breathing cycle: from 6.0 down to 4.5 breaths per minute, 40 % inhale / 60 % exhale.
+Original composition, synthesized from scratch, ambience included. No third-party samples.
+
+Chapters:
+00:00 [fill in after editing]","Puerta baja · 45 minutos
+
+Para acompañar un rato de soltar la tensión del día.
+Ambiente: templo zen.
 
 Compuesta con raíz en 417 Hz, en entonación justa, modo hirajoshi.
-Para acompañar un rato de soltar la tensión del día.
-
 Ciclo respiratorio: de 6.0 a 4.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
-Ambiente: templo zen, sintetizado, sin grabaciones.
-Composición original, sintetizada desde cero. Ninguna muestra procede de terceros.
-
-— English —
-Composed with a root of 417 Hz in just intonation, hirajoshi mode.
-To accompany some time to let go of the day's tension.
-Original composition, synthesized from scratch. No third-party samples.
+Composición original, sintetizada desde cero: el ambiente también. Ninguna muestra procede de terceros.
 
 Capítulos:
-00:00 [completar tras el montaje]",417 HZ,#MúsicaRelajante #417Hz,"417 hz, música 417 hz, música para soltar tensión, music to release tension, soltar, hirajoshi, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, sleep music, singing bowls, just intonation",,,417,hirajoshi,medio,409966,45,python3 03-composicion/compositor.py --minutos 45 --raiz 417 --modo hirajoshi --semilla 409966 --caracter sin-cuenco,python3 03-composicion/capas.py zen 2740 audio/OBRA-028_capa.wav --semilla 409966 --densidad 1.4 && python3 03-composicion/ambiente.py audio/OBRA-028_417_hirajoshi.wav audio/OBRA-028_final.wav --fondo mar --nivel-fondo -7 --nivel-capa 2 --capa audio/OBRA-028_capa.wav,pendiente,,,,
-OBRA-029,Música para soltar tensión · Selva tropical · 639 Hz · Campo abierto · 1 hora,Soltar,selva,"Campo abierto · 1 hora
+00:00 [completar tras el montaje]",417 HZ,#RelaxingMusic #Meditation #417Hz,"417 hz, música 417 hz, música para soltar tensión, music to release tension, soltar, hirajoshi, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, sleep music, singing bowls, just intonation",,,417,hirajoshi,medio,409966,45,python3 03-composicion/compositor.py --minutos 45 --raiz 417 --modo hirajoshi --semilla 409966 --caracter sin-cuenco,python3 03-composicion/capas.py zen 2740 audio/OBRA-028_capa.wav --semilla 409966 --densidad 1.4 && python3 03-composicion/ambiente.py audio/OBRA-028_417_hirajoshi.wav audio/OBRA-028_final.wav --fondo mar --nivel-fondo -7 --nivel-capa 2 --capa audio/OBRA-028_capa.wav,pendiente,,,,
+OBRA-029,Music to Release Tension · Tropical Rainforest · 639 Hz · Open Field · 1 Hour,Música para soltar tensión · Selva tropical · 639 Hz · Campo abierto · 1 hora,Soltar,selva,"Open Field · 1 Hour
+
+To accompany some time to let go of the day's tension.
+Ambience: tropical rainforest.
+
+Composed around a root of 639 Hz, in just intonation, yo mode.
+Breathing cycle: from 6.0 down to 4.5 breaths per minute, 40 % inhale / 60 % exhale.
+Original composition, synthesized from scratch, ambience included. No third-party samples.
+
+Chapters:
+00:00 [fill in after editing]","Campo abierto · 1 hora
+
+Para acompañar un rato de soltar la tensión del día.
+Ambiente: selva tropical.
 
 Compuesta con raíz en 639 Hz, en entonación justa, modo yo.
-Para acompañar un rato de soltar la tensión del día.
-
 Ciclo respiratorio: de 6.0 a 4.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
-Ambiente: selva tropical, sintetizado, sin grabaciones.
-Composición original, sintetizada desde cero. Ninguna muestra procede de terceros.
-
-— English —
-Composed with a root of 639 Hz in just intonation, yo mode.
-To accompany some time to let go of the day's tension.
-Original composition, synthesized from scratch. No third-party samples.
+Composición original, sintetizada desde cero: el ambiente también. Ninguna muestra procede de terceros.
 
 Capítulos:
-00:00 [completar tras el montaje]",639 HZ,#MúsicaRelajante #639Hz,"639 hz, música 639 hz, música para soltar tensión, music to release tension, soltar, yo, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, sleep music, singing bowls, just intonation",,,639,yo,medio,133046,60,python3 03-composicion/compositor.py --minutos 60 --raiz 639 --modo yo --semilla 133046 --caracter sin-cuenco,python3 03-composicion/capas.py aves 3640 audio/OBRA-029_capa.wav --semilla 133046 --densidad 2 && python3 03-composicion/ambiente.py audio/OBRA-029_639_yo.wav audio/OBRA-029_final.wav --fondo selva --nivel-capa -2 --capa audio/OBRA-029_capa.wav,pendiente,,,,
-OBRA-030,Música para soltar tensión · Mar y pájaros · 741 Hz · Aire delgado · 45 minutos,Soltar,mar-aves,"Aire delgado · 45 minutos
+00:00 [completar tras el montaje]",639 HZ,#RelaxingMusic #Meditation #639Hz,"639 hz, música 639 hz, música para soltar tensión, music to release tension, soltar, yo, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, sleep music, singing bowls, just intonation",,,639,yo,medio,133046,60,python3 03-composicion/compositor.py --minutos 60 --raiz 639 --modo yo --semilla 133046 --caracter sin-cuenco,python3 03-composicion/capas.py aves 3640 audio/OBRA-029_capa.wav --semilla 133046 --densidad 2 && python3 03-composicion/ambiente.py audio/OBRA-029_639_yo.wav audio/OBRA-029_final.wav --fondo selva --nivel-capa -2 --capa audio/OBRA-029_capa.wav,pendiente,,,,
+OBRA-030,Music to Release Tension · Ocean and Birds · 741 Hz · Thin Air · 45 Minutes,Música para soltar tensión · Mar y pájaros · 741 Hz · Aire delgado · 45 minutos,Soltar,mar-aves,"Thin Air · 45 Minutes
+
+To accompany some time to let go of the day's tension.
+Ambience: ocean and birds.
+
+Composed around a root of 741 Hz, in just intonation, yo mode.
+Breathing cycle: from 6.0 down to 4.5 breaths per minute, 40 % inhale / 60 % exhale.
+Original composition, synthesized from scratch, ambience included. No third-party samples.
+
+Chapters:
+00:00 [fill in after editing]","Aire delgado · 45 minutos
+
+Para acompañar un rato de soltar la tensión del día.
+Ambiente: mar y pájaros.
 
 Compuesta con raíz en 741 Hz, en entonación justa, modo yo.
-Para acompañar un rato de soltar la tensión del día.
-
 Ciclo respiratorio: de 6.0 a 4.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
-Ambiente: mar y pájaros, sintetizado, sin grabaciones.
-Composición original, sintetizada desde cero. Ninguna muestra procede de terceros.
-
-— English —
-Composed with a root of 741 Hz in just intonation, yo mode.
-To accompany some time to let go of the day's tension.
-Original composition, synthesized from scratch. No third-party samples.
+Composición original, sintetizada desde cero: el ambiente también. Ninguna muestra procede de terceros.
 
 Capítulos:
-00:00 [completar tras el montaje]",741 HZ,#MúsicaRelajante #741Hz,"741 hz, música 741 hz, música para soltar tensión, music to release tension, soltar, yo, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, sleep music, singing bowls, just intonation",,,741,yo,medio,244487,45,python3 03-composicion/compositor.py --minutos 45 --raiz 741 --modo yo --semilla 244487 --caracter sin-cuenco,python3 03-composicion/capas.py aves 2740 audio/OBRA-030_capa.wav --semilla 244487 && python3 03-composicion/ambiente.py audio/OBRA-030_741_yo.wav audio/OBRA-030_final.wav --fondo mar --nivel-capa -4 --capa audio/OBRA-030_capa.wav,pendiente,,,,
-OBRA-031,Música para soltar tensión · Templo zen · 852 Hz · Última luz · 45 minutos,Soltar,zen,"Última luz · 45 minutos
+00:00 [completar tras el montaje]",741 HZ,#RelaxingMusic #Meditation #741Hz,"741 hz, música 741 hz, música para soltar tensión, music to release tension, soltar, yo, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, sleep music, singing bowls, just intonation",,,741,yo,medio,244487,45,python3 03-composicion/compositor.py --minutos 45 --raiz 741 --modo yo --semilla 244487 --caracter sin-cuenco,python3 03-composicion/capas.py aves 2740 audio/OBRA-030_capa.wav --semilla 244487 && python3 03-composicion/ambiente.py audio/OBRA-030_741_yo.wav audio/OBRA-030_final.wav --fondo mar --nivel-capa -4 --capa audio/OBRA-030_capa.wav,pendiente,,,,
+OBRA-031,Music to Release Tension · Zen Temple · 852 Hz · Last Light · 45 Minutes,Música para soltar tensión · Templo zen · 852 Hz · Última luz · 45 minutos,Soltar,zen,"Last Light · 45 Minutes
+
+To accompany some time to let go of the day's tension.
+Ambience: zen temple.
+
+Composed around a root of 852 Hz, in just intonation, hirajoshi mode.
+Breathing cycle: from 6.0 down to 4.5 breaths per minute, 40 % inhale / 60 % exhale.
+Original composition, synthesized from scratch, ambience included. No third-party samples.
+
+Chapters:
+00:00 [fill in after editing]","Última luz · 45 minutos
+
+Para acompañar un rato de soltar la tensión del día.
+Ambiente: templo zen.
 
 Compuesta con raíz en 852 Hz, en entonación justa, modo hirajoshi.
-Para acompañar un rato de soltar la tensión del día.
-
 Ciclo respiratorio: de 6.0 a 4.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
-Ambiente: templo zen, sintetizado, sin grabaciones.
-Composición original, sintetizada desde cero. Ninguna muestra procede de terceros.
-
-— English —
-Composed with a root of 852 Hz in just intonation, hirajoshi mode.
-To accompany some time to let go of the day's tension.
-Original composition, synthesized from scratch. No third-party samples.
+Composición original, sintetizada desde cero: el ambiente también. Ninguna muestra procede de terceros.
 
 Capítulos:
-00:00 [completar tras el montaje]",852 HZ,#MúsicaRelajante #852Hz,"852 hz, música 852 hz, música para soltar tensión, music to release tension, soltar, hirajoshi, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, sleep music, singing bowls, just intonation",,,852,hirajoshi,medio,288169,45,python3 03-composicion/compositor.py --minutos 45 --raiz 852 --modo hirajoshi --semilla 288169 --caracter sin-cuenco,python3 03-composicion/capas.py zen 2740 audio/OBRA-031_capa.wav --semilla 288169 --densidad 1.4 && python3 03-composicion/ambiente.py audio/OBRA-031_852_hirajoshi.wav audio/OBRA-031_final.wav --fondo mar --nivel-fondo -7 --nivel-capa 2 --capa audio/OBRA-031_capa.wav,pendiente,,,,
-OBRA-032,"Música para soltar tensión · Mar y pájaros · 528 Hz · Raíz de sal, larga · 3 horas",Soltar,mar-aves,"Raíz de sal, larga · 3 horas
+00:00 [completar tras el montaje]",852 HZ,#RelaxingMusic #Meditation #852Hz,"852 hz, música 852 hz, música para soltar tensión, music to release tension, soltar, hirajoshi, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, sleep music, singing bowls, just intonation",,,852,hirajoshi,medio,288169,45,python3 03-composicion/compositor.py --minutos 45 --raiz 852 --modo hirajoshi --semilla 288169 --caracter sin-cuenco,python3 03-composicion/capas.py zen 2740 audio/OBRA-031_capa.wav --semilla 288169 --densidad 1.4 && python3 03-composicion/ambiente.py audio/OBRA-031_852_hirajoshi.wav audio/OBRA-031_final.wav --fondo mar --nivel-fondo -7 --nivel-capa 2 --capa audio/OBRA-031_capa.wav,pendiente,,,,
+OBRA-032,"Music to Release Tension · Ocean and Birds · 528 Hz · Salt Root, Long · 3 Hours","Música para soltar tensión · Mar y pájaros · 528 Hz · Raíz de sal, larga · 3 horas",Soltar,mar-aves,"Salt Root, Long · 3 Hours
+
+To accompany some time to let go of the day's tension.
+Ambience: ocean and birds.
+
+Composed around a root of 528 Hz, in just intonation, hirajoshi mode.
+Breathing cycle: from 6.0 down to 4.5 breaths per minute, 40 % inhale / 60 % exhale.
+Original composition, synthesized from scratch, ambience included. No third-party samples.
+
+Chapters:
+00:00 [fill in after editing]","Raíz de sal, larga · 3 horas
+
+Para acompañar un rato de soltar la tensión del día.
+Ambiente: mar y pájaros.
 
 Compuesta con raíz en 528 Hz, en entonación justa, modo hirajoshi.
-Para acompañar un rato de soltar la tensión del día.
-
 Ciclo respiratorio: de 6.0 a 4.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
-Ambiente: mar y pájaros, sintetizado, sin grabaciones.
-Composición original, sintetizada desde cero. Ninguna muestra procede de terceros.
-
-— English —
-Composed with a root of 528 Hz in just intonation, hirajoshi mode.
-To accompany some time to let go of the day's tension.
-Original composition, synthesized from scratch. No third-party samples.
+Composición original, sintetizada desde cero: el ambiente también. Ninguna muestra procede de terceros.
 
 Capítulos:
-00:00 [completar tras el montaje]",528 HZ,#MúsicaRelajante #528Hz,"528 hz, música 528 hz, música para soltar tensión, music to release tension, soltar, hirajoshi, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, sleep music, singing bowls, just intonation",,,528,hirajoshi,medio,638156,180,python3 03-composicion/compositor.py --minutos 180 --raiz 528 --modo hirajoshi --semilla 638156 --caracter sin-cuenco,python3 03-composicion/capas.py aves 10840 audio/OBRA-032_capa.wav --semilla 638156 && python3 03-composicion/ambiente.py audio/OBRA-032_528_hirajoshi.wav audio/OBRA-032_final.wav --fondo mar --nivel-capa -4 --capa audio/OBRA-032_capa.wav,pendiente,,,,
-OBRA-033,Música para concentrarse · Selva tropical · 639 Hz · Mesa limpia · 2 horas,Concentración,selva,"Mesa limpia · 2 horas
+00:00 [completar tras el montaje]",528 HZ,#RelaxingMusic #Meditation #528Hz,"528 hz, música 528 hz, música para soltar tensión, music to release tension, soltar, hirajoshi, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, sleep music, singing bowls, just intonation",,,528,hirajoshi,medio,638156,180,python3 03-composicion/compositor.py --minutos 180 --raiz 528 --modo hirajoshi --semilla 638156 --caracter sin-cuenco,python3 03-composicion/capas.py aves 10840 audio/OBRA-032_capa.wav --semilla 638156 && python3 03-composicion/ambiente.py audio/OBRA-032_528_hirajoshi.wav audio/OBRA-032_final.wav --fondo mar --nivel-capa -4 --capa audio/OBRA-032_capa.wav,pendiente,,,,
+OBRA-033,Focus Music · Tropical Rainforest · 639 Hz · Clean Desk · 2 Hours,Música para concentrarse · Selva tropical · 639 Hz · Mesa limpia · 2 horas,Concentración,selva,"Clean Desk · 2 Hours
+
+To accompany work or study.
+Ambience: tropical rainforest.
+
+Composed around a root of 319.5 Hz, the low octave of 639 Hz, in just intonation, yo mode.
+Breathing cycle: from 6.0 down to 5.5 breaths per minute, 40 % inhale / 60 % exhale.
+Original composition, synthesized from scratch, ambience included. No third-party samples.
+
+Chapters:
+00:00 [fill in after editing]","Mesa limpia · 2 horas
+
+Para acompañar el trabajo o el estudio.
+Ambiente: selva tropical.
 
 Compuesta con raíz en 319.5 Hz, la octava grave de 639 Hz, en entonación justa, modo yo.
-Para acompañar el trabajo o el estudio.
-
 Ciclo respiratorio: de 6.0 a 5.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
-Ambiente: selva tropical, sintetizado, sin grabaciones.
-Composición original, sintetizada desde cero. Ninguna muestra procede de terceros.
-
-— English —
-Composed with a root of 639 Hz in just intonation, yo mode.
-To accompany work or study.
-Original composition, synthesized from scratch. No third-party samples.
+Composición original, sintetizada desde cero: el ambiente también. Ninguna muestra procede de terceros.
 
 Capítulos:
-00:00 [completar tras el montaje]",2 HORAS,#Concentración #MúsicaRelajante #639Hz,"639 hz, música 639 hz, música para concentrarse, focus music, concentración, yo, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, sleep music, singing bowls, just intonation",,,639,yo,grave,112334,120,python3 03-composicion/compositor.py --minutos 120 --raiz 639 --modo yo --semilla 112334 --caracter sin-cuenco --registro grave,python3 03-composicion/capas.py aves 7240 audio/OBRA-033_capa.wav --semilla 112334 --densidad 2 && python3 03-composicion/ambiente.py audio/OBRA-033_639_yo.wav audio/OBRA-033_final.wav --fondo selva --nivel-capa -2 --capa audio/OBRA-033_capa.wav,pendiente,,,,
-OBRA-034,Música para concentrarse · Mar y pájaros · 528 Hz · Tres horas · 3 horas,Concentración,mar-aves,"Tres horas · 3 horas
+00:00 [completar tras el montaje]",2 HOURS,#FocusMusic #Meditation #639Hz,"639 hz, música 639 hz, música para concentrarse, focus music, concentración, yo, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, sleep music, singing bowls, just intonation",,,639,yo,grave,112334,120,python3 03-composicion/compositor.py --minutos 120 --raiz 639 --modo yo --semilla 112334 --caracter sin-cuenco --registro grave,python3 03-composicion/capas.py aves 7240 audio/OBRA-033_capa.wav --semilla 112334 --densidad 2 && python3 03-composicion/ambiente.py audio/OBRA-033_639_yo.wav audio/OBRA-033_final.wav --fondo selva --nivel-capa -2 --capa audio/OBRA-033_capa.wav,pendiente,,,,
+OBRA-034,Focus Music · Ocean and Birds · 528 Hz · Three Hours · 3 Hours,Música para concentrarse · Mar y pájaros · 528 Hz · Tres horas · 3 horas,Concentración,mar-aves,"Three Hours · 3 Hours
+
+To accompany work or study.
+Ambience: ocean and birds.
+
+Composed around a root of 264 Hz, the low octave of 528 Hz, in just intonation, yo mode.
+Breathing cycle: from 6.0 down to 5.5 breaths per minute, 40 % inhale / 60 % exhale.
+Original composition, synthesized from scratch, ambience included. No third-party samples.
+
+Chapters:
+00:00 [fill in after editing]","Tres horas · 3 horas
+
+Para acompañar el trabajo o el estudio.
+Ambiente: mar y pájaros.
 
 Compuesta con raíz en 264 Hz, la octava grave de 528 Hz, en entonación justa, modo yo.
-Para acompañar el trabajo o el estudio.
-
 Ciclo respiratorio: de 6.0 a 5.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
-Ambiente: mar y pájaros, sintetizado, sin grabaciones.
-Composición original, sintetizada desde cero. Ninguna muestra procede de terceros.
-
-— English —
-Composed with a root of 528 Hz in just intonation, yo mode.
-To accompany work or study.
-Original composition, synthesized from scratch. No third-party samples.
+Composición original, sintetizada desde cero: el ambiente también. Ninguna muestra procede de terceros.
 
 Capítulos:
-00:00 [completar tras el montaje]",3 HORAS,#Concentración #MúsicaRelajante #528Hz,"528 hz, música 528 hz, música para concentrarse, focus music, concentración, yo, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, sleep music, singing bowls, just intonation",,,528,yo,grave,935486,180,python3 03-composicion/compositor.py --minutos 180 --raiz 528 --modo yo --semilla 935486 --caracter sin-cuenco --registro grave,python3 03-composicion/capas.py aves 10840 audio/OBRA-034_capa.wav --semilla 935486 && python3 03-composicion/ambiente.py audio/OBRA-034_528_yo.wav audio/OBRA-034_final.wav --fondo mar --nivel-capa -4 --capa audio/OBRA-034_capa.wav,pendiente,,,,
-OBRA-035,Música para concentrarse · Selva tropical · 741 Hz · Sin interrupciones · 2 horas,Concentración,selva,"Sin interrupciones · 2 horas
+00:00 [completar tras el montaje]",3 HOURS,#FocusMusic #Meditation #528Hz,"528 hz, música 528 hz, música para concentrarse, focus music, concentración, yo, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, sleep music, singing bowls, just intonation",,,528,yo,grave,935486,180,python3 03-composicion/compositor.py --minutos 180 --raiz 528 --modo yo --semilla 935486 --caracter sin-cuenco --registro grave,python3 03-composicion/capas.py aves 10840 audio/OBRA-034_capa.wav --semilla 935486 && python3 03-composicion/ambiente.py audio/OBRA-034_528_yo.wav audio/OBRA-034_final.wav --fondo mar --nivel-capa -4 --capa audio/OBRA-034_capa.wav,pendiente,,,,
+OBRA-035,Focus Music · Tropical Rainforest · 741 Hz · No Interruptions · 2 Hours,Música para concentrarse · Selva tropical · 741 Hz · Sin interrupciones · 2 horas,Concentración,selva,"No Interruptions · 2 Hours
+
+To accompany work or study.
+Ambience: tropical rainforest.
+
+Composed around a root of 370.5 Hz, the low octave of 741 Hz, in just intonation, yo mode.
+Breathing cycle: from 6.0 down to 5.5 breaths per minute, 40 % inhale / 60 % exhale.
+Original composition, synthesized from scratch, ambience included. No third-party samples.
+
+Chapters:
+00:00 [fill in after editing]","Sin interrupciones · 2 horas
+
+Para acompañar el trabajo o el estudio.
+Ambiente: selva tropical.
 
 Compuesta con raíz en 370.5 Hz, la octava grave de 741 Hz, en entonación justa, modo yo.
-Para acompañar el trabajo o el estudio.
-
 Ciclo respiratorio: de 6.0 a 5.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
-Ambiente: selva tropical, sintetizado, sin grabaciones.
-Composición original, sintetizada desde cero. Ninguna muestra procede de terceros.
-
-— English —
-Composed with a root of 741 Hz in just intonation, yo mode.
-To accompany work or study.
-Original composition, synthesized from scratch. No third-party samples.
+Composición original, sintetizada desde cero: el ambiente también. Ninguna muestra procede de terceros.
 
 Capítulos:
-00:00 [completar tras el montaje]",2 HORAS,#Concentración #MúsicaRelajante #741Hz,"741 hz, música 741 hz, música para concentrarse, focus music, concentración, yo, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, sleep music, singing bowls, just intonation",,,741,yo,grave,74636,120,python3 03-composicion/compositor.py --minutos 120 --raiz 741 --modo yo --semilla 74636 --caracter sin-cuenco --registro grave,python3 03-composicion/capas.py aves 7240 audio/OBRA-035_capa.wav --semilla 74636 --densidad 2 && python3 03-composicion/ambiente.py audio/OBRA-035_741_yo.wav audio/OBRA-035_final.wav --fondo selva --nivel-capa -2 --capa audio/OBRA-035_capa.wav,pendiente,,,,
-OBRA-036,Música para concentrarse · Mar y pájaros · 852 Hz · Luz de mañana · 90 minutos,Concentración,mar-aves,"Luz de mañana · 90 minutos
+00:00 [completar tras el montaje]",2 HOURS,#FocusMusic #Meditation #741Hz,"741 hz, música 741 hz, música para concentrarse, focus music, concentración, yo, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, sleep music, singing bowls, just intonation",,,741,yo,grave,74636,120,python3 03-composicion/compositor.py --minutos 120 --raiz 741 --modo yo --semilla 74636 --caracter sin-cuenco --registro grave,python3 03-composicion/capas.py aves 7240 audio/OBRA-035_capa.wav --semilla 74636 --densidad 2 && python3 03-composicion/ambiente.py audio/OBRA-035_741_yo.wav audio/OBRA-035_final.wav --fondo selva --nivel-capa -2 --capa audio/OBRA-035_capa.wav,pendiente,,,,
+OBRA-036,Focus Music · Ocean and Birds · 852 Hz · Morning Light · 90 Minutes,Música para concentrarse · Mar y pájaros · 852 Hz · Luz de mañana · 90 minutos,Concentración,mar-aves,"Morning Light · 90 Minutes
+
+To accompany work or study.
+Ambience: ocean and birds.
+
+Composed around a root of 426 Hz, the low octave of 852 Hz, in just intonation, yo mode.
+Breathing cycle: from 6.0 down to 5.5 breaths per minute, 40 % inhale / 60 % exhale.
+Original composition, synthesized from scratch, ambience included. No third-party samples.
+
+Chapters:
+00:00 [fill in after editing]","Luz de mañana · 90 minutos
+
+Para acompañar el trabajo o el estudio.
+Ambiente: mar y pájaros.
 
 Compuesta con raíz en 426 Hz, la octava grave de 852 Hz, en entonación justa, modo yo.
-Para acompañar el trabajo o el estudio.
-
 Ciclo respiratorio: de 6.0 a 5.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
-Ambiente: mar y pájaros, sintetizado, sin grabaciones.
-Composición original, sintetizada desde cero. Ninguna muestra procede de terceros.
-
-— English —
-Composed with a root of 852 Hz in just intonation, yo mode.
-To accompany work or study.
-Original composition, synthesized from scratch. No third-party samples.
+Composición original, sintetizada desde cero: el ambiente también. Ninguna muestra procede de terceros.
 
 Capítulos:
-00:00 [completar tras el montaje]",90 MIN,#Concentración #MúsicaRelajante #852Hz,"852 hz, música 852 hz, música para concentrarse, focus music, concentración, yo, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, sleep music, singing bowls, just intonation",,,852,yo,grave,903477,90,python3 03-composicion/compositor.py --minutos 90 --raiz 852 --modo yo --semilla 903477 --caracter sin-cuenco --registro grave,python3 03-composicion/capas.py aves 5440 audio/OBRA-036_capa.wav --semilla 903477 && python3 03-composicion/ambiente.py audio/OBRA-036_852_yo.wav audio/OBRA-036_final.wav --fondo mar --nivel-capa -4 --capa audio/OBRA-036_capa.wav,pendiente,,,,
-OBRA-037,Música para concentrarse · Selva tropical · 432 Hz · Trabajo lento · 2 horas,Concentración,selva,"Trabajo lento · 2 horas
+00:00 [completar tras el montaje]",90 MIN,#FocusMusic #Meditation #852Hz,"852 hz, música 852 hz, música para concentrarse, focus music, concentración, yo, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, sleep music, singing bowls, just intonation",,,852,yo,grave,903477,90,python3 03-composicion/compositor.py --minutos 90 --raiz 852 --modo yo --semilla 903477 --caracter sin-cuenco --registro grave,python3 03-composicion/capas.py aves 5440 audio/OBRA-036_capa.wav --semilla 903477 && python3 03-composicion/ambiente.py audio/OBRA-036_852_yo.wav audio/OBRA-036_final.wav --fondo mar --nivel-capa -4 --capa audio/OBRA-036_capa.wav,pendiente,,,,
+OBRA-037,Focus Music · Tropical Rainforest · 432 Hz · Slow Work · 2 Hours,Música para concentrarse · Selva tropical · 432 Hz · Trabajo lento · 2 horas,Concentración,selva,"Slow Work · 2 Hours
+
+To accompany work or study.
+Ambience: tropical rainforest.
+
+Composed around a root of 216 Hz, the low octave of 432 Hz, in just intonation, yo mode.
+Breathing cycle: from 6.0 down to 5.5 breaths per minute, 40 % inhale / 60 % exhale.
+Original composition, synthesized from scratch, ambience included. No third-party samples.
+
+Chapters:
+00:00 [fill in after editing]","Trabajo lento · 2 horas
+
+Para acompañar el trabajo o el estudio.
+Ambiente: selva tropical.
 
 Compuesta con raíz en 216 Hz, la octava grave de 432 Hz, en entonación justa, modo yo.
-Para acompañar el trabajo o el estudio.
-
 Ciclo respiratorio: de 6.0 a 5.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
-Ambiente: selva tropical, sintetizado, sin grabaciones.
-Composición original, sintetizada desde cero. Ninguna muestra procede de terceros.
-
-— English —
-Composed with a root of 432 Hz in just intonation, yo mode.
-To accompany work or study.
-Original composition, synthesized from scratch. No third-party samples.
+Composición original, sintetizada desde cero: el ambiente también. Ninguna muestra procede de terceros.
 
 Capítulos:
-00:00 [completar tras el montaje]",2 HORAS,#Concentración #MúsicaRelajante #432Hz,"432 hz, música 432 hz, música para concentrarse, focus music, concentración, yo, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, sleep music, singing bowls, just intonation",,,432,yo,grave,718809,120,python3 03-composicion/compositor.py --minutos 120 --raiz 432 --modo yo --semilla 718809 --caracter sin-cuenco --registro grave,python3 03-composicion/capas.py aves 7240 audio/OBRA-037_capa.wav --semilla 718809 --densidad 2 && python3 03-composicion/ambiente.py audio/OBRA-037_432_yo.wav audio/OBRA-037_final.wav --fondo selva --nivel-capa -2 --capa audio/OBRA-037_capa.wav,pendiente,,,,
-OBRA-038,Música para concentrarse · Olas del mar · 528 Hz · Una sola cosa · 2 horas,Concentración,mar,"Una sola cosa · 2 horas
+00:00 [completar tras el montaje]",2 HOURS,#FocusMusic #Meditation #432Hz,"432 hz, música 432 hz, música para concentrarse, focus music, concentración, yo, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, sleep music, singing bowls, just intonation",,,432,yo,grave,718809,120,python3 03-composicion/compositor.py --minutos 120 --raiz 432 --modo yo --semilla 718809 --caracter sin-cuenco --registro grave,python3 03-composicion/capas.py aves 7240 audio/OBRA-037_capa.wav --semilla 718809 --densidad 2 && python3 03-composicion/ambiente.py audio/OBRA-037_432_yo.wav audio/OBRA-037_final.wav --fondo selva --nivel-capa -2 --capa audio/OBRA-037_capa.wav,pendiente,,,,
+OBRA-038,Focus Music · Ocean Waves · 528 Hz · One Thing · 2 Hours,Música para concentrarse · Olas del mar · 528 Hz · Una sola cosa · 2 horas,Concentración,mar,"One Thing · 2 Hours
+
+To accompany work or study.
+Ambience: ocean waves.
+
+Composed around a root of 264 Hz, the low octave of 528 Hz, in just intonation, shin mode.
+Breathing cycle: from 6.0 down to 5.5 breaths per minute, 40 % inhale / 60 % exhale.
+Original composition, synthesized from scratch, ambience included. No third-party samples.
+
+Chapters:
+00:00 [fill in after editing]","Una sola cosa · 2 horas
+
+Para acompañar el trabajo o el estudio.
+Ambiente: olas del mar.
 
 Compuesta con raíz en 264 Hz, la octava grave de 528 Hz, en entonación justa, modo shin.
-Para acompañar el trabajo o el estudio.
-
 Ciclo respiratorio: de 6.0 a 5.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
-Ambiente: olas del mar, sintetizado, sin grabaciones.
-Composición original, sintetizada desde cero. Ninguna muestra procede de terceros.
-
-— English —
-Composed with a root of 528 Hz in just intonation, shin mode.
-To accompany work or study.
-Original composition, synthesized from scratch. No third-party samples.
+Composición original, sintetizada desde cero: el ambiente también. Ninguna muestra procede de terceros.
 
 Capítulos:
-00:00 [completar tras el montaje]",2 HORAS,#Concentración #MúsicaRelajante #528Hz,"528 hz, música 528 hz, música para concentrarse, focus music, concentración, shin, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, sleep music, singing bowls, just intonation",,,528,shin,grave,203246,120,python3 03-composicion/compositor.py --minutos 120 --raiz 528 --modo shin --semilla 203246 --caracter sin-cuenco --registro grave,python3 03-composicion/ambiente.py audio/OBRA-038_528_shin.wav audio/OBRA-038_final.wav --fondo mar,pendiente,,,,
-OBRA-039,Música para concentrarse · Selva tropical · 639 Hz · Ventana abierta · 90 minutos,Concentración,selva,"Ventana abierta · 90 minutos
+00:00 [completar tras el montaje]",2 HOURS,#FocusMusic #Meditation #528Hz,"528 hz, música 528 hz, música para concentrarse, focus music, concentración, shin, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, sleep music, singing bowls, just intonation",,,528,shin,grave,203246,120,python3 03-composicion/compositor.py --minutos 120 --raiz 528 --modo shin --semilla 203246 --caracter sin-cuenco --registro grave,python3 03-composicion/ambiente.py audio/OBRA-038_528_shin.wav audio/OBRA-038_final.wav --fondo mar,pendiente,,,,
+OBRA-039,Focus Music · Tropical Rainforest · 639 Hz · Open Window · 90 Minutes,Música para concentrarse · Selva tropical · 639 Hz · Ventana abierta · 90 minutos,Concentración,selva,"Open Window · 90 Minutes
+
+To accompany work or study.
+Ambience: tropical rainforest.
+
+Composed around a root of 319.5 Hz, the low octave of 639 Hz, in just intonation, yo mode.
+Breathing cycle: from 6.0 down to 5.5 breaths per minute, 40 % inhale / 60 % exhale.
+Original composition, synthesized from scratch, ambience included. No third-party samples.
+
+Chapters:
+00:00 [fill in after editing]","Ventana abierta · 90 minutos
+
+Para acompañar el trabajo o el estudio.
+Ambiente: selva tropical.
 
 Compuesta con raíz en 319.5 Hz, la octava grave de 639 Hz, en entonación justa, modo yo.
-Para acompañar el trabajo o el estudio.
-
 Ciclo respiratorio: de 6.0 a 5.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
-Ambiente: selva tropical, sintetizado, sin grabaciones.
-Composición original, sintetizada desde cero. Ninguna muestra procede de terceros.
-
-— English —
-Composed with a root of 639 Hz in just intonation, yo mode.
-To accompany work or study.
-Original composition, synthesized from scratch. No third-party samples.
+Composición original, sintetizada desde cero: el ambiente también. Ninguna muestra procede de terceros.
 
 Capítulos:
-00:00 [completar tras el montaje]",90 MIN,#Concentración #MúsicaRelajante #639Hz,"639 hz, música 639 hz, música para concentrarse, focus music, concentración, yo, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, sleep music, singing bowls, just intonation",,,639,yo,grave,281608,90,python3 03-composicion/compositor.py --minutos 90 --raiz 639 --modo yo --semilla 281608 --caracter sin-cuenco --registro grave,python3 03-composicion/capas.py aves 5440 audio/OBRA-039_capa.wav --semilla 281608 --densidad 2 && python3 03-composicion/ambiente.py audio/OBRA-039_639_yo.wav audio/OBRA-039_final.wav --fondo selva --nivel-capa -2 --capa audio/OBRA-039_capa.wav,pendiente,,,,
-OBRA-040,Música para concentrarse · Mar y pájaros · 741 Hz · Hasta terminar · 3 horas,Concentración,mar-aves,"Hasta terminar · 3 horas
+00:00 [completar tras el montaje]",90 MIN,#FocusMusic #Meditation #639Hz,"639 hz, música 639 hz, música para concentrarse, focus music, concentración, yo, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, sleep music, singing bowls, just intonation",,,639,yo,grave,281608,90,python3 03-composicion/compositor.py --minutos 90 --raiz 639 --modo yo --semilla 281608 --caracter sin-cuenco --registro grave,python3 03-composicion/capas.py aves 5440 audio/OBRA-039_capa.wav --semilla 281608 --densidad 2 && python3 03-composicion/ambiente.py audio/OBRA-039_639_yo.wav audio/OBRA-039_final.wav --fondo selva --nivel-capa -2 --capa audio/OBRA-039_capa.wav,pendiente,,,,
+OBRA-040,Focus Music · Ocean and Birds · 741 Hz · Until It's Done · 3 Hours,Música para concentrarse · Mar y pájaros · 741 Hz · Hasta terminar · 3 horas,Concentración,mar-aves,"Until It's Done · 3 Hours
+
+To accompany work or study.
+Ambience: ocean and birds.
+
+Composed around a root of 370.5 Hz, the low octave of 741 Hz, in just intonation, yo mode.
+Breathing cycle: from 6.0 down to 5.5 breaths per minute, 40 % inhale / 60 % exhale.
+Original composition, synthesized from scratch, ambience included. No third-party samples.
+
+Chapters:
+00:00 [fill in after editing]","Hasta terminar · 3 horas
+
+Para acompañar el trabajo o el estudio.
+Ambiente: mar y pájaros.
 
 Compuesta con raíz en 370.5 Hz, la octava grave de 741 Hz, en entonación justa, modo yo.
-Para acompañar el trabajo o el estudio.
-
 Ciclo respiratorio: de 6.0 a 5.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
-Ambiente: mar y pájaros, sintetizado, sin grabaciones.
-Composición original, sintetizada desde cero. Ninguna muestra procede de terceros.
-
-— English —
-Composed with a root of 741 Hz in just intonation, yo mode.
-To accompany work or study.
-Original composition, synthesized from scratch. No third-party samples.
+Composición original, sintetizada desde cero: el ambiente también. Ninguna muestra procede de terceros.
 
 Capítulos:
-00:00 [completar tras el montaje]",3 HORAS,#Concentración #MúsicaRelajante #741Hz,"741 hz, música 741 hz, música para concentrarse, focus music, concentración, yo, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, sleep music, singing bowls, just intonation",,,741,yo,grave,883876,180,python3 03-composicion/compositor.py --minutos 180 --raiz 741 --modo yo --semilla 883876 --caracter sin-cuenco --registro grave,python3 03-composicion/capas.py aves 10840 audio/OBRA-040_capa.wav --semilla 883876 && python3 03-composicion/ambiente.py audio/OBRA-040_741_yo.wav audio/OBRA-040_final.wav --fondo mar --nivel-capa -4 --capa audio/OBRA-040_capa.wav,pendiente,,,,
+00:00 [completar tras el montaje]",3 HOURS,#FocusMusic #Meditation #741Hz,"741 hz, música 741 hz, música para concentrarse, focus music, concentración, yo, música relajante, meditación, relajación, entonación justa, composición original, meditation music, relaxing music, sleep music, singing bowls, just intonation",,,741,yo,grave,883876,180,python3 03-composicion/compositor.py --minutos 180 --raiz 741 --modo yo --semilla 883876 --caracter sin-cuenco --registro grave,python3 03-composicion/capas.py aves 10840 audio/OBRA-040_capa.wav --semilla 883876 && python3 03-composicion/ambiente.py audio/OBRA-040_741_yo.wav audio/OBRA-040_final.wav --fondo mar --nivel-capa -4 --capa audio/OBRA-040_capa.wav,pendiente,,,,

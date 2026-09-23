@@ -41,20 +41,22 @@ for linea in open(MD, encoding="utf-8"):
     if m and m.group(1) in PILARES:
         pilar_actual = PILARES[m.group(1)]
         continue
-    m = re.match(r"^\|\s*(\d+)\s*\|\s*([^|]+?)\s*\|\s*(\d+)\s*\|\s*(\w+)\s*\|\s*(\d+) min\s*\|\s*([\w-]+)\s*\|", linea)
+    m = re.match(r"^\|\s*(\d+)\s*\|\s*([^|]+?)\s*\|\s*([^|]+?)\s*\|\s*(\d+)\s*\|\s*(\w+)\s*\|\s*(\d+) min\s*\|\s*([\w-]+)\s*\|", linea)
     if m and pilar_actual:
-        obras.append({"n": int(m.group(1)), "nombre": m.group(2), "raiz": int(m.group(3)),
-                      "modo": m.group(4), "dur": int(m.group(5)), "pilar": pilar_actual,
-                      "ambiente": m.group(6)})
+        obras.append({"n": int(m.group(1)), "nombre": m.group(2), "name": m.group(3),
+                      "raiz": int(m.group(4)), "modo": m.group(5), "dur": int(m.group(6)),
+                      "pilar": pilar_actual, "ambiente": m.group(7)})
 assert len(obras) == 40, f"se esperaban 40 obras, se encontraron {len(obras)}"
 
 # --- Derivar los campos ---
+# Idioma principal: INGLÉS (23/09). El español va como traducción del título y
+# la descripción, que YouTube muestra a quien tiene el idioma en español.
 CLAVE = {  # palabra clave de búsqueda por intención, en los dos idiomas
-    "Dormir":        ("Música para dormir", "Sleep music"),
-    "Ansiedad":      ("Música para momentos de ansiedad", "Music for anxiety"),
-    "Meditar":       ("Música para meditar", "Meditation music"),
-    "Soltar":        ("Música para soltar tensión", "Music to release tension"),
-    "Concentración": ("Música para concentrarse", "Focus music"),
+    "Dormir":        ("Música para dormir", "Sleep Music"),
+    "Ansiedad":      ("Música para momentos de ansiedad", "Music for Anxiety"),
+    "Meditar":       ("Música para meditar", "Meditation Music"),
+    "Soltar":        ("Música para soltar tensión", "Music to Release Tension"),
+    "Concentración": ("Música para concentrarse", "Focus Music"),
 }
 RESP = {"Dormir": (4.5, 3.5), "Ansiedad": (6.0, 4.5), "Meditar": (5.5, 4.5),
         "Soltar": (6.0, 4.5), "Concentración": (6.0, 5.5)}
@@ -62,13 +64,13 @@ RESP = {"Dormir": (4.5, 3.5), "Ansiedad": (6.0, 4.5), "Meditar": (5.5, 4.5),
 # Los cinco ambientes aprobados en escucha: cómo se llaman en el título y con
 # qué parámetros se arma cada uno (ver 03-composicion/sonido-ambiente.md).
 AMBIENTES = {
-    "mar":           ("Olas del mar", "Ocean waves", None, "--fondo mar"),
-    "mar-aves":      ("Mar y pájaros", "Ocean and birds", "aves", "--fondo mar --nivel-capa -4"),
-    "zen":           ("Templo zen", "Zen temple", "zen",
+    "mar":           ("Olas del mar", "Ocean Waves", None, "--fondo mar"),
+    "mar-aves":      ("Mar y pájaros", "Ocean and Birds", "aves", "--fondo mar --nivel-capa -4"),
+    "zen":           ("Templo zen", "Zen Temple", "zen",
                       "--fondo mar --nivel-fondo -7 --nivel-capa 2"),
-    "selva":         ("Selva tropical", "Tropical rainforest", "aves",
+    "selva":         ("Selva tropical", "Tropical Rainforest", "aves",
                       "--fondo selva --nivel-capa -2"),
-    "lluvia-tambor": ("Lluvia sobre hojas", "Rain on leaves", "ancestral",
+    "lluvia-tambor": ("Lluvia sobre hojas", "Rain on Leaves", "ancestral",
                       "--fondo fuego --nivel-capa 0 --nivel-obra -20"),
 }
 DENSIDAD_CAPA = {"selva": " --densidad 2", "zen": " --densidad 1.4"}
@@ -105,6 +107,12 @@ def dur_txt(m):
         return f"{h} hora" if h == 1 else f"{h} horas"
     return f"{m} minutos"
 
+def dur_en(m):
+    if m >= 60 and m % 60 == 0:
+        h = m // 60
+        return f"{h} Hour" if h == 1 else f"{h} Hours"
+    return f"{m} Minutes"
+
 def semilla(o):
     """Semilla estable derivada del nombre: la misma obra da siempre el mismo audio."""
     return int(hashlib.sha256(o["nombre"].encode()).hexdigest()[:6], 16) % 999_999 + 1
@@ -115,9 +123,10 @@ def miniatura(o):
     if o["pilar"] in ("Ansiedad", "Meditar"):
         return f'{o["dur"]} MIN'
     h = o["dur"] // 60
-    return f"{h} HORAS" if h > 1 else f'{o["dur"]} MIN'
+    return f"{h} HOURS" if h > 1 else f'{o["dur"]} MIN'
 
-def descripcion(o):
+def descripcion_es(o):
+    """La traducción al español. Se carga en YouTube como traducción del video."""
     ri, rf = RESP[o["pilar"]]
     reg = REGISTRO[o["pilar"]]
     raiz_real = o["raiz"] * FACTOR[reg]
@@ -127,18 +136,33 @@ def descripcion(o):
                  if reg == "grave" else f'raíz en {o["raiz"]} Hz')
     return (
         f'{o["nombre"]} · {dur_txt(o["dur"])}\n\n'
+        f'{PROPOSITO[o["pilar"]]}\n'
+        f'Ambiente: {AMBIENTES[o["ambiente"]][0].lower()}.\n\n'
         f'Compuesta con {afinacion}, en entonación justa, modo {o["modo"]}.\n'
-        f'{PROPOSITO[o["pilar"]]}\n\n'
         f'Ciclo respiratorio: de {ri:.1f} a {rf:.1f} respiraciones por minuto, '
         f'inhalar 40 % / exhalar 60 %.\n'
-        f'Ambiente: {AMBIENTES[o["ambiente"]][0].lower()}, sintetizado, sin grabaciones.\n'
-        f'Composición original, sintetizada desde cero. '
+        f'Composición original, sintetizada desde cero: el ambiente también. '
         f'Ninguna muestra procede de terceros.\n\n'
-        f'— English —\n'
-        f'Composed with a root of {o["raiz"]} Hz in just intonation, {o["modo"]} mode.\n'
-        f'{PROPOSITO_EN[o["pilar"]]}\n'
-        f'Original composition, synthesized from scratch. No third-party samples.\n\n'
         f'Capítulos:\n00:00 [completar tras el montaje]'
+    )
+
+def descripcion(o):
+    """La descripción principal, en inglés."""
+    ri, rf = RESP[o["pilar"]]
+    reg = REGISTRO[o["pilar"]]
+    raiz_real = o["raiz"] * FACTOR[reg]
+    tuning = (f'root of {round(raiz_real, 1):g} Hz, the low octave of {o["raiz"]} Hz'
+              if reg == "grave" else f'root of {o["raiz"]} Hz')
+    return (
+        f'{o["name"]} · {dur_en(o["dur"])}\n\n'
+        f'{PROPOSITO_EN[o["pilar"]]}\n'
+        f'Ambience: {AMBIENTES[o["ambiente"]][1].lower()}.\n\n'
+        f'Composed around a {tuning}, in just intonation, {o["modo"]} mode.\n'
+        f'Breathing cycle: from {ri:.1f} down to {rf:.1f} breaths per minute, '
+        f'40 % inhale / 60 % exhale.\n'
+        f'Original composition, synthesized from scratch, ambience included. '
+        f'No third-party samples.\n\n'
+        f'Chapters:\n00:00 [fill in after editing]'
     )
 
 def etiquetas(o):
@@ -147,16 +171,16 @@ def etiquetas(o):
     return ", ".join(dict.fromkeys(e))
 
 def hashtags(o):
-    base = {"Dormir": "#MúsicaParaDormir", "Ansiedad": "#Relajación",
-            "Meditar": "#Meditación", "Soltar": "#MúsicaRelajante",
-            "Concentración": "#Concentración"}[o["pilar"]]
+    base = {"Dormir": "#SleepMusic", "Ansiedad": "#RelaxingMusic",
+            "Meditar": "#MeditationMusic", "Soltar": "#RelaxingMusic",
+            "Concentración": "#FocusMusic"}[o["pilar"]]
     # dict.fromkeys quita duplicados conservando el orden: sin esto, el pilar
     # Frecuencias repetía la etiqueta de la raíz dos veces.
-    return " ".join(dict.fromkeys([base, "#MúsicaRelajante", f'#{o["raiz"]}Hz']))
+    return " ".join(dict.fromkeys([base, "#Meditation", f'#{o["raiz"]}Hz']))
 
 COLS = [
-    ("id", 11), ("titulo", 70), ("tema", 13), ("ambiente", 14),
-    ("descripcion_optimizada", 60),
+    ("id", 11), ("titulo", 70), ("titulo_es", 70), ("tema", 13), ("ambiente", 14),
+    ("descripcion_optimizada", 60), ("descripcion_es", 60),
     ("titulo_miniatura", 17), ("hashtags", 34), ("etiquetas", 60),
     ("imagen_miniatura", 24), ("url_video", 30),
     ("raiz_hz", 9), ("modo", 12), ("registro", 11), ("semilla", 10),
@@ -190,11 +214,14 @@ def construir_filas():
         s = semilla(o)
         filas.append({
             "id": f'OBRA-{o["n"]:03d}',
-            "titulo": (f'{CLAVE[o["pilar"]][0]} · {AMBIENTES[o["ambiente"]][0]} · '
-                       f'{o["raiz"]} Hz · {o["nombre"]} · {dur_txt(o["dur"])}'),
+            "titulo": (f'{CLAVE[o["pilar"]][1]} · {AMBIENTES[o["ambiente"]][1]} · '
+                       f'{o["raiz"]} Hz · {o["name"]} · {dur_en(o["dur"])}'),
+            "titulo_es": (f'{CLAVE[o["pilar"]][0]} · {AMBIENTES[o["ambiente"]][0]} · '
+                          f'{o["raiz"]} Hz · {o["nombre"]} · {dur_txt(o["dur"])}'),
             "tema": o["pilar"],
             "ambiente": o["ambiente"],
             "descripcion_optimizada": descripcion(o),
+            "descripcion_es": descripcion_es(o),
             "titulo_miniatura": miniatura(o),
             "hashtags": hashtags(o),
             "etiquetas": etiquetas(o),
@@ -330,6 +357,8 @@ texto = [
     ("", None),
     ("id", "Identificador fijo de la obra. No cambia nunca."),
     ("titulo", "Título de YouTube: palabra clave · raíz · nombre propio · duración."),
+    ("titulo / descripcion_optimizada", "En inglés, el idioma principal del canal."),
+    ("titulo_es / descripcion_es", "La traducción al español. Se carga en YouTube Studio → Subtítulos → Título y descripción."),
     ("tema", "Intención: qué acompaña la obra. Determina la palabra clave y el ciclo respiratorio."),
     ("ambiente", "Ambiente aprobado en escucha: mar, mar-aves, zen, selva o lluvia-tambor."),
     ("comando_ambiente", "Segundo paso: envuelve la obra compuesta en su ambiente."),

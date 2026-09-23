@@ -4,36 +4,42 @@ Todo listo para pegar en **YouTube Studio → Personalización**.
 
 ## Descripción del canal
 
-Límite 1.000 caracteres. Los primeros ~150 son los que aparecen en la búsqueda y en la
-vista previa del canal: por eso arrancan con lo que la gente busca.
+**Idioma principal: inglés** (decidido el 23/09), con el español abajo. Límite 1.000
+caracteres; los primeros ~150 son los que aparecen en la búsqueda.
 
 ```
-Música para dormir, meditar, calmar la ansiedad y concentrarte. Obras largas de música de meditación con olas del mar, lluvia, selva tropical y templo zen.
+Sleep music, meditation music, calming music for anxious moments and focus music. Long original pieces with ocean waves, rain on leaves, tropical rainforest and zen temple ambiences.
 
-Rin (鈴) es el nombre japonés del cuenco cantor. Cada obra se compone desde cero: nada de bibliotecas ni sonidos prestados. Entonación justa, un pulso que acompaña una respiración lenta y ambientes naturales sintetizados sonido por sonido.
+Rin (鈴) is the Japanese name of the singing bowl. Every piece is composed from scratch — no loops, no borrowed sounds. Just intonation, a slow breathing pulse, and natural ambiences synthesized sound by sound.
 
-Cada obra tiene su propio nombre y su propio ambiente, pensada para acompañar algo concreto: dormir, una pausa cuando la cabeza no para, una práctica de meditación o horas de trabajo y estudio.
+Each piece has its own name and its own purpose: sleep, a pause when your mind won't stop, a meditation practice, or long hours of work and study.
 
-No prometemos curar nada. Componemos música para acompañarte.
+We don't promise to heal anything. We compose music to keep you company.
 
-— English —
-Sleep music, meditation music, relaxing music and focus music. Long original pieces with ocean waves, rain, rainforest and zen temple ambiences, composed from scratch in just intonation.
+— Español —
+Música para dormir, meditar, calmar la ansiedad y concentrarte, compuesta desde cero. Cada obra también tiene su título y descripción en español.
 
-Suscríbete para recibir cada obra nueva.
+Subscribe for every new piece.
 ```
 
 ## Palabras clave del canal
 
-**Studio → Configuración → Canal → Palabras clave.** Límite 500 caracteres; las de
-varias palabras van entre comillas.
+**Studio → Configuración → Canal → Palabras clave.** Límite 500 caracteres.
 
 ```
-"música para dormir" "música para meditar" "música relajante" "música de meditación" "música para la ansiedad" "música para concentrarse" "música para estudiar" "sonidos del mar" "sonido de lluvia" "música zen" "528 Hz" "432 Hz" "meditation music" "sleep music" "relaxing music" "focus music" "zen music" Rin
+"sleep music" "meditation music" "relaxing music" "music for anxiety" "focus music" "study music" "ocean waves" "rain sounds" "zen music" "528 Hz" "432 Hz" "música para dormir" "música para meditar" "música relajante" "música zen" Rin
 ```
 
-Las palabras clave del canal pesan poco para posicionar: posicionan los títulos y las
-descripciones de cada obra, que ya vienen escritos en el catálogo. Estas ayudan a que
-YouTube entienda de qué va el canal cuando todavía no tiene videos.
+Pesan poco para posicionar: posicionan el título y la descripción de cada obra. Ayudan a
+que YouTube entienda de qué va el canal cuando todavía no tiene videos.
+
+## Títulos y descripciones de cada obra
+
+El catálogo (`08-catalogo/catalogo_canal.xlsx`) trae cada obra en los dos idiomas:
+
+- `titulo` y `descripcion_optimizada` → en inglés, se cargan al subir el video.
+- `titulo_es` y `descripcion_es` → **Studio → Subtítulos → elegir el video → Agregar
+  idioma: Español → Título y descripción**. Quien tenga YouTube en español ve esos.
 
 ## Imágenes
 
@@ -56,3 +62,6 @@ que cualquier atajo para suscribirse cuenta.
 
 Configurarla con **"Hora de visualización: Todo el video"**. Aparece abajo a la derecha;
 el mandala lleva la firma "Rin" abajo a la izquierda, así que no se pisan.
+
+El banner va en inglés: *"Meditation music, composed — not assembled"* y
+*SLEEP · CALM · MEDITATE · RELEASE · FOCUS*.

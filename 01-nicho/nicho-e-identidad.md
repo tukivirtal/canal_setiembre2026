@@ -89,11 +89,16 @@ El nicho se busca por palabra clave, así que el título tiene que llevar **las 
 el término que la gente escribe y el nombre propio de la obra.
 
 ```
-[intención] · [ambiente] · [raíz] · [nombre de la obra] · [duración]
+[intention] · [ambience] · [root] · [name of the piece] · [duration]
 ```
 
-- `Música para dormir · Olas del mar · 432 Hz · Noche sin fondo · 3 horas`
-- `Música para concentrarse · Selva tropical · 639 Hz · Mesa limpia · 2 horas`
+**Idioma principal: inglés** (decidido el 23/09). La música no tiene idioma, el mercado en
+inglés es mucho más grande y la publicidad paga varias veces más. Cada obra lleva además
+**título y descripción en español**, que se cargan en YouTube como traducción (Studio →
+Subtítulos → Título y descripción): cada persona ve el título en su idioma.
+
+- `Sleep Music · Ocean Waves · 432 Hz · Bottomless Night · 3 Hours`
+- `Música para dormir · Olas del mar · 432 Hz · Noche sin fondo · 3 horas` (traducción)
 
 El nombre propio es lo que impide que el canal parezca una granja. **`Música relajante
 #47` es la firma del contenido de producción masiva**; un título con nombre propio es la
@@ -122,74 +127,74 @@ escucha, vuelve.
 
 ### Dormir
 
-| # | Obra | Raíz | Modo | Duración | Ambiente |
-|---|---|---|---|---|---|
-| 1 | Noche sin fondo | 432 | shin | 180 min | mar |
-| 2 | Marea baja | 528 | kumoi | 120 min | mar |
-| 3 | Cuarto oscuro | 396 | kumoi | 120 min | mar |
-| 4 | Nadie despierto | 528 | shin | 180 min | mar |
-| 5 | Respiración de invierno | 432 | kumoi | 120 min | mar |
-| 6 | Antes del alba | 417 | kumoi | 90 min | mar |
-| 7 | Peso lento | 396 | shin | 120 min | mar |
-| 8 | La casa dormida | 432 | kumoi | 180 min | mar |
+| # | Obra | Name | Raíz | Modo | Duración | Ambiente |
+|---|---|---|---|---|---|---|
+| 1 | Noche sin fondo | Bottomless Night | 432 | shin | 180 min | mar |
+| 2 | Marea baja | Low Tide | 528 | kumoi | 120 min | mar |
+| 3 | Cuarto oscuro | Dark Room | 396 | kumoi | 120 min | mar |
+| 4 | Nadie despierto | No One Awake | 528 | shin | 180 min | mar |
+| 5 | Respiración de invierno | Winter Breath | 432 | kumoi | 120 min | mar |
+| 6 | Antes del alba | Before Dawn | 417 | kumoi | 90 min | mar |
+| 7 | Peso lento | Slow Weight | 396 | shin | 120 min | mar |
+| 8 | La casa dormida | The Sleeping House | 432 | kumoi | 180 min | mar |
 
 Todas con mar a propósito: pájaros, campanas o tambor son sonidos que despiertan. Una
 lluvia sin tambor para dormir queda pendiente de escucha.
 
 ### Ansiedad
 
-| # | Obra | Raíz | Modo | Duración | Ambiente |
-|---|---|---|---|---|---|
-| 9 | Solo exhalar | 396 | kumoi | 25 min | mar-aves |
-| 10 | Bajar el ritmo | 432 | hirajoshi | 30 min | zen |
-| 11 | Cuatro y seis | 528 | hirajoshi | 20 min | mar-aves |
-| 12 | Diez minutos | 528 | shin | 10 min | zen |
-| 13 | Contar hasta seis | 432 | hirajoshi | 20 min | mar-aves |
-| 14 | Entrada y salida | 528 | yo | 20 min | zen |
-| 15 | Antes de empezar | 639 | yo | 15 min | mar-aves |
-| 16 | El final del día | 417 | kumoi | 30 min | lluvia-tambor |
+| # | Obra | Name | Raíz | Modo | Duración | Ambiente |
+|---|---|---|---|---|---|---|
+| 9 | Solo exhalar | Just Exhale | 396 | kumoi | 25 min | mar-aves |
+| 10 | Bajar el ritmo | Slowing Down | 432 | hirajoshi | 30 min | zen |
+| 11 | Cuatro y seis | Four and Six | 528 | hirajoshi | 20 min | mar-aves |
+| 12 | Diez minutos | Ten Minutes | 528 | shin | 10 min | zen |
+| 13 | Contar hasta seis | Count to Six | 432 | hirajoshi | 20 min | mar-aves |
+| 14 | Entrada y salida | In and Out | 528 | yo | 20 min | zen |
+| 15 | Antes de empezar | Before You Begin | 639 | yo | 15 min | mar-aves |
+| 16 | El final del día | End of the Day | 417 | kumoi | 30 min | lluvia-tambor |
 
 ### Meditar
 
-| # | Obra | Raíz | Modo | Duración | Ambiente |
-|---|---|---|---|---|---|
-| 17 | Templo vacío | 417 | hirajoshi | 45 min | zen |
-| 18 | Siete campanas | 528 | hirajoshi | 45 min | zen |
-| 19 | Metal y aire | 432 | shin | 60 min | zen |
-| 20 | Golpe y silencio | 528 | shin | 30 min | lluvia-tambor |
-| 21 | Bronce y madera | 396 | kumoi | 45 min | zen |
-| 22 | Resonancia larga | 639 | yo | 60 min | zen |
-| 23 | Uno solo | 528 | shin | 20 min | zen |
-| 24 | Lo que queda del sonido | 432 | kumoi | 60 min | lluvia-tambor |
+| # | Obra | Name | Raíz | Modo | Duración | Ambiente |
+|---|---|---|---|---|---|---|
+| 17 | Templo vacío | Empty Temple | 417 | hirajoshi | 45 min | zen |
+| 18 | Siete campanas | Seven Bells | 528 | hirajoshi | 45 min | zen |
+| 19 | Metal y aire | Metal and Air | 432 | shin | 60 min | zen |
+| 20 | Golpe y silencio | Strike and Silence | 528 | shin | 30 min | lluvia-tambor |
+| 21 | Bronce y madera | Bronze and Wood | 396 | kumoi | 45 min | zen |
+| 22 | Resonancia larga | Long Resonance | 639 | yo | 60 min | zen |
+| 23 | Uno solo | Just One | 528 | shin | 20 min | zen |
+| 24 | Lo que queda del sonido | What Remains of Sound | 432 | kumoi | 60 min | lluvia-tambor |
 
 ### Soltar
 
 La intención de las antiguas "Frecuencias": soltar tensión. La frecuencia sigue en el
 título porque se busca, pero ya no es el tema.
 
-| # | Obra | Raíz | Modo | Duración | Ambiente |
-|---|---|---|---|---|---|
-| 25 | Raíz de sal | 528 | hirajoshi | 60 min | mar-aves |
-| 26 | Agua quieta | 432 | kumoi | 60 min | mar |
-| 27 | Ceniza tibia | 396 | kumoi | 60 min | lluvia-tambor |
-| 28 | Puerta baja | 417 | hirajoshi | 45 min | zen |
-| 29 | Campo abierto | 639 | yo | 60 min | selva |
-| 30 | Aire delgado | 741 | yo | 45 min | mar-aves |
-| 31 | Última luz | 852 | hirajoshi | 45 min | zen |
-| 32 | Raíz de sal, larga | 528 | hirajoshi | 180 min | mar-aves |
+| # | Obra | Name | Raíz | Modo | Duración | Ambiente |
+|---|---|---|---|---|---|---|
+| 25 | Raíz de sal | Salt Root | 528 | hirajoshi | 60 min | mar-aves |
+| 26 | Agua quieta | Still Water | 432 | kumoi | 60 min | mar |
+| 27 | Ceniza tibia | Warm Ash | 396 | kumoi | 60 min | lluvia-tambor |
+| 28 | Puerta baja | Low Door | 417 | hirajoshi | 45 min | zen |
+| 29 | Campo abierto | Open Field | 639 | yo | 60 min | selva |
+| 30 | Aire delgado | Thin Air | 741 | yo | 45 min | mar-aves |
+| 31 | Última luz | Last Light | 852 | hirajoshi | 45 min | zen |
+| 32 | Raíz de sal, larga | Salt Root, Long | 528 | hirajoshi | 180 min | mar-aves |
 
 ### Concentración
 
-| # | Obra | Raíz | Modo | Duración | Ambiente |
-|---|---|---|---|---|---|
-| 33 | Mesa limpia | 639 | yo | 120 min | selva |
-| 34 | Tres horas | 528 | yo | 180 min | mar-aves |
-| 35 | Sin interrupciones | 741 | yo | 120 min | selva |
-| 36 | Luz de mañana | 852 | yo | 90 min | mar-aves |
-| 37 | Trabajo lento | 432 | yo | 120 min | selva |
-| 38 | Una sola cosa | 528 | shin | 120 min | mar |
-| 39 | Ventana abierta | 639 | yo | 90 min | selva |
-| 40 | Hasta terminar | 741 | yo | 180 min | mar-aves |
+| # | Obra | Name | Raíz | Modo | Duración | Ambiente |
+|---|---|---|---|---|---|---|
+| 33 | Mesa limpia | Clean Desk | 639 | yo | 120 min | selva |
+| 34 | Tres horas | Three Hours | 528 | yo | 180 min | mar-aves |
+| 35 | Sin interrupciones | No Interruptions | 741 | yo | 120 min | selva |
+| 36 | Luz de mañana | Morning Light | 852 | yo | 90 min | mar-aves |
+| 37 | Trabajo lento | Slow Work | 432 | yo | 120 min | selva |
+| 38 | Una sola cosa | One Thing | 528 | shin | 120 min | mar |
+| 39 | Ventana abierta | Open Window | 639 | yo | 90 min | selva |
+| 40 | Hasta terminar | Until It's Done | 741 | yo | 180 min | mar-aves |
 
 ### Cómo usar el catálogo
 
