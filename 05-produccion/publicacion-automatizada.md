@@ -3,7 +3,23 @@
 > Reemplaza la versión anterior (Leonardo + Make). El video ya no es una imagen fija:
 > es el mandala animado, y eso cambia el peso de los archivos y, con él, la herramienta.
 
-## El flujo
+## Cómo se monta hoy (desde el 24/09)
+
+En **GitHub Actions**, no en la sesión de Claude: `.github/workflows/montar.yml`.
+Se lanza con *Actions → Montar una obra → Run workflow → OBRA-020* (o subiendo
+`05-produccion/pedidos/OBRA-020.txt`) y en ~1 hora deja una **Release** con el id de
+la obra:
+
+    https://github.com/tukivirtal/canal_setiembre2026/releases/tag/OBRA-020
+
+con el video largo, la miniatura, los 5 Shorts y `textos.txt` (todo lo que se pega).
+Una Release admite archivos de hasta 2 GB; el repositorio, 100 MB. El repositorio
+es público, así que los minutos de Actions no se cobran. Los Shorts livianos van
+solos a la rama `shorts`, de donde los sube Make.
+
+El video largo se sigue publicando a mano desde YouTube Studio.
+
+## El flujo previsto (con Metricool)
 
 ```
 montar.py OBRA-012           →  produccion/OBRA-012/
