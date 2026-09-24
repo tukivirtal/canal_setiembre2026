@@ -110,3 +110,28 @@ Obra completa de [duración] en el canal.
 
 #[frecuencia]Hz #MúsicaRelajante #Meditación
 ```
+
+## Subida automática a YouTube (Make)
+
+Escenario **«Rin - Shorts a YouTube»** (Make, id 6384211), una vez por día a las 12:00:
+
+```
+[1] Google Sheets   Rin_Shorts: la primera fila con estado = pendiente
+[2] HTTP            descarga url_archivo (short-<n>-web.mp4, rama «shorts»)
+[3] YouTube         lo sube en PRIVADO: título, descripción, etiquetas, Música
+[4] Google Sheets   estado = completado, url_youtube, fecha_youtube
+```
+
+Queda en privado a propósito: se mira en YouTube Studio, se pone el **video
+relacionado** (la API no lo permite) y se pasa a público.
+
+- **La hoja** `Rin_Shorts` (Google Drive de fcippollini): la genera
+  `08-catalogo/cola_shorts.py OBRA-012 OBRA-015`. La pestaña se llama `Untitled`:
+  no cambiarle el nombre, el escenario la busca así. El orden de las filas es el
+  orden de subida.
+- **Por qué la versión «-web».** El plan gratuito de Make no mueve archivos de más
+  de 5 MB. `hacer_short.py` deja, además del Short de 17 MB, uno en HEVC de ~4,6 MB
+  con la misma imagen: ese es el que sube Make. Para TikTok, a mano, el de 17 MB.
+- **Dónde está el archivo.** En la rama `shorts` del repositorio (público), que
+  solo tiene esos MP4: la URL `raw.githubusercontent.com/...` la descarga Make sin
+  credenciales.

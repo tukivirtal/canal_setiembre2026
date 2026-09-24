@@ -11,6 +11,7 @@ Necesita produccion/<id>/video.mp4 (lo deja montar.py): el audio sale de ahí,
 así no hace falta volver a componer. Deja en produccion/<id>/:
 
     short-<n>.mp4     1080x1920, 45 s, listo para YouTube Shorts y TikTok
+    short-<n>-web.mp4 la misma, bajo 5 MB: la que sube Make a YouTube
     short-<n>.json    la fila de la hoja: títulos, descripciones, etiquetas
 
 Cada Short cambia de tramo (inicio_s), encuadre (zoom), instante del bucle
@@ -44,6 +45,29 @@ def rotulo(o, frase, destino):
         nav.close()
 
 
+LIMITE_WEB = 4_900_000    # bytes. Make (plan Free) no mueve archivos de más de 5 MB
+
+
+def ligero(mp4):
+    """short-<n>-web.mp4: la versión que sube Make. HEVC en dos pasadas para
+    quedar bajo 5 MB con la misma imagen (comparada a ojo con la de 17 MB)."""
+    web = mp4.with_name(mp4.stem + '-web.mp4')
+    for kbps in (720, 640, 560):
+        with tempfile.TemporaryDirectory() as tmp:
+            log = str(pathlib.Path(tmp) / 'x265')
+            base = ['ffmpeg', '-hide_banner', '-v', 'error', '-y', '-i', str(mp4),
+                    '-c:v', 'libx265', '-b:v', f'{kbps}k', '-preset', 'slow']
+            subprocess.run(base + ['-x265-params', f'pass=1:stats={log}:log-level=error',
+                                   '-an', '-f', 'null', '-'], check=True)
+            subprocess.run(base + ['-x265-params', f'pass=2:stats={log}:log-level=error',
+                                   '-tag:v', 'hvc1', '-pix_fmt', 'yuv420p',
+                                   '-c:a', 'aac', '-b:a', '96k', '-movflags', '+faststart',
+                                   str(web)], check=True)
+        if web.stat().st_size <= LIMITE_WEB:
+            return web
+    sys.exit(f'{web} no baja de {LIMITE_WEB} bytes')
+
+
 def hacer(o, s, largo, bucle, d):
     T = 45
     z = float(s['zoom'])
@@ -67,9 +91,11 @@ def hacer(o, s, largo, bucle, d):
                         '-c:v', 'libx264', '-crf', '23', '-preset', 'slow', '-pix_fmt', 'yuv420p',
                         '-c:a', 'aac', '-b:a', '192k', '-ar', '48000',
                         '-movflags', '+faststart', str(salida)], check=True)
+    web = ligero(salida)
     (d / s['archivo'].replace('.mp4', '.json')).write_text(
         json.dumps(s, ensure_ascii=False, indent=2), encoding='utf-8')
-    print(f"{salida.relative_to(RAIZ)}  ·  {salida.stat().st_size / 2**20:.1f} MB  ·  "
+    print(f"{salida.relative_to(RAIZ)}  ·  {salida.stat().st_size / 2**20:.1f} MB "
+          f"(web {web.stat().st_size / 1e6:.2f} MB)  ·  "
           f"desde {s['inicio_s']} s  ·  zoom {z}  ·  {s['frase_en_pantalla']}", flush=True)
 
 

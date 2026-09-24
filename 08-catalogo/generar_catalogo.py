@@ -199,7 +199,8 @@ def hashtags(o):
             "Concentración": "#FocusMusic"}[o["pilar"]]
     # dict.fromkeys quita duplicados conservando el orden: sin esto, el pilar
     # Frecuencias repetía la etiqueta de la raíz dos veces.
-    return " ".join(dict.fromkeys([base, "#Meditation", f'#{o["raiz"]}Hz']))
+    # En minúscula: así se escriben en el canal (y en TikTok).
+    return " ".join(dict.fromkeys([base, "#Meditation", f'#{o["raiz"]}Hz'])).lower()
 
 COLS = [
     ("id", 11), ("titulo", 70), ("titulo_es", 70), ("tema", 13), ("ambiente", 14),

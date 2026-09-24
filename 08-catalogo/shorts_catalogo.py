@@ -125,8 +125,9 @@ def filas_shorts(obras):
                 "frase_en_pantalla": frase,
                 "yt_titulo": f"{frase[0].upper()}{frase[1:]} · {hz} Hz · {amb}",
                 "yt_descripcion": (f"{LEYENDA[tema][k]}\n"
-                                   f"Full piece ({dur}): {o['titulo']}\n\n"
-                                   f"{tags} #shorts"),
+                                   f"Full piece ({dur}): {o['titulo']}\n"
+                                   + (f"{o['url_video']}\n" if o.get("url_video") else "")
+                                   + f"\n{tags} #shorts"),
                 "yt_etiquetas": ", ".join(ETIQUETAS[tema] + [f"{hz} hz", amb.lower(), "Rin"]),
                 "yt_video_relacionado": o.get("url_video", ""),
                 "tiktok_portada": f"{hz} Hz · {PORTADA[tema][k]}",
