@@ -19,13 +19,16 @@ Cada Short cambia de tramo (inicio_s), encuadre (zoom), instante del bucle
 
 El mandala vertical se renderiza una vez por paleta (~10 min) y se reutiliza.
 """
-import argparse, csv, json, pathlib, subprocess, sys, tempfile, urllib.parse
+import argparse, csv, json, pathlib, subprocess, sys, tempfile, urllib.parse, os
 from playwright.sync_api import sync_playwright
 
 RAIZ = pathlib.Path(__file__).resolve().parents[2]
 AQUI = pathlib.Path(__file__).resolve().parent
 BUCLES = RAIZ / '05-produccion' / 'fondo-mandala' / 'bucles'
-CHROMIUM = '/opt/pw-browsers/chromium-1194/chrome-linux/chrome'
+# El Chromium de la sesión de Claude; en GitHub Actions no existe y se usa el
+# que instala Playwright (executable_path=None).
+_CH = '/opt/pw-browsers/chromium-1194/chrome-linux/chrome'
+CHROMIUM = os.environ.get('CHROMIUM') or (_CH if os.path.exists(_CH) else None)
 
 
 def duracion_txt(minutos):

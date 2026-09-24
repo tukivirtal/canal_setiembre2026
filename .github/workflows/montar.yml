@@ -1,0 +1,111 @@
+# Monta una obra del catálogo en los servidores de GitHub y deja todo como
+# descarga en una Release con el nombre de la obra (OBRA-020, ...):
+#   el video largo, la miniatura, los 5 Shorts y textos.txt con lo que se pega.
+# Además sube los Shorts livianos (bajo 5 MB) a la rama «shorts», de donde los
+# toma Make para subirlos a YouTube.
+#
+# Se lanza de dos maneras:
+#   - Actions → «Montar una obra» → Run workflow → escribir OBRA-020
+#   - subiendo un archivo 05-produccion/pedidos/OBRA-020.txt
+#
+# Por qué acá y no en la sesión de Claude: una Release admite archivos de hasta
+# 2 GB (el repositorio, 100 MB), y como el repositorio es público los minutos de
+# Actions no se cobran.
+name: Montar una obra
+
+on:
+  workflow_dispatch:
+    inputs:
+      obra:
+        description: "Id del catálogo, por ejemplo OBRA-020"
+        required: true
+  push:
+    paths:
+      - "05-produccion/pedidos/*.txt"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: montar
+  cancel-in-progress: false
+
+jobs:
+  montar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Qué obra
+        id: obra
+        run: |
+          OBRA="${{ github.event.inputs.obra }}"
+          if [ -z "$OBRA" ]; then
+            OBRA=$(git diff --name-only --diff-filter=AM HEAD~1 HEAD -- 05-produccion/pedidos | head -1 | xargs -r basename | sed 's/\.txt$//')
+          fi
+          if ! grep -q "^$OBRA," 08-catalogo/catalogo.csv; then
+            echo "«$OBRA» no está en el catálogo"; exit 1
+          fi
+          echo "obra=$OBRA" >> "$GITHUB_OUTPUT"
+          echo "Obra: $OBRA"
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Herramientas
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg fonts-dejavu-core
+          pip install -q playwright
+          python -m playwright install --with-deps chromium
+
+      # Los bucles del mandala tardan ~25 min por paleta: se guardan entre corridas.
+      - uses: actions/cache@v4
+        with:
+          path: 05-produccion/fondo-mandala/bucles
+          key: bucles-${{ hashFiles('05-produccion/fondo-mandala/mandala.html', '05-produccion/fondo-mandala/render_mandala.py') }}-${{ github.run_id }}
+          restore-keys: |
+            bucles-${{ hashFiles('05-produccion/fondo-mandala/mandala.html', '05-produccion/fondo-mandala/render_mandala.py') }}-
+
+      - name: Video largo
+        run: python3 05-produccion/montar.py ${{ steps.obra.outputs.obra }}
+
+      - name: Shorts
+        run: python3 05-produccion/shorts/hacer_short.py ${{ steps.obra.outputs.obra }}
+
+      - name: Textos
+        run: python3 05-produccion/entrega.py ${{ steps.obra.outputs.obra }}
+
+      - name: Release con la entrega
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          OBRA=${{ steps.obra.outputs.obra }}
+          D=produccion/$OBRA
+          mkdir -p dist
+          cp $D/video.mp4 dist/$OBRA-video.mp4
+          cp $D/miniatura.jpg dist/$OBRA-miniatura.jpg
+          cp $D/textos.txt dist/$OBRA-textos.txt
+          for n in 1 2 3 4 5; do cp $D/short-$n.mp4 dist/$OBRA-short-$n.mp4; done
+          TITULO=$(python3 -c "import json;print(json.load(open('$D/metadatos.json'))['title'])")
+          gh release delete "$OBRA" -y --cleanup-tag 2>/dev/null || true
+          gh release create "$OBRA" dist/* --title "$OBRA · $TITULO" --notes-file $D/textos.txt --target "$GITHUB_SHA"
+          ls -l dist
+
+      - name: Shorts livianos a la rama «shorts»
+        run: |
+          OBRA=${{ steps.obra.outputs.obra }}
+          git config user.name "rin-montaje"
+          git config user.email "rin-montaje@users.noreply.github.com"
+          git fetch -q origin shorts
+          git worktree add -q /tmp/shorts origin/shorts
+          mkdir -p /tmp/shorts/$OBRA
+          cp produccion/$OBRA/short-*-web.mp4 /tmp/shorts/$OBRA/
+          cd /tmp/shorts
+          git add -A
+          git commit -q -m "Shorts livianos de $OBRA" || echo "sin cambios"
+          git push -q origin HEAD:shorts

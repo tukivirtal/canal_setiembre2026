@@ -12,11 +12,14 @@ Sale mandala_bucle.mp4, de 48 s, que empalma consigo mismo. Para una obra:
 
 El video no se recodifica al repetirse: una obra de 3 horas se monta en segundos.
 """
-import argparse, pathlib, shutil, subprocess, tempfile
+import argparse, pathlib, shutil, subprocess, tempfile, os
 from playwright.sync_api import sync_playwright
 
 AQUI = pathlib.Path(__file__).resolve().parent
-CHROMIUM = '/opt/pw-browsers/chromium-1194/chrome-linux/chrome'
+# El Chromium de la sesión de Claude; en GitHub Actions no existe y se usa el
+# que instala Playwright (executable_path=None).
+_CH = '/opt/pw-browsers/chromium-1194/chrome-linux/chrome'
+CHROMIUM = os.environ.get('CHROMIUM') or (_CH if os.path.exists(_CH) else None)
 
 
 def main():

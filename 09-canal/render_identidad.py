@@ -8,13 +8,16 @@ Salida en 09-canal/export/:
   banner-2560x1440.png   · perfil-800x800.png   · marca-agua-150x150.png
   vista-dispositivos.png  (cómo recorta YouTube el banner en TV, escritorio y móvil)
 """
-import pathlib
+import pathlib, os
 from playwright.sync_api import sync_playwright
 from PIL import Image, ImageDraw
 
 AQUI = pathlib.Path(__file__).resolve().parent
 SALIDA = AQUI / 'export'
-CHROMIUM = '/opt/pw-browsers/chromium-1194/chrome-linux/chrome'
+# El Chromium de la sesión de Claude; en GitHub Actions no existe y se usa el
+# que instala Playwright (executable_path=None).
+_CH = '/opt/pw-browsers/chromium-1194/chrome-linux/chrome'
+CHROMIUM = os.environ.get('CHROMIUM') or (_CH if os.path.exists(_CH) else None)
 
 
 def main():

@@ -18,12 +18,15 @@ celular: por eso la letra es tan pesada y hay tan pocas palabras.
 
 Salida: 05-produccion/miniaturas/export/<id>.jpg (menos de 2 MB, el límite de YouTube).
 """
-import argparse, csv, pathlib, urllib.parse
+import argparse, csv, pathlib, urllib.parse, os
 from playwright.sync_api import sync_playwright
 
 AQUI = pathlib.Path(__file__).resolve().parent
 RAIZ = AQUI.parents[1]
-CHROMIUM = '/opt/pw-browsers/chromium-1194/chrome-linux/chrome'
+# El Chromium de la sesión de Claude; en GitHub Actions no existe y se usa el
+# que instala Playwright (executable_path=None).
+_CH = '/opt/pw-browsers/chromium-1194/chrome-linux/chrome'
+CHROMIUM = os.environ.get('CHROMIUM') or (_CH if os.path.exists(_CH) else None)
 
 PALABRA = {'Dormir': 'DEEP SLEEP', 'Ansiedad': 'CALM', 'Meditar': 'MEDITATION',
            'Soltar': 'RELEASE', 'Concentración': 'DEEP FOCUS'}
