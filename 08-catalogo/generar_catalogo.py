@@ -27,6 +27,7 @@ MD = _os.path.join(RAIZ_REPO, "01-nicho", "nicho-e-identidad.md")
 PUBLICADAS = _os.path.join(RAIZ_REPO, "08-catalogo", "publicadas.csv")
 OUT = _os.path.join(RAIZ_REPO, "08-catalogo", "catalogo_canal.xlsx")
 OUT_CSV = _os.path.join(RAIZ_REPO, "08-catalogo", "catalogo.csv")
+OUT_SHORTS = _os.path.join(RAIZ_REPO, "08-catalogo", "shorts.csv")
 
 HACER_CSV = "--xlsx" not in _sys.argv
 HACER_XLSX = "--csv" not in _sys.argv
@@ -273,8 +274,16 @@ def construir_filas():
 
 
 FILAS = construir_filas()
+_sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+import shorts_catalogo as SH
+SHORTS = SH.filas_shorts(FILAS)
 
 if HACER_CSV:
+    with open(OUT_SHORTS, "w", newline="", encoding="utf-8") as f:
+        w = _csv.DictWriter(f, fieldnames=[c for c, _ in SH.COLS])
+        w.writeheader()
+        w.writerows(SHORTS)
+    print(f"{OUT_SHORTS} · {len(SHORTS)} shorts")
     with open(OUT_CSV, "w", newline="", encoding="utf-8") as f:
         w = _csv.DictWriter(f, fieldnames=[c for c, _ in COLS])
         w.writeheader()
@@ -328,6 +337,26 @@ ws.freeze_panes = "B2"
 ws.auto_filter.ref = f"A1:{get_column_letter(len(COLS))}{len(obras)+1}"
 for fila in range(2, len(obras) + 2):
     ws.row_dimensions[fila].height = 58
+
+# --- Shorts: 5 por obra, con lo necesario para YouTube y TikTok ---
+sh = wb.create_sheet("Shorts")
+for i, (nombre, ancho) in enumerate(SH.COLS, 1):
+    c = sh.cell(1, i, nombre)
+    c.font, c.fill = cab, relleno_cab
+    c.alignment = Alignment(horizontal="center", vertical="center", wrap_text=True)
+    sh.column_dimensions[get_column_letter(i)].width = ancho
+for fila, valores in enumerate(SHORTS, start=2):
+    for i, (nombre, _) in enumerate(SH.COLS, 1):
+        c = sh.cell(fila, i, valores[nombre])
+        c.font = azul if nombre in SH.LLENAR else negro
+        if nombre in SH.LLENAR:
+            c.fill = relleno_llenar
+        c.alignment = Alignment(vertical="top", wrap_text=nombre in
+                                {"yt_descripcion", "tiktok_descripcion", "yt_titulo"})
+        c.border = borde
+    sh.row_dimensions[fila].height = 58
+sh.freeze_panes = "B2"
+sh.auto_filter.ref = f"A1:{get_column_letter(len(SH.COLS))}{len(SHORTS)+1}"
 
 # --- Resumen ---
 rs = wb.create_sheet("Resumen")
@@ -404,6 +433,11 @@ texto = [
     ("vistas / suscriptores", "AMARILLA. Copiar de YouTube Studio a los 14 días de publicar."),
     ("subs_por_1000", "Calculada. Es la métrica que decide el canal: por debajo de 1, el problema es la portada, no la música."),
     ("", None),
+    ("Hoja Shorts", "5 por obra. Cada uno cambia de tramo de la obra, encuadre, instante del mandala y frase."),
+    ("tiktok_portada", "El título de la portada en TikTok (el que se ve en el perfil). Distinto de la descripción."),
+    ("tiktok_descripcion", "El texto que acompaña al video en TikTok, con hashtags. En Metricool, nunca en el campo título."),
+    ("yt_video_relacionado", "El video largo. En YouTube Studio va en «Video relacionado» del Short."),
+    ("", None),
     ("Ejemplo de fila rellenada", "imagen_miniatura: portadas/obra-001.png | url_video: https://youtu.be/XXXXXXXXXXX | estado: publicada | fecha_publicacion: 2026-10-07 | vistas: 4820 | suscriptores: 11"),
 ]
 for i, (a, b) in enumerate(texto, start=1):
@@ -414,4 +448,4 @@ for i, (a, b) in enumerate(texto, start=1):
         cb.alignment = Alignment(wrap_text=True, vertical="top")
 
 wb.save(OUT)
-print(f"{OUT} · {len(obras)} obras · {len(COLS)} columnas · 3 hojas")
+print(f"{OUT} · {len(obras)} obras · {len(SHORTS)} shorts · 4 hojas")
