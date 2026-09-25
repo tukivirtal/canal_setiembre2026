@@ -132,7 +132,7 @@ def filas_shorts(obras):
                 "yt_video_relacionado": o.get("url_video", ""),
                 "tiktok_portada": f"{hz} Hz · {PORTADA[tema][k]}",
                 "tiktok_descripcion": (f"{LEYENDA[tema][k]} Full {dur} piece on YouTube: "
-                                       f"Rin.\n{tags} #meditation"),
+                                       f"Rin.\n" + " ".join(dict.fromkeys(tags.split() + ["#meditation"]))),
                 "estado": "pendiente", "fecha_youtube": "", "url_youtube": "",
                 "fecha_tiktok": "", "url_tiktok": "",
             }

@@ -135,3 +135,12 @@ relacionado** (la API no lo permite) y se pasa a público.
 - **Dónde está el archivo.** En la rama `shorts` del repositorio (público), que
   solo tiene esos MP4: la URL `raw.githubusercontent.com/...` la descarga Make sin
   credenciales.
+
+### Agregar los Shorts de una obra nueva a la hoja
+
+Cuando el video largo está publicado (y anotado en `publicadas.csv`):
+`generar_catalogo.py` → `cola_shorts.py OBRA-XXX` da las 5 filas, ya con el enlace
+del video largo. Se agregan **al final** de `Rin_Shorts` con un escenario de Make de
+una sola vez (5 módulos *Add a Row*, pestaña `Untitled`), que se borra después. El plan
+gratuito admite 2 escenarios activos: mientras corre, se apaga un momento «Rin - Shorts
+a YouTube».
