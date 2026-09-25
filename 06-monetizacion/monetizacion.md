@@ -1,5 +1,9 @@
 # Paso 6 — Monetización
 
+> **Reemplazado** por [`plan-facturacion.md`](plan-facturacion.md) (septiembre de 2026): se
+> descartan las membresías y el orden pasa a ser producto digital con Meta Ads, streaming
+> y YouTube. Las reglas de la sección 5 («Lo que no se hace, nunca») siguen vigentes.
+
 ## La idea que ordena todo
 
 **YouTube no es la fuente de ingresos de este nicho: es el escaparate.**
