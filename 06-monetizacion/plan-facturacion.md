@@ -24,7 +24,7 @@ las membresías y se pone primero lo que factura antes.*
 
 | Fuente | Empieza a facturar | Qué necesita | Tu trabajo |
 |---|---|---|---|
-| **Producto digital + Meta Ads** | Semana 3 | Producto, página de venta, cuenta publicitaria | Aprobar textos y presupuesto |
+| **Producto digital + Meta Ads** | Semana 3 | Producto en Payhip, página de venta con dominio propio, cuenta publicitaria | Aprobar textos y presupuesto |
 | **Licencia para profesores** (dentro del mismo producto) | Semana 3 | Una casilla más en la página de venta | Ninguno |
 | **Streaming** (Spotify, Apple Music, Amazon…) | Mes 2–3 (las tiendas liquidan con 2–3 meses de atraso) | Cuenta en DistroKid, ~USD 25 por año | Crear la cuenta |
 | **YouTube: anuncios** | Al entrar al Programa de Socios (meta: antes del 31/01/2027) | 1.000 suscriptores + 4.000 horas | Publicar lo que se monta |
@@ -72,6 +72,11 @@ enseña a seguirlo.
 El agregado y la oferta posterior son los que hacen rentables los anuncios: suben el
 ticket promedio de 19 a unos 24–26 dólares sin conseguir un cliente más.
 
+**Dónde se cobra: Payhip, con PayPal**, la plataforma que ya usás. No Hotmart: su página
+de pago genera desconfianza en el comprador, y ese rechazo en el último clic es la venta
+perdida más cara. La venta se hace en **una página propia con dominio de Rin**; Payhip
+solo aparece en el paso de pago.
+
 ### Lo que el producto nunca dice
 
 La regla de `monetizacion.md` sigue: **se vende música, no salud.** Nada de «cura el
@@ -101,7 +106,8 @@ flowchart LR
   compone una obra, el kit, último aviso del precio de lanzamiento. MailerLite es gratis
   hasta 1.000 contactos.
 - **La página de venta**: una sola página, con el mandala en movimiento, 3 muestras de
-  audio y el precio. Se puede alojar gratis en GitHub Pages hasta que haya dominio.
+  audio y el precio, en un **dominio propio** (~USD 12 por año). El botón de compra lleva
+  al pago de Payhip.
 
 ## Meta Ads
 
@@ -129,14 +135,19 @@ flowchart LR
 
 | Etapa | Presupuesto | Regla |
 |---|---|---|
-| Prueba | USD 10 por día, 5 anuncios, 7 días. **Tope: USD 150** | Se apaga el anuncio con CTR menor a 1 % o sin clics en la página de venta tras USD 15 |
-| Validación | Los 2 mejores, USD 15–20 por día | Se sigue si el costo por venta queda por debajo de USD 15 |
+| Prueba | **USD 5–7 por día**, 3 anuncios, 7–10 días | Se apaga el anuncio con CTR menor a 1 % o sin clics en la página de venta tras USD 10 |
+| Validación | El mejor, USD 7–10 por día | Se sigue si el costo por venta queda por debajo de USD 15 |
 | Escala | +20 % de presupuesto cada 3 días mientras el costo por venta aguante | Se frena si sube dos días seguidos |
 
 **Cómo se lee si funciona.** Con un ticket promedio de 25 dólares y comisiones de la
 plataforma de cobro de ~10 %, quedan ~22 por venta. Mientras cada venta cueste menos de
 15 en anuncios, la cuenta da positiva. Las primeras dos semanas casi siempre pierden
-dinero mientras Meta aprende: por eso hay un tope fijo antes de decidir.
+dinero mientras Meta aprende.
+
+**Con USD 5–7 por día, Meta junta pocas compras por semana** y aprende despacio. Por eso
+la campaña empieza optimizando para un evento más frecuente (inicio de pago) y se pasa a
+«compra» cuando hay 10–15 ventas. Menos anuncios a la vez (3, no 5) para no repartir un
+presupuesto chico entre demasiadas pruebas.
 
 **Público:** amplio, sin intereses, en Estados Unidos, Reino Unido, Canadá y Australia
 para el inglés. Para el español, México, Argentina, Colombia, Chile, Uruguay y España.
@@ -146,7 +157,7 @@ para el inglés. Para el español, México, Argentina, Colombia, Chile, Uruguay 
 | Plataforma | Para qué | Cómo |
 |---|---|---|
 | **YouTube** | Suscriptores, horas, confianza | Videos largos a mano (una hora de montaje automático); Shorts automáticos por Make, uno por día |
-| **TikTok** | Alcance y regalo | Los mismos 5 Shorts por obra, a mano, con portada y descripción separadas (ya están en la hoja). Enlace del regalo en la biografía |
+| **TikTok** | Alcance y regalo | Los mismos 5 Shorts por obra, a mano, con portada y descripción separadas (ya están en la hoja). **Promoción pagada de USD 3–5 por día durante una semana para llegar a 1.000 seguidores** (te funcionó con tu cuenta personal), eligiendo Estados Unidos, Reino Unido, Canadá y Australia: son el público del canal y del kit en inglés. Con 1.000 seguidores se habilita el enlace en la biografía |
 | **Pinterest** | Tráfico que dura meses | Pines de video (los Shorts) y pines de imagen (miniaturas) hacia el regalo y el kit. Carga masiva por CSV, como en Tu Catálogo Vende |
 | **Instagram** | Base para Meta Ads | Los mismos Shorts como Reels. La cuenta tiene que existir para anunciar |
 
@@ -222,7 +233,7 @@ el regalo.
 
 | Semana | Producto y ventas | Canal y ecosistema |
 |---|---|---|
-| 1 | Definir precios y plataforma de cobro. Compongo las 7 obras del kit | Empieza el calendario lunes-miércoles-viernes. Estrenos. Cuentas de TikTok, Pinterest, Instagram y Meta |
+| 1 | Compongo las 7 obras del kit | Empieza el calendario lunes-miércoles-viernes. Estrenos. Cuentas de TikTok, Pinterest, Instagram y Meta |
 | 2 | Guía PDF, tarjeta y registro. Página de venta. Regalo y 5 correos | DistroKid: primeros 3 álbumes |
 | 3 | **Lanzamiento**: correos, descripciones, comentario fijado. Meta Ads en prueba (USD 10/día) | Pinterest: primera carga masiva |
 | 4 | Se apagan los anuncios que no funcionan | Video «How Rin composes» |
@@ -236,9 +247,10 @@ el regalo.
 | Qué | Cuánto | Cuándo |
 |---|---|---|
 | DistroKid | ~USD 25 por año | Semana 2 |
-| Meta Ads, prueba | Tope de USD 150 | Semana 3 |
-| Plataforma de cobro | ~10 % por venta, sin costo fijo | Semana 2 |
-| Dominio propio | ~USD 12 por año | Opcional, cuando haya ventas |
+| Meta Ads, prueba | USD 5–7 por día | Semana 3 |
+| TikTok, promoción | USD 3–5 por día, una semana | Semana 1–2 |
+| Payhip + PayPal | Comisión por venta (según el plan de Payhip) + PayPal | Semana 2 |
+| Dominio propio | ~USD 12 por año | Semana 2 |
 | Servidor para el directo 24 h | ~USD 5 por mes | Semana 7–8 |
 | MailerLite | Gratis hasta 1.000 contactos | Semana 2 |
 
@@ -249,9 +261,12 @@ página de venta, el regalo, los 5 correos, los anuncios (videos y textos), los 
 álbumes cortados para DistroKid, los enlaces en las descripciones y el ajuste para que los
 videos de 3 horas entren en la página de descarga (hoy pasarían los 2 GB).
 
-**Vos:** decidir la plataforma de cobro, el presupuesto de prueba, crear las cuentas
-(TikTok, Pinterest, Instagram, Meta, DistroKid, MailerLite) desde las páginas oficiales,
-publicar los videos largos y subir los Shorts a TikTok.
+**Vos:** crear las cuentas (TikTok, Pinterest, página de Facebook, Instagram profesional,
+DistroKid, MailerLite) desde las páginas oficiales, comprar el dominio, cargar el producto
+en Payhip, publicar los videos largos, subir los Shorts a TikTok y la promoción de TikTok.
+
+**Decidido:** cobro en Payhip con PayPal; dominio propio; Meta Ads con USD 5–7 por día;
+promoción de TikTok hasta 1.000 seguidores.
 
 ## Fuentes
 

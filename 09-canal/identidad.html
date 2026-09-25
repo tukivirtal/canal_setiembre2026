@@ -22,6 +22,21 @@
   #banner .lema{font-family:"Cormorant Garamond",serif;font-style:italic;font-weight:500;font-size:40px;color:var(--crema);margin-top:14px}
   #banner .temas{font-family:Cinzel,serif;font-size:22px;letter-spacing:.32em;color:var(--crema);margin-top:14px;opacity:.8;padding-left:.32em}
 
+  /* ---------- Portada de Facebook 1640x924 ----------
+     Escritorio muestra la franja central de 1640x624; el celular, casi todo el
+     16:9. El texto va en la franja central y lejos de la esquina de abajo a la
+     izquierda, donde Facebook superpone la foto de perfil. */
+  #portada-fb{width:1640px;height:924px}
+  #portada-fb .velo{position:absolute;inset:0;
+    background:radial-gradient(ellipse 760px 250px at 50% 50%, rgba(7,15,22,.96), rgba(7,15,22,.88) 50%, rgba(7,15,22,.35) 80%, rgba(7,15,22,0) 100%)}
+  #portada-fb .texto{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:1200px;
+    display:flex;flex-direction:column;align-items:center;text-align:center}
+  #portada-fb .nombre{font-family:Cinzel,serif;font-weight:400;font-size:118px;letter-spacing:.14em;color:var(--crema);
+    line-height:1;padding-left:.14em;text-shadow:0 0 36px rgba(230,196,106,.35)}
+  #portada-fb .kanji{font-family:"IPAGothic","IPAPGothic",serif;font-size:24px;color:var(--oro);opacity:.85;margin-top:2px;letter-spacing:.4em;padding-left:.4em}
+  #portada-fb .lema{font-family:"Cormorant Garamond",serif;font-style:italic;font-weight:500;font-size:36px;color:var(--crema);margin-top:12px}
+  #portada-fb .temas{font-family:Cinzel,serif;font-size:19px;letter-spacing:.3em;color:var(--crema);margin-top:14px;opacity:.8;padding-left:.3em}
+
   /* ---------- Perfil 800x800, se ve en círculo ---------- */
   #perfil{width:800px;height:800px;background:var(--noche)}
   #perfil .anillo{position:absolute;inset:0}
@@ -41,6 +56,17 @@
     <div class="kanji">鈴</div>
     <div class="lema">Meditation music, composed — not assembled</div>
     <div class="temas">SLEEP · CALM · MEDITATE · RELEASE · FOCUS</div>
+  </div>
+</div>
+
+<div id="portada-fb" class="pieza">
+  <iframe src="../05-produccion/fondo-mandala/mandala.html?w=1640&h=924&r=0.5&firma=0&vineta=0.5&t=14"></iframe>
+  <div class="velo"></div>
+  <div class="texto">
+    <div class="nombre">RIN</div>
+    <div class="kanji">鈴</div>
+    <div class="lema">Meditation music, composed — not assembled</div>
+    <div class="temas">NEW PIECES EVERY WEEK ON YOUTUBE</div>
   </div>
 </div>
 

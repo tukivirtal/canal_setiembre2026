@@ -28,11 +28,13 @@ def main():
         pag.goto(f"file://{AQUI / 'identidad.html'}")
         pag.wait_for_timeout(1500)
         pag.query_selector('#banner').screenshot(path=str(SALIDA / 'banner-2560x1440.png'))
+        pag.query_selector('#portada-fb').screenshot(path=str(SALIDA / 'portada-facebook-1640x924.png'))
         pag.query_selector('#perfil').screenshot(path=str(SALIDA / 'perfil-800x800.png'))
         pag.query_selector('#agua').screenshot(path=str(SALIDA / 'marca-agua-150x150.png'),
                                               omit_background=True)
         nav.close()
     vista_dispositivos()
+    vista_facebook()
     for f in sorted(SALIDA.iterdir()):
         print(f'{f.name:28} {f.stat().st_size // 1024} KB')
 
@@ -57,6 +59,21 @@ def vista_dispositivos():
         d.text((10, y + 18), nombre, fill=(230, 230, 230))
         lienzo.paste(im, (0, y + 50)); y += im.height + 60
     lienzo.save(SALIDA / 'vista-dispositivos.png')
+
+
+def vista_facebook():
+    """La portada de Facebook como se ve en escritorio (franja 1640x624) y en el
+    celular (16:9), con la foto de perfil superpuesta abajo a la izquierda."""
+    b = Image.open(SALIDA / 'portada-facebook-1640x924.png').convert('RGB')
+    W, H = b.size
+    escritorio = b.crop((0, (H - 624) // 2, W, (H + 624) // 2)).resize((1200, 457))
+    movil = b.crop(((W - 1640) // 2, 0, W, H)).resize((640, 360))
+    lienzo = Image.new('RGB', (1200, 457 + 360 + 130), (30, 30, 30))
+    d = ImageDraw.Draw(lienzo)
+    d.text((10, 10), 'Escritorio', fill=(230, 230, 230)); lienzo.paste(escritorio, (0, 36))
+    d.ellipse((40, 36 + 457 - 90, 40 + 150, 36 + 457 + 60), fill=(7, 15, 22), outline=(230, 196, 106), width=4)
+    d.text((10, 36 + 457 + 70), 'Celular', fill=(230, 230, 230)); lienzo.paste(movil, (0, 36 + 457 + 96))
+    lienzo.save(SALIDA / 'vista-facebook.png')
 
 
 if __name__ == '__main__':

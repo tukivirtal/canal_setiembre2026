@@ -80,3 +80,64 @@ el mandala lleva la firma "Rin" abajo a la izquierda, así que no se pisan.
 
 El banner va en inglés: *"Meditation music, composed — not assembled"* y
 *SLEEP · CALM · MEDITATE · RELEASE · FOCUS*.
+
+## TikTok, Instagram y Facebook
+
+Todo en inglés, como el canal. La foto de perfil es la misma en todas:
+`export/perfil-800x800.png`.
+
+### TikTok
+
+- **Nombre:** `Rin · Meditation Music`
+- **Biografía** (máximo 80 caracteres, esta tiene 73):
+
+```
+Original meditation music 🌙 sleep · calm · focus
+Full pieces on YouTube ↓
+```
+
+La flecha apunta al enlace, que TikTok muestra con 1.000 seguidores. Mientras tanto,
+el canal se encuentra por el nombre.
+
+### Instagram: cuenta profesional de tipo **Empresa**
+
+Profesional porque sin eso no se puede anunciar ni ver estadísticas. Empresa y no
+Creador porque da las herramientas de anuncios y de tienda; la ventaja de Creador es la
+biblioteca de música con licencia, y Rin usa su propia música.
+
+- **Nombre** (Instagram lo usa en la búsqueda): `Rin · Meditation Music`
+- **Categoría:** Músico/banda
+- **Biografía** (máximo 150 caracteres, esta tiene 109):
+
+```
+Meditation music, composed — not assembled.
+Sleep · calm · meditate · release · focus
+New pieces every week ↓
+```
+
+### Facebook: una **página**, no el perfil personal
+
+Los anuncios de Meta salen de una página. La página se crea desde tu perfil personal
+(que queda como administrador y no se muestra en ningún lado) y es sin cara.
+
+- **Nombre:** `Rin · Meditation Music`
+- **Categorías:** Músico/banda · Creador digital
+- **Presentación** (máximo 101 caracteres, esta tiene 86):
+
+```
+Original meditation music for sleep, calm and focus. New pieces every week on YouTube.
+```
+
+- **Descripción larga** (sección «Información»):
+
+```
+Rin composes meditation music from scratch: every piece is written for one intention — sleep, calm, meditation, release or focus — tuned in just intonation and shaped around a slow breathing cycle. Ocean, birds, rain on leaves and temple bells are synthesized too. No samples, no loops.
+
+New pieces every week on YouTube: youtube.com/@rinchanneloficial
+```
+
+- **Portada:** `export/portada-facebook-1640x924.png`. El texto queda en la franja que
+  Facebook muestra en escritorio y lejos de la foto de perfil (ver
+  `export/vista-facebook.png`).
+- **Conectar la cuenta de Instagram** a la página (Configuración → Cuentas vinculadas):
+  es lo que permite anunciar en las dos desde un solo lugar.
