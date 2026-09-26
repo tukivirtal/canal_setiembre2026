@@ -113,17 +113,25 @@ Obra completa de [duración] en el canal.
 
 ## Subida automática a YouTube (Make)
 
-Escenario **«Rin - Shorts a YouTube»** (Make, id 6384211), una vez por día a las 12:00:
+Escenario **«Rin - Shorts a YouTube»** (Make, id 6384211). **3 Shorts por día** desde el
+26/09: corre a las 09:00 (Uruguay) y toma las 3 primeras filas pendientes.
 
 ```
-[1] Google Sheets   Rin_Shorts: la primera fila con estado = pendiente
+[1] Google Sheets   Rin_Shorts: las 3 primeras filas con estado = pendiente
 [2] HTTP            descarga url_archivo (short-<n>-web.mp4, rama «shorts»)
-[3] YouTube         lo sube en PRIVADO: título, descripción, etiquetas, Música
-[4] Google Sheets   estado = completado, url_youtube, fecha_youtube
+[3] YouTube         lo sube PROGRAMADO: privado con fecha de publicación a las
+                    12:00, 17:00 y 21:00 según su posición (1.ª, 2.ª, 3.ª fila)
+[4] Google Sheets   estado = programado, url_youtube, fecha y hora de publicación
 ```
 
-Queda en privado a propósito: se mira en YouTube Studio, se pone el **video
-relacionado** (la API no lo permite) y se pasa a público.
+Hasta la hora programada el Short está en privado: se puede mirar en YouTube Studio,
+ponerle el **video relacionado** (la API no lo permite) o cancelarlo.
+
+**El orden de la hoja es el orden de publicación.** Las filas van en ronda por video
+(una de cada video publicado por tanda de 3), así cada día sale un Short de cada uno.
+
+**El límite del plan gratuito de Make:** cada subida mueve ~4,6 MB; 90 por mes son
+~420 MB de los 512 MB mensuales. No da para más de 3 por día sin pasar a un plan pago.
 
 - **La hoja** `Rin_Shorts` (Google Drive de fcippollini): la genera
   `08-catalogo/cola_shorts.py OBRA-012 OBRA-015`. La pestaña se llama `Untitled`:
