@@ -31,7 +31,8 @@ CHROMIUM = os.environ.get('CHROMIUM') or (_CH if os.path.exists(_CH) else None)
 PALABRA = {'Dormir': 'DEEP SLEEP', 'Ansiedad': 'CALM', 'Meditar': 'MEDITATION',
            'Soltar': 'RELEASE', 'Concentración': 'DEEP FOCUS'}
 AMBIENTE = {'mar': 'Ocean Waves', 'mar-aves': 'Ocean & Birds', 'zen': 'Zen Temple',
-            'selva': 'Tropical Rainforest', 'lluvia-tambor': 'Rain on Leaves'}
+            'selva': 'Tropical Rainforest', 'lluvia-tambor': 'Rain on Leaves',
+            'jardin': 'Birds & Temple Bells'}
 
 
 def duracion(m):

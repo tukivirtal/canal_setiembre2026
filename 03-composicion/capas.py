@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """
-Capas de sonido que acompañan a la obra: pájaros o sonidos zen.
+Capas de sonido que acompañan a la obra: pájaros, sonidos zen, ancestral o
+jardín (pájaros con campanitas de viento sueltas, afinadas a la raíz).
 
     python3 03-composicion/capas.py aves 160 capa-aves.wav
     python3 03-composicion/capas.py zen  160 capa-zen.wav --raiz 528
@@ -139,7 +140,7 @@ def poner(izq, der, buf, t, vol, pan):
 
 def main():
     p = argparse.ArgumentParser()
-    p.add_argument('tipo', choices=['aves', 'zen', 'ancestral'])
+    p.add_argument('tipo', choices=['aves', 'zen', 'ancestral', 'jardin'])
     p.add_argument('segundos', type=float)
     p.add_argument('salida')
     p.add_argument('--raiz', type=float, default=528.0)
@@ -182,10 +183,19 @@ def main():
             eventos += 1
     while a.tipo != 'ancestral' and t < a.segundos - 6:
         denso = t < 25                   # más presencia antes de que entre la obra
-        if a.tipo == 'aves':
+        if a.tipo in ('aves', 'jardin'):
             pan, vol = rnd.uniform(0.1, 0.9), rnd.uniform(0.35, 1.0)
             for dt, nota in frase_ave(rnd):
                 poner(izq, der, nota, t + dt, vol, pan)
+            # jardín: de vez en cuando, un furin lejano entre los pájaros. Pocas
+            # campanitas, bajas y en la escala de la obra: se oyen sin llamar
+            # la atención, que es lo que pide la ansiedad
+            if a.tipo == 'jardin' and not denso and rnd.random() < 0.22:
+                pb, tb = rnd.uniform(0.25, 0.75), t + rnd.uniform(1, 4)
+                for k in range(rnd.randint(2, 3)):
+                    f = a.raiz * rnd.choice(HIRAJOSHI) * rnd.choice([1, 2])
+                    poner(izq, der, campanita(f), tb + k * rnd.uniform(0.3, 0.7),
+                          rnd.uniform(0.12, 0.3), pb)
             t += (rnd.uniform(2.5, 5) if denso else rnd.uniform(5, 11)) / a.densidad
         else:
             if rnd.random() < 0.65:      # racimo de campanitas, como un furin al viento

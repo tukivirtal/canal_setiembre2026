@@ -153,6 +153,7 @@ lluvia sin tambor para dormir queda pendiente de escucha.
 | 14 | Entrada y salida | In and Out | 528 | yo | 20 min | zen |
 | 15 | Antes de empezar | Before You Begin | 639 | yo | 15 min | mar-aves |
 | 16 | El final del día | End of the Day | 417 | kumoi | 30 min | lluvia-tambor |
+| 41 | Dejar de pensar | Stop Overthinking | 432 | hirajoshi | 60 min | jardin |
 
 ### Meditar
 

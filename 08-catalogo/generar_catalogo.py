@@ -53,7 +53,7 @@ for linea in open(MD, encoding="utf-8"):
         obras.append({"n": int(m.group(1)), "nombre": m.group(2), "name": m.group(3),
                       "raiz": int(m.group(4)), "modo": m.group(5), "dur": int(m.group(6)),
                       "pilar": pilar_actual, "ambiente": m.group(7)})
-assert len(obras) == 40, f"se esperaban 40 obras, se encontraron {len(obras)}"
+assert len(obras) == 41, f"se esperaban 41 obras, se encontraron {len(obras)}"
 
 # --- Derivar los campos ---
 # Idioma principal: INGLÉS (23/09). El español va como traducción del título y
@@ -79,6 +79,10 @@ AMBIENTES = {
                       "--fondo selva --nivel-capa -2"),
     "lluvia-tambor": ("Lluvia sobre hojas", "Rain on Leaves", "ancestral",
                       "--fondo fuego --nivel-capa 0 --nivel-obra -20"),
+    # Pájaros y campanitas de viento, con el mar muy lejos: lo «asiático sutil»
+    # que pidió la escucha del 26/09, para la ansiedad
+    "jardin":        ("Pájaros y campanas del templo", "Birds and Temple Bells", "jardin",
+                      "--fondo mar --nivel-fondo -8 --nivel-capa 0"),
 }
 DENSIDAD_CAPA = {"selva": " --densidad 2", "zen": " --densidad 1.4"}
 
@@ -121,6 +125,7 @@ ETIQ_AMBIENTE = {
     "zen":           ["zen temple", "temple bells", "wind chimes"],
     "selva":         ["rainforest sounds", "birdsong", "nature sounds"],
     "lluvia-tambor": ["rain sounds", "rain on leaves", "shamanic drum"],
+    "jardin":        ["birdsong", "wind chimes", "zen garden"],
 }
 SUSCRIBIR = "https://www.youtube.com/@rinchanneloficial?sub_confirmation=1"
 
@@ -230,7 +235,7 @@ def comando_ambiente(o, s):
     cmd = ""
     if capa:
         cmd = (f'python3 03-composicion/capas.py {capa} {o["dur"] * 60 + 40} '
-               f'audio/{base}_capa.wav --semilla {s}{DENSIDAD_CAPA.get(o["ambiente"], "")} && ')
+               f'audio/{base}_capa.wav --semilla {s} --raiz {o["raiz"]}{DENSIDAD_CAPA.get(o["ambiente"], "")} && ')
     return (cmd + f'python3 03-composicion/ambiente.py {obra} '
                   f'audio/{base}_final.wav {params}'
                   + (f' --capa audio/{base}_capa.wav' if capa else ""))
@@ -447,7 +452,7 @@ texto = [
     ("titulo / descripcion_optimizada", "En inglés, el idioma principal del canal."),
     ("titulo_es / descripcion_es", "La traducción al español. Se carga en YouTube Studio → Subtítulos → Título y descripción."),
     ("tema", "Intención: qué acompaña la obra. Determina la palabra clave y el ciclo respiratorio."),
-    ("ambiente", "Ambiente aprobado en escucha: mar, mar-aves, zen, selva o lluvia-tambor."),
+    ("ambiente", "Ambiente aprobado en escucha: mar, mar-aves, zen, selva, lluvia-tambor o jardin."),
     ("comando_ambiente", "Segundo paso: envuelve la obra compuesta en su ambiente."),
     ("descripcion_optimizada", "Descripción bilingüe lista para pegar. Solo falta añadir los capítulos tras el montaje."),
     ("titulo_miniatura", "Texto de la miniatura: 2-4 palabras que COMPLETAN el título, nunca lo repiten."),

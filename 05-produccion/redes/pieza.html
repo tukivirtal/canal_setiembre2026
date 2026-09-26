@@ -54,7 +54,7 @@
 <script>
   const Q = new URLSearchParams(location.search);
   const tipo = Q.get('tipo') || 'pieza';
-  const ORO = {'mar':'#e6c46a','mar-aves':'#f5c877','zen':'#e8c066','selva':'#e8c55e','lluvia-tambor':'#e9b35a'};
+  const ORO = {'mar':'#e6c46a','mar-aves':'#f5c877','zen':'#e8c066','selva':'#e8c55e','lluvia-tambor':'#e9b35a','jardin':'#e8c066'};
   const pal = Q.get('paleta') || 'mar';
   document.documentElement.style.setProperty('--oro', ORO[pal] || '#e6c46a');
   const m = document.getElementById('m');
