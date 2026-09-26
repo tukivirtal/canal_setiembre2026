@@ -43,6 +43,20 @@ Comment your number 👇
 Full pieces on YouTube, link in bio.
 
 #pickone #meditationmusic #sleeptok #528hz #aesthetic"""),
+    'mision': ([
+        (None, 'Some music fills the silence. Rin makes room for it.', '', 'mar', 0),
+        (None, 'Every piece is composed from scratch, for one moment of your day.', '', 'mar-aves', 0),
+        (None, 'It slows down, breath by breath, until you do too.', '', 'zen', 0),
+    ], """Rin is original meditation music, made for the real moments of your day 🌙
+Every piece is composed from scratch: one intention, one root note, no samples.
+The breath is written into the music. It slows from 6 to 4.5 breaths per minute.
+You don't have to do anything. Just press play and let it lead.
+For sleep, for anxiety, for a quiet meditation, for letting go of the day.
+No miracle promises. Just music that gives your breath a slower pace to follow.
+Full pieces on YouTube, link in bio.
+Which moment do you need music for tonight? 👇
+
+#meditationmusic #sleepmusic #anxietyrelief #calm #relaxingmusic"""),
 }
 
 
@@ -57,6 +71,8 @@ def main():
             for j, (et, tit, cuerpo, pal, tono) in enumerate(slides, 1):
                 q = {'tipo': 'slide', 'tiktok': 1, 'paleta': pal, 'tono': tono, 't': 4 + j * 7,
                      'etiqueta': et, 'titulo': tit, 'cuerpo': cuerpo}
+                if et is None:                     # sin etiqueta: una frase sola
+                    q = {'tipo': 'frase', 'tiktok': 1, 'paleta': pal, 'tono': tono, 't': 4 + j * 7, 'texto': tit}
                 pag.goto(f"file://{AQUI / 'pieza.html'}?{urllib.parse.urlencode(q)}")
                 pag.wait_for_timeout(700)
                 pag.query_selector('#m').screenshot(path=str(out / clave / f'{j:02d}.jpg'), type='jpeg', quality=90)
