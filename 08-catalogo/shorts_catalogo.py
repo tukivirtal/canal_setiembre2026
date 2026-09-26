@@ -1,10 +1,10 @@
 """
-La hoja de Shorts: 5 por obra, cada uno con lo necesario para publicarlo en
+La hoja de Shorts: 7 por obra, cada uno con lo necesario para publicarlo en
 YouTube Shorts y en TikTok. La importa generar_catalogo.py.
 
-Cada Short de una obra se distingue de los otros cuatro en todo lo que se ve y
+Cada Short de una obra se distingue de los otros seis en todo lo que se ve y
 se oye: otro tramo de la obra, otro encuadre del mandala, otro instante del
-bucle y otra frase en pantalla. Cinco copias de una plantilla es justo lo que
+bucle y otra frase en pantalla. Siete copias de una plantilla es justo lo que
 YouTube penaliza como contenido repetitivo y lo que TikTok entierra.
 
 En TikTok van DOS textos distintos, y no se mezclan:
@@ -16,52 +16,60 @@ el título en el video. Solo la descripción.
 """
 import csv, os
 
-N_SHORTS = 5
+N_SHORTS = 7
 DURACION = 45                                   # segundos
-ZOOM = [1.0, 1.15, 1.3, 1.08, 1.22]             # encuadre del mandala vertical
-DESFASE = [0, 9.6, 19.2, 28.8, 38.4]            # instante del bucle de 48 s
+ZOOM = [1.0, 1.15, 1.3, 1.08, 1.22, 1.35, 1.04]  # encuadre del mandala vertical
+DESFASE = [0, 9.6, 19.2, 28.8, 38.4, 4.8, 33.6]  # instante del bucle de 48 s
 
 # La frase que va en pantalla, debajo de la frecuencia. Describe el momento,
 # nunca promete un efecto.
 FRASE = {
     "Dormir": ["to fall asleep", "let the day go quiet", "lights off, breathe slower",
-               "for the hour before sleep", "the house is asleep"],
+               "for the hour before sleep", "the house is asleep",
+               "nothing left to do today", "slower, and slower still"],
     "Ansiedad": ["for when your mind won't stop", "breathe out longer than you breathe in",
                  "a pause, just for you", "slow down, one breath at a time",
-                 "before you begin"],
+                 "before you begin", "you can put it down for now", "one minute of quiet"],
     "Meditar": ["for a quiet meditation", "sit, listen, breathe",
                 "follow the sound until it fades", "nothing to do but listen",
-                "one breath, then the next"],
+                "one breath, then the next", "let the thoughts pass by", "back to the breath"],
     "Soltar": ["to let go of the day", "drop your shoulders", "unclench your jaw",
-               "breathe out what you carried today", "let the tension go with the sound"],
+               "breathe out what you carried today", "let the tension go with the sound",
+               "soften your hands", "the day is over"],
     "Concentración": ["for deep focus", "one task, nothing else", "put it on and start",
-                      "quiet sound for deep work", "stay with it a little longer"],
+                      "quiet sound for deep work", "stay with it a little longer",
+                      "no notifications for an hour", "the next hour is yours"],
 }
 # La portada de TikTok: dos o tres palabras tras la frecuencia.
 PORTADA = {
-    "Dormir": ["sleep", "night", "rest", "dark room", "drift off"],
-    "Ansiedad": ["calm", "exhale", "pause", "breathe", "slow down"],
-    "Meditar": ["meditate", "stillness", "listen", "sit", "silence"],
-    "Soltar": ["let go", "unwind", "release", "soften", "rest"],
-    "Concentración": ["focus", "deep work", "study", "flow", "one task"],
+    "Dormir": ["sleep", "night", "rest", "dark room", "drift off", "lights off", "deep rest"],
+    "Ansiedad": ["calm", "exhale", "pause", "breathe", "slow down", "let go", "quiet"],
+    "Meditar": ["meditate", "stillness", "listen", "sit", "silence", "presence", "breath"],
+    "Soltar": ["let go", "unwind", "release", "soften", "rest", "exhale", "ease"],
+    "Concentración": ["focus", "deep work", "study", "flow", "one task", "no distractions", "clear mind"],
 }
 # El texto que acompaña al video: distinto de la frase y de la portada.
 LEYENDA = {
     "Dormir": ["Save this for tonight.", "Lights off, volume low.",
                "Stay until your breathing slows.", "The quiet hour before sleep.",
-               "Send this to someone who can't sleep."],
+               "Send this to someone who can't sleep.",
+               "Turn the brightness down and stay.", "Play it as the last thing tonight."],
     "Ansiedad": ["Save this for the next hard moment.", "Headphones on. Exhale slowly.",
                  "Stay for one full breath.", "A small pause in the middle of the day.",
-                 "Send this to someone who needs a pause."],
+                 "Send this to someone who needs a pause.",
+                 "Breathe with the sound for a moment.", "Come back to this when you need it."],
     "Meditar": ["Save this for your next sit.", "Close your eyes for 45 seconds.",
                 "Listen until the sound fades.", "A minute of stillness.",
-                "Send this to someone who meditates."],
+                "Send this to someone who meditates.",
+                "Stay for the whole sound.", "Save it for tomorrow morning."],
     "Soltar": ["Save this for the end of the day.", "Drop your shoulders. Breathe out.",
                "Let this one play twice.", "Leave the day at the door.",
-               "Send this to someone who needs to unwind."],
+               "Send this to someone who needs to unwind.",
+               "Let your shoulders fall.", "The day is done. Listen."],
     "Concentración": ["Save this for your next work session.", "Start the task now.",
                       "Play it, then begin.", "Quiet sound for deep work.",
-                      "Send this to someone studying tonight."],
+                      "Send this to someone studying tonight.",
+                      "Phone face down. Begin.", "One more hour, calmly."],
 }
 HASHTAGS = {
     "Dormir": ["#sleepmusic", "#sleep", "#relaxingmusic"],
@@ -96,11 +104,14 @@ def dur_corta(minutos):
 
 
 def inicios(duracion_min):
-    """Cinco tramos repartidos por la obra: pasada la entrada lenta del ambiente
-    (la obra aparece entera hacia los 70 s) y antes de la salida."""
+    """Los tramos de la obra, pasada la entrada lenta del ambiente (la obra
+    aparece entera hacia los 70 s) y antes de la salida. Los 5 primeros se
+    reparten parejos (así se hicieron los de las obras 12, 15 y 20); el 6 y el 7
+    caen entre el 1 y el 2 y entre el 3 y el 4, lejos de los anteriores."""
     total = duracion_min * 60 + 40                  # 20 s de entrada y 20 de salida
     a, b = 90, total - DURACION - 20
-    return [round(a + (b - a) * k / (N_SHORTS - 1)) for k in range(N_SHORTS)]
+    t = [round(a + (b - a) * k / 4) for k in range(5)]
+    return t + [round((t[0] + t[1]) / 2), round((t[2] + t[3]) / 2)]
 
 
 def filas_shorts(obras):

@@ -30,6 +30,8 @@ def main():
                    help='mar, mar-aves, zen, selva o lluvia-tambor: una por ambiente')
     p.add_argument('--segundos', type=float, default=None,
                    help='solo los primeros N segundos: para previsualizar sin renderizar el bucle entero')
+    p.add_argument('--tono', type=int, default=0,
+                   help='giro de matiz en grados: cada obra de un mismo ambiente con su color')
     p.add_argument('--vertical', action='store_true',
                    help='1080x1920 para Shorts, sin firma y con el mandala más chico, entero en el ancho')
     p.add_argument('--crf', type=int, default=28,
@@ -41,7 +43,7 @@ def main():
         ancho, alto = (1080, 1920) if a.vertical else (1920, 1080)
         extra = f'&w={ancho}&h={alto}&r=0.34&firma=0' if a.vertical else ''
         pag = nav.new_page(viewport={'width': ancho, 'height': alto})
-        pag.goto(f"file://{AQUI / 'mandala.html'}?paleta={a.paleta}{extra}")
+        pag.goto(f"file://{AQUI / 'mandala.html'}?paleta={a.paleta}&tono={a.tono}{extra}")
         largo = pag.evaluate('BUCLE')
         total = int((a.segundos or largo) * a.fps)
         lienzo = pag.query_selector('canvas')

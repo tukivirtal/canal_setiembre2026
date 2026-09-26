@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """
-Los 5 Shorts de una obra ya montada, según la hoja de Shorts del catálogo
+Los 7 Shorts de una obra ya montada, según la hoja de Shorts del catálogo
 (08-catalogo/shorts.csv): el mandala vertical de su paleta, un tramo de su
 audio y el rótulo con la frecuencia y la frase.
 
-    python3 05-produccion/shorts/hacer_short.py OBRA-012          # los 5
-    python3 05-produccion/shorts/hacer_short.py OBRA-012 --n 3    # solo el 3
+    python3 05-produccion/shorts/hacer_short.py OBRA-012            # los 7
+    python3 05-produccion/shorts/hacer_short.py OBRA-012 --n 6 7    # solo el 6 y el 7
 
 Necesita produccion/<id>/video.mp4 (lo deja montar.py): el audio sale de ahí,
 así no hace falta volver a componer. Deja en produccion/<id>/:
@@ -105,7 +105,7 @@ def hacer(o, s, largo, bucle, d):
 def main():
     p = argparse.ArgumentParser()
     p.add_argument('id')
-    p.add_argument('--n', type=int, help='solo este Short (1-5); por defecto, los cinco')
+    p.add_argument('--n', type=int, nargs='*', help='solo estos Shorts (1-7); por defecto, todos')
     a = p.parse_args()
 
     with open(RAIZ / '08-catalogo' / 'catalogo.csv', encoding='utf-8') as f:
@@ -113,16 +113,17 @@ def main():
     if not o:
         sys.exit(f'{a.id} no está en el catálogo')
     with open(RAIZ / '08-catalogo' / 'shorts.csv', encoding='utf-8') as f:
-        cola = [s for s in csv.DictReader(f) if s['obra'] == a.id and (not a.n or int(s['n']) == a.n)]
+        cola = [s for s in csv.DictReader(f) if s['obra'] == a.id and (not a.n or int(s['n']) in a.n)]
     d = RAIZ / 'produccion' / a.id
     largo = d / 'video.mp4'
     if not largo.exists():
         sys.exit(f'Falta {largo}: primero montar.py {a.id}')
 
-    bucle = BUCLES / f"vertical-{o['ambiente']}.mp4"
+    tono = int(o.get('tono') or 0)
+    bucle = BUCLES / (f"vertical-{o['ambiente']}.mp4" if not tono else f"vertical-{o['ambiente']}-t{tono}.mp4")
     if not bucle.exists():
         subprocess.run([sys.executable, str(RAIZ / '05-produccion/fondo-mandala/render_mandala.py'),
-                        '--vertical', '--paleta', o['ambiente'], '--crf', '24',
+                        '--vertical', '--paleta', o['ambiente'], '--tono', str(tono), '--crf', '24',
                         '--salida', str(bucle)], check=True)
     for s in cola:
         hacer(o, s, largo, bucle, d)

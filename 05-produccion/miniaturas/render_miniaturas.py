@@ -62,7 +62,7 @@ def main():
         pag = nav.new_page(viewport={'width': 1280, 'height': 720})
         for o in obras:
             q = urllib.parse.urlencode({
-                'paleta': o['ambiente'], 'grande': f"{o['raiz_hz']} Hz",
+                'paleta': o['ambiente'], 'tono': o.get('tono') or 0, 'grande': f"{o['raiz_hz']} Hz",
                 'palabra': PALABRA[o['tema']],
                 'pastilla': f"{AMBIENTE[o['ambiente']]} · {duracion(o['duracion_min'])}",
                 # cada obra con un instante distinto del mandala: nunca dos portadas iguales

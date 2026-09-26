@@ -21,9 +21,9 @@ COLS = ['id_short', 'estado', 'obra', 'n', 'url_archivo', 'yt_titulo', 'yt_descr
         'url_youtube', 'fecha_youtube', 'url_tiktok', 'fecha_tiktok']
 
 
-def orden(obras, n=5):
+def orden(obras, n=7):
     """Obra por obra en ronda, desplazando el número del Short en cada obra:
-    con dos obras sale S1, S2, S3, S4, S5, S1, S2... alternando obra."""
+    con dos obras sale S1, S2, S3, ... alternando obra."""
     filas = []
     for vuelta in range(n):
         for j, o in enumerate(obras):

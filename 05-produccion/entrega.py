@@ -6,9 +6,9 @@ Los textos para publicar una obra a mano, en un solo archivo:
 
 El video largo (título, descripción, etiquetas, ajustes y la traducción al
 español) y sus 5 Shorts (YouTube y TikTok por separado). Sale de
-metadatos.json (montar.py) y short-<n>.json (hacer_short.py).
+metadatos.json (montar.py) y de la hoja de Shorts del catálogo.
 """
-import json, pathlib, sys
+import csv, json, pathlib, sys
 
 RAIZ = pathlib.Path(__file__).resolve().parents[1]
 
@@ -45,11 +45,13 @@ Título: {es['title']}
 Descripción:
 {es['description']}
 ''']
-    for n in range(1, 6):
-        f = d / f'short-{n}.json'
-        if not f.exists():
-            continue
-        s = json.loads(f.read_text(encoding='utf-8'))
+    # Los textos de los Shorts salen de la hoja (08-catalogo/shorts.csv), no de
+    # los short-<n>.json: así el archivo trae los 7 aunque se hayan hecho en
+    # corridas distintas.
+    with open(RAIZ / '08-catalogo' / 'shorts.csv', encoding='utf-8') as f:
+        filas = [x for x in csv.DictReader(f) if x['obra'] == obra]
+    for s in filas:
+        n = s['n']
         t.append(f'''
 ==================== SHORT {n} ====================
 

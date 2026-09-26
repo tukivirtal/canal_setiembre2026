@@ -39,6 +39,6 @@
   const pal = Q.get('paleta') || 'mar';
   document.documentElement.style.setProperty('--oro', ORO[pal] || '#e6c46a');
   for (const k of ['grande', 'palabra', 'pastilla']) document.getElementById(k).textContent = Q.get(k) || '';
-  document.getElementById('f').src = `../fondo-mandala/mandala.html?w=1280&h=720&r=0.78&firma=0&vineta=0.6&paleta=${pal}&t=${Q.get('t') || 6}`;
+  document.getElementById('f').src = `../fondo-mandala/mandala.html?w=1280&h=720&r=0.78&firma=0&vineta=0.6&paleta=${pal}&tono=${Q.get('tono') || 0}&t=${Q.get('t') || 6}`;
 </script>
 </body></html>

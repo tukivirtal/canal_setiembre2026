@@ -25,6 +25,11 @@ from openpyxl.utils import get_column_letter
 RAIZ_REPO = _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__)))
 MD = _os.path.join(RAIZ_REPO, "01-nicho", "nicho-e-identidad.md")
 PUBLICADAS = _os.path.join(RAIZ_REPO, "08-catalogo", "publicadas.csv")
+TONOS_CSV = _os.path.join(RAIZ_REPO, "08-catalogo", "tonos.csv")
+# Giro de matiz del mandala, en grados. Cada obra de un mismo ambiente toma el
+# siguiente de la lista, así dos videos del mismo ambiente no se ven iguales.
+# Una vez asignado queda guardado en tonos.csv y no cambia más.
+TONOS = [0, 110, -70, 180, 35, -110, 70, 150, -35, -150, 55]
 OUT = _os.path.join(RAIZ_REPO, "08-catalogo", "catalogo_canal.xlsx")
 OUT_CSV = _os.path.join(RAIZ_REPO, "08-catalogo", "catalogo.csv")
 OUT_SHORTS = _os.path.join(RAIZ_REPO, "08-catalogo", "shorts.csv")
@@ -207,7 +212,7 @@ COLS = [
     ("descripcion_optimizada", 60), ("descripcion_es", 60),
     ("titulo_miniatura", 17), ("hashtags", 34), ("etiquetas", 60),
     ("imagen_miniatura", 24), ("url_video", 30),
-    ("raiz_hz", 9), ("modo", 12), ("registro", 11), ("semilla", 10),
+    ("raiz_hz", 9), ("modo", 12), ("registro", 11), ("semilla", 10), ("tono", 6),
     ("duracion_min", 13),
     ("comando_regeneracion", 62), ("comando_ambiente", 62),
     ("estado", 13), ("fecha_publicacion", 18),
@@ -231,8 +236,30 @@ def comando_ambiente(o, s):
                   + (f' --capa audio/{base}_capa.wav' if capa else ""))
 
 
+def asignar_tonos():
+    """El tono de cada obra: el guardado en tonos.csv, o el siguiente libre de su
+    ambiente (por orden de id) para las que todavía no tienen."""
+    tonos = {}
+    if _os.path.exists(TONOS_CSV):
+        tonos = {r["id"]: int(r["tono"]) for r in _csv.DictReader(open(TONOS_CSV, encoding="utf-8"))}
+    for o in sorted(obras, key=lambda x: x["n"]):
+        i = f'OBRA-{o["n"]:03d}'
+        if i in tonos:
+            continue
+        usados = [tonos[f'OBRA-{p["n"]:03d}'] for p in obras
+                  if p["ambiente"] == o["ambiente"] and f'OBRA-{p["n"]:03d}' in tonos]
+        libres = [t for t in TONOS if t not in usados] or TONOS
+        tonos[i] = libres[0] if len(usados) < len(TONOS) else TONOS[len(usados) % len(TONOS)]
+    with open(TONOS_CSV, "w", newline="", encoding="utf-8") as f:
+        w = _csv.writer(f); w.writerow(["id", "tono"])
+        for i in sorted(tonos):
+            w.writerow([i, tonos[i]])
+    return tonos
+
+
 # --- Construir las filas una sola vez, para CSV y Excel ---
 def construir_filas():
+    tonos = asignar_tonos()
     filas = []
     for o in sorted(obras, key=lambda x: x["n"]):
         s = semilla(o)
@@ -252,6 +279,7 @@ def construir_filas():
             "imagen_miniatura": "", "url_video": "",
             "raiz_hz": o["raiz"], "modo": o["modo"],
             "registro": REGISTRO[o["pilar"]], "semilla": s,
+            "tono": tonos[f'OBRA-{o["n"]:03d}'],
             "duracion_min": o["dur"],
             # Sin cuenco hasta que haya uno que pase la escucha.
             "comando_regeneracion": (

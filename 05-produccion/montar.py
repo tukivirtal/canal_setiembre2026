@@ -18,7 +18,8 @@ relanzar sin perder trabajo):
     1. componer la obra          compositor.py, con el comando exacto del catálogo
     2. la capa del ambiente      capas.py (pájaros, zen o ancestral), si lleva
     3. envolver en el ambiente   ambiente.py
-    4. el bucle del mandala      render_mandala.py, uno por paleta, se reutiliza
+    4. el bucle del mandala      render_mandala.py, uno por paleta y tono, se
+                                 reutiliza; corre en paralelo con los pasos 1-3
     5. el video                  el bucle repetido debajo del audio, sin recodificar
     6. la miniatura              render_miniaturas.py
 
@@ -59,6 +60,18 @@ def montar(o):
     print(f"\n{o['id']} · {o['titulo']}")
 
     obra, capa, final = d / 'obra.wav', d / 'capa.wav', d / 'final.wav'
+    # El bucle del mandala: uno por paleta y tono (cada obra de un ambiente
+    # tiene su color), y se reutiliza. Se renderiza EN PARALELO con la
+    # composición: los dos tardan del orden de media hora y no compiten.
+    paleta, tono = o['ambiente'], int(o.get('tono') or 0)
+    bucle = BUCLES / (f'mandala-{paleta}.mp4' if not tono else f'mandala-{paleta}-t{tono}.mp4')
+    render = None
+    if not video.exists() and not bucle.exists():
+        BUCLES.mkdir(parents=True, exist_ok=True)
+        cmd = [sys.executable, '05-produccion/fondo-mandala/render_mandala.py',
+               '--paleta', paleta, '--tono', str(tono), '--salida', str(bucle)]
+        print('   $ (en paralelo)', ' '.join(cmd)[:150], flush=True)
+        render = subprocess.Popen(cmd, cwd=RAIZ)
     if not video.exists():
         if not final.exists():
             # 1 · componer
@@ -79,21 +92,30 @@ def montar(o):
                 a[a.index('--capa') + 1] = str(capa)
             correr([sys.executable, '03-composicion/ambiente.py', *a])
 
-        # 4 · el bucle del mandala de esta paleta (una vez por paleta)
-        paleta = o['ambiente']
-        bucle = BUCLES / f'mandala-{paleta}.mp4'
-        if not bucle.exists():
-            BUCLES.mkdir(parents=True, exist_ok=True)
-            correr([sys.executable, '05-produccion/fondo-mandala/render_mandala.py',
-                    '--paleta', paleta, '--salida', bucle])
+        # 4 · esperar el bucle del mandala
+        if render and render.wait() != 0:
+            sys.exit('falló el render del mandala')
 
         # 5 · el video. Con -t y no con -shortest: -shortest no corta cuando el
         # video es un bucle infinito copiado, y el 23/09 generó un archivo de 31 GB.
         dur = duracion_wav(final)
+        if dur > 100 * 60:
+            # Más de 100 minutos en H.264 pasaría los 2 GB que admite una Release
+            # de GitHub (2 h ≈ 2 GB). El bucle se pasa a HEVC, ~40 % más liviano
+            # con la misma imagen; YouTube lo acepta igual.
+            hevc = bucle.with_name(bucle.stem + '-hevc.mp4')
+            if not hevc.exists():
+                correr(['ffmpeg', '-hide_banner', '-v', 'error', '-y', '-i', bucle,
+                        '-c:v', 'libx265', '-crf', '27', '-preset', 'slow',
+                        '-x265-params', 'keyint=1152:min-keyint=1152:log-level=error',
+                        '-tag:v', 'hvc1', '-pix_fmt', 'yuv420p', hevc])
+            bucle = hevc
         correr(['ffmpeg', '-hide_banner', '-v', 'error', '-y', '-stream_loop', '-1',
                 '-i', bucle, '-i', final, '-map', '0:v', '-map', '1:a', '-c:v', 'copy',
                 '-c:a', 'aac', '-b:a', '256k', '-t', f'{dur:.3f}',
                 '-movflags', '+faststart', video])
+    elif render:
+        render.wait()
 
     # 6 · la miniatura
     if not mini.exists():
