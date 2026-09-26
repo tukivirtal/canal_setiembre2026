@@ -26,7 +26,8 @@ Uso:
     python3 compositor.py --minutos 3 --raiz 528 --modo hirajoshi
     python3 compositor.py --minutos 60 --raiz 528 --modo yo --semilla 7
 
-Sin dependencias: solo Python 3.
+Sin dependencias: solo Python 3. Con numpy y scipy instalados usa el motor
+rápido (compositor_rapido.py): la misma obra, unas 20 veces más rápido.
 """
 
 import argparse
@@ -712,6 +713,9 @@ def main():
                         "canal; muy-suave para dormir; original reproduce las "
                         "obras anteriores al 22/09")
     p.add_argument("--salida", default=None)
+    p.add_argument("--motor", choices=["auto", "rapido", "original"], default="auto",
+                   help="rapido: las mismas cuentas de a bloques con numpy (auto, si está "
+                        "instalado); original: muestra por muestra, sin dependencias")
     p.add_argument("--listar", action="store_true")
     p.add_argument("--plan", action="store_true",
                    help="imprime la estructura de la obra sin sintetizarla")
@@ -750,9 +754,20 @@ def main():
 
     print(f"Componiendo {a.minutos:g} min · raíz {raiz:.1f} Hz · modo {a.modo} "
           f"· semilla {semilla} · carácter {a.caracter}")
-    componer(ruta, a.minutos * 60, raiz, a.modo, semilla, a.aire, a.rt60,
-             caracter=a.caracter,
-             binaural=a.binaural, resp=(ini, fin), aves=a.aves)
+    rapido = None
+    if a.motor != "original" and not a.aire and not a.binaural:
+        try:
+            import compositor_rapido as rapido
+        except ImportError:
+            if a.motor == "rapido":
+                raise
+    if rapido:
+        rapido.componer(ruta, a.minutos * 60, raiz, a.modo, semilla, a.rt60,
+                        caracter=a.caracter, resp=(ini, fin), aves=a.aves)
+    else:
+        componer(ruta, a.minutos * 60, raiz, a.modo, semilla, a.aire, a.rt60,
+                 caracter=a.caracter,
+                 binaural=a.binaural, resp=(ini, fin), aves=a.aves)
     print(f"{ruta}")
     # El comando tiene que llevar TODOS los parámetros que afectan al audio,
     # o no reproduce la misma obra.
