@@ -1,0 +1,30 @@
+# Borra el video largo de la Release de una obra ya publicada en YouTube
+# (los Shorts, la miniatura y los textos quedan). Solo el archivo
+# <OBRA>-video.mp4: nada más.
+#   Actions → «Borrar el video de una Release» → Run workflow → OBRA-006
+name: Borrar el video de una Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      obras:
+        description: "Una o más obras ya publicadas, por ejemplo: OBRA-006 OBRA-020"
+        required: true
+
+permissions:
+  contents: write
+
+jobs:
+  borrar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Borrar
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          for OBRA in ${{ github.event.inputs.obras }}; do
+            grep -q "^$OBRA," 08-catalogo/publicadas.csv || { echo "$OBRA no está en publicadas.csv: no se borra"; exit 1; }
+            gh release delete-asset "$OBRA" "$OBRA-video.mp4" -y
+            echo "$OBRA-video.mp4 borrado"
+          done

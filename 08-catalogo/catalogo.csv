@@ -148,7 +148,7 @@ Composición original, sintetizada desde cero: el ambiente también. Ninguna mue
 Mejor a volumen bajo.
 Suscríbete para las próximas obras: https://www.youtube.com/@rinchanneloficial?sub_confirmation=1
 
-#sleepmusic #meditation #417hz",90 MIN,#sleepmusic #meditation #417hz,"sleep music, 417 hz, 417 hz music, deep sleep, insomnia, ocean waves, sea sounds, relaxing music, meditation music, calming music, ambient music, just intonation, original composition, Rin, música para dormir",,,417,kumoi,grave,813147,0,90,python3 03-composicion/compositor.py --minutos 90 --raiz 417 --modo kumoi --semilla 813147 --caracter sin-cuenco --registro grave,python3 03-composicion/ambiente.py audio/OBRA-006_417_kumoi.wav audio/OBRA-006_final.wav --fondo mar,pendiente,,,,
+#sleepmusic #meditation #417hz",90 MIN,#sleepmusic #meditation #417hz,"sleep music, 417 hz, 417 hz music, deep sleep, insomnia, ocean waves, sea sounds, relaxing music, meditation music, calming music, ambient music, just intonation, original composition, Rin, música para dormir",,https://youtu.be/cECOoUGLqes,417,kumoi,grave,813147,0,90,python3 03-composicion/compositor.py --minutos 90 --raiz 417 --modo kumoi --semilla 813147 --caracter sin-cuenco --registro grave,python3 03-composicion/ambiente.py audio/OBRA-006_417_kumoi.wav audio/OBRA-006_final.wav --fondo mar,publicada,2026-09-26,,,
 OBRA-007,Sleep Music · Ocean Waves · 396 Hz · Slow Weight · 2 Hours,Música para dormir · Olas del mar · 396 Hz · Peso lento · 2 horas,Dormir,mar,"Slow Weight · 2 Hours
 
 To accompany sleep.
