@@ -7,6 +7,9 @@
      frase:   texto
      slide:   num, total, titulo, cuerpo
      portada: hz, palabra          (portada de reel, 1080x1920)
+       tiktok=1  frase y slide en 1080x1920 para carrusel de fotos de TikTok:
+                 el texto sube (abajo van la descripción y los botones) y la
+                 firma pasa arriba; etiqueta= reemplaza el «1 / 5» del slide
      Las lee render_redes.py. -->
 <link rel="stylesheet" href="../miniaturas/fuentes.css">
 <style>
@@ -55,11 +58,12 @@
   const pal = Q.get('paleta') || 'mar';
   document.documentElement.style.setProperty('--oro', ORO[pal] || '#e6c46a');
   const m = document.getElementById('m');
-  const alto = tipo === 'portada';
+  const tk = Q.get('tiktok') === '1';
+  const alto = tipo === 'portada' || tk;
   if (alto) m.classList.add('alto');
   const W = 1080, H = alto ? 1920 : 1350;
   // Mandala más grande y más suave detrás del texto largo (frase, slide).
-  const r = {pieza: 0.62, frase: 0.72, slide: 0.8, portada: 0.36}[tipo];
+  const r = tk ? {frase: 0.44, slide: 0.48}[tipo] : {pieza: 0.62, frase: 0.72, slide: 0.8, portada: 0.36}[tipo];
   document.getElementById('f').src =
     `../fondo-mandala/mandala.html?w=${W}&h=${H}&r=${r}&firma=0&vineta=0.6&paleta=${pal}&tono=${Q.get('tono') || 0}&t=${Q.get('t') || 6}`;
   const velo = {
@@ -82,11 +86,20 @@
   } else if (tipo === 'frase') {
     capa.append(e('frase', Q.get('texto')), e('raya', ''));
   } else if (tipo === 'slide') {
-    capa.append(e('num', `${Q.get('num')} / ${Q.get('total')}`), e('titulo', Q.get('titulo')));
+    capa.append(e('num', Q.get('etiqueta') || `${Q.get('num')} / ${Q.get('total')}`), e('titulo', Q.get('titulo')));
     if (Q.get('cuerpo')) capa.append(e('cuerpo', Q.get('cuerpo')));
   } else if (tipo === 'portada') {
     capa.append(e('hz', Q.get('hz') + ' Hz'), e('palabra', Q.get('palabra')));
     document.getElementById('firma').style.bottom = '340px';
+  }
+  if (tk) {
+    // Zona segura de TikTok: abajo, la descripción y la música (~420 px);
+    // a la derecha, los botones (~140 px)
+    capa.style.padding = '0 150px 380px 110px';
+    const f = document.getElementById('firma');
+    f.style.bottom = 'auto'; f.style.top = '190px';
+    document.getElementById('velo').style.background =
+      'radial-gradient(ellipse 640px 700px at 48% 41%, rgba(0,0,0,.88), rgba(0,0,0,.55) 70%, rgba(0,0,0,.35))';
   }
 </script>
 </body></html>
