@@ -53,13 +53,15 @@ LIMITE_WEB = 4_900_000    # bytes. Make (plan Free) no mueve archivos de más de
 
 def ligero(mp4):
     """short-<n>-web.mp4: la versión que sube Make. HEVC en dos pasadas para
-    quedar bajo 5 MB con la misma imagen (comparada a ojo con la de 17 MB)."""
+    quedar bajo 5 MB con la misma imagen (comparada a ojo con la de 17 MB).
+    Preset medium: con la tasa fija, casi la misma imagen que slow y la mitad
+    del tiempo (los 7 Shorts pasaban 45 min en este paso)."""
     web = mp4.with_name(mp4.stem + '-web.mp4')
     for kbps in (720, 640, 560):
         with tempfile.TemporaryDirectory() as tmp:
             log = str(pathlib.Path(tmp) / 'x265')
             base = ['ffmpeg', '-hide_banner', '-v', 'error', '-y', '-i', str(mp4),
-                    '-c:v', 'libx265', '-b:v', f'{kbps}k', '-preset', 'slow']
+                    '-c:v', 'libx265', '-b:v', f'{kbps}k', '-preset', 'medium']
             subprocess.run(base + ['-x265-params', f'pass=1:stats={log}:log-level=error',
                                    '-an', '-f', 'null', '-'], check=True)
             subprocess.run(base + ['-x265-params', f'pass=2:stats={log}:log-level=error',

@@ -77,7 +77,8 @@ jobs:
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y -qq ffmpeg fonts-dejavu-core
-          pip install -q playwright
+          # numpy y scipy: el motor rápido del compositor (la misma obra, ~12 veces más rápido)
+          pip install -q playwright numpy scipy
           python -m playwright install --with-deps chromium
 
       # Los bucles del mandala tardan ~25 min por paleta y tono: se guardan entre
