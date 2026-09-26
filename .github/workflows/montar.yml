@@ -58,6 +58,17 @@ jobs:
           echo "obra=$OBRA" >> "$GITHUB_OUTPUT"
           echo "Obra: $OBRA"
 
+      # Antes de trabajar una hora y media, que GitHub deje crear la Release:
+      # un borrador de prueba (no crea etiqueta) que se borra enseguida.
+      - name: Permiso para publicar la Release
+        if: github.event.inputs.shorts == ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          P="${{ steps.obra.outputs.obra }}-prueba-${{ github.run_id }}"
+          gh release create "$P" --draft --title "$P" --notes "prueba de permiso"
+          gh release delete "$P" -y
+
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
@@ -129,6 +140,23 @@ jobs:
           cp $D/textos.txt dist/$OBRA-textos.txt
           gh release upload "$OBRA" dist/* --clobber
           ls -l dist
+
+      # Si la Release falla, lo montado no se pierde: queda como descarga de la
+      # corrida (Actions → la corrida → Artifacts).
+      - name: Si algo falló, guardar lo montado
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ steps.obra.outputs.obra }}-montado
+          path: |
+            produccion/${{ steps.obra.outputs.obra }}/video.mp4
+            produccion/${{ steps.obra.outputs.obra }}/miniatura.jpg
+            produccion/${{ steps.obra.outputs.obra }}/textos.txt
+            produccion/${{ steps.obra.outputs.obra }}/metadatos.json
+            produccion/${{ steps.obra.outputs.obra }}/short-*.mp4
+          if-no-files-found: ignore
+          compression-level: 0
+          retention-days: 14
 
       - name: Shorts livianos a la rama «shorts»
         run: |

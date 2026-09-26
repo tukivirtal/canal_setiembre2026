@@ -53,6 +53,7 @@ def main():
             if i % (a.fps * 8) == 0:
                 print(f'  {i}/{total}', flush=True)
         nav.close()
+    pathlib.Path(a.salida).parent.mkdir(parents=True, exist_ok=True)   # bucles/ no viene en el repo
     subprocess.run(['ffmpeg', '-hide_banner', '-v', 'error', '-y', '-framerate', str(a.fps),
                     '-i', str(tmp / 'f%05d.png'), '-c:v', 'libx264', '-crf', str(a.crf),
                     '-preset', 'slow', '-tune', 'animation', '-pix_fmt', 'yuv420p', a.salida], check=True)
