@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<!-- Piezas para Instagram y Facebook. Parámetros por URL:
+       tipo   = pieza | frase | slide | portada
+       paleta, tono, t   el mandala de la obra (mismo color que su video)
+     pieza:   hz, palabra, nombre, pastilla
+     frase:   texto
+     slide:   num, total, titulo, cuerpo
+     portada: hz, palabra          (portada de reel, 1080x1920)
+     Las lee render_redes.py. -->
+<link rel="stylesheet" href="../miniaturas/fuentes.css">
+<style>
+  @font-face{font-family:Cinzel;font-weight:600;src:url(../miniaturas/fuentes/cinzel-600-normal-latin.woff2) format('woff2')}
+  @font-face{font-family:"Cormorant Garamond";font-style:italic;font-weight:500;src:url(../../09-canal/fuentes/cormorant-garamond-500-italic-latin.woff2) format('woff2')}
+  :root{--oro:#e6c46a;--crema:#f6e7b8}
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{background:#000}
+  #m{position:relative;width:1080px;height:1350px;overflow:hidden}
+  #m.alto{height:1920px}
+  #m iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+  .velo{position:absolute;inset:0}
+  .capa{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 90px}
+  .firma{position:absolute;left:0;right:0;bottom:56px;display:flex;justify-content:center;align-items:center;gap:14px;
+    font-family:Cinzel,serif;font-weight:600;font-size:38px;color:var(--crema);text-shadow:0 2px 10px rgba(0,0,0,.8)}
+  .firma i{width:40px;height:40px;border-radius:50%;border:3px solid var(--crema);display:grid;place-items:center}
+  .firma i::after{content:"";width:14px;height:14px;border-radius:50%;background:var(--oro)}
+  .etiqueta{font-family:Inter,sans-serif;font-weight:800;font-size:28px;letter-spacing:.3em;color:var(--oro);padding-left:.3em}
+  .hz{font-family:Inter,sans-serif;font-weight:900;font-size:220px;line-height:.95;color:#fff;letter-spacing:-.02em;
+    text-shadow:0 8px 40px rgba(0,0,0,.7)}
+  .palabra{font-family:Inter,sans-serif;font-weight:800;font-size:62px;letter-spacing:.14em;color:var(--oro);padding-left:.14em;margin-top:6px;
+    text-shadow:0 4px 18px rgba(0,0,0,.8)}
+  .nombre{font-family:"Cormorant Garamond",Georgia,serif;font-style:italic;font-weight:500;font-size:72px;color:var(--crema);margin-top:26px;
+    text-shadow:0 3px 16px rgba(0,0,0,.9)}
+  .pastilla{display:inline-block;margin-top:26px;padding:12px 30px;border-radius:40px;font-family:Inter,sans-serif;font-weight:600;
+    font-size:32px;color:#fff;background:rgba(0,0,0,.55);border:2px solid rgba(255,255,255,.3)}
+  .frase{font-family:"Cormorant Garamond",Georgia,serif;font-style:italic;font-weight:500;font-size:104px;line-height:1.08;color:var(--crema);
+    text-wrap:balance;text-shadow:0 4px 28px rgba(0,0,0,.95)}
+  .raya{width:90px;height:3px;background:var(--oro);margin:44px auto 0;border-radius:2px}
+  .num{font-family:Cinzel,serif;font-weight:600;font-size:30px;letter-spacing:.2em;color:var(--oro);padding-left:.2em;margin-bottom:34px}
+  .titulo{font-family:"Cormorant Garamond",Georgia,serif;font-style:italic;font-weight:500;font-size:96px;line-height:1.05;color:#fff;
+    text-wrap:balance;text-shadow:0 4px 24px rgba(0,0,0,.9)}
+  .cuerpo{font-family:Inter,sans-serif;font-weight:600;font-size:40px;line-height:1.4;color:rgba(255,255,255,.92);margin-top:34px;
+    max-width:860px;text-wrap:balance;text-shadow:0 2px 14px rgba(0,0,0,.95)}
+</style></head><body>
+<div id="m">
+  <iframe id="f"></iframe>
+  <div class="velo" id="velo"></div>
+  <div class="capa" id="capa"></div>
+  <div class="firma" id="firma"><i></i>Rin</div>
+</div>
+<script>
+  const Q = new URLSearchParams(location.search);
+  const tipo = Q.get('tipo') || 'pieza';
+  const ORO = {'mar':'#e6c46a','mar-aves':'#f5c877','zen':'#e8c066','selva':'#e8c55e','lluvia-tambor':'#e9b35a'};
+  const pal = Q.get('paleta') || 'mar';
+  document.documentElement.style.setProperty('--oro', ORO[pal] || '#e6c46a');
+  const m = document.getElementById('m');
+  const alto = tipo === 'portada';
+  if (alto) m.classList.add('alto');
+  const W = 1080, H = alto ? 1920 : 1350;
+  // Mandala más grande y más suave detrás del texto largo (frase, slide).
+  const r = {pieza: 0.62, frase: 0.72, slide: 0.8, portada: 0.36}[tipo];
+  document.getElementById('f').src =
+    `../fondo-mandala/mandala.html?w=${W}&h=${H}&r=${r}&firma=0&vineta=0.6&paleta=${pal}&tono=${Q.get('tono') || 0}&t=${Q.get('t') || 6}`;
+  const velo = {
+    pieza: 'radial-gradient(ellipse 620px 560px at 50% 48%, rgba(0,0,0,.72), rgba(0,0,0,.25) 70%, rgba(0,0,0,.1))',
+    // el centro del mandala (la flor dorada) queda detrás del texto: se oscurece
+    // más en el medio que en los bordes, así el texto se lee y el borde se ve
+    frase: 'radial-gradient(ellipse 560px 520px at 50% 50%, rgba(0,0,0,.86), rgba(0,0,0,.55) 70%, rgba(0,0,0,.4))',
+    slide: 'radial-gradient(ellipse 600px 560px at 50% 50%, rgba(0,0,0,.9), rgba(0,0,0,.62) 70%, rgba(0,0,0,.45))',
+    // la portada del reel: el texto va en el centro, que es lo que Instagram
+    // muestra recortado a 4:5 en la cuadrícula del perfil
+    portada: 'radial-gradient(ellipse 600px 520px at 50% 50%, rgba(0,0,0,.7), rgba(0,0,0,.15) 75%, rgba(0,0,0,0))',
+  }[tipo];
+  document.getElementById('velo').style.background = velo;
+  const e = (cls, txt) => { const d = document.createElement('div'); d.className = cls; d.textContent = txt; return d; };
+  const capa = document.getElementById('capa');
+  if (tipo === 'pieza') {
+    capa.append(e('etiqueta', 'NEW PIECE'), e('hz', Q.get('hz') + ' Hz'), e('palabra', Q.get('palabra')),
+                e('nombre', Q.get('nombre')), e('pastilla', Q.get('pastilla')));
+    capa.firstChild.style.marginBottom = '30px';
+  } else if (tipo === 'frase') {
+    capa.append(e('frase', Q.get('texto')), e('raya', ''));
+  } else if (tipo === 'slide') {
+    capa.append(e('num', `${Q.get('num')} / ${Q.get('total')}`), e('titulo', Q.get('titulo')));
+    if (Q.get('cuerpo')) capa.append(e('cuerpo', Q.get('cuerpo')));
+  } else if (tipo === 'portada') {
+    capa.append(e('hz', Q.get('hz') + ' Hz'), e('palabra', Q.get('palabra')));
+    document.getElementById('firma').style.bottom = '340px';
+  }
+</script>
+</body></html>
