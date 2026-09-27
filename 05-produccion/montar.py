@@ -99,13 +99,14 @@ def montar(o):
         # 5 · el video. Con -t y no con -shortest: -shortest no corta cuando el
         # video es un bucle infinito copiado, y el 23/09 generó un archivo de 31 GB.
         dur = duracion_wav(final)
-        # El bucle va en HEVC siempre: ~40 % más liviano que H.264 con la misma
-        # imagen (una obra de 90 min pesaba 1,5 GB), y YouTube lo acepta igual.
-        # El audio no se toca: AAC a 320 kbps, lo más alto que usa YouTube.
-        hevc = bucle.with_name(bucle.stem + '-hevc.mp4')
+        # El bucle va en HEVC siempre, y YouTube lo acepta igual. Con crf 27 no
+        # bajaba nada (OBRA-041: 1 GB por hora, lo mismo que en H.264); con 31
+        # pesa ~570 MB por hora y al 100 % no se distingue del bucle original
+        # (SSIM 0,987, comparado el 27/09). El audio no se toca: AAC a 320 kbps.
+        hevc = bucle.with_name(bucle.stem + '-hevc31.mp4')
         if not hevc.exists():
             correr(['ffmpeg', '-hide_banner', '-v', 'error', '-y', '-i', bucle,
-                    '-c:v', 'libx265', '-crf', '27', '-preset', 'slow',
+                    '-c:v', 'libx265', '-crf', '31', '-preset', 'slow',
                     '-x265-params', 'keyint=1152:min-keyint=1152:log-level=error',
                     '-tag:v', 'hvc1', '-pix_fmt', 'yuv420p', hevc])
         correr(['ffmpeg', '-hide_banner', '-v', 'error', '-y', '-stream_loop', '-1',

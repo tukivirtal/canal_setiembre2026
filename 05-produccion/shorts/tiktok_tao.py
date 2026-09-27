@@ -1,29 +1,29 @@
 #!/usr/bin/env python3
 """
-Video vertical de 2 minutos, solo para TikTok: «Two minutes of stillness».
-Guqin, xiao y lluvia (03-composicion/tao.py) sobre el mandala jade (zen con
-tono 165), con un gancho en el primer segundo, una indicación de respiración y
-dos líneas del Tao Te Ching (traducción propia; el original es de dominio
-público).
+Videos verticales solo para TikTok: un audio, el mandala vertical de su color,
+un gancho en el primer segundo y unos pocos textos que entran y salen.
 
-    python3 05-produccion/shorts/tiktok_tao.py
+    python3 05-produccion/shorts/tiktok_tao.py                 # «Two minutes of stillness»
+    python3 05-produccion/shorts/tiktok_tao.py --pieza pensar   # «Stop overthinking» (OBRA-041)
 
-Deja en produccion/tiktok-tao/: tao-tiktok.mp4 (bajo 30 MB) y textos.txt.
+tao: guqin, xiao y lluvia (03-composicion/tao.py) sobre el mandala jade, con dos
+líneas del Tao Te Ching (traducción propia; el original es de dominio público).
+pensar: 75 s de OBRA-041, pájaros y campanas del templo.
+
+Deja en produccion/tiktok-<pieza>/: <pieza>-tiktok.mp4 (bajo 30 MB) y textos.txt.
 """
-import pathlib, subprocess, sys, tempfile, urllib.parse, os
+import argparse, pathlib, subprocess, sys, tempfile, urllib.parse, os
 from playwright.sync_api import sync_playwright
 from PIL import Image
 
 RAIZ = pathlib.Path(__file__).resolve().parents[2]
 AQUI = pathlib.Path(__file__).resolve().parent
-OUT = RAIZ / 'produccion' / 'tiktok-tao'
-BUCLE = RAIZ / '05-produccion/fondo-mandala/bucles/vertical-zen-t165.mp4'
 _CH = '/opt/pw-browsers/chromium-1194/chrome-linux/chrome'
 CHROMIUM = os.environ.get('CHROMIUM') or (_CH if os.path.exists(_CH) else None)
-T = 120
+BUCLES = RAIZ / '05-produccion/fondo-mandala/bucles'
 
 # (desde, hasta, parámetros del texto)
-TEXTOS = [
+TEXTOS_TAO = [
     (0.0, 7.0, {'tipo': 'gancho', 'titulo': 'Two minutes of stillness',
                 'sub': 'Headphones on. Let the strings breathe for you.'}),
     (9.0, 30.0, {'titulo': 'Breathe out when the strings play',
@@ -35,7 +35,7 @@ TEXTOS = [
                     'sub': 'Rin · original music, composed from scratch. Guqin, xiao and rain, tuned to 432 Hz.'}),
 ]
 
-TEXTO_TIKTOK = """Two minutes of stillness 🌙 Guqin, xiao flute and soft rain.
+TEXTO_TAO = """Two minutes of stillness 🌙 Guqin, xiao flute and soft rain.
 Headphones on. Breathe out when the strings play.
 "The highest good is like water." Tao Te Ching
 Composed from scratch by Rin, no samples. Tuned to 432 Hz.
@@ -43,8 +43,33 @@ Full pieces on YouTube, link in bio.
 
 #taoism #guqin #meditationmusic #zenmusic #calm"""
 
+TEXTOS_PENSAR = [
+    (0.0, 6.0, {'tipo': 'gancho', 'titulo': 'Stop overthinking',
+                'sub': 'Birdsong, temple bells and a slower breath.'}),
+    (8.0, 26.0, {'titulo': 'Breathe out longer than you breathe in',
+                 'sub': 'The music slows down with you.'}),
+    (30.0, 50.0, {'titulo': "You don't have to solve it tonight."}),
+    (53.0, 66.0, {'titulo': 'Just listen. The birds are not in a hurry.'}),
+    (67.5, 75.0, {'tipo': 'fin', 'titulo': 'The full hour is on YouTube',
+                  'sub': 'Rin · original music, composed from scratch. 432 Hz.'}),
+]
+TEXTO_PENSAR = """Stop overthinking 🌿 Birdsong, soft temple bells and a slower breath.
+Breathe out longer than you breathe in, and let the music lead.
+You don't have to solve it tonight. Just listen.
+Original music composed from scratch by Rin, no samples. Tuned to 432 Hz.
+The full hour is on YouTube, link in bio.
 
-def pngs(tmp):
+#stopoverthinking #anxietyrelief #nervoussystem #birdsong #432hz"""
+
+PIEZAS = {
+    'tao': dict(bucle='vertical-zen-t165.mp4', audio='tiktok-tao/tao-master.wav', T=120,
+                textos=TEXTOS_TAO, texto=TEXTO_TAO, out='tiktok-tao', nombre='tao-tiktok.mp4'),
+    'pensar': dict(bucle='vertical-jardin.mp4', audio='tiktok-pensar/pensar-master.wav', T=75,
+                   textos=TEXTOS_PENSAR, texto=TEXTO_PENSAR, out='tiktok-pensar', nombre='pensar-tiktok.mp4'),
+}
+
+
+def pngs(tmp, TEXTOS, T):
     rutas = []
     with sync_playwright() as pw:
         nav = pw.chromium.launch(executable_path=CHROMIUM)
@@ -69,12 +94,17 @@ def pngs(tmp):
 
 
 def main():
-    audio = OUT / 'tao-master.wav'
+    ap = argparse.ArgumentParser()
+    ap.add_argument('--pieza', choices=list(PIEZAS), default='tao')
+    P = PIEZAS[ap.parse_args().pieza]
+    TEXTOS, T = P['textos'], P['T']
+    OUT = RAIZ / 'produccion' / P['out']
+    BUCLE, audio = BUCLES / P['bucle'], RAIZ / 'produccion' / P['audio']
     if not BUCLE.exists() or not audio.exists():
-        sys.exit('Faltan el bucle vertical-zen-t165.mp4 o produccion/tiktok-tao/tao-master.wav')
+        sys.exit(f'Faltan {BUCLE} o {audio}')
     with tempfile.TemporaryDirectory() as t:
         tmp = pathlib.Path(t)
-        rutas, velo = pngs(tmp)
+        rutas, velo = pngs(tmp, TEXTOS, T)
         args = ['ffmpeg', '-hide_banner', '-v', 'error', '-y', '-stream_loop', '-1', '-i', str(BUCLE),
                 '-i', str(audio), '-loop', '1', '-framerate', '24', '-t', str(T), '-i', str(velo)]
         for r in rutas:
@@ -91,14 +121,14 @@ def main():
         marca = len(TEXTOS) + 3
         # la marca «Rin» queda fija, salvo cuando el texto final ya la nombra
         f.append(f"[{cur}][{marca}:v]overlay=0:0:enable='lt(t,{TEXTOS[-1][0]})'[v]")
-        salida = OUT / 'tao-tiktok.mp4'
+        salida = OUT / P['nombre']
         comun = ['-filter_complex', ';'.join(f), '-map', '[v]', '-map', '1:a', '-t', str(T),
-                 '-c:v', 'libx264', '-preset', 'slow', '-b:v', '1600k', '-pix_fmt', 'yuv420p']
+                 '-c:v', 'libx264', '-preset', 'medium', '-b:v', '1600k', '-pix_fmt', 'yuv420p']
         log = str(tmp / 'x264')
         subprocess.run(args + comun + ['-pass', '1', '-passlogfile', log, '-an', '-f', 'null', '-'], check=True)
         subprocess.run(args + comun + ['-pass', '2', '-passlogfile', log, '-c:a', 'aac', '-b:a', '192k',
                                        '-ar', '48000', '-movflags', '+faststart', str(salida)], check=True)
-    (OUT / 'textos.txt').write_text(TEXTO_TIKTOK + '\n', encoding='utf-8')
+    (OUT / 'textos.txt').write_text(P['texto'] + '\n', encoding='utf-8')
     print(f'{salida}  {salida.stat().st_size / 1e6:.1f} MB')
 
 
