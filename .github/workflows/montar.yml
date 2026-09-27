@@ -126,7 +126,10 @@ jobs:
           for f in $D/short-?.mp4; do cp $f dist/$OBRA-$(basename $f); done
           TITULO=$(python3 -c "import json;print(json.load(open('$D/metadatos.json'))['title'])")
           gh release delete "$OBRA" -y --cleanup-tag 2>/dev/null || true
-          gh release create "$OBRA" dist/* --title "$OBRA · $TITULO" --notes-file $D/textos.txt --target "$GITHUB_SHA"
+          # La etiqueta va a la punta de la rama y no a GITHUB_SHA: si durante el
+          # montaje entró un cambio a los workflows, etiquetar el commit viejo es
+          # «modificar workflows» y GitHub lo rechaza con un 403 (OBRA-006 y -041).
+          gh release create "$OBRA" dist/* --title "$OBRA · $TITULO" --notes-file $D/textos.txt --target "${{ github.ref_name }}"
           ls -l dist
 
       - name: Solo Shorts - sumarlos a la Release

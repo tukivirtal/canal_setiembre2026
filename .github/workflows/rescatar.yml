@@ -1,0 +1,65 @@
+# Cuando un montaje falla al final (la Release), lo montado queda como Artifact
+# «<OBRA>-montado» de esa corrida. Esto lo convierte en la Release de la obra y
+# sube los Shorts livianos a la rama «shorts», sin volver a componer nada.
+#   Actions → «Rescatar un montaje» → Run workflow → OBRA-041 y el número de la corrida
+name: Rescatar un montaje
+
+on:
+  workflow_dispatch:
+    inputs:
+      obra:
+        description: "Id de la obra, por ejemplo OBRA-041"
+        required: true
+      corrida:
+        description: "Id de la corrida que falló (el número largo de su URL)"
+        required: true
+
+permissions:
+  contents: write
+  actions: read
+
+concurrency:
+  group: montar
+  cancel-in-progress: false
+
+jobs:
+  rescatar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: ${{ github.event.inputs.obra }}-montado
+          run-id: ${{ github.event.inputs.corrida }}
+          github-token: ${{ github.token }}
+          path: produccion/${{ github.event.inputs.obra }}
+      - name: Release con la entrega
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          OBRA=${{ github.event.inputs.obra }}
+          D=produccion/$OBRA
+          ls -l $D
+          mkdir -p dist
+          cp $D/video.mp4 dist/$OBRA-video.mp4
+          cp $D/miniatura.jpg dist/$OBRA-miniatura.jpg
+          cp $D/textos.txt dist/$OBRA-textos.txt
+          cp $D/metadatos.json dist/$OBRA-metadatos.json
+          for f in $D/short-?.mp4; do cp $f dist/$OBRA-$(basename $f); done
+          TITULO=$(python3 -c "import json;print(json.load(open('$D/metadatos.json'))['title'])")
+          gh release delete "$OBRA" -y --cleanup-tag 2>/dev/null || true
+          gh release create "$OBRA" dist/* --title "$OBRA · $TITULO" --notes-file $D/textos.txt --target "${{ github.ref_name }}"
+          ls -l dist
+      - name: Shorts livianos a la rama «shorts»
+        run: |
+          OBRA=${{ github.event.inputs.obra }}
+          git config user.name "rin-montaje"
+          git config user.email "rin-montaje@users.noreply.github.com"
+          git fetch -q origin shorts
+          git worktree add -q /tmp/shorts origin/shorts
+          mkdir -p /tmp/shorts/$OBRA
+          cp produccion/$OBRA/short-*-web.mp4 /tmp/shorts/$OBRA/
+          cd /tmp/shorts
+          git add -A
+          git commit -q -m "Shorts livianos de $OBRA" || echo "sin cambios"
+          git push -q origin HEAD:shorts
