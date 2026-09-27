@@ -96,11 +96,15 @@ def main():
     p = argparse.ArgumentParser(description=__doc__.split('\n')[1])
     p.add_argument('entrada')
     p.add_argument('salida')
-    p.add_argument('--intro', type=float, default=20.0,
+    # Con 20 s de naturaleza sola y la obra apareciendo en 50 s, la música se
+    # oía recién pasado el minuto, y el que llegaba desde la búsqueda se iba a
+    # los 37 s (estadísticas del 27/09). Ahora: 2 s y una entrada de 15 s,
+    # todavía en curva exponencial, sin golpe.
+    p.add_argument('--intro', type=float, default=2.0,
                    help='segundos de naturaleza sola antes de que entre la obra')
     p.add_argument('--cola', type=float, default=20.0,
                    help='segundos de naturaleza sola después de la obra')
-    p.add_argument('--entrada-obra', type=float, default=50.0,
+    p.add_argument('--entrada-obra', type=float, default=15.0,
                    help='segundos que tarda el tono en aparecer bajo el mar')
     p.add_argument('--nivel-obra', type=float, default=-16.0,
                    help='cuántos dB se baja la obra bajo la naturaleza')
