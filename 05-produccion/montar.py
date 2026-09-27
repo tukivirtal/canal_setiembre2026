@@ -103,10 +103,13 @@ def montar(o):
         # bajaba nada (OBRA-041: 1 GB por hora, lo mismo que en H.264); con 31
         # pesa ~570 MB por hora y al 100 % no se distingue del bucle original
         # (SSIM 0,987, comparado el 27/09). El audio no se toca: AAC a 320 kbps.
-        hevc = bucle.with_name(bucle.stem + '-hevc31.mp4')
+        # Más de 2,5 h: crf 33 (~1 Mbps), para que 3 h de video no pasen los 2 GB
+        # que admite una Release (con 31 serían ~2,1 GB).
+        crf = 33 if dur > 150 * 60 else 31
+        hevc = bucle.with_name(bucle.stem + f'-hevc{crf}.mp4')
         if not hevc.exists():
             correr(['ffmpeg', '-hide_banner', '-v', 'error', '-y', '-i', bucle,
-                    '-c:v', 'libx265', '-crf', '31', '-preset', 'slow',
+                    '-c:v', 'libx265', '-crf', str(crf), '-preset', 'slow',
                     '-x265-params', 'keyint=1152:min-keyint=1152:log-level=error',
                     '-tag:v', 'hvc1', '-pix_fmt', 'yuv420p', hevc])
         correr(['ffmpeg', '-hide_banner', '-v', 'error', '-y', '-stream_loop', '-1',

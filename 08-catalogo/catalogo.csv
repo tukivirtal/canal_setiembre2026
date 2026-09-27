@@ -999,19 +999,15 @@ Mejor a volumen bajo.
 Suscríbete para las próximas obras: https://www.youtube.com/@rinchanneloficial?sub_confirmation=1
 
 #focusmusic #meditation #741hz",3 HOURS,#focusmusic #meditation #741hz,"focus music, 741 hz, 741 hz music, study music, deep focus, work music, ocean waves, birdsong, nature sounds, relaxing music, meditation music, calming music, ambient music, just intonation, original composition, Rin, música para concentrarse",,,741,yo,grave,883876,-150,180,python3 03-composicion/compositor.py --minutos 180 --raiz 741 --modo yo --semilla 883876 --caracter sin-cuenco --registro grave,python3 03-composicion/capas.py aves 10840 audio/OBRA-040_capa.wav --semilla 883876 --raiz 741 && python3 03-composicion/ambiente.py audio/OBRA-040_741_yo.wav audio/OBRA-040_final.wav --fondo mar --nivel-capa -4 --capa audio/OBRA-040_capa.wav,pendiente,,,,
-OBRA-041,Music for Anxiety · Birds and Temple Bells · 432 Hz · Stop Overthinking · 1 Hour,Música para momentos de ansiedad · Pájaros y campanas del templo · 432 Hz · Dejar de pensar · 1 hora,Ansiedad,jardin,"Stop Overthinking · 1 Hour
+OBRA-041,Stop Overthinking 🌿 Calming Music for Anxiety · Birdsong & Temple Bells · 432 Hz · 1 Hour,Música para momentos de ansiedad · Pájaros y campanas del templo · 432 Hz · Dejar de pensar · 1 hora,Ansiedad,jardin,"One hour to stop overthinking. Calming music for anxiety with birdsong and soft temple bells, and a slower breath.
+The music slows from 6 to 4.5 breaths per minute: breathe out longer than you breathe in, and let it lead.
 
-To accompany a pause when your mind won't stop.
-Ambience: birds and temple bells.
+🎧 Headphones, low volume. You don't have to solve anything tonight. Just listen.
+🌿 Subscribe for a new calm piece every week: https://www.youtube.com/@rinchanneloficial?sub_confirmation=1
 
-Composed around a root of 432 Hz, in just intonation, hirajoshi mode.
-Breathing cycle: from 6.0 down to 4.5 breaths per minute, 40 % inhale / 60 % exhale.
-Original composition, synthesized from scratch, ambience included. No third-party samples.
+Original composition by Rin, synthesized from scratch in just intonation around 432 Hz, hirajoshi mode. No samples.
 
-Best at low volume.
-Subscribe for new pieces: https://www.youtube.com/@rinchanneloficial?sub_confirmation=1
-
-#relaxingmusic #meditation #432hz","Dejar de pensar · 1 hora
+#calmingmusic #musicforanxiety #432hz","Dejar de pensar · 1 hora
 
 Para acompañar un momento de pausa cuando la cabeza no para.
 Ambiente: pájaros y campanas del templo.
@@ -1023,4 +1019,25 @@ Composición original, sintetizada desde cero: el ambiente también. Ninguna mue
 Mejor a volumen bajo.
 Suscríbete para las próximas obras: https://www.youtube.com/@rinchanneloficial?sub_confirmation=1
 
-#relaxingmusic #meditation #432hz",60 MIN,#relaxingmusic #meditation #432hz,"music for anxiety, 432 hz, 432 hz music, anxiety relief, stress relief, calming music, birdsong, wind chimes, zen garden, relaxing music, meditation music, ambient music, just intonation, original composition, Rin, música para momentos de ansiedad",,,432,hirajoshi,medio,304617,0,60,python3 03-composicion/compositor.py --minutos 60 --raiz 432 --modo hirajoshi --semilla 304617 --caracter sin-cuenco,python3 03-composicion/capas.py jardin 3640 audio/OBRA-041_capa.wav --semilla 304617 --raiz 432 && python3 03-composicion/ambiente.py audio/OBRA-041_432_hirajoshi.wav audio/OBRA-041_final.wav --fondo mar --nivel-fondo -8 --nivel-capa 0 --capa audio/OBRA-041_capa.wav,pendiente,,,,
+#relaxingmusic #meditation #432hz",60 MIN,#calmingmusic #musicforanxiety #432hz,"stop overthinking, stop overthinking music, calming music, music for anxiety, calming music for anxiety, anxiety relief, stress relief music, calm your nervous system, nervous system regulation, relaxing music, meditation music, calm music, birdsong, birds singing, temple bells, wind chimes, zen garden, 432 hz, 432 hz music, rin, música para la ansiedad",,https://youtu.be/LRXFSFZO_uI,432,hirajoshi,medio,304617,0,60,python3 03-composicion/compositor.py --minutos 60 --raiz 432 --modo hirajoshi --semilla 304617 --caracter sin-cuenco,python3 03-composicion/capas.py jardin 3640 audio/OBRA-041_capa.wav --semilla 304617 --raiz 432 && python3 03-composicion/ambiente.py audio/OBRA-041_432_hirajoshi.wav audio/OBRA-041_final.wav --fondo mar --nivel-fondo -8 --nivel-capa 0 --capa audio/OBRA-041_capa.wav,publicada,2026-09-27,,,
+OBRA-042,Calm Your Nervous System 🌿 Zen Temple Bells · 528 Hz · Music for Anxiety & Sleep · 3 Hours,Música para momentos de ansiedad · Templo zen · 528 Hz · Calmar el sistema nervioso · 3 horas,Ansiedad,zen,"Three hours of calm for an anxious mind and a restless night. Soft zen temple bells over a warm, steady drone.
+The music slows from 6 to 4.5 breaths per minute: breathe out longer than you breathe in, and let your body follow.
+
+🌙 Play it low while you rest, read, work or fall asleep.
+🌿 Subscribe for a new calm piece every week: https://www.youtube.com/@rinchanneloficial?sub_confirmation=1
+
+Original composition by Rin, synthesized from scratch in just intonation around 528 Hz, shin mode. No samples.
+
+#calmingmusic #sleepmusic #528hz","Calmar el sistema nervioso · 3 horas
+
+Para acompañar un momento de pausa cuando la cabeza no para.
+Ambiente: templo zen.
+
+Compuesta con raíz en 528 Hz, en entonación justa, modo shin.
+Ciclo respiratorio: de 6.0 a 4.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
+Composición original, sintetizada desde cero: el ambiente también. Ninguna muestra procede de terceros.
+
+Mejor a volumen bajo.
+Suscríbete para las próximas obras: https://www.youtube.com/@rinchanneloficial?sub_confirmation=1
+
+#relaxingmusic #meditation #528hz",180 MIN,#calmingmusic #sleepmusic #528hz,"calm your nervous system, nervous system regulation, calming music, music for anxiety, anxiety relief, sleep music, meditation for sleep, deep sleep music, stress relief music, zen music, zen temple, temple bells, 528 hz, 528 hz music, relaxing music, meditation music, 3 hours, rin, música para la ansiedad",,,528,shin,medio,266691,35,180,python3 03-composicion/compositor.py --minutos 180 --raiz 528 --modo shin --semilla 266691 --caracter sin-cuenco,python3 03-composicion/capas.py zen 10840 audio/OBRA-042_capa.wav --semilla 266691 --raiz 528 --densidad 1.4 && python3 03-composicion/ambiente.py audio/OBRA-042_528_shin.wav audio/OBRA-042_final.wav --fondo mar --nivel-fondo -7 --nivel-capa 2 --capa audio/OBRA-042_capa.wav,pendiente,,,,

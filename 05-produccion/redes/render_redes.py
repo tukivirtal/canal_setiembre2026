@@ -27,6 +27,9 @@ PALABRA = {'Dormir': 'DEEP SLEEP', 'Ansiedad': 'CALM', 'Meditar': 'MEDITATION',
 PROPOSITO = {'Dormir': 'For the hour before sleep.', 'Ansiedad': "For when your mind won't stop.",
              'Meditar': 'For a quiet meditation.', 'Soltar': "To let go of the day.",
              'Concentración': 'For deep, quiet work.'}
+AMBIENTE_EN = {'mar': 'Ocean Waves', 'mar-aves': 'Ocean and Birds', 'zen': 'Zen Temple',
+               'selva': 'Tropical Rainforest', 'lluvia-tambor': 'Rain on Leaves',
+               'jardin': 'Birds and Temple Bells'}
 TAGS = {'Dormir': ['#sleepmusic', '#deepsleep'], 'Ansiedad': ['#anxietyrelief', '#calm'],
         'Meditar': ['#meditationmusic', '#mindfulness'], 'Soltar': ['#stressrelief', '#relaxingmusic'],
         'Concentración': ['#focusmusic', '#studymusic']}
@@ -107,13 +110,18 @@ def main():
         if tipo == 'pieza':
             o = cat[x]
             partes = o['titulo'].split(' · ')
+            # Título viejo «Clave · Ambiente · Hz · Nombre · Duración» o con la
+            # promesa primero «Promesa 🌿 Ambiente · …»: el nombre es la promesa
+            amb = AMBIENTE_EN[o['ambiente']]
+            nuevo = any(c in partes[0] for c in '🌿🌊🍃🌙')
+            nombre_obra = ' '.join(partes[0].split(' ')[:-1]) if nuevo else partes[3]
             q = {'tipo': 'pieza', 'paleta': o['ambiente'], 'tono': o['tono'], 't': int(o['semilla']) % 48,
-                 'hz': o['raiz_hz'], 'palabra': PALABRA[o['tema']], 'nombre': partes[3],
-                 'pastilla': f"{partes[1]} · {dur_txt(o['duracion_min'])}"}
+                 'hz': o['raiz_hz'], 'palabra': PALABRA[o['tema']], 'nombre': nombre_obra,
+                 'pastilla': f"{amb} · {dur_txt(o['duracion_min'])}"}
             nombre = f'{k:02d}-nueva-{x}.jpg'
             trabajos.append((q, out / 'posts' / nombre, False))
-            txt = (f"New piece: {partes[3]}. {PROPOSITO[o['tema']]}\n"
-                   f"{partes[1]}, {o['raiz_hz']} Hz, {dur_txt(o['duracion_min'])}. Composed from scratch, no samples.\n"
+            txt = (f"New piece: {nombre_obra}. {PROPOSITO[o['tema']]}\n"
+                   f"{amb}, {o['raiz_hz']} Hz, {dur_txt(o['duracion_min'])}. Composed from scratch, no samples.\n"
                    f"Full piece on YouTube. Link in bio.\n\n"
                    + etiquetas(TAGS[o['tema']], [f"#{o['raiz_hz']}hz", '#meditationmusic', '#relaxingmusic']))
             textos.append(f'\n---------- {k:02d} · POST: pieza nueva ({x}) · {nombre}\n{txt}\n')

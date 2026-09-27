@@ -154,6 +154,7 @@ lluvia sin tambor para dormir queda pendiente de escucha.
 | 15 | Antes de empezar | Before You Begin | 639 | yo | 15 min | mar-aves |
 | 16 | El final del día | End of the Day | 417 | kumoi | 30 min | lluvia-tambor |
 | 41 | Dejar de pensar | Stop Overthinking | 432 | hirajoshi | 60 min | jardin |
+| 42 | Calmar el sistema nervioso | Calm Your Nervous System | 528 | shin | 180 min | zen |
 
 ### Meditar
 

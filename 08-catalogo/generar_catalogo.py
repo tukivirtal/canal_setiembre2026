@@ -53,7 +53,7 @@ for linea in open(MD, encoding="utf-8"):
         obras.append({"n": int(m.group(1)), "nombre": m.group(2), "name": m.group(3),
                       "raiz": int(m.group(4)), "modo": m.group(5), "dur": int(m.group(6)),
                       "pilar": pilar_actual, "ambiente": m.group(7)})
-assert len(obras) == 41, f"se esperaban 41 obras, se encontraron {len(obras)}"
+assert len(obras) == 42, f"se esperaban 42 obras, se encontraron {len(obras)}"
 
 # --- Derivar los campos ---
 # Idioma principal: INGLÉS (23/09). El español va como traducción del título y
@@ -152,6 +152,45 @@ def miniatura(o):
         return f'{o["dur"]} MIN'
     h = o["dur"] // 60
     return f"{h} HOURS" if h > 1 else f'{o["dur"]} MIN'
+
+# Títulos y descripciones con la PROMESA primero (análisis del 27/09: quien
+# llega desde la búsqueda mira el 86 %, y el título descriptivo «Music for
+# Anxiety · Zen Temple · …» no promete nada). Palabras clave de la búsqueda en
+# EE. UU. (vidIQ): calming music, music for anxiety, calm your nervous system.
+# Las obras sin entrada acá siguen con el formato de siempre.
+PROMESA = {
+    41: dict(
+        titulo="Stop Overthinking 🌿 Calming Music for Anxiety · Birdsong & Temple Bells · 432 Hz · 1 Hour",
+        gancho=("One hour to stop overthinking. Calming music for anxiety with birdsong and soft temple bells, and a slower breath.",
+                "The music slows from 6 to 4.5 breaths per minute: breathe out longer than you breathe in, and let it lead."),
+        uso="🎧 Headphones, low volume. You don't have to solve anything tonight. Just listen.",
+        hashtags="#calmingmusic #musicforanxiety #432hz",
+        etiquetas=["stop overthinking", "stop overthinking music", "calming music", "music for anxiety",
+                   "calming music for anxiety", "anxiety relief", "stress relief music", "calm your nervous system",
+                   "nervous system regulation", "relaxing music", "meditation music", "calm music", "birdsong",
+                   "birds singing", "temple bells", "wind chimes", "zen garden", "432 hz", "432 hz music", "rin",
+                   "música para la ansiedad"]),
+    42: dict(
+        titulo="Calm Your Nervous System 🌿 Zen Temple Bells · 528 Hz · Music for Anxiety & Sleep · 3 Hours",
+        gancho=("Three hours of calm for an anxious mind and a restless night. Soft zen temple bells over a warm, steady drone.",
+                "The music slows from 6 to 4.5 breaths per minute: breathe out longer than you breathe in, and let your body follow."),
+        uso="🌙 Play it low while you rest, read, work or fall asleep.",
+        hashtags="#calmingmusic #sleepmusic #528hz",
+        etiquetas=["calm your nervous system", "nervous system regulation", "calming music", "music for anxiety",
+                   "anxiety relief", "sleep music", "meditation for sleep", "deep sleep music", "stress relief music",
+                   "zen music", "zen temple", "temple bells", "528 hz", "528 hz music", "relaxing music",
+                   "meditation music", "3 hours", "rin", "música para la ansiedad"]),
+}
+
+
+def descripcion_promesa(o, p):
+    return (f'{p["gancho"][0]}\n{p["gancho"][1]}\n\n'
+            f'{p["uso"]}\n'
+            f'🌿 Subscribe for a new calm piece every week: {SUSCRIBIR}\n\n'
+            f'Original composition by Rin, synthesized from scratch in just intonation around '
+            f'{o["raiz"]} Hz, {o["modo"]} mode. No samples.\n\n'
+            f'{p["hashtags"]}')
+
 
 def descripcion_es(o):
     """La traducción al español. Se carga en YouTube como traducción del video."""
@@ -268,6 +307,7 @@ def construir_filas():
     filas = []
     for o in sorted(obras, key=lambda x: x["n"]):
         s = semilla(o)
+        p = PROMESA.get(o["n"])
         filas.append({
             "id": f'OBRA-{o["n"]:03d}',
             "titulo": (f'{CLAVE[o["pilar"]][1]} · {AMBIENTES[o["ambiente"]][1]} · '
@@ -276,11 +316,11 @@ def construir_filas():
                           f'{o["raiz"]} Hz · {o["nombre"]} · {dur_txt(o["dur"])}'),
             "tema": o["pilar"],
             "ambiente": o["ambiente"],
-            "descripcion_optimizada": descripcion(o),
+            "descripcion_optimizada": descripcion_promesa(o, p) if p else descripcion(o),
             "descripcion_es": descripcion_es(o),
             "titulo_miniatura": miniatura(o),
-            "hashtags": hashtags(o),
-            "etiquetas": etiquetas(o),
+            "hashtags": p["hashtags"] if p else hashtags(o),
+            "etiquetas": ", ".join(p["etiquetas"]) if p else etiquetas(o),
             "imagen_miniatura": "", "url_video": "",
             "raiz_hz": o["raiz"], "modo": o["modo"],
             "registro": REGISTRO[o["pilar"]], "semilla": s,
@@ -297,6 +337,8 @@ def construir_filas():
             "estado": "pendiente", "fecha_publicacion": "",
             "vistas": "", "suscriptores": "", "subs_por_1000": "",
         })
+        if p:
+            filas[-1]["titulo"] = p["titulo"]
     # Lo publicado vive en publicadas.csv: si se escribiera solo en el catálogo,
     # regenerarlo lo borraría.
     for p in _csv.DictReader(open(PUBLICADAS, encoding="utf-8")):

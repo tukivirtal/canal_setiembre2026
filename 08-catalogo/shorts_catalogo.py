@@ -114,6 +114,14 @@ def inicios(duracion_min):
     return t + [round((t[0] + t[1]) / 2), round((t[2] + t[3]) / 2)]
 
 
+# El nombre del ambiente sale del ambiente, no del título: desde el 27/09 hay
+# títulos con la promesa primero («Calm Your Nervous System 🌿 …») y la posición
+# de cada parte cambia.
+AMB_EN = {"mar": "Ocean Waves", "mar-aves": "Ocean and Birds", "zen": "Zen Temple",
+          "selva": "Tropical Rainforest", "lluvia-tambor": "Rain on Leaves",
+          "jardin": "Birds and Temple Bells"}
+
+
 def filas_shorts(obras):
     """obras: las filas del catálogo (con titulo, tema, raiz_hz, url_video...)."""
     publicados = {}
@@ -123,7 +131,7 @@ def filas_shorts(obras):
     filas = []
     for o in obras:
         tema, hz = o["tema"], o["raiz_hz"]
-        amb = o["titulo"].split(" · ")[1]
+        amb = AMB_EN[o["ambiente"]]
         dur = dur_corta(o["duracion_min"])
         tags = " ".join(HASHTAGS[tema] + [f"#{hz}hz"])
         for k, ini in enumerate(inicios(int(o["duracion_min"]))):
