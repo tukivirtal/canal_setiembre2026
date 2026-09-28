@@ -5,6 +5,7 @@ un gancho en el primer segundo y unos pocos textos que entran y salen.
 
     python3 05-produccion/shorts/tiktok_tao.py                 # «Two minutes of stillness»
     python3 05-produccion/shorts/tiktok_tao.py --pieza pensar   # «Stop overthinking» (OBRA-041)
+    python3 05-produccion/shorts/tiktok_tao.py --pieza nervios  # «Calm your nervous system», 3 min de OBRA-042
 
 tao: guqin, xiao y lluvia (03-composicion/tao.py) sobre el mandala jade, con dos
 líneas del Tao Te Ching (traducción propia; el original es de dominio público).
@@ -61,11 +62,34 @@ The full hour is on YouTube, link in bio.
 
 #stopoverthinking #anxietyrelief #nervoussystem #birdsong #432hz"""
 
+TEXTOS_NERVIOS = [
+    (0.0, 6.0, {'tipo': 'gancho', 'titulo': 'Calm your nervous system',
+                'sub': '3 minutes. Zen temple bells and a slower breath.'}),
+    (8.0, 40.0, {'titulo': 'Breathe out longer than you breathe in',
+                 'sub': 'The music slows down. Let your body follow.'}),
+    (48.0, 82.0, {'titulo': 'Unclench your jaw. Drop your shoulders.'}),
+    (92.0, 126.0, {'titulo': 'Nothing to fix right now. Just this breath.'}),
+    (136.0, 168.0, {'titulo': 'Stay a little longer.', 'sub': 'Your breath already slowed down.'}),
+    (171.0, 180.0, {'tipo': 'fin', 'titulo': 'The full 3 hours are on YouTube',
+                    'sub': 'Rin · original music, composed from scratch. 528 Hz.'}),
+]
+TEXTO_NERVIOS = """Calm your nervous system 🌿 3 minutes of zen temple bells and a slower breath.
+Breathe out longer than you breathe in. Unclench your jaw, drop your shoulders.
+Nothing to fix right now. Just this breath.
+Original music composed from scratch by Rin, no samples. Tuned to 528 Hz.
+The full 3 hours are on YouTube, link in bio.
+
+#calmyournervoussystem #nervoussystemregulation #anxietyrelief #zenmusic #528hz"""
+
 PIEZAS = {
     'tao': dict(bucle='vertical-zen-t165.mp4', audio='tiktok-tao/tao-master.wav', T=120,
                 textos=TEXTOS_TAO, texto=TEXTO_TAO, out='tiktok-tao', nombre='tao-tiktok.mp4'),
     'pensar': dict(bucle='vertical-jardin.mp4', audio='tiktok-pensar/pensar-master.wav', T=75,
                    textos=TEXTOS_PENSAR, texto=TEXTO_PENSAR, out='tiktok-pensar', nombre='pensar-tiktok.mp4'),
+    # 3 min: con 1600 kbps pasaría los 30 MB; 1100 alcanza para un mandala lento
+    'nervios': dict(bucle='vertical-zen-t35.mp4', audio='tiktok-nervios/nervios-master.wav', T=180,
+                    textos=TEXTOS_NERVIOS, texto=TEXTO_NERVIOS, out='tiktok-nervios',
+                    nombre='nervios-tiktok.mp4', kbps=1100),
 }
 
 
@@ -123,7 +147,7 @@ def main():
         f.append(f"[{cur}][{marca}:v]overlay=0:0:enable='lt(t,{TEXTOS[-1][0]})'[v]")
         salida = OUT / P['nombre']
         comun = ['-filter_complex', ';'.join(f), '-map', '[v]', '-map', '1:a', '-t', str(T),
-                 '-c:v', 'libx264', '-preset', 'medium', '-b:v', '1600k', '-pix_fmt', 'yuv420p']
+                 '-c:v', 'libx264', '-preset', 'medium', '-b:v', f"{P.get('kbps', 1600)}k", '-pix_fmt', 'yuv420p']
         log = str(tmp / 'x264')
         subprocess.run(args + comun + ['-pass', '1', '-passlogfile', log, '-an', '-f', 'null', '-'], check=True)
         subprocess.run(args + comun + ['-pass', '2', '-passlogfile', log, '-c:a', 'aac', '-b:a', '192k',
