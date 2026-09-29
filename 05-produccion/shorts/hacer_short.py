@@ -82,15 +82,17 @@ def hacer(o, s, largo, bucle, d):
         rotulo(o, s['frase_en_pantalla'], png)
         # El encuadre: se agranda el mandala vertical y se recorta al centro.
         # El Short se oye en el teléfono, más fuerte que la obra (-22 LUFS):
-        # -18, con fundidos para que no arranque ni corte en seco.
+        # -18. Sin fundido de entrada: con 0,6 s de negro y 1,5 s de silencio al
+        # empezar, el 76,6 % deslizaba en el primer segundo (Studio, 28/09). Imagen
+        # y sonido desde el primer cuadro; solo 0,1 s de audio para que no haga clic.
         subprocess.run(['ffmpeg', '-hide_banner', '-v', 'error', '-y',
                         '-stream_loop', '-1', '-ss', s['desfase_s'], '-i', str(bucle),
                         '-i', str(png),
                         '-ss', s['inicio_s'], '-t', str(T), '-i', str(largo),
                         '-filter_complex',
                         f'[0:v]scale=trunc(iw*{z}/2)*2:trunc(ih*{z}/2)*2:flags=lanczos,crop=1080:1920[m];'
-                        f'[m][1:v]overlay=0:0,fade=t=in:d=0.6,fade=t=out:st={T - 1.5}:d=1.5[v];'
-                        f'[2:a]afade=t=in:d=1.5,afade=t=out:st={T - 3}:d=3,'
+                        f'[m][1:v]overlay=0:0,fade=t=out:st={T - 1.5}:d=1.5[v];'
+                        f'[2:a]afade=t=in:d=0.1,afade=t=out:st={T - 3}:d=3,'
                         f'loudnorm=I=-18:TP=-2:LRA=7[a]',
                         '-map', '[v]', '-map', '[a]', '-t', str(T),
                         '-c:v', 'libx264', '-crf', '23', '-preset', 'slow', '-pix_fmt', 'yuv420p',
