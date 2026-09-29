@@ -53,7 +53,7 @@ for linea in open(MD, encoding="utf-8"):
         obras.append({"n": int(m.group(1)), "nombre": m.group(2), "name": m.group(3),
                       "raiz": int(m.group(4)), "modo": m.group(5), "dur": int(m.group(6)),
                       "pilar": pilar_actual, "ambiente": m.group(7)})
-assert len(obras) == 42, f"se esperaban 42 obras, se encontraron {len(obras)}"
+assert len(obras) == 43, f"se esperaban 43 obras, se encontraron {len(obras)}"
 
 # --- Derivar los campos ---
 # Idioma principal: INGLÉS (23/09). El español va como traducción del título y
@@ -83,6 +83,8 @@ AMBIENTES = {
     # que pidió la escucha del 26/09, para la ansiedad
     "jardin":        ("Pájaros y campanas del templo", "Birds and Temple Bells", "jardin",
                       "--fondo mar --nivel-fondo -8 --nivel-capa 0"),
+    # Lluvia sola, sin tambor ni capa: para dormir (29/09)
+    "lluvia":        ("Lluvia suave", "Gentle Rain", None, "--fondo lluvia"),
 }
 DENSIDAD_CAPA = {"selva": " --densidad 2", "zen": " --densidad 1.4"}
 
@@ -126,6 +128,7 @@ ETIQ_AMBIENTE = {
     "selva":         ["rainforest sounds", "birdsong", "nature sounds"],
     "lluvia-tambor": ["rain sounds", "rain on leaves", "shamanic drum"],
     "jardin":        ["birdsong", "wind chimes", "zen garden"],
+    "lluvia":        ["rain sounds", "rain sounds for sleeping", "gentle rain"],
 }
 SUSCRIBIR = "https://www.youtube.com/@rinchanneloficial?sub_confirmation=1"
 
@@ -180,15 +183,33 @@ PROMESA = {
                    "anxiety relief", "sleep music", "meditation for sleep", "deep sleep music", "stress relief music",
                    "zen music", "zen temple", "temple bells", "528 hz", "528 hz music", "relaxing music",
                    "meditation music", "3 hours", "rin", "música para la ansiedad"]),
+    # 29/09: lo que más crece en el nicho. «dark screen sleep music» +269 % en un
+    # mes, 54 % EE. UU., competencia baja; «black screen sleep music» 110 mil
+    # búsquedas; «sleeping music for deep sleeping» 905 mil. Los que explotan en
+    # canales chicos de EE. UU. son pantalla negra, lluvia y «fall asleep fast».
+    43: dict(
+        titulo="Dark Screen Sleep Music 🌙 Gentle Rain for Deep Sleep · Fall Asleep Fast · 432 Hz · 3 Hours",
+        gancho=("Three hours of dark screen sleep music: gentle rain and a slow, warm drone for deep sleep.",
+                "The screen fades to black after 3 minutes, so no light keeps you awake. The music slows to 3.5 breaths per minute: let your breathing follow it down."),
+        uso="🌙 Lights off, phone face down, volume low. Nothing else to do tonight.",
+        hashtags="#sleepmusic #darkscreen #432hz",
+        oscura=3,
+        etiquetas=["dark screen sleep music", "black screen sleep music", "sleep music", "deep sleep music",
+                   "sleeping music for deep sleeping", "fall asleep fast", "rain sounds for sleeping",
+                   "gentle rain", "sleep music for anxiety", "insomnia", "cortisol reset",
+                   "relaxing sleep music", "music for sleep", "432 hz", "432 hz sleep music", "3 hours",
+                   "rin", "música para dormir"]),
 }
 
 
 def descripcion_promesa(o, p):
+    raiz = (f'{o["raiz"] * FACTOR["grave"]:g} Hz, the low octave of {o["raiz"]} Hz'
+            if REGISTRO[o["pilar"]] == "grave" else f'{o["raiz"]} Hz')
     return (f'{p["gancho"][0]}\n{p["gancho"][1]}\n\n'
             f'{p["uso"]}\n'
             f'🌿 Subscribe for a new calm piece every week: {SUSCRIBIR}\n\n'
             f'Original composition by Rin, synthesized from scratch in just intonation around '
-            f'{o["raiz"]} Hz, {o["modo"]} mode. No samples.\n\n'
+            f'{raiz}, {o["modo"]} mode. No samples.\n\n'
             f'{p["hashtags"]}')
 
 
@@ -257,7 +278,7 @@ COLS = [
     ("titulo_miniatura", 17), ("hashtags", 34), ("etiquetas", 60),
     ("imagen_miniatura", 24), ("url_video", 30),
     ("raiz_hz", 9), ("modo", 12), ("registro", 11), ("semilla", 10), ("tono", 6),
-    ("duracion_min", 13),
+    ("duracion_min", 13), ("pantalla_oscura_min", 12),
     ("comando_regeneracion", 62), ("comando_ambiente", 62),
     ("estado", 13), ("fecha_publicacion", 18),
     ("vistas", 10), ("suscriptores", 13), ("subs_por_1000", 14),
@@ -326,6 +347,8 @@ def construir_filas():
             "registro": REGISTRO[o["pilar"]], "semilla": s,
             "tono": tonos[f'OBRA-{o["n"]:03d}'],
             "duracion_min": o["dur"],
+            # Minutos de mandala antes de que la pantalla se apague (0: nunca)
+            "pantalla_oscura_min": (p or {}).get("oscura", 0),
             # Sin cuenco hasta que haya uno que pase la escucha.
             "comando_regeneracion": (
                 f'python3 03-composicion/compositor.py --minutos {o["dur"]} '
@@ -494,8 +517,9 @@ texto = [
     ("titulo / descripcion_optimizada", "En inglés, el idioma principal del canal."),
     ("titulo_es / descripcion_es", "La traducción al español. Se carga en YouTube Studio → Subtítulos → Título y descripción."),
     ("tema", "Intención: qué acompaña la obra. Determina la palabra clave y el ciclo respiratorio."),
-    ("ambiente", "Ambiente aprobado en escucha: mar, mar-aves, zen, selva, lluvia-tambor o jardin."),
+    ("ambiente", "Ambiente aprobado en escucha: mar, mar-aves, zen, selva, lluvia-tambor, jardin o lluvia."),
     ("comando_ambiente", "Segundo paso: envuelve la obra compuesta en su ambiente."),
+    ("pantalla_oscura_min", "Minutos de mandala antes de que la pantalla se funda a negro (videos para dormir). 0: el mandala dura todo el video."),
     ("descripcion_optimizada", "Descripción bilingüe lista para pegar. Solo falta añadir los capítulos tras el montaje."),
     ("titulo_miniatura", "Texto de la miniatura: 2-4 palabras que COMPLETAN el título, nunca lo repiten."),
     ("hashtags", "Tres, al final de la descripción."),

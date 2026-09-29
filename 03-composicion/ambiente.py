@@ -84,7 +84,24 @@ def fondo_fuego(d):
         f"[rumor][zumbido]amix=inputs=2:normalize=0:weights=0.7 1[fondo];")
 
 
-FONDOS = {'mar': fondo_mar, 'selva': fondo_selva, 'fuego': fondo_fuego}
+def fondo_lluvia(d):
+    """Lluvia suave sin tambor, para dormir (29/09): la de la tendencia «rain
+    sounds for sleeping». La misma receta que la lluvia del TikTok del Tao
+    (tao.py), que pasó la escucha: ruido rosado entre 250 Hz y 5 kHz que ondula
+    muy lento, distinto en cada oído, y debajo un rumor grave, como la lluvia
+    sobre el techo. Sin gotas sueltas ni nada que marque un pulso: despertarían."""
+    gotas = ("anoisesrc=c=pink:r=44100:d={d}:s={s},highpass=f=250,lowpass=f=5000,"
+             "volume='0.75+0.25*sin(2*PI*t/{p}+{f})':eval=frame")
+    return (f"{gotas.format(d=d, s=81, p=17, f=0)}[li];"
+            f"{gotas.format(d=d, s=92, p=19.3, f=2.1)}[ld];"
+            f"[li][ld]join=inputs=2:channel_layout=stereo[lluvia];"
+            f"anoisesrc=c=brown:r=44100:d={d}:s=97,highpass=f=60,lowpass=f=500,"
+            f"volume='0.5+0.1*sin(2*PI*t/29)':eval=frame,"
+            f"pan=stereo|c0=c0|c1=c0[techo];"
+            f"[lluvia][techo]amix=inputs=2:normalize=0:weights=0.55 0.45[fondo];")
+
+
+FONDOS = {'mar': fondo_mar, 'selva': fondo_selva, 'fuego': fondo_fuego, 'lluvia': fondo_lluvia}
 
 
 def duracion(ruta):
@@ -108,7 +125,7 @@ def main():
                    help='segundos que tarda el tono en aparecer bajo el mar')
     p.add_argument('--nivel-obra', type=float, default=-16.0,
                    help='cuántos dB se baja la obra bajo la naturaleza')
-    p.add_argument('--fondo', choices=['mar', 'selva', 'fuego'], default='mar')
+    p.add_argument('--fondo', choices=list(FONDOS), default='mar')
     p.add_argument('--nivel-fondo', type=float, default=0.0,
                    help='dB del fondo. Negativo para que la capa mande (zen)')
     p.add_argument('--capa', default=None,

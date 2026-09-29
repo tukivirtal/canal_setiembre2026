@@ -53,6 +53,38 @@ def duracion_wav(ruta):
         return w.getnframes() / w.getframerate()
 
 
+def pantalla_oscura(hevc, final, video, dur, visible, crf):
+    """Video para dormir (29/09, «dark screen sleep music»): el mandala los
+    primeros minutos, un fundido a negro de 30 s y negro hasta el final, para
+    que la luz del teléfono no despierte. Se codifica solo el tramo con mandala
+    y 48 s de negro; el resto es ese negro repetido sin recodificar, como el
+    bucle. Con los encabezados en cada fotograma clave, los tramos se pegan sin
+    saltos. De paso el archivo pesa mucho menos: el negro casi no ocupa."""
+    x265 = ['-c:v', 'libx265', '-crf', str(crf), '-preset', 'slow', '-tag:v', 'hvc1',
+            '-pix_fmt', 'yuv420p',
+            '-x265-params', 'keyint=1152:min-keyint=1152:repeat-headers=1:log-level=error']
+    info = subprocess.run(['ffprobe', '-v', 'error', '-select_streams', 'v:0', '-show_entries',
+                           'stream=width,height,r_frame_rate', '-of', 'csv=p=0', str(hevc)],
+                          capture_output=True, text=True, check=True).stdout.strip().split(',')
+    w, h, fps = info[0], info[1], info[2]
+    tramos = video.with_name('tramos')
+    tramos.mkdir(exist_ok=True)
+    mandala, negro = tramos / 'mandala.mp4', tramos / 'negro.mp4'
+    correr(['ffmpeg', '-hide_banner', '-v', 'error', '-y', '-stream_loop', '-1', '-i', hevc,
+            '-t', f'{visible:.3f}', '-vf', f'fade=t=out:st={visible - 30:.3f}:d=30',
+            '-an', *x265, mandala])
+    correr(['ffmpeg', '-hide_banner', '-v', 'error', '-y', '-f', 'lavfi',
+            '-i', f'color=c=black:s={w}x{h}:r={fps}:d=48', '-an', *x265, negro])
+    veces = int((dur - visible) // 48) + 2
+    lista = tramos / 'lista.txt'
+    lista.write_text(f"file '{mandala.name}'\n" + f"file '{negro.name}'\n" * veces)
+    correr(['ffmpeg', '-hide_banner', '-v', 'error', '-y', '-f', 'concat', '-safe', '0',
+            '-i', lista, '-i', final, '-map', '0:v', '-map', '1:a', '-c:v', 'copy',
+            '-c:a', 'aac', '-b:a', '320k', '-t', f'{dur:.3f}',
+            '-movflags', '+faststart', video])
+    shutil.rmtree(tramos)
+
+
 def montar(o):
     d = PRODUCCION / o['id']
     d.mkdir(parents=True, exist_ok=True)
@@ -112,10 +144,14 @@ def montar(o):
                     '-c:v', 'libx265', '-crf', str(crf), '-preset', 'slow',
                     '-x265-params', 'keyint=1152:min-keyint=1152:log-level=error',
                     '-tag:v', 'hvc1', '-pix_fmt', 'yuv420p', hevc])
-        correr(['ffmpeg', '-hide_banner', '-v', 'error', '-y', '-stream_loop', '-1',
-                '-i', hevc, '-i', final, '-map', '0:v', '-map', '1:a', '-c:v', 'copy',
-                '-c:a', 'aac', '-b:a', '320k', '-t', f'{dur:.3f}',
-                '-movflags', '+faststart', video])
+        oscura = float(o.get('pantalla_oscura_min') or 0)
+        if oscura:
+            pantalla_oscura(hevc, final, video, dur, oscura * 60, crf)
+        else:
+            correr(['ffmpeg', '-hide_banner', '-v', 'error', '-y', '-stream_loop', '-1',
+                    '-i', hevc, '-i', final, '-map', '0:v', '-map', '1:a', '-c:v', 'copy',
+                    '-c:a', 'aac', '-b:a', '320k', '-t', f'{dur:.3f}',
+                    '-movflags', '+faststart', video])
     elif render:
         render.wait()
 

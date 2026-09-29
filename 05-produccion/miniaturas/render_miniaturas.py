@@ -32,7 +32,10 @@ PALABRA = {'Dormir': 'DEEP SLEEP', 'Ansiedad': 'CALM', 'Meditar': 'MEDITATION',
            'Soltar': 'RELEASE', 'Concentración': 'DEEP FOCUS'}
 AMBIENTE = {'mar': 'Ocean Waves', 'mar-aves': 'Ocean & Birds', 'zen': 'Zen Temple',
             'selva': 'Tropical Rainforest', 'lluvia-tambor': 'Rain on Leaves',
-            'jardin': 'Birds & Temple Bells'}
+            'jardin': 'Birds & Temple Bells', 'lluvia': 'Gentle Rain'}
+# Obras con la promesa en grande en vez de la frecuencia (como la variante D
+# de la prueba del 29/09): la persona busca «dark screen sleep music», no «432 Hz».
+PROMESA = {'OBRA-043': ('DARK SCREEN\nSLEEP MUSIC', '432 Hz')}
 
 
 def duracion(m):
@@ -63,8 +66,9 @@ def main():
         pag = nav.new_page(viewport={'width': 1280, 'height': 720})
         for o in obras:
             q = urllib.parse.urlencode({
-                'paleta': o['ambiente'], 'tono': o.get('tono') or 0, 'grande': f"{o['raiz_hz']} Hz",
-                'palabra': PALABRA[o['tema']],
+                'paleta': o['ambiente'], 'tono': o.get('tono') or 0,
+                'grande': PROMESA.get(o['id'], (f"{o['raiz_hz']} Hz",))[0],
+                'palabra': PROMESA.get(o['id'], (0, PALABRA[o['tema']]))[1],
                 'pastilla': f"{AMBIENTE[o['ambiente']]} · {duracion(o['duracion_min'])}",
                 # cada obra con un instante distinto del mandala: nunca dos portadas iguales
                 't': int(o['semilla']) % 48})

@@ -1,5 +1,5 @@
 """
-La hoja de Shorts: 7 por obra, cada uno con lo necesario para publicarlo en
+La hoja de Shorts: 7 por obra hasta la 42 y 3 desde la 43, cada uno con lo necesario para publicarlo en
 YouTube Shorts y en TikTok. La importa generar_catalogo.py.
 
 Cada Short de una obra se distingue de los otros seis en todo lo que se ve y
@@ -16,7 +16,8 @@ el título en el video. Solo la descripción.
 """
 import csv, os
 
-N_SHORTS = 7
+N_SHORTS = 7            # obras 1 a 42: ya armados y en la cola de Make
+N_SHORTS_NUEVAS = 3     # desde la 43 (29/09): 7 por obra eran demasiados
 DURACION = 45                                   # segundos
 ZOOM = [1.0, 1.15, 1.3, 1.08, 1.22, 1.35, 1.04]  # encuadre del mandala vertical
 DESFASE = [0, 9.6, 19.2, 28.8, 38.4, 4.8, 33.6]  # instante del bucle de 48 s
@@ -103,7 +104,13 @@ def dur_corta(minutos):
     return f"{m // 60} h" if m >= 60 and m % 60 == 0 else f"{m} min"
 
 
-def inicios(duracion_min):
+def n_shorts(obra_id):
+    """Cuántos Shorts lleva una obra («OBRA-043» o 43)."""
+    n = int(str(obra_id).split("-")[-1])
+    return N_SHORTS if n <= 42 else N_SHORTS_NUEVAS
+
+
+def inicios(duracion_min, n=N_SHORTS):
     """Los tramos de la obra, pasada la entrada lenta del ambiente (la obra
     aparece entera hacia los 70 s) y antes de la salida. Los 5 primeros se
     reparten parejos (así se hicieron los de las obras 12, 15 y 20); el 6 y el 7
@@ -111,6 +118,8 @@ def inicios(duracion_min):
     total = duracion_min * 60 + 40                  # 20 s de entrada y 20 de salida
     a, b = 90, total - DURACION - 20
     t = [round(a + (b - a) * k / 4) for k in range(5)]
+    if n == N_SHORTS_NUEVAS:                        # principio, medio y final
+        return [t[0], t[2], t[4]]
     return t + [round((t[0] + t[1]) / 2), round((t[2] + t[3]) / 2)]
 
 
@@ -119,7 +128,7 @@ def inicios(duracion_min):
 # de cada parte cambia.
 AMB_EN = {"mar": "Ocean Waves", "mar-aves": "Ocean and Birds", "zen": "Zen Temple",
           "selva": "Tropical Rainforest", "lluvia-tambor": "Rain on Leaves",
-          "jardin": "Birds and Temple Bells"}
+          "jardin": "Birds and Temple Bells", "lluvia": "Gentle Rain"}
 
 
 def filas_shorts(obras):
@@ -134,7 +143,7 @@ def filas_shorts(obras):
         amb = AMB_EN[o["ambiente"]]
         dur = dur_corta(o["duracion_min"])
         tags = " ".join(HASHTAGS[tema] + [f"#{hz}hz"])
-        for k, ini in enumerate(inicios(int(o["duracion_min"]))):
+        for k, ini in enumerate(inicios(int(o["duracion_min"]), n_shorts(o["id"]))):
             n = k + 1
             ids = f'{o["id"]}-S{n}'
             frase = FRASE[tema][k]

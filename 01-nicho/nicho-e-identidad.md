@@ -120,6 +120,7 @@ Cada obra lleva un **ambiente**, uno de los cinco aprobados en escucha (ver
 | `zen` | Campanitas y bloque de madera sobre un mar lejano | Templo zen |
 | `selva` | Cascada y pájaros | Selva tropical |
 | `lluvia-tambor` | Lluvia sobre hojas y tambor lejano | Lluvia sobre hojas |
+| `lluvia` | Lluvia suave sobre el techo, sin tambor: para dormir | Lluvia suave |
 
 Por ahora **ninguna obra lleva cuenco**: el sintetizado sonó barato en la escucha. Las
 obras que llevaban cuenco en el nombre se renombraron. Cuando haya un cuenco que pase la
@@ -137,9 +138,12 @@ escucha, vuelve.
 | 6 | Antes del alba | Before Dawn | 417 | kumoi | 90 min | mar |
 | 7 | Peso lento | Slow Weight | 396 | shin | 120 min | mar |
 | 8 | La casa dormida | The Sleeping House | 432 | kumoi | 180 min | mar |
+| 43 | Pantalla oscura | Dark Screen Sleep | 432 | kumoi | 180 min | lluvia |
 
-Todas con mar a propósito: pájaros, campanas o tambor son sonidos que despiertan. Una
-lluvia sin tambor para dormir queda pendiente de escucha.
+Todas con mar a propósito: pájaros, campanas o tambor son sonidos que despiertan. La
+43 (29/09) estrena la lluvia sin tambor (`lluvia`) y la pantalla que se apaga a los
+3 minutos: «dark screen sleep music» creció 269 % en un mes y el 54 % de esas
+búsquedas es de EE. UU. (vidIQ).
 
 ### Ansiedad
 

@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """
-Los 7 Shorts de una obra ya montada, según la hoja de Shorts del catálogo
+Los Shorts de una obra ya montada (7 hasta la obra 42, 3 desde la 43), según la hoja de Shorts del catálogo
 (08-catalogo/shorts.csv): el mandala vertical de su paleta, un tramo de su
 audio y el rótulo con la frecuencia y la frase.
 
-    python3 05-produccion/shorts/hacer_short.py OBRA-012            # los 7
+    python3 05-produccion/shorts/hacer_short.py OBRA-012            # todos
     python3 05-produccion/shorts/hacer_short.py OBRA-012 --n 6 7    # solo el 6 y el 7
 
 Necesita produccion/<id>/video.mp4 (lo deja montar.py): el audio sale de ahí,
@@ -109,7 +109,7 @@ def hacer(o, s, largo, bucle, d):
 def main():
     p = argparse.ArgumentParser()
     p.add_argument('id')
-    p.add_argument('--n', type=int, nargs='*', help='solo estos Shorts (1-7); por defecto, todos')
+    p.add_argument('--n', type=int, nargs='*', help='solo estos Shorts (1-7, o 1-3 desde la 43); por defecto, todos')
     a = p.parse_args()
 
     with open(RAIZ / '08-catalogo' / 'catalogo.csv', encoding='utf-8') as f:

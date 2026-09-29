@@ -12,6 +12,7 @@
   .arriba{position:absolute;top:34px;left:0;right:0;text-align:center}
   .grande{font-family:Inter,sans-serif;font-weight:900;font-size:150px;line-height:.95;color:#fff;
     letter-spacing:-.02em;text-shadow:0 6px 24px rgba(0,0,0,.65),0 0 2px rgba(0,0,0,.9)}
+  .grande.promesa{font-size:104px;line-height:1.0;white-space:pre-line}
   .palabra{font-family:Inter,sans-serif;font-weight:800;font-size:54px;letter-spacing:.14em;color:var(--oro);
     margin-top:8px;padding-left:.14em;text-shadow:0 4px 18px rgba(0,0,0,.8)}
   .pastilla{display:inline-block;margin-top:18px;padding:10px 26px;border-radius:40px;
@@ -35,10 +36,12 @@
 <script>
   // ?paleta=zen&grande=432 Hz&palabra=DEEP SLEEP&pastilla=Ocean Waves · 3 Hours&t=6
   const Q = new URLSearchParams(location.search);
-  const ORO = {'mar':'#e6c46a','mar-aves':'#f5c877','zen':'#e8c066','selva':'#e8c55e','lluvia-tambor':'#e9b35a','jardin':'#e8c066'};
+  const ORO = {'mar':'#e6c46a','mar-aves':'#f5c877','zen':'#e8c066','selva':'#e8c55e','lluvia-tambor':'#e9b35a','jardin':'#e8c066','lluvia':'#e6c46a'};
   const pal = Q.get('paleta') || 'mar';
   document.documentElement.style.setProperty('--oro', ORO[pal] || '#e6c46a');
   for (const k of ['grande', 'palabra', 'pastilla']) document.getElementById(k).textContent = Q.get(k) || '';
+  // Una promesa de dos renglones va más chica que la frecuencia sola
+  if ((Q.get('grande') || '').includes('\n')) document.getElementById('grande').classList.add('promesa');
   document.getElementById('f').src = `../fondo-mandala/mandala.html?w=1280&h=720&r=0.78&firma=0&vineta=0.6&paleta=${pal}&tono=${Q.get('tono') || 0}&t=${Q.get('t') || 6}`;
 </script>
 </body></html>

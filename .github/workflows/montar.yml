@@ -1,6 +1,6 @@
 # Monta una obra del catálogo en los servidores de GitHub y deja todo como
 # descarga en una Release con el nombre de la obra (OBRA-020, ...):
-#   el video largo, la miniatura, los 7 Shorts y textos.txt con lo que se pega.
+#   el video largo, la miniatura, los Shorts (7, o 3 desde la obra 43) y textos.txt con lo que se pega.
 # Además sube los Shorts livianos (bajo 5 MB) a la rama «shorts», de donde los
 # toma Make para subirlos a YouTube.
 #

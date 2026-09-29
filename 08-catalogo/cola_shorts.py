@@ -15,19 +15,25 @@ rama «shorts» del repositorio, que es público: Make la descarga de ahí.
 import csv, sys, pathlib
 
 RAIZ = pathlib.Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(RAIZ / '08-catalogo'))
+from shorts_catalogo import n_shorts
 RAW = 'https://raw.githubusercontent.com/tukivirtal/canal_setiembre2026/shorts'
 COLS = ['id_short', 'estado', 'obra', 'n', 'url_archivo', 'yt_titulo', 'yt_descripcion',
         'yt_etiquetas', 'yt_video_relacionado', 'tiktok_portada', 'tiktok_descripcion',
         'url_youtube', 'fecha_youtube', 'url_tiktok', 'fecha_tiktok']
 
 
-def orden(obras, n=7):
+def orden(obras):
     """Obra por obra en ronda, desplazando el número del Short en cada obra:
-    con dos obras sale S1, S2, S3, ... alternando obra."""
+    con dos obras sale S1, S2, S3, ... alternando obra. Cada obra con los suyos
+    (7 hasta la 42, 3 desde la 43)."""
+    colas = []
+    for j, o in enumerate(obras):
+        n = n_shorts(o)
+        colas.append([(o, (vuelta * len(obras) + j) % n + 1) for vuelta in range(n)])
     filas = []
-    for vuelta in range(n):
-        for j, o in enumerate(obras):
-            filas.append((o, (vuelta * len(obras) + j) % n + 1))
+    for vuelta in range(max(len(c) for c in colas)):
+        filas += [c[vuelta] for c in colas if vuelta < len(c)]
     return filas
 
 
