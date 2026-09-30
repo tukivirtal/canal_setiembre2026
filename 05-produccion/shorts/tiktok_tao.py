@@ -6,6 +6,7 @@ un gancho en el primer segundo y unos pocos textos que entran y salen.
     python3 05-produccion/shorts/tiktok_tao.py                 # «Two minutes of stillness»
     python3 05-produccion/shorts/tiktok_tao.py --pieza pensar   # «Stop overthinking» (OBRA-041)
     python3 05-produccion/shorts/tiktok_tao.py --pieza nervios  # «Calm your nervous system», 3 min de OBRA-042
+    python3 05-produccion/shorts/tiktok_tao.py --pieza lluvia   # «Can't sleep?», 3 min de OBRA-043
 
 tao: guqin, xiao y lluvia (03-composicion/tao.py) sobre el mandala jade, con dos
 líneas del Tao Te Ching (traducción propia; el original es de dominio público).
@@ -81,6 +82,25 @@ The full 3 hours are on YouTube, link in bio.
 
 #calmyournervoussystem #nervoussystemregulation #anxietyrelief #zenmusic #528hz"""
 
+TEXTOS_LLUVIA = [
+    (0.0, 6.0, {'tipo': 'gancho', 'titulo': "Can't sleep?",
+                'sub': '3 minutes of gentle rain. Lights off, volume low.'}),
+    (8.0, 40.0, {'titulo': 'Breathe out longer than you breathe in',
+                 'sub': 'The music slows down. Let your breath follow it.'}),
+    (48.0, 82.0, {'titulo': 'Let your jaw soften. Let the pillow hold your head.'}),
+    (92.0, 126.0, {'titulo': "Tomorrow can wait. You don't have to think now."}),
+    (136.0, 168.0, {'titulo': 'Just the rain.', 'sub': 'Nothing else to do tonight.'}),
+    (171.0, 180.0, {'tipo': 'fin', 'titulo': '3 hours, dark screen, on YouTube',
+                    'sub': 'Rin · original music, composed from scratch. 432 Hz.'}),
+]
+TEXTO_LLUVIA = """Can't sleep? 🌙 3 minutes of gentle rain and a slow, warm drone.
+Lights off, volume low. Breathe out longer than you breathe in.
+Tomorrow can wait. Just the rain.
+Original music composed from scratch by Rin, no samples. Tuned to 432 Hz.
+The full 3 hours, with a dark screen for sleep, are on YouTube. Link in bio.
+
+#sleepmusic #rainsounds #cantsleep #darkscreen #432hz"""
+
 PIEZAS = {
     'tao': dict(bucle='vertical-zen-t165.mp4', audio='tiktok-tao/tao-master.wav', T=120,
                 textos=TEXTOS_TAO, texto=TEXTO_TAO, out='tiktok-tao', nombre='tao-tiktok.mp4'),
@@ -90,6 +110,11 @@ PIEZAS = {
     'nervios': dict(bucle='vertical-zen-t35.mp4', audio='tiktok-nervios/nervios-master.wav', T=180,
                     textos=TEXTOS_NERVIOS, texto=TEXTO_NERVIOS, out='tiktok-nervios',
                     nombre='nervios-tiktok.mp4', kbps=1100),
+    # 3 min de OBRA-043 desde el minuto 10 (la música ya entera), con el mandala
+    # azul noche: en TikTok la pantalla negra no retiene, en YouTube sí
+    'lluvia': dict(bucle='vertical-lluvia.mp4', audio='tiktok-lluvia/lluvia-master.wav', T=180,
+                   textos=TEXTOS_LLUVIA, texto=TEXTO_LLUVIA, out='tiktok-lluvia',
+                   nombre='lluvia-tiktok.mp4', kbps=1100),
 }
 
 
