@@ -41,6 +41,21 @@ FRASE = {
                       "quiet sound for deep work", "stay with it a little longer",
                       "no notifications for an hour", "the next hour is yours"],
 }
+# Desde la obra 44 (30/09): solo frases que le dicen a la persona qué hacer. El
+# Short con más vistas es «Breathe out longer than you breathe in» (208, Studio
+# 28 días); los que solo describen («For a quiet meditation») quedaron abajo.
+FRASE_INSTRUCCION = {
+    "Dormir": ["Breathe out longer than you breathe in", "Unclench your jaw. Let the pillow hold you",
+               "Close your eyes. Just listen"],
+    "Ansiedad": ["Breathe out longer than you breathe in", "Drop your shoulders. Unclench your jaw",
+                 "Hand on your chest. Breathe slower"],
+    "Meditar": ["Close your eyes. Follow the sound", "Breathe out longer than you breathe in",
+                "Let the thought go. Back to the breath"],
+    "Soltar": ["Drop your shoulders. Breathe out", "Unclench your jaw. Soften your hands",
+               "Breathe out what you carried today"],
+    "Concentración": ["Phone face down. Start now", "One task. Breathe, then begin",
+                      "Stay with it one more minute"],
+}
 # La portada de TikTok: dos o tres palabras tras la frecuencia.
 PORTADA = {
     "Dormir": ["sleep", "night", "rest", "dark room", "drift off", "lights off", "deep rest"],
@@ -128,7 +143,8 @@ def inicios(duracion_min, n=N_SHORTS):
 # de cada parte cambia.
 AMB_EN = {"mar": "Ocean Waves", "mar-aves": "Ocean and Birds", "zen": "Zen Temple",
           "selva": "Tropical Rainforest", "lluvia-tambor": "Rain on Leaves",
-          "jardin": "Birds and Temple Bells", "lluvia": "Gentle Rain"}
+          "jardin": "Birds and Temple Bells", "lluvia": "Gentle Rain",
+          "theta": "Theta Waves"}
 
 
 def filas_shorts(obras):
@@ -146,7 +162,8 @@ def filas_shorts(obras):
         for k, ini in enumerate(inicios(int(o["duracion_min"]), n_shorts(o["id"]))):
             n = k + 1
             ids = f'{o["id"]}-S{n}'
-            frase = FRASE[tema][k]
+            n_obra = int(o["id"].split("-")[-1])
+            frase = (FRASE_INSTRUCCION if n_obra >= 44 else FRASE)[tema][k]
             fila = {
                 "id_short": ids, "obra": o["id"], "n": n, "archivo": f"short-{n}.mp4",
                 "inicio_s": ini, "zoom": ZOOM[k], "desfase_s": DESFASE[k],

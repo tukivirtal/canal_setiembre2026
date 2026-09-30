@@ -32,10 +32,11 @@ PALABRA = {'Dormir': 'DEEP SLEEP', 'Ansiedad': 'CALM', 'Meditar': 'MEDITATION',
            'Soltar': 'RELEASE', 'Concentración': 'DEEP FOCUS'}
 AMBIENTE = {'mar': 'Ocean Waves', 'mar-aves': 'Ocean & Birds', 'zen': 'Zen Temple',
             'selva': 'Tropical Rainforest', 'lluvia-tambor': 'Rain on Leaves',
-            'jardin': 'Birds & Temple Bells', 'lluvia': 'Gentle Rain'}
+            'jardin': 'Birds & Temple Bells', 'lluvia': 'Gentle Rain', 'theta': 'Headphones On'}
 # Obras con la promesa en grande en vez de la frecuencia (como la variante D
 # de la prueba del 29/09): la persona busca «dark screen sleep music», no «432 Hz».
-PROMESA = {'OBRA-043': ('DARK SCREEN\nSLEEP MUSIC', '432 Hz')}
+PROMESA = {'OBRA-043': ('DARK SCREEN\nSLEEP MUSIC', '432 Hz'),
+           'OBRA-044': ('THETA WAVES\nDEEP SLEEP', 'DARK SCREEN')}
 
 
 def duracion(m):

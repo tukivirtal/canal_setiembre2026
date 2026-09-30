@@ -5,6 +5,7 @@ jardín (pájaros con campanitas de viento sueltas, afinadas a la raíz).
 
     python3 03-composicion/capas.py aves 160 capa-aves.wav
     python3 03-composicion/capas.py zen  160 capa-zen.wav --raiz 528
+    python3 03-composicion/capas.py theta 10840 capa-theta.wav --raiz 432
 
 Después se mezclan con ambiente.py (--capa). Todo se sintetiza acá, sin
 grabaciones ajenas, así que el máster sigue siendo propio.
@@ -131,6 +132,51 @@ def palo_de_lluvia(rnd, dur):
     return b
 
 
+def theta(segundos, salida, raiz):
+    """Ondas theta que bajan a delta (29/09, idea de YouTube Studio para el
+    canal): dos senos puros, uno por oído, en la tercera mayor justa (5/4) de
+    la raíz bajada a 150-300 Hz: 432 -> 216 -> 270 Hz. No en la raíz misma: el
+    drone de dormir tiene fuerte la raíz, la quinta y las octavas (108, 162,
+    216, 324 Hz) y una portadora a 3 Hz de una de ellas temblaría en cada oído,
+    también por parlante. La tercera forma con ellas un acorde justo 4:5:6.
+    La diferencia entre los dos oídos es el pulso que se percibe, y solo existe
+    con auriculares: 6 Hz (theta, el momento de dormirse) que baja a 4 Hz en la
+    primera hora y a 2 Hz (delta, sueño profundo) en la segunda; la tercera se
+    queda en 2. Nada de golpes ni de ritmo audible: por parlante se oye un
+    zumbido grave y quieto. Se calcula por bloques de un minuto (3 h en una
+    sola pasada serían 4 GB) con la fase acumulada, así no hay saltos."""
+    import numpy as np
+    portadora = raiz
+    while portadora > 300:
+        portadora /= 2.0
+    portadora *= 5 / 4
+    if portadora > 300:
+        portadora /= 2.0
+    n, bloque = int(segundos * SR), 60 * SR
+    hora = 3600.0
+
+    def pulso(t):
+        return np.interp(t, [0, hora, 2 * hora, max(segundos, 2 * hora)], [6.0, 4.0, 2.0, 2.0])
+
+    fase_i = fase_d = 0.0
+    with wave.open(salida, 'wb') as w:
+        w.setnchannels(2); w.setsampwidth(2); w.setframerate(SR)
+        for ini in range(0, n, bloque):
+            t = (ini + np.arange(min(bloque, n - ini))) / SR
+            b = pulso(t)
+            fi = fase_i + 2 * np.pi * np.cumsum(portadora - b / 2) / SR
+            fd = fase_d + 2 * np.pi * np.cumsum(portadora + b / 2) / SR
+            fase_i, fase_d = fi[-1] % (2 * np.pi), fd[-1] % (2 * np.pi)
+            # entra en 20 s y sale en 15, y respira muy lento (±15 % cada 40 s)
+            env = np.minimum(1, t / 20) ** 2 * np.clip((segundos - t) / 15, 0, 1) \
+                * (0.85 + 0.15 * np.sin(2 * np.pi * t / 40))
+            est = np.empty(2 * len(t), dtype='<i2')
+            est[0::2] = (0.5 * env * np.sin(fi) * 32767).astype('<i2')
+            est[1::2] = (0.5 * env * np.sin(fd) * 32767).astype('<i2')
+            w.writeframes(est.tobytes())
+    print(f'{salida}  ·  theta  ·  portadora {portadora:g} Hz, pulso 6 -> 4 -> 2 Hz en {segundos:g} s')
+
+
 def poner(izq, der, buf, t, vol, pan):
     o = int(t * SR)
     for i in range(min(len(buf), len(izq) - o)):
@@ -140,7 +186,7 @@ def poner(izq, der, buf, t, vol, pan):
 
 def main():
     p = argparse.ArgumentParser()
-    p.add_argument('tipo', choices=['aves', 'zen', 'ancestral', 'jardin'])
+    p.add_argument('tipo', choices=['aves', 'zen', 'ancestral', 'jardin', 'theta'])
     p.add_argument('segundos', type=float)
     p.add_argument('salida')
     p.add_argument('--raiz', type=float, default=528.0)
@@ -148,6 +194,8 @@ def main():
     p.add_argument('--densidad', type=float, default=1.0,
                    help='más de 1 = más eventos. La selva pide ~2')
     a = p.parse_args()
+    if a.tipo == 'theta':
+        return theta(a.segundos, a.salida, a.raiz)
     rnd = random.Random(a.semilla)
     n = int(a.segundos * SR)
     izq = array.array('d', [0.0]) * n; der = array.array('d', [0.0]) * n

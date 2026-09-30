@@ -29,7 +29,7 @@ PROPOSITO = {'Dormir': 'For the hour before sleep.', 'Ansiedad': "For when your 
              'Concentración': 'For deep, quiet work.'}
 AMBIENTE_EN = {'mar': 'Ocean Waves', 'mar-aves': 'Ocean and Birds', 'zen': 'Zen Temple',
                'selva': 'Tropical Rainforest', 'lluvia-tambor': 'Rain on Leaves',
-               'jardin': 'Birds and Temple Bells', 'lluvia': 'Gentle Rain'}
+               'jardin': 'Birds and Temple Bells', 'lluvia': 'Gentle Rain', 'theta': 'Theta Waves'}
 TAGS = {'Dormir': ['#sleepmusic', '#deepsleep'], 'Ansiedad': ['#anxietyrelief', '#calm'],
         'Meditar': ['#meditationmusic', '#mindfulness'], 'Soltar': ['#stressrelief', '#relaxingmusic'],
         'Concentración': ['#focusmusic', '#studymusic']}

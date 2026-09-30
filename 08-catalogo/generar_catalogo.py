@@ -53,7 +53,7 @@ for linea in open(MD, encoding="utf-8"):
         obras.append({"n": int(m.group(1)), "nombre": m.group(2), "name": m.group(3),
                       "raiz": int(m.group(4)), "modo": m.group(5), "dur": int(m.group(6)),
                       "pilar": pilar_actual, "ambiente": m.group(7)})
-assert len(obras) == 43, f"se esperaban 43 obras, se encontraron {len(obras)}"
+assert len(obras) == 44, f"se esperaban 44 obras, se encontraron {len(obras)}"
 
 # --- Derivar los campos ---
 # Idioma principal: INGLÉS (23/09). El español va como traducción del título y
@@ -85,6 +85,9 @@ AMBIENTES = {
                       "--fondo mar --nivel-fondo -8 --nivel-capa 0"),
     # Lluvia sola, sin tambor ni capa: para dormir (29/09)
     "lluvia":        ("Lluvia suave", "Gentle Rain", None, "--fondo lluvia"),
+    # Mar lejano y ondas theta que bajan a delta, para dormir con auriculares (30/09)
+    "theta":         ("Mar lejano y ondas theta", "Distant Ocean & Theta Waves", "theta",
+                      "--fondo mar --nivel-fondo -4 --nivel-capa -11"),
 }
 DENSIDAD_CAPA = {"selva": " --densidad 2", "zen": " --densidad 1.4"}
 
@@ -129,6 +132,7 @@ ETIQ_AMBIENTE = {
     "lluvia-tambor": ["rain sounds", "rain on leaves", "shamanic drum"],
     "jardin":        ["birdsong", "wind chimes", "zen garden"],
     "lluvia":        ["rain sounds", "rain sounds for sleeping", "gentle rain"],
+    "theta":         ["theta waves", "binaural beats", "ocean waves"],
 }
 SUSCRIBIR = "https://www.youtube.com/@rinchanneloficial?sub_confirmation=1"
 
@@ -199,6 +203,21 @@ PROMESA = {
                    "gentle rain", "sleep music for anxiety", "insomnia", "cortisol reset",
                    "relaxing sleep music", "music for sleep", "432 hz", "432 hz sleep music", "3 hours",
                    "rin", "música para dormir"]),
+    # 30/09: la idea que dio YouTube Studio para el canal («pantalla oscura con
+    # ondas theta para dormir mejor») y su título más atractivo, con la
+    # palabra clave que crece (dark screen) adentro.
+    44: dict(
+        titulo="Deep Sleep Theta Waves 🌙 Turn Off Your Thoughts · Dark Screen · Fall Asleep Fast · 3 Hours",
+        gancho=("Three hours of theta waves for deep sleep, over a distant ocean and a slow, warm drone.",
+                "🎧 Use headphones: the left and right ears hear two tones 6 Hz apart. Over the hours the difference slows from theta (6 Hz, drifting off) to delta (2 Hz, deep sleep). The screen fades to black after 3 minutes."),
+        uso="🌙 Lights off, phone face down, volume low. Let your thoughts go quiet.",
+        hashtags="#thetawaves #sleepmusic #darkscreen",
+        oscura=3,
+        etiquetas=["theta waves", "theta waves sleep", "deep sleep theta waves", "binaural beats",
+                   "binaural beats for sleep", "delta waves", "dark screen sleep music",
+                   "black screen sleep music", "deep sleep music", "fall asleep fast",
+                   "turn off your thoughts", "stop overthinking", "sleep meditation", "ocean waves",
+                   "432 hz", "3 hours", "rin", "música para dormir"]),
 }
 
 
@@ -517,7 +536,7 @@ texto = [
     ("titulo / descripcion_optimizada", "En inglés, el idioma principal del canal."),
     ("titulo_es / descripcion_es", "La traducción al español. Se carga en YouTube Studio → Subtítulos → Título y descripción."),
     ("tema", "Intención: qué acompaña la obra. Determina la palabra clave y el ciclo respiratorio."),
-    ("ambiente", "Ambiente aprobado en escucha: mar, mar-aves, zen, selva, lluvia-tambor, jardin o lluvia."),
+    ("ambiente", "Ambiente aprobado en escucha: mar, mar-aves, zen, selva, lluvia-tambor, jardin, lluvia o theta."),
     ("comando_ambiente", "Segundo paso: envuelve la obra compuesta en su ambiente."),
     ("pantalla_oscura_min", "Minutos de mandala antes de que la pantalla se funda a negro (videos para dormir). 0: el mandala dura todo el video."),
     ("descripcion_optimizada", "Descripción bilingüe lista para pegar. Solo falta añadir los capítulos tras el montaje."),

@@ -121,6 +121,7 @@ Cada obra lleva un **ambiente**, uno de los cinco aprobados en escucha (ver
 | `selva` | Cascada y pájaros | Selva tropical |
 | `lluvia-tambor` | Lluvia sobre hojas y tambor lejano | Lluvia sobre hojas |
 | `lluvia` | Lluvia suave sobre el techo, sin tambor: para dormir | Lluvia suave |
+| `theta` | Mar lejano y ondas theta que bajan a delta (auriculares) | Mar lejano y ondas theta |
 
 Por ahora **ninguna obra lleva cuenco**: el sintetizado sonó barato en la escucha. Las
 obras que llevaban cuenco en el nombre se renombraron. Cuando haya un cuenco que pase la
@@ -139,11 +140,14 @@ escucha, vuelve.
 | 7 | Peso lento | Slow Weight | 396 | shin | 120 min | mar |
 | 8 | La casa dormida | The Sleeping House | 432 | kumoi | 180 min | mar |
 | 43 | Pantalla oscura | Dark Screen Sleep | 432 | kumoi | 180 min | lluvia |
+| 44 | Ondas theta | Theta Waves | 432 | shin | 180 min | theta |
 
 Todas con mar a propósito: pájaros, campanas o tambor son sonidos que despiertan. La
 43 (29/09) estrena la lluvia sin tambor (`lluvia`) y la pantalla que se apaga a los
 3 minutos: «dark screen sleep music» creció 269 % en un mes y el 54 % de esas
-búsquedas es de EE. UU. (vidIQ).
+búsquedas es de EE. UU. (vidIQ). La 44 repite la pantalla oscura con mar lejano y
+ondas theta que bajan a delta (con auriculares): la idea que dio YouTube Studio para
+el canal, y la comparación con la 43 dice qué sonido prefiere el público.
 
 ### Ansiedad
 
