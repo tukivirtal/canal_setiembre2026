@@ -7,6 +7,7 @@ un gancho en el primer segundo y unos pocos textos que entran y salen.
     python3 05-produccion/shorts/tiktok_tao.py --pieza pensar   # «Stop overthinking» (OBRA-041)
     python3 05-produccion/shorts/tiktok_tao.py --pieza nervios  # «Calm your nervous system», 3 min de OBRA-042
     python3 05-produccion/shorts/tiktok_tao.py --pieza lluvia   # «Can't sleep?», 3 min de OBRA-043
+    python3 05-produccion/shorts/tiktok_tao.py --pieza theta    # «Put your headphones on», 3 min de OBRA-044
 
 tao: guqin, xiao y lluvia (03-composicion/tao.py) sobre el mandala jade, con dos
 líneas del Tao Te Ching (traducción propia; el original es de dominio público).
@@ -101,6 +102,25 @@ The full 3 hours, with a dark screen for sleep, are on YouTube. Link in bio.
 
 #sleepmusic #rainsounds #cantsleep #darkscreen #432hz"""
 
+TEXTOS_THETA = [
+    (0.0, 6.0, {'tipo': 'gancho', 'titulo': 'Put your headphones on',
+                'sub': 'Theta waves for sleep. Each ear hears a different tone.'}),
+    (8.0, 40.0, {'titulo': 'Breathe out longer than you breathe in',
+                 'sub': 'The difference between your ears is slowing down.'}),
+    (48.0, 82.0, {'titulo': 'Unclench your jaw. Let the pillow hold you.'}),
+    (92.0, 126.0, {'titulo': 'Let the thought go. It will be there tomorrow.'}),
+    (136.0, 168.0, {'titulo': 'Close your eyes.', 'sub': 'Just the ocean, far away.'}),
+    (171.0, 180.0, {'tipo': 'fin', 'titulo': '3 hours, dark screen, on YouTube',
+                    'sub': 'Rin · original music, composed from scratch. Theta to delta waves.'}),
+]
+TEXTO_THETA = """Put your headphones on 🎧 Theta waves for deep sleep, over a distant ocean.
+Use headphones for the best experience: each ear hears a slightly different tone, and the difference slows you down.
+Unclench your jaw. Let the thought go, it will be there tomorrow.
+Original music composed from scratch by Rin, no samples.
+The full 3 hours, with a dark screen for sleep, are on YouTube. Link in bio.
+
+#thetawaves #binauralbeats #sleepmusic #darkscreen #cantsleep"""
+
 PIEZAS = {
     'tao': dict(bucle='vertical-zen-t165.mp4', audio='tiktok-tao/tao-master.wav', T=120,
                 textos=TEXTOS_TAO, texto=TEXTO_TAO, out='tiktok-tao', nombre='tao-tiktok.mp4'),
@@ -115,6 +135,11 @@ PIEZAS = {
     'lluvia': dict(bucle='vertical-lluvia.mp4', audio='tiktok-lluvia/lluvia-master.wav', T=180,
                    textos=TEXTOS_LLUVIA, texto=TEXTO_LLUVIA, out='tiktok-lluvia',
                    nombre='lluvia-tiktok.mp4', kbps=1100),
+    # 3 min de OBRA-044 desde el minuto 10, con el mandala violeta. El gancho
+    # pide auriculares: sin ellos las ondas theta no existen
+    'theta': dict(bucle='vertical-theta.mp4', audio='tiktok-theta/theta-master.wav', T=180,
+                  textos=TEXTOS_THETA, texto=TEXTO_THETA, out='tiktok-theta',
+                  nombre='theta-tiktok.mp4', kbps=1100),
 }
 
 
