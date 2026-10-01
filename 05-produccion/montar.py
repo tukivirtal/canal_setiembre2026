@@ -53,6 +53,23 @@ def duracion_wav(ruta):
         return w.getnframes() / w.getframerate()
 
 
+# La invitación a suscribirse, en los videos para dormir: entre el 0:45 y el
+# 2:30, mientras todavía miran la pantalla (al final del video ya duermen).
+SUSCRIBIR_DESDE, SUSCRIBIR_HASTA = 45, 150
+
+
+def rotulo_suscribir(png, w, h):
+    from playwright.sync_api import sync_playwright
+    ch = '/opt/pw-browsers/chromium-1194/chrome-linux/chrome'
+    with sync_playwright() as pw:
+        nav = pw.chromium.launch(executable_path=os.environ.get('CHROMIUM') or (ch if os.path.exists(ch) else None))
+        pag = nav.new_page(viewport={'width': int(w), 'height': int(h)})
+        pag.goto(f"file://{RAIZ / '05-produccion' / 'suscribir.html'}")
+        pag.wait_for_timeout(500)                    # fuentes
+        pag.screenshot(path=str(png), omit_background=True)
+        nav.close()
+
+
 def pantalla_oscura(hevc, final, video, dur, visible, crf):
     """Video para dormir (29/09, «dark screen sleep music»): el mandala los
     primeros minutos, un fundido a negro de 30 s y negro hasta el final, para
@@ -70,9 +87,15 @@ def pantalla_oscura(hevc, final, video, dur, visible, crf):
     tramos = video.with_name('tramos')
     tramos.mkdir(exist_ok=True)
     mandala, negro = tramos / 'mandala.mp4', tramos / 'negro.mp4'
+    png = tramos / 'suscribir.png'
+    rotulo_suscribir(png, w, h)
+    a, b = SUSCRIBIR_DESDE, SUSCRIBIR_HASTA
     correr(['ffmpeg', '-hide_banner', '-v', 'error', '-y', '-stream_loop', '-1', '-i', hevc,
-            '-t', f'{visible:.3f}', '-vf', f'fade=t=out:st={visible - 30:.3f}:d=30',
-            '-an', *x265, mandala])
+            '-loop', '1', '-framerate', fps, '-i', png, '-t', f'{visible:.3f}', '-filter_complex',
+            f'[1:v]format=rgba,fade=t=in:st={a}:d=2:alpha=1,fade=t=out:st={b - 2}:d=2:alpha=1[s];'
+            f"[0:v][s]overlay=0:0:enable='between(t,{a},{b})',"
+            f'fade=t=out:st={visible - 30:.3f}:d=30[v]',
+            '-map', '[v]', '-an', *x265, mandala])
     correr(['ffmpeg', '-hide_banner', '-v', 'error', '-y', '-f', 'lavfi',
             '-i', f'color=c=black:s={w}x{h}:r={fps}:d=48', '-an', *x265, negro])
     veces = int((dur - visible) // 48) + 2
@@ -169,6 +192,7 @@ def montar(o):
         'default_language': 'en',
         'localizations': {'es': {'title': o['titulo_es'], 'description': o['descripcion_es']}},
         'made_for_kids': False,
+        'pinned_comment': o.get('comentario_fijado', ''),
         'files': {'video': 'video.mp4', 'thumbnail': 'miniatura.jpg'},
     }, ensure_ascii=False, indent=2), encoding='utf-8')
 

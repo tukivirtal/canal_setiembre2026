@@ -39,6 +39,9 @@ Certificación de subtítulos: Ninguna
 Contenido alterado o sintético: No
 Licencia: Licencia estándar de YouTube
 
+COMENTARIO FIJADO (escribirlo apenas se publica y fijarlo: ⋮ > Fijar)
+{m.get('pinned_comment', '')}
+
 TRADUCCIÓN AL ESPAÑOL (opcional: Subtítulos > Agregar idioma > Español > Título y descripción)
 Título: {es['title']}
 

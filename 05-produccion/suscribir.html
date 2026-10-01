@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<link rel="stylesheet" href="miniaturas/fuentes.css">
+<style>
+  /* La invitación a suscribirse de los videos para dormir (01/10). Va en los
+     primeros minutos, mientras todavía miran: al final ya están dormidos.
+     Chica, abajo y en crema, sin flechas ni rojo: acompaña, no interrumpe. */
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{background:transparent;width:1920px;height:1080px;overflow:hidden}
+  .caja{position:absolute;left:0;right:0;bottom:86px;text-align:center;font-family:Inter,sans-serif;
+    color:#f6e7b8;text-shadow:0 2px 14px rgba(0,0,0,.9),0 0 3px rgba(0,0,0,.9)}
+  .uno{font-weight:600;font-size:40px;letter-spacing:.02em}
+  .dos{font-weight:500;font-size:30px;margin-top:10px;opacity:.85;letter-spacing:.08em}
+</style></head><body>
+<div class="caja">
+  <div class="uno" id="uno"></div>
+  <div class="dos" id="dos"></div>
+</div>
+<script>
+  const Q = new URLSearchParams(location.search);
+  document.getElementById('uno').textContent = Q.get('uno') || 'A new sleep piece every week';
+  document.getElementById('dos').textContent = Q.get('dos') || 'SUBSCRIBE · RIN';
+</script>
+</body></html>

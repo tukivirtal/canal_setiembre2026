@@ -198,6 +198,8 @@ PROMESA = {
         uso="🌙 Lights off, phone face down, volume low. Nothing else to do tonight.",
         hashtags="#sleepmusic #darkscreen #432hz",
         oscura=3,
+        comentario="How long did the rain take to put you to sleep? 🌧️ Tell us in minutes. "
+                   "If you're reading this awake: lights off, phone face down, and press play again.",
         etiquetas=["dark screen sleep music", "black screen sleep music", "sleep music", "deep sleep music",
                    "sleeping music for deep sleeping", "fall asleep fast", "rain sounds for sleeping",
                    "gentle rain", "sleep music for anxiety", "insomnia", "cortisol reset",
@@ -213,11 +215,27 @@ PROMESA = {
         uso="🌙 Lights off, phone face down, volume low. Let your thoughts go quiet.",
         hashtags="#thetawaves #sleepmusic #darkscreen",
         oscura=3,
+        comentario="Headphones or speaker? 🎧 Tell us which, and how far into the theta waves you got "
+                   "before falling asleep.",
         etiquetas=["theta waves", "theta waves sleep", "deep sleep theta waves", "binaural beats",
                    "binaural beats for sleep", "delta waves", "dark screen sleep music",
                    "black screen sleep music", "deep sleep music", "fall asleep fast",
                    "turn off your thoughts", "stop overthinking", "sleep meditation", "ocean waves",
                    "432 hz", "3 hours", "rin", "música para dormir"]),
+}
+
+
+# El comentario fijado (01/10): una pregunta fácil de contestar. Quien contesta
+# vuelve a ver la respuesta, se siente parte y el video suma comentarios. Las
+# obras con PROMESA pueden traer el suyo.
+COMENTARIO = {
+    "Dormir": "What keeps you awake at night? 🌙 Write it here and leave it with us. "
+              "Then press play and let it go. A new sleep piece every week.",
+    "Ansiedad": "What's on your mind right now? 🌿 Write it here and leave it with us. "
+                "Sometimes saying it is enough to set it down.",
+    "Meditar": "Where are you listening from today? 🌿 A new piece every week.",
+    "Soltar": "What are you letting go of today? 🌿 Write one word.",
+    "Concentración": "What are you working on? ✍️ Tell us, and we'll keep you company.",
 }
 
 
@@ -300,7 +318,7 @@ COLS = [
     ("titulo_miniatura", 17), ("hashtags", 34), ("etiquetas", 60),
     ("imagen_miniatura", 24), ("url_video", 30),
     ("raiz_hz", 9), ("modo", 12), ("registro", 11), ("semilla", 10), ("tono", 6),
-    ("duracion_min", 13), ("pantalla_oscura_min", 12),
+    ("duracion_min", 13), ("pantalla_oscura_min", 12), ("comentario_fijado", 40),
     ("comando_regeneracion", 62), ("comando_ambiente", 62),
     ("estado", 13), ("fecha_publicacion", 18),
     ("vistas", 10), ("suscriptores", 13), ("subs_por_1000", 14),
@@ -371,6 +389,7 @@ def construir_filas():
             "duracion_min": o["dur"],
             # Minutos de mandala antes de que la pantalla se apague (0: nunca)
             "pantalla_oscura_min": (p or {}).get("oscura", 0),
+            "comentario_fijado": (p or {}).get("comentario", COMENTARIO[o["pilar"]]),
             # Sin cuenco hasta que haya uno que pase la escucha.
             "comando_regeneracion": (
                 f'python3 03-composicion/compositor.py --minutos {o["dur"]} '
@@ -541,6 +560,7 @@ texto = [
     ("tema", "Intención: qué acompaña la obra. Determina la palabra clave y el ciclo respiratorio."),
     ("ambiente", "Ambiente aprobado en escucha: mar, mar-aves, zen, selva, lluvia-tambor, jardin, lluvia o theta."),
     ("comando_ambiente", "Segundo paso: envuelve la obra compuesta en su ambiente."),
+    ("comentario_fijado", "Comentario para escribir y fijar apenas se publica: una pregunta fácil de contestar."),
     ("pantalla_oscura_min", "Minutos de mandala antes de que la pantalla se funda a negro (videos para dormir). 0: el mandala dura todo el video."),
     ("descripcion_optimizada", "Descripción bilingüe lista para pegar. Solo falta añadir los capítulos tras el montaje."),
     ("titulo_miniatura", "Texto de la miniatura: 2-4 palabras que COMPLETAN el título, nunca lo repiten."),
