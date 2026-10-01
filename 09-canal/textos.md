@@ -4,19 +4,26 @@ Todo listo para pegar en **YouTube Studio → Personalización**.
 
 ## Descripción del canal
 
+Cambiada el 01/10 para ganar suscriptores por la psicología: **identidad** («para las
+noches en que la cabeza no para»: la persona se reconoce) y **ritual** («una obra nueva
+cada semana»: hay motivo para volver). La gente no se suscribe a una música, se suscribe
+a una promesa.
+
 **En inglés.** Límite 1.000 caracteres; los primeros ~150 son los que aparecen en la
 búsqueda.
 
 ```
-Sleep music, meditation music, calming music for anxious moments and focus music. Long original pieces with ocean waves, rain on leaves, tropical rainforest and zen temple ambiences.
+For the nights your mind won't stop. Original sleep music and calming music for anxiety, with a dark screen that won't keep you awake.
 
-Rin (鈴) is the Japanese name of the singing bowl. Every piece is composed from scratch: no loops, no borrowed sounds. Just intonation, a slow breathing pulse, and natural ambiences synthesized sound by sound.
+🌙 A new 3-hour sleep piece every week: gentle rain, distant ocean, theta waves.
+🌿 Shorter pieces for anxious moments in the middle of the day.
+🎧 Pieces with theta waves: use headphones for the best experience.
 
-Each piece has its own name and its own purpose: sleep, a pause when your mind won't stop, a meditation practice, or long hours of work and study.
+Rin (鈴) is the Japanese name of the singing bowl. Every piece is composed from scratch: no loops, no borrowed sounds. Just intonation, and a breathing cycle written into the music that slows you down, little by little.
 
-We don't promise to heal anything. We compose music to keep you company.
+We don't promise to heal anything. We compose music to keep you company tonight.
 
-Subscribe for every new piece.
+Subscribe, and come back tomorrow night.
 ```
 
 ### La traducción al español
@@ -25,15 +32,17 @@ Va aparte, como traducción del canal: **Studio → Configuración → Canal →
 básica → Agregar idioma → Español**. Quien tenga YouTube en español ve esta:
 
 ```
-Música para dormir, música para meditar, música para calmar momentos de ansiedad y música para concentrarte. Obras largas y originales con ambientes de olas del mar, lluvia sobre hojas, selva tropical y templo zen.
+Para las noches en que la cabeza no para. Música original para dormir y para calmar la ansiedad, con pantalla oscura para que la luz no te despierte.
 
-Rin (鈴) es el nombre japonés del cuenco cantor. Cada obra se compone desde cero: sin loops ni sonidos prestados. Entonación justa, un pulso de respiración lenta y ambientes naturales sintetizados sonido por sonido.
+🌙 Una obra nueva de 3 horas para dormir cada semana: lluvia suave, mar lejano, ondas theta.
+🌿 Obras más cortas para los momentos de ansiedad en medio del día.
+🎧 Obras con ondas theta: usa auriculares para una mejor experiencia.
 
-Cada obra tiene su nombre y su propósito: dormir, una pausa cuando la cabeza no para, una práctica de meditación o largas horas de trabajo y estudio.
+Rin (鈴) es el nombre japonés del cuenco cantor. Cada obra se compone desde cero: sin loops ni sonidos prestados. Entonación justa y un ciclo de respiración escrito en la música, que te va bajando el ritmo de a poco.
 
-No prometemos curar nada. Componemos música para acompañarte.
+No prometemos curar nada. Componemos música para acompañarte esta noche.
 
-Suscríbete para recibir cada obra nueva.
+Suscríbete, y vuelve mañana a la noche.
 ```
 
 ## Palabras clave del canal
@@ -141,3 +150,31 @@ New pieces every week on YouTube: youtube.com/@rinchanneloficial
   `export/vista-facebook.png`).
 - **Conectar la cuenta de Instagram** a la página (Configuración → Cuentas vinculadas):
   es lo que permite anunciar en las dos desde un solo lugar.
+
+## Listas de reproducción
+
+**Studio → Contenido → Listas → Nueva lista.** Encadenan un video tras otro: es la señal
+más fuerte para que YouTube recomiende el canal. Un video puede estar en las dos.
+
+**1. Deep Sleep Music 🌙 Fall Asleep Fast** (pública)
+```
+3-hour sleep music with a dark screen after 3 minutes: gentle rain, distant ocean and theta waves. Lights off, phone face down, volume low. A new piece every week.
+```
+Orden: Dark Screen Sleep Music (lluvia) · Deep Sleep Theta Waves · Calm Your Nervous System (3 h) · Deep Sleep Music, ocean waves (90 min).
+
+**2. Calm Your Anxious Mind 🌿** (pública)
+```
+Calming music for anxiety, from a 10-minute reset to three hours. Breathe out longer than you breathe in, and let the music slow you down.
+```
+Orden: 10-Minute Anxiety Reset · Calm Your Nervous System in 15 Minutes · Quiet Your Mind (30 min) · Stop Overthinking (1 h) · Calm Your Nervous System (3 h).
+
+**Después, en Personalización → Diseño:**
+- **Video destacado para quienes no están suscritos:** Dark Screen Sleep Music (lluvia).
+- **Secciones:** agregar las dos listas, debajo de «Videos».
+
+## El día fijo
+
+Una obra larga por semana, **el domingo a las 21:00 de Uruguay** (20:00 en Nueva York,
+la hora en que se busca música para dormir). Desde el 2 de noviembre, cuando EE. UU.
+atrasa la hora, pasa a las 22:00 de Uruguay. El ritual le enseña al público, y al
+algoritmo, cuándo volver.
