@@ -164,19 +164,21 @@ def filas_shorts(obras):
             ids = f'{o["id"]}-S{n}'
             n_obra = int(o["id"].split("-")[-1])
             frase = (FRASE_INSTRUCCION if n_obra >= 44 else FRASE)[tema][k]
+            # Las ondas theta solo se perciben con auriculares: se avisa primero
+            auris = "🎧 Use headphones for the best experience. " if o["ambiente"] == "theta" else ""
             fila = {
                 "id_short": ids, "obra": o["id"], "n": n, "archivo": f"short-{n}.mp4",
                 "inicio_s": ini, "zoom": ZOOM[k], "desfase_s": DESFASE[k],
                 "frase_en_pantalla": frase,
                 "yt_titulo": f"{frase[0].upper()}{frase[1:]} · {hz} Hz · {amb}",
-                "yt_descripcion": (f"{LEYENDA[tema][k]}\n"
+                "yt_descripcion": (f"{auris}{LEYENDA[tema][k]}\n"
                                    f"Full piece ({dur}): {o['titulo']}\n"
                                    + (f"{o['url_video']}\n" if o.get("url_video") else "")
                                    + f"\n{tags} #shorts"),
                 "yt_etiquetas": ", ".join(ETIQUETAS[tema] + [f"{hz} hz", amb.lower(), "Rin"]),
                 "yt_video_relacionado": o.get("url_video", ""),
                 "tiktok_portada": f"{hz} Hz · {PORTADA[tema][k]}",
-                "tiktok_descripcion": (f"{LEYENDA[tema][k]} Full {dur} piece on YouTube: "
+                "tiktok_descripcion": (f"{auris}{LEYENDA[tema][k]} Full {dur} piece on YouTube: "
                                        f"Rin.\n" + " ".join(dict.fromkeys(tags.split() + ["#meditation"]))),
                 "estado": "pendiente", "fecha_youtube": "", "url_youtube": "",
                 "fecha_tiktok": "", "url_tiktok": "",

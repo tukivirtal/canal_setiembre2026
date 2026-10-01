@@ -208,8 +208,8 @@ PROMESA = {
     # palabra clave que crece (dark screen) adentro.
     44: dict(
         titulo="Deep Sleep Theta Waves 🌙 Turn Off Your Thoughts · Dark Screen · Fall Asleep Fast · 3 Hours",
-        gancho=("Three hours of theta waves for deep sleep, over a distant ocean and a slow, warm drone.",
-                "🎧 Use headphones: the left and right ears hear two tones 6 Hz apart. Over the hours the difference slows from theta (6 Hz, drifting off) to delta (2 Hz, deep sleep). The screen fades to black after 3 minutes."),
+        gancho=("Three hours of theta waves for deep sleep, over a distant ocean and a slow, warm drone. 🎧 Use headphones for the best experience.",
+                "With headphones, each ear hears a slightly different tone, 6 Hz apart. Over the hours the difference slows from theta (6 Hz, drifting off) to delta (2 Hz, deep sleep). The screen fades to black after 3 minutes."),
         uso="🌙 Lights off, phone face down, volume low. Let your thoughts go quiet.",
         hashtags="#thetawaves #sleepmusic #darkscreen",
         oscura=3,
@@ -244,8 +244,11 @@ def descripcion_es(o):
     return (
         f'{o["nombre"]} · {dur_txt(o["dur"])}\n\n'
         f'{PROPOSITO[o["pilar"]]}\n'
-        f'Ambiente: {AMBIENTES[o["ambiente"]][0].lower()}.\n\n'
-        f'Compuesta con {afinacion}, en entonación justa, modo {o["modo"]}.\n'
+        f'Ambiente: {AMBIENTES[o["ambiente"]][0].lower()}.\n'
+        + ('🎧 Usa auriculares para una mejor experiencia: cada oído escucha un tono apenas '
+           'distinto y la diferencia baja de theta (6 Hz) a delta (2 Hz).\n'
+           if o["ambiente"] == "theta" else '')
+        + f'\nCompuesta con {afinacion}, en entonación justa, modo {o["modo"]}.\n'
         f'Ciclo respiratorio: de {ri:.1f} a {rf:.1f} respiraciones por minuto, '
         f'inhalar 40 % / exhalar 60 %.\n'
         f'Composición original, sintetizada desde cero: el ambiente también. '
