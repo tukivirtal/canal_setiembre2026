@@ -5,6 +5,7 @@ cuerdas, pulsada, con sus deslizamientos y armónicos de campana), flauta xiao,
 lluvia y un bordón grave que respira. Pensada para TikTok (2 minutos, vertical).
 
     python3 03-composicion/tao.py salida.wav --raiz 432 --segundos 120 --semilla 7
+    python3 03-composicion/tao.py salida.wav --modo yu --segundos 90   # la escala de la noche
 
 Como el resto de Rin: afinación justa (pentatónica china gong: 1, 9/8, 5/4, 3/2,
 5/3), la respiración escrita en la música (de 5.5 a 4.5 respiraciones por minuto,
@@ -18,10 +19,15 @@ from scipy.signal import butter, sosfilt, fftconvolve
 
 SR = 48000
 GONG = [1, 9/8, 5/4, 3/2, 5/3]
+# El modo yu, la misma pentatónica empezando en su sexto grado (la, do, re, mi,
+# sol). En la música de los cinco elementos el yu es el agua y la noche: el que
+# la tradición china pone antes de dormir (02/10, video «3 AM»).
+YU = [1, 6/5, 4/3, 3/2, 9/5]
+MODOS = {'gong': GONG, 'yu': YU}
 
 
-def escala(base, octavas):
-    return [base * 2 ** o * r for o in range(octavas) for r in GONG]
+def escala(base, octavas, grados=GONG):
+    return [base * 2 ** o * r for o in range(octavas) for r in grados]
 
 
 def lp(x, fc, orden=2):
@@ -132,7 +138,7 @@ def respiraciones(seg, ini=5.5, fin=4.5):
     return out
 
 
-def componer(seg, raiz, semilla):
+def componer(seg, raiz, semilla, modo='gong'):
     rnd = np.random.default_rng(semilla)
     L = int(seg * SR)
     capas = {k: np.zeros((2, L)) for k in ('qin', 'xiao', 'arm', 'drone')}
@@ -144,8 +150,9 @@ def componer(seg, raiz, semilla):
         capas[capa][0, i:i + len(buf)] += buf * math.cos((pan + 1) * math.pi / 4)
         capas[capa][1, i:i + len(buf)] += buf * math.sin((pan + 1) * math.pi / 4)
 
-    qin = escala(raiz / 4, 3)        # 108 Hz … registro grave y medio del guqin
-    fla = escala(raiz / 2, 2)[3:]    # la xiao: de 324 Hz para arriba
+    g = MODOS[modo]
+    qin = escala(raiz / 4, 3, g)     # 108 Hz … registro grave y medio del guqin
+    fla = escala(raiz / 2, 2, g)[3:] # la xiao: de 324 Hz para arriba
     ciclos = respiraciones(seg)
 
     # el gancho: dos armónicos y la cuerda grave en el primer segundo
@@ -173,7 +180,7 @@ def componer(seg, raiz, semilla):
                   exh + j * paso + rnd.uniform(-0.08, 0.08), -0.15)
         # armónicos de campana, de vez en cuando
         if rnd.random() < (0.55 if fase > 0.7 else 0.3):
-            h = rnd.choice([raiz, raiz * 3 / 2, raiz * 5 / 4, raiz * 2])
+            h = rnd.choice([raiz, raiz * 3 / 2, raiz * g[2], raiz * 2])
             poner('arm', armonico(h, 5, rnd.uniform(0.5, 0.8)), exh + 0.6 * d * rnd.uniform(0.3, 1), rnd.uniform(-0.3, 0.3))
         # la xiao: una nota larga por exhalación, de la mitad para adelante
         if 0.26 < fase < 0.84:
@@ -219,8 +226,9 @@ def main():
     p.add_argument('--raiz', type=float, default=432)
     p.add_argument('--segundos', type=float, default=120)
     p.add_argument('--semilla', type=int, default=7)
+    p.add_argument('--modo', choices=list(MODOS), default='gong')
     a = p.parse_args()
-    x = componer(a.segundos, a.raiz, a.semilla)
+    x = componer(a.segundos, a.raiz, a.semilla, a.modo)
     pcm = (np.clip(x.T, -1, 1) * 32767).astype('<i2')
     with wave.open(a.salida, 'wb') as w:
         w.setnchannels(2); w.setsampwidth(2); w.setframerate(SR); w.writeframes(pcm.tobytes())

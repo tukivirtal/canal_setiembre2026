@@ -8,6 +8,7 @@ un gancho en el primer segundo y unos pocos textos que entran y salen.
     python3 05-produccion/shorts/tiktok_tao.py --pieza nervios  # «Calm your nervous system», 3 min de OBRA-042
     python3 05-produccion/shorts/tiktok_tao.py --pieza lluvia   # «Can't sleep?», 3 min de OBRA-043
     python3 05-produccion/shorts/tiktok_tao.py --pieza theta    # «Put your headphones on», 3 min de OBRA-044
+    python3 05-produccion/shorts/tiktok_tao.py --pieza 3am      # «Woke up at 3 AM again?», guqin en modo yu
 
 tao: guqin, xiao y lluvia (03-composicion/tao.py) sobre el mandala jade, con dos
 líneas del Tao Te Ching (traducción propia; el original es de dominio público).
@@ -121,6 +122,32 @@ The full 3 hours, with a dark screen for sleep, are on YouTube. Link in bio.
 
 #thetawaves #binauralbeats #sleepmusic #darkscreen #cantsleep"""
 
+# 02/10: dolor -> solución -> música. El dolor: despertarse a las 3 AM. La
+# solución viene del «Chinamaxxing» (la tendencia de 2026 de vivir «a la china»:
+# acostarse temprano, qigong, medicina china): en el reloj chino del cuerpo, de 1
+# a 3 es la hora del hígado, y el sonido del hígado en los Seis Sonidos (Liu Zi
+# Jue) es «xū», una exhalación larga. Se dice como tradición, no como diagnóstico.
+TEXTOS_3AM = [
+    (0.0, 6.0, {'tipo': 'gancho', 'titulo': 'Woke up at 3 AM again?',
+                'sub': 'Chinese medicine has a name for this hour.'}),
+    (8.0, 27.0, {'titulo': '1 to 3 AM is the liver\'s hour',
+                 'sub': 'The hour of what you couldn\'t let go of.', 'fuente': 'THE CHINESE BODY CLOCK'}),
+    (30.0, 47.0, {'titulo': 'Don\'t check the time.',
+                  'sub': 'Knowing it\'s 3:12 only wakes you up more.'}),
+    (50.0, 72.0, {'titulo': 'Breathe out through your lips: shhh',
+                  'sub': 'Six slow breaths, longer out than in.', 'fuente': 'XŪ · THE LIVER SOUND'}),
+    (75.0, 83.0, {'titulo': 'Let the strings take it from here.'}),
+    (84.0, 90.0, {'tipo': 'fin', 'titulo': 'Save this for 3 AM',
+                  'sub': 'Rin · guqin and rain in the Chinese yu scale, the scale of night. Composed from scratch.'}),
+]
+TEXTO_3AM = """Woke up at 3 AM again? 🌙 In the Chinese body clock, 1 to 3 AM is the liver's hour: the hour of what you couldn't let go of.
+Don't check the time. Breathe out slowly through your lips, "shhh" (xū, the liver sound of the Six Healing Sounds). Six times, longer out than in.
+Guqin, xiao flute and rain in the yu scale, the one Chinese tradition saves for the night. Composed from scratch by Rin.
+A 2,000-year-old tradition, not medical advice.
+Full 3-hour sleep pieces on YouTube, link in bio. What time do you wake up? 👇
+
+#chinamaxxing #chinesemedicine #3am #cantsleep #sleeptok"""
+
 PIEZAS = {
     'tao': dict(bucle='vertical-zen-t165.mp4', audio='tiktok-tao/tao-master.wav', T=120,
                 textos=TEXTOS_TAO, texto=TEXTO_TAO, out='tiktok-tao', nombre='tao-tiktok.mp4'),
@@ -140,6 +167,9 @@ PIEZAS = {
     'theta': dict(bucle='vertical-theta.mp4', audio='tiktok-theta/theta-master.wav', T=180,
                   textos=TEXTOS_THETA, texto=TEXTO_THETA, out='tiktok-theta',
                   nombre='theta-tiktok.mp4', kbps=1100),
+    # 90 s de guqin en modo yu, compuesto para el video (tao.py --modo yu), sobre jade
+    '3am': dict(bucle='vertical-zen-t165.mp4', audio='tiktok-3am/3am-master.wav', T=90,
+                textos=TEXTOS_3AM, texto=TEXTO_3AM, out='tiktok-3am', nombre='3am-tiktok.mp4'),
 }
 
 

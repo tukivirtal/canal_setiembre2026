@@ -17,6 +17,21 @@ CHROMIUM = os.environ.get('CHROMIUM') or (_CH if os.path.exists(_CH) else None)
 
 # (etiqueta, título, cuerpo, paleta, tono)
 CARRUSELES = {
+    # 02/10: el reloj chino del cuerpo (tendencia «Chinamaxxing»). Termina en una
+    # pregunta fácil de contestar: los comentarios son lo que más empuja en TikTok.
+    '3am': ([
+        ('SAVE THIS FOR TONIGHT', 'Why you wake up at 3 AM', 'The Chinese body clock has an answer. Swipe →', 'zen', 165),
+        ('THE CHINESE BODY CLOCK', 'Every two hours, one organ', '11 PM – 1 AM · gallbladder\n1 – 3 AM · liver\n3 – 5 AM · lungs', 'zen', 165),
+        ('1 – 3 AM · LIVER', 'The hour of what you couldn’t let go of', 'In Chinese medicine the liver holds stress and frustration. At night, it speaks up.', 'zen', 165),
+        ('WHAT TO DO', 'Don’t check the time', 'Phone face down. Stay in bed. Eyes closed.', 'zen', 165),
+        ('XŪ · THE LIVER SOUND', 'Breathe out through your lips: shhh', 'From the Six Healing Sounds (Liu Zi Jue). Six slow breaths, longer out than in.', 'zen', 165),
+        ('RIN', 'Then let slow music carry you back', '3-hour sleep pieces with a dark screen, composed from scratch. On YouTube.', 'zen', 165),
+    ], """Why you wake up at 3 AM 🌙 The Chinese body clock says 1 to 3 AM is the liver's hour: the hour of what you couldn't let go of.
+Don't check the time. Breathe out through your lips, "shhh" (xū), six times. Then let slow music carry you back.
+A 2,000-year-old tradition, not medical advice.
+What time do you usually wake up: 1, 3 or 5 AM? 👇
+
+#chinamaxxing #chinesemedicine #3am #cantsleep #sleeptok"""),
     'reset-60s': ([
         ('SAVE THIS FOR TONIGHT', 'A 60-second reset for when your mind won’t stop', 'No app. Just your breath. Swipe →', 'mar-aves', 0),
         ('STEP 1', 'Drop your shoulders', 'Unclench your jaw. Let your tongue rest.', 'mar-aves', 0),
@@ -66,7 +81,11 @@ def main():
     with sync_playwright() as pw:
         nav = pw.chromium.launch(executable_path=CHROMIUM)
         pag = nav.new_page(viewport={'width': 1080, 'height': 1920})
+        import sys
+        solo = sys.argv[1:]                        # p. ej. «3am»: solo ese carrusel
         for clave, (slides, cap) in CARRUSELES.items():
+            if solo and clave not in solo:
+                continue
             (out / clave).mkdir(parents=True, exist_ok=True)
             for j, (et, tit, cuerpo, pal, tono) in enumerate(slides, 1):
                 q = {'tipo': 'slide', 'tiktok': 1, 'paleta': pal, 'tono': tono, 't': 4 + j * 7,
