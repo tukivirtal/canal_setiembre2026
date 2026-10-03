@@ -122,6 +122,7 @@ Cada obra lleva un **ambiente**, uno de los cinco aprobados en escucha (ver
 | `lluvia-tambor` | Lluvia sobre hojas y tambor lejano | Lluvia sobre hojas |
 | `lluvia` | Lluvia suave sobre el techo, sin tambor: para dormir | Lluvia suave |
 | `theta` | Mar lejano y ondas theta que bajan a delta (auriculares) | Mar lejano y ondas theta |
+| `guqin` | Guqin, flauta xiao y lluvia suave, en modo yu (tao_largo.py) | Guqin y lluvia |
 
 Por ahora **ninguna obra lleva cuenco**: el sintetizado sonó barato en la escucha. Las
 obras que llevaban cuenco en el nombre se renombraron. Cuando haya un cuenco que pase la
@@ -140,6 +141,7 @@ escucha, vuelve.
 | 7 | Peso lento | Slow Weight | 396 | shin | 120 min | mar |
 | 8 | La casa dormida | The Sleeping House | 432 | kumoi | 180 min | mar |
 | 43 | Pantalla oscura | Dark Screen Sleep | 432 | kumoi | 180 min | lluvia |
+| 45 | Las tres de la mañana | Back to Sleep at 3 AM | 432 | yu | 180 min | guqin |
 | 44 | Ondas theta | Theta Waves | 432 | shin | 180 min | theta |
 
 Todas con mar a propósito: pájaros, campanas o tambor son sonidos que despiertan. La
@@ -147,7 +149,10 @@ Todas con mar a propósito: pájaros, campanas o tambor son sonidos que despiert
 3 minutos: «dark screen sleep music» creció 269 % en un mes y el 54 % de esas
 búsquedas es de EE. UU. (vidIQ). La 44 repite la pantalla oscura con mar lejano y
 ondas theta que bajan a delta (con auriculares): la idea que dio YouTube Studio para
-el canal, y la comparación con la 43 dice qué sonido prefiere el público.
+el canal, y la comparación con la 43 dice qué sonido prefiere el público. La 45 (03/10)
+es la versión de 3 horas del TikTok «Woke up at 3 AM again?»: guqin en modo yu (la
+escala que la tradición china deja para la noche) sobre lluvia, con la tendencia
+«Chinamaxxing» y el reloj chino del cuerpo como gancho.
 
 ### Ansiedad
 

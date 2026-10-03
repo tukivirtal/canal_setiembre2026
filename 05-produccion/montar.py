@@ -131,8 +131,10 @@ def montar(o):
         if not final.exists():
             # 1 · componer
             if not obra.exists():
-                correr([sys.executable, '03-composicion/compositor.py',
-                        *args_de(o['comando_regeneracion'], '03-composicion/compositor.py'),
+                # el script sale del catálogo: compositor.py, o tao_largo.py
+                # para las obras de guqin (03/10)
+                script = shlex.split(o['comando_regeneracion'])[1]
+                correr([sys.executable, script, *args_de(o['comando_regeneracion'], script),
                         '--salida', obra])
             # 2 y 3 · capa y ambiente, con los parámetros del catálogo
             pasos = o['comando_ambiente'].split(' && ')

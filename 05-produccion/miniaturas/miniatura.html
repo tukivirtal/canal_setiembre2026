@@ -36,7 +36,7 @@
 <script>
   // ?paleta=zen&grande=432 Hz&palabra=DEEP SLEEP&pastilla=Ocean Waves · 3 Hours&t=6
   const Q = new URLSearchParams(location.search);
-  const ORO = {'mar':'#e6c46a','mar-aves':'#f5c877','zen':'#e8c066','selva':'#e8c55e','lluvia-tambor':'#e9b35a','jardin':'#e8c066','lluvia':'#e6c46a','theta':'#e6c46a'};
+  const ORO = {'mar':'#e6c46a','mar-aves':'#f5c877','zen':'#e8c066','selva':'#e8c55e','lluvia-tambor':'#e9b35a','jardin':'#e8c066','lluvia':'#e6c46a','theta':'#e6c46a','guqin':'#e8c066'};
   const pal = Q.get('paleta') || 'mar';
   document.documentElement.style.setProperty('--oro', ORO[pal] || '#e6c46a');
   for (const k of ['grande', 'palabra', 'pastilla']) document.getElementById(k).textContent = Q.get(k) || '';

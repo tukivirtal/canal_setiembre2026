@@ -1084,3 +1084,24 @@ Mejor a volumen bajo.
 Suscríbete para las próximas obras: https://www.youtube.com/@rinchanneloficial?sub_confirmation=1
 
 #sleepmusic #meditation #432hz",3 HOURS,#thetawaves #sleepmusic #darkscreen,"theta waves, theta waves sleep, deep sleep theta waves, binaural beats, binaural beats for sleep, delta waves, dark screen sleep music, black screen sleep music, deep sleep music, fall asleep fast, turn off your thoughts, stop overthinking, sleep meditation, ocean waves, 432 hz, 3 hours, rin, música para dormir",,,432,shin,grave,810318,0,180,3,"Headphones or speaker? 🎧 Tell us which, and how far into the theta waves you got before falling asleep.",python3 03-composicion/compositor.py --minutos 180 --raiz 432 --modo shin --semilla 810318 --caracter sin-cuenco --registro grave,python3 03-composicion/capas.py theta 10840 audio/OBRA-044_capa.wav --semilla 810318 --raiz 432 && python3 03-composicion/ambiente.py audio/OBRA-044_432_shin.wav audio/OBRA-044_final.wav --fondo mar --nivel-fondo -4 --nivel-capa -11 --capa audio/OBRA-044_capa.wav,pendiente,,,,
+OBRA-045,Woke Up at 3 AM? 🌙 Chinese Guqin & Rain to Fall Back Asleep · Dark Screen · 3 Hours,Música para dormir · Guqin y lluvia · 432 Hz · Las tres de la mañana · 3 horas,Dormir,guqin,"Woke up at 3 AM again? Three hours of guqin, xiao flute and gentle rain to fall back asleep.
+In the Chinese body clock, 1 to 3 AM is the liver's hour: the hour of what you couldn't let go of. Don't check the time. Breathe out slowly through your lips, ""shhh"" (xū), six times, and let the strings take it from there. The screen fades to black after 3 minutes.
+
+🌙 Phone face down, volume low. The music thins out over the hours, until only the rain is left.
+🌿 Subscribe for a new calm piece every week: https://www.youtube.com/@rinchanneloficial?sub_confirmation=1
+
+Original composition by Rin, synthesized from scratch in just intonation around 432 Hz, yu mode. No samples. The yu scale is the one Chinese five-element music keeps for the night. A 2,000-year-old tradition, not medical advice.
+
+#sleepmusic #guqin #chinesemusic","Las tres de la mañana · 3 horas
+
+Para acompañar el sueño.
+Ambiente: guqin y lluvia.
+
+Compuesta con raíz en 432 Hz, en entonación justa, modo yu.
+Ciclo respiratorio: de 4.5 a 3.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
+Composición original, sintetizada desde cero: el ambiente también. Ninguna muestra procede de terceros.
+
+Mejor a volumen bajo.
+Suscríbete para las próximas obras: https://www.youtube.com/@rinchanneloficial?sub_confirmation=1
+
+#sleepmusic #meditation #432hz",3 HOURS,#sleepmusic #guqin #chinesemusic,"woke up at 3am, fall back asleep, music to fall back asleep, chinese sleep music, guqin, guqin music, chinese meditation music, chinese music for sleep, rain sounds for sleeping, dark screen sleep music, black screen sleep music, deep sleep music, sleep music, traditional chinese medicine, chinamaxxing, 3 hours, rin, música para dormir",,,432,yu,grave,270978,0,180,3,"What time did you wake up tonight? 🌙 Tell us, then press play and breathe out slowly: shhh.",python3 03-composicion/tao_largo.py --minutos 180 --raiz 432 --modo yu --semilla 270978,python3 03-composicion/ambiente.py audio/OBRA-045_432_yu.wav audio/OBRA-045_final.wav --fondo lluvia --nivel-obra 0 --nivel-fondo -6 --entrada-obra 6,pendiente,,,,

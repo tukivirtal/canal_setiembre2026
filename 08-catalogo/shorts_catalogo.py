@@ -144,7 +144,7 @@ def inicios(duracion_min, n=N_SHORTS):
 AMB_EN = {"mar": "Ocean Waves", "mar-aves": "Ocean and Birds", "zen": "Zen Temple",
           "selva": "Tropical Rainforest", "lluvia-tambor": "Rain on Leaves",
           "jardin": "Birds and Temple Bells", "lluvia": "Gentle Rain",
-          "theta": "Theta Waves"}
+          "theta": "Theta Waves", "guqin": "Guqin and Rain"}
 
 
 def filas_shorts(obras):
@@ -159,7 +159,12 @@ def filas_shorts(obras):
         amb = AMB_EN[o["ambiente"]]
         dur = dur_corta(o["duracion_min"])
         tags = " ".join(HASHTAGS[tema] + [f"#{hz}hz"])
-        for k, ini in enumerate(inicios(int(o["duracion_min"]), n_shorts(o["id"]))):
+        tramos = inicios(int(o["duracion_min"]), n_shorts(o["id"]))
+        if "tao_largo" in o.get("comando_regeneracion", ""):
+            # las de guqin se van retirando: los Shorts salen de la primera media
+            # hora, cuando todavía suenan el guqin y la xiao
+            tramos = [90, 960, 1980]
+        for k, ini in enumerate(tramos):
             n = k + 1
             ids = f'{o["id"]}-S{n}'
             n_obra = int(o["id"].split("-")[-1])

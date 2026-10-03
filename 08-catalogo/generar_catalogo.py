@@ -53,7 +53,7 @@ for linea in open(MD, encoding="utf-8"):
         obras.append({"n": int(m.group(1)), "nombre": m.group(2), "name": m.group(3),
                       "raiz": int(m.group(4)), "modo": m.group(5), "dur": int(m.group(6)),
                       "pilar": pilar_actual, "ambiente": m.group(7)})
-assert len(obras) == 44, f"se esperaban 44 obras, se encontraron {len(obras)}"
+assert len(obras) == 45, f"se esperaban 45 obras, se encontraron {len(obras)}"
 
 # --- Derivar los campos ---
 # Idioma principal: INGLÉS (23/09). El español va como traducción del título y
@@ -86,6 +86,11 @@ AMBIENTES = {
     # Lluvia sola, sin tambor ni capa: para dormir (29/09)
     "lluvia":        ("Lluvia suave", "Gentle Rain", None, "--fondo lluvia"),
     # Mar lejano y ondas theta que bajan a delta, para dormir con auriculares (30/09)
+    # Guqin y xiao (tao_largo.py) sobre lluvia, para dormir (03/10). La obra
+    # manda: en el TikTok aprobado los instrumentos van 12,7 dB sobre la
+    # lluvia; acá ~8, y la lluvia gana terreno a medida que la música se retira.
+    "guqin":         ("Guqin y lluvia", "Guqin & Rain", None,
+                      "--fondo lluvia --nivel-obra 0 --nivel-fondo -6 --entrada-obra 6"),
     "theta":         ("Mar lejano y ondas theta", "Distant Ocean & Theta Waves", "theta",
                       "--fondo mar --nivel-fondo -4 --nivel-capa -11"),
 }
@@ -133,6 +138,7 @@ ETIQ_AMBIENTE = {
     "jardin":        ["birdsong", "wind chimes", "zen garden"],
     "lluvia":        ["rain sounds", "rain sounds for sleeping", "gentle rain"],
     "theta":         ["theta waves", "binaural beats", "ocean waves"],
+    "guqin":         ["guqin", "chinese music", "rain sounds"],
 }
 SUSCRIBIR = "https://www.youtube.com/@rinchanneloficial?sub_confirmation=1"
 
@@ -222,6 +228,24 @@ PROMESA = {
                    "black screen sleep music", "deep sleep music", "fall asleep fast",
                    "turn off your thoughts", "stop overthinking", "sleep meditation", "ocean waves",
                    "432 hz", "3 hours", "rin", "música para dormir"]),
+    # 03/10: la versión larga del TikTok «Woke up at 3 AM again?». Dolor (despertarse
+    # a las 3), solución (el reloj chino del cuerpo y la exhalación «xū») y
+    # música (guqin en modo yu). La tendencia: «Chinamaxxing» (2026).
+    45: dict(
+        titulo="Woke Up at 3 AM? 🌙 Chinese Guqin & Rain to Fall Back Asleep · Dark Screen · 3 Hours",
+        gancho=("Woke up at 3 AM again? Three hours of guqin, xiao flute and gentle rain to fall back asleep.",
+                "In the Chinese body clock, 1 to 3 AM is the liver's hour: the hour of what you couldn't let go of. Don't check the time. Breathe out slowly through your lips, \"shhh\" (xū), six times, and let the strings take it from there. The screen fades to black after 3 minutes."),
+        uso="🌙 Phone face down, volume low. The music thins out over the hours, until only the rain is left.",
+        hashtags="#sleepmusic #guqin #chinesemusic",
+        oscura=3,
+        motor="tao",
+        nota="The yu scale is the one Chinese five-element music keeps for the night. A 2,000-year-old tradition, not medical advice.",
+        comentario="What time did you wake up tonight? 🌙 Tell us, then press play and breathe out slowly: shhh.",
+        etiquetas=["woke up at 3am", "fall back asleep", "music to fall back asleep", "chinese sleep music",
+                   "guqin", "guqin music", "chinese meditation music", "chinese music for sleep",
+                   "rain sounds for sleeping", "dark screen sleep music", "black screen sleep music",
+                   "deep sleep music", "sleep music", "traditional chinese medicine", "chinamaxxing",
+                   "3 hours", "rin", "música para dormir"]),
 }
 
 
@@ -241,19 +265,20 @@ COMENTARIO = {
 
 def descripcion_promesa(o, p):
     raiz = (f'{o["raiz"] * FACTOR["grave"]:g} Hz, the low octave of {o["raiz"]} Hz'
-            if REGISTRO[o["pilar"]] == "grave" else f'{o["raiz"]} Hz')
+            if REGISTRO[o["pilar"]] == "grave" and p.get("motor") != "tao" else f'{o["raiz"]} Hz')
     return (f'{p["gancho"][0]}\n{p["gancho"][1]}\n\n'
             f'{p["uso"]}\n'
             f'🌿 Subscribe for a new calm piece every week: {SUSCRIBIR}\n\n'
             f'Original composition by Rin, synthesized from scratch in just intonation around '
-            f'{raiz}, {o["modo"]} mode. No samples.\n\n'
+            f'{raiz}, {o["modo"]} mode. No samples.'
+            + (f' {p["nota"]}' if p.get("nota") else '') + '\n\n'
             f'{p["hashtags"]}')
 
 
 def descripcion_es(o):
     """La traducción al español. Se carga en YouTube como traducción del video."""
     ri, rf = RESP[o["pilar"]]
-    reg = REGISTRO[o["pilar"]]
+    reg = REGISTRO[o["pilar"]] if PROMESA.get(o["n"], {}).get("motor") != "tao" else "medio"
     raiz_real = o["raiz"] * FACTOR[reg]
     # En registro grave la raíz REAL no es la nominal. Decir "528 Hz" a
     # secas sería inexacto, y la exactitud es el argumento del canal.
@@ -392,6 +417,9 @@ def construir_filas():
             "comentario_fijado": (p or {}).get("comentario", COMENTARIO[o["pilar"]]),
             # Sin cuenco hasta que haya uno que pase la escucha.
             "comando_regeneracion": (
+                f'python3 03-composicion/tao_largo.py --minutos {o["dur"]} --raiz {o["raiz"]} '
+                f'--modo {o["modo"]} --semilla {s}'
+                if (p or {}).get("motor") == "tao" else
                 f'python3 03-composicion/compositor.py --minutos {o["dur"]} '
                 f'--raiz {o["raiz"]} --modo {o["modo"]} --semilla {s} '
                 f'--caracter sin-cuenco'
@@ -558,7 +586,7 @@ texto = [
     ("titulo / descripcion_optimizada", "En inglés, el idioma principal del canal."),
     ("titulo_es / descripcion_es", "La traducción al español. Se carga en YouTube Studio → Subtítulos → Título y descripción."),
     ("tema", "Intención: qué acompaña la obra. Determina la palabra clave y el ciclo respiratorio."),
-    ("ambiente", "Ambiente aprobado en escucha: mar, mar-aves, zen, selva, lluvia-tambor, jardin, lluvia o theta."),
+    ("ambiente", "Ambiente aprobado en escucha: mar, mar-aves, zen, selva, lluvia-tambor, jardin, lluvia, theta o guqin."),
     ("comando_ambiente", "Segundo paso: envuelve la obra compuesta en su ambiente."),
     ("comentario_fijado", "Comentario para escribir y fijar apenas se publica: una pregunta fácil de contestar."),
     ("pantalla_oscura_min", "Minutos de mandala antes de que la pantalla se funda a negro (videos para dormir). 0: el mandala dura todo el video."),
