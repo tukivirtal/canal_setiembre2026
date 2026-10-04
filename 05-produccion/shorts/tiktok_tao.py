@@ -205,7 +205,17 @@ TEXTOS_HIST_MARCO = [
 ]
 TEXTO_HIST_MARCO = "Nowhere can you retreat to a quieter place than your own mind. Marcus Aurelius 🌙"
 
+# La tercera fijada: Tao Te Ching 15, traducción propia (dominio público), con
+# el guqin en modo yu y el mandala violeta.
+TEXTOS_HIST_TAO = [
+    (0.6, 15.0, {'titulo': 'Muddy water, left still, slowly clears.', 'fuente': 'TAO TE CHING · 15'}),
+]
+TEXTO_HIST_TAO = "Muddy water, left still, slowly clears. Tao Te Ching 🌙"
+
 PIEZAS = {
+    'historia-tao': dict(bucle='vertical-theta.mp4', audio='historia-tao/tao-historia.wav', T=15,
+                         textos=TEXTOS_HIST_TAO, texto=TEXTO_HIST_TAO, out='historia-tao',
+                         nombre='historia-tao.mp4', kbps=4000, marca_fija=True),
     'historia-zen': dict(bucle='vertical-zen-t165.mp4', audio='historia-zen/zen-historia.wav', T=15,
                          textos=TEXTOS_HIST_ZEN, texto=TEXTO_HIST_ZEN, out='historia-zen',
                          nombre='historia-zen.mp4', kbps=4000, marca_fija=True),
