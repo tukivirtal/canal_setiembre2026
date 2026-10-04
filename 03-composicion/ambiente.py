@@ -121,7 +121,8 @@ def main():
                    help='segundos de naturaleza sola antes de que entre la obra')
     p.add_argument('--cola', type=float, default=20.0,
                    help='segundos de naturaleza sola después de la obra')
-    p.add_argument('--entrada-obra', type=float, default=15.0,
+    # 04/10: 8 s. El de 10 minutos perdía a la gente a los 40 s (Studio).
+    p.add_argument('--entrada-obra', type=float, default=8.0,
                    help='segundos que tarda el tono en aparecer bajo el mar')
     p.add_argument('--nivel-obra', type=float, default=-16.0,
                    help='cuántos dB se baja la obra bajo la naturaleza')

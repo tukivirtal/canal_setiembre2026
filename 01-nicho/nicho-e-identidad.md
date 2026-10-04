@@ -142,6 +142,8 @@ escucha, vuelve.
 | 8 | La casa dormida | The Sleeping House | 432 | kumoi | 180 min | mar |
 | 43 | Pantalla oscura | Dark Screen Sleep | 432 | kumoi | 180 min | lluvia |
 | 45 | Las tres de la mañana | Back to Sleep at 3 AM | 432 | yu | 180 min | guqin |
+| 46 | Volver a dormir | 3 AM Reset | 432 | yu | 10 min | guqin |
+| 48 | Campanas para dormir | Temple Bells for Sleep | 432 | kumoi | 180 min | zen |
 | 44 | Ondas theta | Theta Waves | 432 | shin | 180 min | theta |
 
 Todas con mar a propósito: pájaros, campanas o tambor son sonidos que despiertan. La
@@ -168,6 +170,8 @@ escala que la tradición china deja para la noche) sobre lluvia, con la tendenci
 | 16 | El final del día | End of the Day | 417 | kumoi | 30 min | lluvia-tambor |
 | 41 | Dejar de pensar | Stop Overthinking | 432 | hirajoshi | 60 min | jardin |
 | 42 | Calmar el sistema nervioso | Calm Your Nervous System | 528 | shin | 180 min | zen |
+| 47 | Reinicio de cinco minutos | 5-Minute Reset | 528 | shin | 5 min | zen |
+| 49 | Dejar de pensar en diez | Stop Overthinking in 10 | 432 | hirajoshi | 10 min | jardin |
 
 ### Meditar
 

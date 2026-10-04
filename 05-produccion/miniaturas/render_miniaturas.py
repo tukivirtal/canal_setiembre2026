@@ -37,7 +37,11 @@ AMBIENTE = {'mar': 'Ocean Waves', 'mar-aves': 'Ocean & Birds', 'zen': 'Zen Templ
 # de la prueba del 29/09): la persona busca «dark screen sleep music», no «432 Hz».
 PROMESA = {'OBRA-043': ('DARK SCREEN\nSLEEP MUSIC', '432 Hz'),
            'OBRA-044': ('THETA WAVES\nDEEP SLEEP', 'DARK SCREEN'),
-           'OBRA-045': ('WOKE UP\nAT 3 AM?', 'FALL BACK ASLEEP')}
+           'OBRA-045': ('WOKE UP\nAT 3 AM?', 'FALL BACK ASLEEP'),
+           'OBRA-046': ('3 AM\nRESET', 'FALL BACK ASLEEP'),
+           'OBRA-047': ('5-MINUTE\nRESET', 'CALM ANXIETY FAST'),
+           'OBRA-048': ('TEMPLE BELLS\nDEEP SLEEP', 'BLACK SCREEN'),
+           'OBRA-049': ('STOP\nOVERTHINKING', '10 MINUTES')}
 
 
 def duracion(m):

@@ -53,7 +53,7 @@ for linea in open(MD, encoding="utf-8"):
         obras.append({"n": int(m.group(1)), "nombre": m.group(2), "name": m.group(3),
                       "raiz": int(m.group(4)), "modo": m.group(5), "dur": int(m.group(6)),
                       "pilar": pilar_actual, "ambiente": m.group(7)})
-assert len(obras) == 45, f"se esperaban 45 obras, se encontraron {len(obras)}"
+assert len(obras) == 49, f"se esperaban 49 obras, se encontraron {len(obras)}"
 
 # --- Derivar los campos ---
 # Idioma principal: INGLÉS (23/09). El español va como traducción del título y
@@ -246,6 +246,53 @@ PROMESA = {
                    "rain sounds for sleeping", "dark screen sleep music", "black screen sleep music",
                    "deep sleep music", "sleep music", "traditional chinese medicine", "chinamaxxing",
                    "3 hours", "rin", "música para dormir"]),
+    # 04/10 · calendario de 15 días, un video por día, alternando corto y largo.
+    # Lo que dicen los datos: los cortos con promesa concreta traen el 65 % de las
+    # vistas; las campanas y los pájaros son lo que más retiene (18:33 en «Stop
+    # Overthinking»); el templo zen, lo más visto en Shorts.
+    46: dict(
+        titulo="3 AM Reset 🌙 10 Minutes of Guqin & Rain to Fall Back Asleep · Chinese Sleep Music",
+        gancho=("Woke up at 3 AM? Ten minutes of guqin, xiao flute and gentle rain to fall back asleep.",
+                "Don't check the time. Breathe out slowly through your lips, \"shhh\", six times, and let the strings take it from there."),
+        uso="🌙 Phone face down, volume low. If you're still awake at the end, the full 3 hours are on the channel.",
+        hashtags="#sleepmusic #guqin #3am",
+        motor="tao",
+        nota="The yu scale is the one Chinese five-element music keeps for the night. A 2,000-year-old tradition, not medical advice.",
+        comentario="What time did you wake up tonight? 🌙 Tell us, then breathe out slowly: shhh.",
+        etiquetas=["3am reset", "fall back asleep", "woke up at 3am", "music to fall back asleep", "guqin",
+                   "chinese sleep music", "10 minute sleep music", "rain sounds for sleeping", "sleep music",
+                   "chinese meditation music", "rin", "música para dormir"]),
+    47: dict(
+        titulo="5-Minute Nervous System Reset 🔔 Zen Temple Bells to Calm Anxiety Fast · 528 Hz",
+        gancho=("Five minutes to calm your nervous system: zen temple bells over a warm, slow drone.",
+                "Drop your shoulders. Breathe out longer than you breathe in, and let the bells keep you company until the end."),
+        uso="🎧 Use it between meetings, before a hard conversation, or whenever your chest feels tight.",
+        hashtags="#nervoussystemreset #anxietyrelief #528hz",
+        comentario="Where are you listening from right now? 🔔 Work, bed, car? Tell us.",
+        etiquetas=["nervous system reset", "5 minute nervous system reset", "calm anxiety fast", "anxiety relief",
+                   "5 minute meditation", "zen temple bells", "temple bells", "calming music", "528 hz",
+                   "nervous system regulation", "quick calm", "rin", "música para la ansiedad"]),
+    48: dict(
+        titulo="Zen Temple Bells for Deep Sleep 🌙 Dark Screen · Calm Your Mind · 432 Hz · 3 Hours",
+        gancho=("Three hours of soft zen temple bells over a distant ocean, for deep sleep.",
+                "The bells grow sparse as the night goes on. The screen fades to black after 3 minutes, so no light keeps you awake."),
+        uso="🌙 Lights off, phone face down, volume low.",
+        hashtags="#sleepmusic #templebells #darkscreen",
+        oscura=3,
+        comentario="Do bells help you sleep, or do you prefer rain? 🔔🌧️ Tell us, it shapes the next piece.",
+        etiquetas=["zen temple bells", "temple bells sleep", "zen sleep music", "dark screen sleep music",
+                   "black screen sleep music", "deep sleep music", "sleep music", "calm your mind",
+                   "zen music", "meditation music", "432 hz", "3 hours", "rin", "música para dormir"]),
+    49: dict(
+        titulo="Stop Overthinking in 10 Minutes 🌿 Birdsong & Temple Bells · Calming Music · 432 Hz",
+        gancho=("Ten minutes to stop overthinking: birdsong, soft temple bells and a slower breath.",
+                "You don't have to solve it now. Breathe out longer than you breathe in, and just listen to the birds."),
+        uso="🌿 Headphones on, eyes closed if you can.",
+        hashtags="#stopoverthinking #calmingmusic #432hz",
+        comentario="What's the thought that won't leave you alone today? 🌿 Write one word. Then let it go.",
+        etiquetas=["stop overthinking", "stop overthinking music", "10 minute meditation", "calming music",
+                   "music for anxiety", "birdsong", "temple bells", "anxiety relief", "calm your mind",
+                   "432 hz", "rin", "música para la ansiedad"]),
 }
 
 

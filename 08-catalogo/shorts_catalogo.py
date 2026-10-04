@@ -160,7 +160,7 @@ def filas_shorts(obras):
         dur = dur_corta(o["duracion_min"])
         tags = " ".join(HASHTAGS[tema] + [f"#{hz}hz"])
         tramos = inicios(int(o["duracion_min"]), n_shorts(o["id"]))
-        if "tao_largo" in o.get("comando_regeneracion", ""):
+        if "tao_largo" in o.get("comando_regeneracion", "") and int(o["duracion_min"]) >= 40:
             # las de guqin se van retirando: los Shorts salen de la primera media
             # hora, cuando todavía suenan el guqin y la xiao
             tramos = [90, 960, 1980]

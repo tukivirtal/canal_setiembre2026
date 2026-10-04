@@ -1105,3 +1105,87 @@ Mejor a volumen bajo.
 Suscríbete para las próximas obras: https://www.youtube.com/@rinchanneloficial?sub_confirmation=1
 
 #sleepmusic #meditation #432hz",3 HOURS,#sleepmusic #guqin #chinesemusic,"woke up at 3am, fall back asleep, music to fall back asleep, chinese sleep music, guqin, guqin music, chinese meditation music, chinese music for sleep, rain sounds for sleeping, dark screen sleep music, black screen sleep music, deep sleep music, sleep music, traditional chinese medicine, chinamaxxing, 3 hours, rin, música para dormir",,,432,yu,grave,270978,0,180,3,"What time did you wake up tonight? 🌙 Tell us, then press play and breathe out slowly: shhh.",python3 03-composicion/tao_largo.py --minutos 180 --raiz 432 --modo yu --semilla 270978,python3 03-composicion/ambiente.py audio/OBRA-045_432_yu.wav audio/OBRA-045_final.wav --fondo lluvia --nivel-obra 0 --nivel-fondo -6 --entrada-obra 6,pendiente,,,,
+OBRA-046,3 AM Reset 🌙 10 Minutes of Guqin & Rain to Fall Back Asleep · Chinese Sleep Music,Música para dormir · Guqin y lluvia · 432 Hz · Volver a dormir · 10 minutos,Dormir,guqin,"Woke up at 3 AM? Ten minutes of guqin, xiao flute and gentle rain to fall back asleep.
+Don't check the time. Breathe out slowly through your lips, ""shhh"", six times, and let the strings take it from there.
+
+🌙 Phone face down, volume low. If you're still awake at the end, the full 3 hours are on the channel.
+🌿 Subscribe for a new calm piece every week: https://www.youtube.com/@rinchanneloficial?sub_confirmation=1
+
+Original composition by Rin, synthesized from scratch in just intonation around 432 Hz, yu mode. No samples. The yu scale is the one Chinese five-element music keeps for the night. A 2,000-year-old tradition, not medical advice.
+
+#sleepmusic #guqin #3am","Volver a dormir · 10 minutos
+
+Para acompañar el sueño.
+Ambiente: guqin y lluvia.
+
+Compuesta con raíz en 432 Hz, en entonación justa, modo yu.
+Ciclo respiratorio: de 4.5 a 3.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
+Composición original, sintetizada desde cero: el ambiente también. Ninguna muestra procede de terceros.
+
+Mejor a volumen bajo.
+Suscríbete para las próximas obras: https://www.youtube.com/@rinchanneloficial?sub_confirmation=1
+
+#sleepmusic #meditation #432hz",10 MIN,#sleepmusic #guqin #3am,"3am reset, fall back asleep, woke up at 3am, music to fall back asleep, guqin, chinese sleep music, 10 minute sleep music, rain sounds for sleeping, sleep music, chinese meditation music, rin, música para dormir",,,432,yu,grave,926874,110,10,0,"What time did you wake up tonight? 🌙 Tell us, then breathe out slowly: shhh.",python3 03-composicion/tao_largo.py --minutos 10 --raiz 432 --modo yu --semilla 926874,python3 03-composicion/ambiente.py audio/OBRA-046_432_yu.wav audio/OBRA-046_final.wav --fondo lluvia --nivel-obra 0 --nivel-fondo -6 --entrada-obra 6,pendiente,,,,
+OBRA-047,5-Minute Nervous System Reset 🔔 Zen Temple Bells to Calm Anxiety Fast · 528 Hz,Música para momentos de ansiedad · Templo zen · 528 Hz · Reinicio de cinco minutos · 5 minutos,Ansiedad,zen,"Five minutes to calm your nervous system: zen temple bells over a warm, slow drone.
+Drop your shoulders. Breathe out longer than you breathe in, and let the bells keep you company until the end.
+
+🎧 Use it between meetings, before a hard conversation, or whenever your chest feels tight.
+🌿 Subscribe for a new calm piece every week: https://www.youtube.com/@rinchanneloficial?sub_confirmation=1
+
+Original composition by Rin, synthesized from scratch in just intonation around 528 Hz, shin mode. No samples.
+
+#nervoussystemreset #anxietyrelief #528hz","Reinicio de cinco minutos · 5 minutos
+
+Para acompañar un momento de pausa cuando la cabeza no para.
+Ambiente: templo zen.
+
+Compuesta con raíz en 528 Hz, en entonación justa, modo shin.
+Ciclo respiratorio: de 6.0 a 4.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
+Composición original, sintetizada desde cero: el ambiente también. Ninguna muestra procede de terceros.
+
+Mejor a volumen bajo.
+Suscríbete para las próximas obras: https://www.youtube.com/@rinchanneloficial?sub_confirmation=1
+
+#relaxingmusic #meditation #528hz",5 MIN,#nervoussystemreset #anxietyrelief #528hz,"nervous system reset, 5 minute nervous system reset, calm anxiety fast, anxiety relief, 5 minute meditation, zen temple bells, temple bells, calming music, 528 hz, nervous system regulation, quick calm, rin, música para la ansiedad",,,528,shin,medio,756077,110,5,0,"Where are you listening from right now? 🔔 Work, bed, car? Tell us.",python3 03-composicion/compositor.py --minutos 5 --raiz 528 --modo shin --semilla 756077 --caracter sin-cuenco,python3 03-composicion/capas.py zen 340 audio/OBRA-047_capa.wav --semilla 756077 --raiz 528 --densidad 1.4 && python3 03-composicion/ambiente.py audio/OBRA-047_528_shin.wav audio/OBRA-047_final.wav --fondo mar --nivel-fondo -7 --nivel-capa 2 --capa audio/OBRA-047_capa.wav,pendiente,,,,
+OBRA-048,Zen Temple Bells for Deep Sleep 🌙 Dark Screen · Calm Your Mind · 432 Hz · 3 Hours,Música para dormir · Templo zen · 432 Hz · Campanas para dormir · 3 horas,Dormir,zen,"Three hours of soft zen temple bells over a distant ocean, for deep sleep.
+The bells grow sparse as the night goes on. The screen fades to black after 3 minutes, so no light keeps you awake.
+
+🌙 Lights off, phone face down, volume low.
+🌿 Subscribe for a new calm piece every week: https://www.youtube.com/@rinchanneloficial?sub_confirmation=1
+
+Original composition by Rin, synthesized from scratch in just intonation around 216 Hz, the low octave of 432 Hz, kumoi mode. No samples.
+
+#sleepmusic #templebells #darkscreen","Campanas para dormir · 3 horas
+
+Para acompañar el sueño.
+Ambiente: templo zen.
+
+Compuesta con raíz en 216 Hz, la octava grave de 432 Hz, en entonación justa, modo kumoi.
+Ciclo respiratorio: de 4.5 a 3.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
+Composición original, sintetizada desde cero: el ambiente también. Ninguna muestra procede de terceros.
+
+Mejor a volumen bajo.
+Suscríbete para las próximas obras: https://www.youtube.com/@rinchanneloficial?sub_confirmation=1
+
+#sleepmusic #meditation #432hz",3 HOURS,#sleepmusic #templebells #darkscreen,"zen temple bells, temple bells sleep, zen sleep music, dark screen sleep music, black screen sleep music, deep sleep music, sleep music, calm your mind, zen music, meditation music, 432 hz, 3 hours, rin, música para dormir",,,432,kumoi,grave,762820,-70,180,3,"Do bells help you sleep, or do you prefer rain? 🔔🌧️ Tell us, it shapes the next piece.",python3 03-composicion/compositor.py --minutos 180 --raiz 432 --modo kumoi --semilla 762820 --caracter sin-cuenco --registro grave,python3 03-composicion/capas.py zen 10840 audio/OBRA-048_capa.wav --semilla 762820 --raiz 432 --densidad 1.4 && python3 03-composicion/ambiente.py audio/OBRA-048_432_kumoi.wav audio/OBRA-048_final.wav --fondo mar --nivel-fondo -7 --nivel-capa 2 --capa audio/OBRA-048_capa.wav,pendiente,,,,
+OBRA-049,Stop Overthinking in 10 Minutes 🌿 Birdsong & Temple Bells · Calming Music · 432 Hz,Música para momentos de ansiedad · Pájaros y campanas del templo · 432 Hz · Dejar de pensar en diez · 10 minutos,Ansiedad,jardin,"Ten minutes to stop overthinking: birdsong, soft temple bells and a slower breath.
+You don't have to solve it now. Breathe out longer than you breathe in, and just listen to the birds.
+
+🌿 Headphones on, eyes closed if you can.
+🌿 Subscribe for a new calm piece every week: https://www.youtube.com/@rinchanneloficial?sub_confirmation=1
+
+Original composition by Rin, synthesized from scratch in just intonation around 432 Hz, hirajoshi mode. No samples.
+
+#stopoverthinking #calmingmusic #432hz","Dejar de pensar en diez · 10 minutos
+
+Para acompañar un momento de pausa cuando la cabeza no para.
+Ambiente: pájaros y campanas del templo.
+
+Compuesta con raíz en 432 Hz, en entonación justa, modo hirajoshi.
+Ciclo respiratorio: de 6.0 a 4.5 respiraciones por minuto, inhalar 40 % / exhalar 60 %.
+Composición original, sintetizada desde cero: el ambiente también. Ninguna muestra procede de terceros.
+
+Mejor a volumen bajo.
+Suscríbete para las próximas obras: https://www.youtube.com/@rinchanneloficial?sub_confirmation=1
+
+#relaxingmusic #meditation #432hz",10 MIN,#stopoverthinking #calmingmusic #432hz,"stop overthinking, stop overthinking music, 10 minute meditation, calming music, music for anxiety, birdsong, temple bells, anxiety relief, calm your mind, 432 hz, rin, música para la ansiedad",,,432,hirajoshi,medio,341227,110,10,0,What's the thought that won't leave you alone today? 🌿 Write one word. Then let it go.,python3 03-composicion/compositor.py --minutos 10 --raiz 432 --modo hirajoshi --semilla 341227 --caracter sin-cuenco,python3 03-composicion/capas.py jardin 640 audio/OBRA-049_capa.wav --semilla 341227 --raiz 432 && python3 03-composicion/ambiente.py audio/OBRA-049_432_hirajoshi.wav audio/OBRA-049_final.wav --fondo mar --nivel-fondo -8 --nivel-capa 0 --capa audio/OBRA-049_capa.wav,pendiente,,,,
