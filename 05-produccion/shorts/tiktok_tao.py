@@ -234,8 +234,7 @@ The full 3 hours, with a dark screen, are on YouTube. Link in bio.
 
 # 04/10: ruidos de color, lo más buscado para dormir (01-nicho/tendencias-sonidos-
 # 2026-10.md). El título dice exactamente qué es: ruido marrón con campanas
-# lejanas; ruido rosa con ondas delta, la combinación que usan las apps para
-# dormir y que estudia la ciencia del sueño profundo.
+# lejanas; ruido rosa con ondas delta.
 TEXTOS_MARRON = [
     (0.0, 6.0, {'tipo': 'gancho', 'titulo': 'Brown noise for deep sleep',
                 'sub': 'The sound millions fall asleep to. With distant temple bells.'}),
@@ -254,14 +253,14 @@ Composed from scratch by Rin, no samples. The full 3 hours, black screen, on You
 
 TEXTOS_DELTA = [
     (0.0, 6.0, {'tipo': 'gancho', 'titulo': 'Pink noise + delta waves',
-                'sub': 'The pairing sleep apps use for deep sleep. Headphones on.'}),
+                'sub': 'For deep sleep. Headphones on.'}),
     (8.0, 40.0, {'titulo': 'Pink noise: soft and even', 'sub': 'Like steady rain. It covers what keeps you awake.'}),
     (48.0, 85.0, {'titulo': 'Delta waves: 2 Hz', 'sub': 'Each ear hears a slightly different tone. The difference is the rhythm of deep sleep.'}),
     (95.0, 130.0, {'titulo': 'Breathe out slowly.', 'sub': 'Let your jaw soften.'}),
     (172.0, 180.0, {'tipo': 'fin', 'titulo': '3 hours, black screen, on YouTube',
                     'sub': 'Rin · pink noise and delta waves, composed from scratch.'}),
 ]
-TEXTO_DELTA = """Pink noise + delta waves 🌙 The pairing sleep apps use for deep sleep.
+TEXTO_DELTA = """Pink noise + delta waves for deep sleep 🌙
 🎧 Headphones on: each ear hears a slightly different tone, and the 2 Hz difference is the rhythm of deep sleep.
 Pink noise is soft and even, like steady rain. It covers what keeps you awake.
 Composed from scratch by Rin, no samples. The full 3 hours, black screen, on YouTube. Link in bio.

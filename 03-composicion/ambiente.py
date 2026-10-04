@@ -114,8 +114,7 @@ def fondo_marron(d):
 
 
 def fondo_rosa(d):
-    """Ruido rosa (04/10): la mitad de la fórmula «ruido rosa + ondas delta» que
-    usan las apps de música para dormir. Más claro que el marrón, como lluvia
+    """Ruido rosa (04/10), para ir con las ondas delta. Más claro que el marrón, como lluvia
     pareja o viento; sin los agudos de arriba de 5 kHz, que cansan en horas."""
     r = ("anoisesrc=c=pink:r=44100:d={d}:s={s},highpass=f=40,lowpass=f=5000,"
          "volume='0.95+0.05*sin(2*PI*t/{p})':eval=frame")

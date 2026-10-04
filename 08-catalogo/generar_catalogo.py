@@ -305,7 +305,7 @@ PROMESA = {
     # y la primera línea dicen exactamente qué es, como se busca.
     50: dict(
         titulo="Brown Noise for Deep Sleep 🌙 Distant Temple Bells · Black Screen · Fall Asleep Fast · 3 Hours",
-        gancho=("Brown noise and pink noise are the most searched sounds for sleep. This is brown noise: low, warm and steady, with distant temple bells.",
+        gancho=("Brown noise for deep sleep: low, warm and steady, with distant temple bells.",
                 "Like heavy rain on a faraway roof. No beat, no melody to follow, nothing to listen for. The screen fades to black after 3 minutes."),
         uso="🌙 Lights off, phone face down, volume low. Let it cover the noise.",
         hashtags="#brownnoise #sleepsounds #darkscreen",
@@ -317,7 +317,7 @@ PROMESA = {
                    "rin", "ruido marrón para dormir"]),
     51: dict(
         titulo="Pink Noise + Delta Waves for Deep Sleep 🌙 Binaural Beats · Black Screen · 3 Hours",
-        gancho=("Pink noise and brown noise are the most searched sounds for sleep, and pink noise with delta waves is the pairing sleep apps use in their sleep category. 🎧 Use headphones for the best experience.",
+        gancho=("Pink noise with delta waves for deep sleep. 🎧 Use headphones for the best experience.",
                 "Pink noise is soft and even, like steady rain. Underneath, each ear hears a slightly different tone: the difference starts at 3 Hz and slows to 1.5 Hz, the rhythm of deep sleep. The screen fades to black after 3 minutes."),
         uso="🌙 Headphones on, lights off, volume low.",
         hashtags="#pinknoise #deltawaves #deepsleep",
