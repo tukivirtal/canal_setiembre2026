@@ -189,7 +189,29 @@ TEXTOS_HIST_3AM = [
 ]
 TEXTO_HIST_3AM = "A or B? 👇 Tomorrow's piece is for the 3 AM ones."
 
+# 04/10: historias para fijar en el perfil (quedan, no hablan de «esta noche»):
+# imagen en movimiento y una sola frase. La zen es del Zenrin Kushu (antología
+# de dichos zen del siglo XV); la de Marco Aurelio es traducción propia de las
+# Meditaciones 4.3 (el griego es de dominio público).
+TEXTOS_HIST_ZEN = [
+    (0.6, 15.0, {'titulo': 'Sitting quietly, doing nothing, spring comes, and the grass grows by itself.',
+                 'fuente': 'ZEN SAYING · ZENRIN KUSHU'}),
+]
+TEXTO_HIST_ZEN = "Sitting quietly, doing nothing, spring comes, and the grass grows by itself. 🌿"
+
+TEXTOS_HIST_MARCO = [
+    (0.6, 15.0, {'titulo': 'Nowhere can you retreat to a quieter place than your own mind.',
+                 'fuente': 'MARCUS AURELIUS · MEDITATIONS 4.3'}),
+]
+TEXTO_HIST_MARCO = "Nowhere can you retreat to a quieter place than your own mind. Marcus Aurelius 🌙"
+
 PIEZAS = {
+    'historia-zen': dict(bucle='vertical-zen-t165.mp4', audio='historia-zen/zen-historia.wav', T=15,
+                         textos=TEXTOS_HIST_ZEN, texto=TEXTO_HIST_ZEN, out='historia-zen',
+                         nombre='historia-zen.mp4', kbps=4000, marca_fija=True),
+    'historia-marco': dict(bucle='vertical-lluvia.mp4', audio='historia-marco/marco-historia.wav', T=15,
+                           textos=TEXTOS_HIST_MARCO, texto=TEXTO_HIST_MARCO, out='historia-marco',
+                           nombre='historia-marco.mp4', kbps=4000, marca_fija=True),
     'historia-theta': dict(bucle='vertical-theta.mp4', audio='historia-theta/theta-historia.wav', T=15,
                            textos=TEXTOS_HIST_THETA, texto=TEXTO_HIST_THETA, out='historia-theta',
                            nombre='historia-theta.mp4', kbps=4000),
@@ -273,7 +295,8 @@ def main():
             cur = f'm{k + 2}'
         marca = len(TEXTOS) + 3
         # la marca «Rin» queda fija, salvo cuando el texto final ya la nombra
-        f.append(f"[{cur}][{marca}:v]overlay=0:0:enable='lt(t,{TEXTOS[-1][0]})'[v]")
+        cuando = '1' if P.get('marca_fija') else f'lt(t,{TEXTOS[-1][0]})'
+        f.append(f"[{cur}][{marca}:v]overlay=0:0:enable='{cuando}'[v]")
         salida = OUT / P['nombre']
         comun = ['-filter_complex', ';'.join(f), '-map', '[v]', '-map', '1:a', '-t', str(T),
                  '-c:v', 'libx264', '-preset', 'medium', '-b:v', f"{P.get('kbps', 1600)}k", '-pix_fmt', 'yuv420p']
