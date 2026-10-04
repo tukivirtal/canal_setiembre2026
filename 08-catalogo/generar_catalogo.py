@@ -53,7 +53,7 @@ for linea in open(MD, encoding="utf-8"):
         obras.append({"n": int(m.group(1)), "nombre": m.group(2), "name": m.group(3),
                       "raiz": int(m.group(4)), "modo": m.group(5), "dur": int(m.group(6)),
                       "pilar": pilar_actual, "ambiente": m.group(7)})
-assert len(obras) == 49, f"se esperaban 49 obras, se encontraron {len(obras)}"
+assert len(obras) == 51, f"se esperaban 51 obras, se encontraron {len(obras)}"
 
 # --- Derivar los campos ---
 # Idioma principal: INGLÉS (23/09). El español va como traducción del título y
@@ -93,8 +93,14 @@ AMBIENTES = {
                       "--fondo lluvia --nivel-obra 0 --nivel-fondo -6 --entrada-obra 6"),
     "theta":         ("Mar lejano y ondas theta", "Distant Ocean & Theta Waves", "theta",
                       "--fondo mar --nivel-fondo -4 --nivel-capa -11"),
+    # Ruidos de color (04/10), lo más buscado para dormir. Manda el ruido: la
+    # obra queda como un drone muy lejano y la capa zen, pocas campanas.
+    "marron":        ("Ruido marrón y campanas lejanas", "Brown Noise & Distant Temple Bells", "zen",
+                      "--fondo marron --nivel-obra -24 --nivel-capa -9 --entrada-obra 4"),
+    "delta":         ("Ruido rosa y ondas delta", "Pink Noise & Delta Waves", "delta",
+                      "--fondo rosa --nivel-fondo -1 --nivel-obra -22 --nivel-capa -13 --entrada-obra 4"),
 }
-DENSIDAD_CAPA = {"selva": " --densidad 2", "zen": " --densidad 1.4"}
+DENSIDAD_CAPA = {"selva": " --densidad 2", "zen": " --densidad 1.4", "marron": " --densidad 0.6"}
 
 # Registro por intención. Dormir y Concentración bajan una octava: el sub pasa de 264 a
 # 132 Hz, que es donde vive un drone de dormir. Ver sistema-composicion.md.
@@ -139,6 +145,8 @@ ETIQ_AMBIENTE = {
     "lluvia":        ["rain sounds", "rain sounds for sleeping", "gentle rain"],
     "theta":         ["theta waves", "binaural beats", "ocean waves"],
     "guqin":         ["guqin", "chinese music", "rain sounds"],
+    "marron":        ["brown noise", "brown noise for sleeping", "temple bells"],
+    "delta":         ["pink noise", "delta waves", "binaural beats"],
 }
 SUSCRIBIR = "https://www.youtube.com/@rinchanneloficial?sub_confirmation=1"
 
@@ -293,6 +301,33 @@ PROMESA = {
         etiquetas=["stop overthinking", "stop overthinking music", "10 minute meditation", "calming music",
                    "music for anxiety", "birdsong", "temple bells", "anxiety relief", "calm your mind",
                    "432 hz", "rin", "música para la ansiedad"]),
+    # 04/10 · ruidos de color (01-nicho/tendencias-sonidos-2026-10.md). El título
+    # y la primera línea dicen exactamente qué es, como se busca.
+    50: dict(
+        titulo="Brown Noise for Deep Sleep 🌙 Distant Temple Bells · Black Screen · Fall Asleep Fast · 3 Hours",
+        gancho=("Brown noise and pink noise are the most searched sounds for sleep. This is brown noise: low, warm and steady, with distant temple bells.",
+                "Like heavy rain on a faraway roof. No beat, no melody to follow, nothing to listen for. The screen fades to black after 3 minutes."),
+        uso="🌙 Lights off, phone face down, volume low. Let it cover the noise.",
+        hashtags="#brownnoise #sleepsounds #darkscreen",
+        oscura=3,
+        comentario="Brown noise or rain: which one puts you to sleep faster? 🌙 Tell us.",
+        etiquetas=["brown noise", "brown noise for sleeping", "brown noise sleep", "brown noise black screen",
+                   "brown noise 3 hours", "deep sleep", "sleep sounds", "black screen sleep",
+                   "dark screen sleep music", "fall asleep fast", "temple bells", "noise for sleeping",
+                   "rin", "ruido marrón para dormir"]),
+    51: dict(
+        titulo="Pink Noise + Delta Waves for Deep Sleep 🌙 Binaural Beats · Black Screen · 3 Hours",
+        gancho=("Pink noise and brown noise are the most searched sounds for sleep, and pink noise with delta waves is the pairing sleep apps use in their sleep category. 🎧 Use headphones for the best experience.",
+                "Pink noise is soft and even, like steady rain. Underneath, each ear hears a slightly different tone: the difference starts at 3 Hz and slows to 1.5 Hz, the rhythm of deep sleep. The screen fades to black after 3 minutes."),
+        uso="🌙 Headphones on, lights off, volume low.",
+        hashtags="#pinknoise #deltawaves #deepsleep",
+        oscura=3,
+        nota="Delta waves are the brain's slowest rhythm, the one of deep sleep. Not medical advice.",
+        comentario="Headphones or speaker? 🎧 Tell us how far you got before falling asleep.",
+        etiquetas=["pink noise", "pink noise for sleeping", "delta waves", "delta waves sleep",
+                   "pink noise delta waves", "binaural beats", "binaural beats for sleep", "deep sleep",
+                   "black screen sleep", "sleep sounds", "fall asleep fast", "3 hours", "rin",
+                   "ruido rosa para dormir"]),
 }
 
 
@@ -633,7 +668,7 @@ texto = [
     ("titulo / descripcion_optimizada", "En inglés, el idioma principal del canal."),
     ("titulo_es / descripcion_es", "La traducción al español. Se carga en YouTube Studio → Subtítulos → Título y descripción."),
     ("tema", "Intención: qué acompaña la obra. Determina la palabra clave y el ciclo respiratorio."),
-    ("ambiente", "Ambiente aprobado en escucha: mar, mar-aves, zen, selva, lluvia-tambor, jardin, lluvia, theta o guqin."),
+    ("ambiente", "Ambiente aprobado en escucha: mar, mar-aves, zen, selva, lluvia-tambor, jardin, lluvia, theta, guqin, marron o delta."),
     ("comando_ambiente", "Segundo paso: envuelve la obra compuesta en su ambiente."),
     ("comentario_fijado", "Comentario para escribir y fijar apenas se publica: una pregunta fácil de contestar."),
     ("pantalla_oscura_min", "Minutos de mandala antes de que la pantalla se funda a negro (videos para dormir). 0: el mandala dura todo el video."),

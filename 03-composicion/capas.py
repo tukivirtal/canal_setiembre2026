@@ -132,7 +132,7 @@ def palo_de_lluvia(rnd, dur):
     return b
 
 
-def theta(segundos, salida, raiz):
+def theta(segundos, salida, raiz, pulsos=(6.0, 4.0, 2.0)):
     """Ondas theta que bajan a delta (29/09, idea de YouTube Studio para el
     canal): dos senos puros, uno por oído, en la tercera mayor justa (5/4) de
     la raíz bajada a 150-300 Hz: 432 -> 216 -> 270 Hz. No en la raíz misma: el
@@ -156,7 +156,8 @@ def theta(segundos, salida, raiz):
     hora = 3600.0
 
     def pulso(t):
-        return np.interp(t, [0, hora, 2 * hora, max(segundos, 2 * hora)], [6.0, 4.0, 2.0, 2.0])
+        a, b, c = pulsos
+        return np.interp(t, [0, hora, 2 * hora, max(segundos, 2 * hora)], [a, b, c, c])
 
     fase_i = fase_d = 0.0
     with wave.open(salida, 'wb') as w:
@@ -174,7 +175,7 @@ def theta(segundos, salida, raiz):
             est[0::2] = (0.5 * env * np.sin(fi) * 32767).astype('<i2')
             est[1::2] = (0.5 * env * np.sin(fd) * 32767).astype('<i2')
             w.writeframes(est.tobytes())
-    print(f'{salida}  ·  theta  ·  portadora {portadora:g} Hz, pulso 6 -> 4 -> 2 Hz en {segundos:g} s')
+    print(f'{salida}  ·  portadora {portadora:g} Hz, pulso {" -> ".join(f"{x:g}" for x in pulsos)} Hz en {segundos:g} s')
 
 
 def poner(izq, der, buf, t, vol, pan):
@@ -186,7 +187,7 @@ def poner(izq, der, buf, t, vol, pan):
 
 def main():
     p = argparse.ArgumentParser()
-    p.add_argument('tipo', choices=['aves', 'zen', 'ancestral', 'jardin', 'theta'])
+    p.add_argument('tipo', choices=['aves', 'zen', 'ancestral', 'jardin', 'theta', 'delta'])
     p.add_argument('segundos', type=float)
     p.add_argument('salida')
     p.add_argument('--raiz', type=float, default=528.0)
@@ -196,6 +197,10 @@ def main():
     a = p.parse_args()
     if a.tipo == 'theta':
         return theta(a.segundos, a.salida, a.raiz)
+    if a.tipo == 'delta':
+        # 04/10: ondas delta desde el principio, para el sueño profundo: de 3 Hz a
+        # 2 en la primera hora y a 1,5 en la segunda. Va con el ruido rosa.
+        return theta(a.segundos, a.salida, a.raiz, pulsos=(3.0, 2.0, 1.5))
     rnd = random.Random(a.semilla)
     n = int(a.segundos * SR)
     izq = array.array('d', [0.0]) * n; der = array.array('d', [0.0]) * n

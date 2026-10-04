@@ -212,7 +212,72 @@ TEXTOS_HIST_TAO = [
 ]
 TEXTO_HIST_TAO = "Muddy water, left still, slowly clears. Tao Te Ching 🌙"
 
+# 04/10: TikTok acepta subir videos de hasta 60 min (10 min seguro en todas las
+# cuentas). El 3 AM Reset entero (OBRA-046), en vertical: textos solo al
+# principio, después nada que lea, para dormirse con el teléfono boca abajo.
+TEXTOS_RESET10 = [
+    (0.0, 6.0, {'tipo': 'gancho', 'titulo': 'Woke up at 3 AM?',
+                'sub': '10 minutes of guqin and rain to fall back asleep.'}),
+    (8.0, 30.0, {'titulo': "Don't check the time.", 'sub': 'Phone face down. Volume low.'}),
+    (34.0, 70.0, {'titulo': 'Breathe out through your lips: shhh',
+                  'sub': 'Six slow breaths, longer out than in.'}),
+    (76.0, 110.0, {'titulo': 'Let the strings take it from here.'}),
+    (592.0, 600.0, {'tipo': 'fin', 'titulo': 'Sleep well',
+                    'sub': 'Rin · the full 3 hours, dark screen, are on YouTube.'}),
+]
+TEXTO_RESET10 = """Woke up at 3 AM? 🌙 10 minutes of guqin, xiao flute and rain to fall back asleep.
+Don't check the time. Phone face down, volume low. Breathe out through your lips, "shhh", six times.
+Original music composed from scratch by Rin, in the Chinese yu scale, the scale of night.
+The full 3 hours, with a dark screen, are on YouTube. Link in bio.
+
+#sleepmusic #3am #cantsleep #guqin #fallasleepfast"""
+
+# 04/10: ruidos de color, lo más buscado para dormir (01-nicho/tendencias-sonidos-
+# 2026-10.md). El título dice exactamente qué es: ruido marrón con campanas
+# lejanas; ruido rosa con ondas delta, la combinación que usan las apps para
+# dormir y que estudia la ciencia del sueño profundo.
+TEXTOS_MARRON = [
+    (0.0, 6.0, {'tipo': 'gancho', 'titulo': 'Brown noise for deep sleep',
+                'sub': 'The sound millions fall asleep to. With distant temple bells.'}),
+    (8.0, 40.0, {'titulo': 'Low, warm and steady', 'sub': 'Like heavy rain on a faraway roof.'}),
+    (48.0, 85.0, {'titulo': 'Nothing to listen for.', 'sub': 'No beat, no melody to follow. Just let it cover the noise.'}),
+    (95.0, 130.0, {'titulo': 'Lights off. Volume low.'}),
+    (172.0, 180.0, {'tipo': 'fin', 'titulo': '3 hours, black screen, on YouTube',
+                    'sub': 'Rin · brown noise and temple bells, composed from scratch.'}),
+]
+TEXTO_MARRON = """Brown noise for deep sleep 🌙 The sound millions fall asleep to, with distant temple bells.
+Low, warm and steady, like heavy rain on a faraway roof. No beat, nothing to follow.
+Lights off, volume low. Save it for tonight.
+Composed from scratch by Rin, no samples. The full 3 hours, black screen, on YouTube. Link in bio.
+
+#brownnoise #sleepsounds #deepsleep #cantsleep #sleeptok"""
+
+TEXTOS_DELTA = [
+    (0.0, 6.0, {'tipo': 'gancho', 'titulo': 'Pink noise + delta waves',
+                'sub': 'The pairing sleep apps use for deep sleep. Headphones on.'}),
+    (8.0, 40.0, {'titulo': 'Pink noise: soft and even', 'sub': 'Like steady rain. It covers what keeps you awake.'}),
+    (48.0, 85.0, {'titulo': 'Delta waves: 2 Hz', 'sub': 'Each ear hears a slightly different tone. The difference is the rhythm of deep sleep.'}),
+    (95.0, 130.0, {'titulo': 'Breathe out slowly.', 'sub': 'Let your jaw soften.'}),
+    (172.0, 180.0, {'tipo': 'fin', 'titulo': '3 hours, black screen, on YouTube',
+                    'sub': 'Rin · pink noise and delta waves, composed from scratch.'}),
+]
+TEXTO_DELTA = """Pink noise + delta waves 🌙 The pairing sleep apps use for deep sleep.
+🎧 Headphones on: each ear hears a slightly different tone, and the 2 Hz difference is the rhythm of deep sleep.
+Pink noise is soft and even, like steady rain. It covers what keeps you awake.
+Composed from scratch by Rin, no samples. The full 3 hours, black screen, on YouTube. Link in bio.
+
+#pinknoise #deltawaves #binauralbeats #deepsleep #sleeptok"""
+
 PIEZAS = {
+    'marron': dict(bucle='vertical-zen-t35.mp4', audio='tiktok-marron/marron-master.wav', T=180,
+                   textos=TEXTOS_MARRON, texto=TEXTO_MARRON, out='tiktok-marron',
+                   nombre='brown-noise-tiktok.mp4', kbps=1100),
+    'delta': dict(bucle='vertical-theta.mp4', audio='tiktok-delta/delta-master.wav', T=180,
+                  textos=TEXTOS_DELTA, texto=TEXTO_DELTA, out='tiktok-delta',
+                  nombre='pink-noise-delta-tiktok.mp4', kbps=1100),
+    'reset10': dict(bucle='vertical-zen-t165.mp4', audio='tiktok-reset10/reset10-master.wav', T=600,
+                    textos=TEXTOS_RESET10, texto=TEXTO_RESET10, out='tiktok-reset10',
+                    nombre='3am-reset-10min-tiktok.mp4', kbps=900),
     'historia-tao': dict(bucle='vertical-theta.mp4', audio='historia-tao/tao-historia.wav', T=15,
                          textos=TEXTOS_HIST_TAO, texto=TEXTO_HIST_TAO, out='historia-tao',
                          nombre='historia-tao.mp4', kbps=4000, marca_fija=True),

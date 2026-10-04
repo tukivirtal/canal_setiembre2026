@@ -101,7 +101,30 @@ def fondo_lluvia(d):
             f"[lluvia][techo]amix=inputs=2:normalize=0:weights=0.55 0.45[fondo];")
 
 
-FONDOS = {'mar': fondo_mar, 'selva': fondo_selva, 'fuego': fondo_fuego, 'lluvia': fondo_lluvia}
+def fondo_marron(d):
+    """Ruido marrón (04/10): el sonido de color más buscado para dormir. Grave y
+    parejo, como lluvia fuerte sobre un techo lejano. Cada oído con su propio
+    ruido (si fuera el mismo, se oiría en el centro de la cabeza), sin agudos
+    por encima de 900 Hz y con una ondulación de ±5 % cada 20 y pico de
+    segundos, para que no sea un muro inmóvil."""
+    m = ("anoisesrc=c=brown:r=44100:d={d}:s={s},highpass=f=25,lowpass=f=900,"
+         "volume='0.95+0.05*sin(2*PI*t/{p})':eval=frame")
+    return (f"{m.format(d=d, s=211, p=23)}[mi];{m.format(d=d, s=223, p=27.5)}[md];"
+            f"[mi][md]join=inputs=2:channel_layout=stereo[fondo];")
+
+
+def fondo_rosa(d):
+    """Ruido rosa (04/10): la mitad de la fórmula «ruido rosa + ondas delta» que
+    usan las apps de música para dormir. Más claro que el marrón, como lluvia
+    pareja o viento; sin los agudos de arriba de 5 kHz, que cansan en horas."""
+    r = ("anoisesrc=c=pink:r=44100:d={d}:s={s},highpass=f=40,lowpass=f=5000,"
+         "volume='0.95+0.05*sin(2*PI*t/{p})':eval=frame")
+    return (f"{r.format(d=d, s=307, p=21)}[ri];{r.format(d=d, s=311, p=25.5)}[rd];"
+            f"[ri][rd]join=inputs=2:channel_layout=stereo[fondo];")
+
+
+FONDOS = {'mar': fondo_mar, 'selva': fondo_selva, 'fuego': fondo_fuego, 'lluvia': fondo_lluvia,
+          'marron': fondo_marron, 'rosa': fondo_rosa}
 
 
 def duracion(ruta):

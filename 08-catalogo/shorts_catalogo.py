@@ -144,7 +144,8 @@ def inicios(duracion_min, n=N_SHORTS):
 AMB_EN = {"mar": "Ocean Waves", "mar-aves": "Ocean and Birds", "zen": "Zen Temple",
           "selva": "Tropical Rainforest", "lluvia-tambor": "Rain on Leaves",
           "jardin": "Birds and Temple Bells", "lluvia": "Gentle Rain",
-          "theta": "Theta Waves", "guqin": "Guqin and Rain"}
+          "theta": "Theta Waves", "guqin": "Guqin and Rain",
+          "marron": "Brown Noise", "delta": "Pink Noise and Delta Waves"}
 
 
 def filas_shorts(obras):

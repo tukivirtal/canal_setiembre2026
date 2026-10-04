@@ -27,7 +27,7 @@ cv.width = +(Q.get('w') || 1920); cv.height = +(Q.get('h') || 1080);
 const W = cv.width, H = cv.height, R = H * +(Q.get('r') || 0.5);
 const FIRMA = Q.get('firma') !== '0', VINETA = +(Q.get('vineta') || 0.75);
 // Una paleta por ambiente: cada video del canal se distingue del anterior a
-// primera vista, como hace Meditative Mind. ?paleta=mar|mar-aves|zen|selva|lluvia-tambor|jardin|lluvia|theta|guqin
+// primera vista, como hace Meditative Mind. ?paleta=mar|mar-aves|zen|selva|lluvia-tambor|jardin|lluvia|theta|guqin|marron|delta
 const PALETAS = {
   'mar': { fondo1: '#0b1c26', fondo2: '#050b10', turquesa: '#2a8f9b', turquesaClaro: '#58c1c4',
     petroleo: '#154d59', oro: '#e6c46a', crema: '#f6e7b8', rosa: '#c65a72', azul: '#223d6b' },
@@ -58,6 +58,12 @@ const PALETAS = {
     petroleo: '#1a5a40', oro: '#e8c066', crema: '#f7e3b5', rosa: '#5ad6f0', azul: '#2c3f1f' },
   'theta': { fondo1: '#170d24', fondo2: '#07030d', turquesa: '#7a4a9e', turquesaClaro: '#b98ad6',
     petroleo: '#3d2459', oro: '#e6c46a', crema: '#f1e4c8', rosa: '#6fa8dc', azul: '#1c1438' },
+  // Ruido marrón (04/10): ámbar tostado, cálido como el sonido, el único marrón del canal.
+  'marron': { fondo1: '#1f140b', fondo2: '#0c0704', turquesa: '#a0703a', turquesaClaro: '#d9a86a',
+    petroleo: '#5a3a1a', oro: '#e8c066', crema: '#f7e3b5', rosa: '#c97a5a', azul: '#3a2a1f' },
+  // Ruido rosa y ondas delta (04/10): rosa ciruela de noche, que se distinga del violeta de theta.
+  'delta': { fondo1: '#1f0d1a', fondo2: '#0b040a', turquesa: '#a04a7a', turquesaClaro: '#d98ab4',
+    petroleo: '#592445', oro: '#e6c46a', crema: '#f1e4c8', rosa: '#8a8cd6', azul: '#2a1438' },
 };
 const PALETA = PALETAS[Q.get('paleta')] ? Q.get('paleta') : 'mar';
 // ?tono=grados gira el matiz de la paleta (menos el oro y la crema, que son
@@ -94,6 +100,8 @@ const RITMOS = {
   'lluvia':        { olas: 3,  sentido: -1, brazos: 0 },   // cada 16 s, casi quieto: es para dormir
   'theta':         { olas: 2,  sentido: 1,  brazos: 2 },   // cada 24 s, una espiral lenta de dos brazos
   'guqin':         { olas: 3,  sentido: 1,  brazos: 0 },   // cada 16 s, anillos que salen, como la exhalación
+  'marron':        { olas: 2,  sentido: -1, brazos: 0 },   // cada 24 s, una marea que entra, casi quieta
+  'delta':         { olas: 2,  sentido: 1,  brazos: 0 },   // cada 24 s, anillos lentos, como el pulso delta
 };
 const RITMO = RITMOS[PALETA];
 const ciclo = (t, k, fase = 0) => Math.sin(2 * Math.PI * k * t / L + fase);

@@ -144,6 +144,8 @@ escucha, vuelve.
 | 45 | Las tres de la mañana | Back to Sleep at 3 AM | 432 | yu | 180 min | guqin |
 | 46 | Volver a dormir | 3 AM Reset | 432 | yu | 10 min | guqin |
 | 48 | Campanas para dormir | Temple Bells for Sleep | 432 | kumoi | 180 min | zen |
+| 50 | Ruido marrón | Brown Noise | 432 | kumoi | 180 min | marron |
+| 51 | Ruido rosa y delta | Pink Noise & Delta | 432 | shin | 180 min | delta |
 | 44 | Ondas theta | Theta Waves | 432 | shin | 180 min | theta |
 
 Todas con mar a propósito: pájaros, campanas o tambor son sonidos que despiertan. La

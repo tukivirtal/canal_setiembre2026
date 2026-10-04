@@ -32,7 +32,8 @@ PALABRA = {'Dormir': 'DEEP SLEEP', 'Ansiedad': 'CALM', 'Meditar': 'MEDITATION',
            'Soltar': 'RELEASE', 'Concentración': 'DEEP FOCUS'}
 AMBIENTE = {'mar': 'Ocean Waves', 'mar-aves': 'Ocean & Birds', 'zen': 'Zen Temple',
             'selva': 'Tropical Rainforest', 'lluvia-tambor': 'Rain on Leaves',
-            'jardin': 'Birds & Temple Bells', 'lluvia': 'Gentle Rain', 'theta': 'Headphones On', 'guqin': 'Guqin & Rain'}
+            'jardin': 'Birds & Temple Bells', 'lluvia': 'Gentle Rain', 'theta': 'Headphones On', 'guqin': 'Guqin & Rain',
+            'marron': 'Brown Noise & Bells', 'delta': 'Headphones On'}
 # Obras con la promesa en grande en vez de la frecuencia (como la variante D
 # de la prueba del 29/09): la persona busca «dark screen sleep music», no «432 Hz».
 PROMESA = {'OBRA-043': ('DARK SCREEN\nSLEEP MUSIC', '432 Hz'),
@@ -41,7 +42,9 @@ PROMESA = {'OBRA-043': ('DARK SCREEN\nSLEEP MUSIC', '432 Hz'),
            'OBRA-046': ('3 AM\nRESET', 'FALL BACK ASLEEP'),
            'OBRA-047': ('5-MINUTE\nRESET', 'CALM ANXIETY FAST'),
            'OBRA-048': ('TEMPLE BELLS\nDEEP SLEEP', 'BLACK SCREEN'),
-           'OBRA-049': ('STOP\nOVERTHINKING', '10 MINUTES')}
+           'OBRA-049': ('STOP\nOVERTHINKING', '10 MINUTES'),
+           'OBRA-050': ('BROWN NOISE\nDEEP SLEEP', 'BLACK SCREEN'),
+           'OBRA-051': ('PINK NOISE\n+ DELTA WAVES', 'DEEP SLEEP')}
 
 
 def duracion(m):
