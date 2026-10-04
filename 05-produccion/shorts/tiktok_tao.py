@@ -171,7 +171,31 @@ Save this for the next hard moment. Full pieces on YouTube, link in bio.
 
 #nervoussystemreset #anxietyrelief #breathwork #zen #528hz"""
 
+# 04/10: historias de TikTok (15 s, desaparecen en 24 h). Una avisa el estreno
+# de la noche; la otra pregunta y se responde con A o B (la caja de respuesta
+# de la historia), así la gente escribe y TikTok la muestra a más. Sin emojis en
+# la imagen: el Chromium del render no tiene la fuente.
+TEXTOS_HIST_THETA = [
+    (0.0, 5.0, {'tipo': 'gancho', 'titulo': 'New tonight', 'sub': '3 hours of theta waves for deep sleep.'}),
+    (5.5, 10.5, {'titulo': 'Put your headphones on', 'sub': 'Each ear hears a slightly different tone.'}),
+    (11.0, 15.0, {'tipo': 'fin', 'titulo': 'Tonight on YouTube', 'sub': 'Rin · dark screen, 3 hours. Link in bio.'}),
+]
+TEXTO_HIST_THETA = "New tonight 🌙 3 hours of theta waves for deep sleep. Headphones on 🎧 Link in bio."
+
+TEXTOS_HIST_3AM = [
+    (0.0, 4.5, {'tipo': 'gancho', 'titulo': 'Be honest', 'sub': 'What keeps you awake at night?'}),
+    (5.0, 10.5, {'titulo': 'Thoughts, or 3 AM?', 'sub': 'A · my thoughts won\'t stop\nB · I wake up at 3 AM', 'fuente': 'REPLY A OR B'}),
+    (11.0, 15.0, {'tipo': 'fin', 'titulo': 'Tomorrow: 3 AM Reset', 'sub': 'Rin · 10 minutes of guqin and rain to fall back asleep.'}),
+]
+TEXTO_HIST_3AM = "A or B? 👇 Tomorrow's piece is for the 3 AM ones."
+
 PIEZAS = {
+    'historia-theta': dict(bucle='vertical-theta.mp4', audio='historia-theta/theta-historia.wav', T=15,
+                           textos=TEXTOS_HIST_THETA, texto=TEXTO_HIST_THETA, out='historia-theta',
+                           nombre='historia-theta.mp4', kbps=4000),
+    'historia-3am': dict(bucle='vertical-zen-t165.mp4', audio='historia-3am/3am-historia.wav', T=15,
+                         textos=TEXTOS_HIST_3AM, texto=TEXTO_HIST_3AM, out='historia-3am',
+                         nombre='historia-3am.mp4', kbps=4000),
     'tao': dict(bucle='vertical-zen-t165.mp4', audio='tiktok-tao/tao-master.wav', T=120,
                 textos=TEXTOS_TAO, texto=TEXTO_TAO, out='tiktok-tao', nombre='tao-tiktok.mp4'),
     'pensar': dict(bucle='vertical-jardin.mp4', audio='tiktok-pensar/pensar-master.wav', T=75,
