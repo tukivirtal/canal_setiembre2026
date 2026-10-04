@@ -148,6 +148,29 @@ Full 3-hour sleep pieces on YouTube, link in bio. What time do you wake up? 👇
 
 #chinamaxxing #chinesemedicine #3am #cantsleep #sleeptok"""
 
+# 04/10: lo que mejor funcionó en los datos: las campanas del templo zen (los
+# Shorts más vistos y los únicos dos suscriptores) y «Breathe out longer than
+# you breathe in» (el Short n.° 1). El gancho nombra el cuerpo: «tenés los
+# hombros arriba» hace que la persona se revise y se quede.
+TEXTOS_EXHALA = [
+    (0.0, 6.0, {'tipo': 'gancho', 'titulo': 'Your shoulders are up. Drop them.',
+                'sub': '90 seconds. Zen temple bells. Just breathe.'}),
+    (8.0, 28.0, {'titulo': 'Breathe out longer than you breathe in',
+                 'sub': 'In for 4. Out for 6.'}),
+    (31.0, 50.0, {'titulo': 'Unclench your jaw.', 'sub': 'Let your tongue rest. Soften your hands.'}),
+    (53.0, 72.0, {'titulo': 'In for 4. Out for 6.', 'sub': 'Stay with the bells a little longer.'}),
+    (75.0, 84.0, {'titulo': 'Notice what changed.'}),
+    (85.0, 90.0, {'tipo': 'fin', 'titulo': 'Save this for the next hard moment',
+                  'sub': 'Rin · zen temple bells, 528 Hz. Composed from scratch. Full pieces on YouTube.'}),
+]
+TEXTO_EXHALA = """Your shoulders are up. Drop them 🌿 90 seconds of zen temple bells.
+Breathe out longer than you breathe in: in for 4, out for 6. Unclench your jaw.
+Notice what changed.
+Original music composed from scratch by Rin, no samples. 528 Hz.
+Save this for the next hard moment. Full pieces on YouTube, link in bio.
+
+#nervoussystemreset #anxietyrelief #breathwork #zen #528hz"""
+
 PIEZAS = {
     'tao': dict(bucle='vertical-zen-t165.mp4', audio='tiktok-tao/tao-master.wav', T=120,
                 textos=TEXTOS_TAO, texto=TEXTO_TAO, out='tiktok-tao', nombre='tao-tiktok.mp4'),
@@ -170,6 +193,8 @@ PIEZAS = {
     # 90 s de guqin en modo yu, compuesto para el video (tao.py --modo yu), sobre jade
     '3am': dict(bucle='vertical-zen-t165.mp4', audio='tiktok-3am/3am-master.wav', T=90,
                 textos=TEXTOS_3AM, texto=TEXTO_3AM, out='tiktok-3am', nombre='3am-tiktok.mp4'),
+    'exhala': dict(bucle='vertical-zen.mp4', audio='tiktok-exhala/exhala-master.wav', T=90,
+                   textos=TEXTOS_EXHALA, texto=TEXTO_EXHALA, out='tiktok-exhala', nombre='exhala-tiktok.mp4'),
 }
 
 
