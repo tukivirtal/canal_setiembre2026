@@ -32,7 +32,7 @@ PALABRA = {'Dormir': 'DEEP SLEEP', 'Ansiedad': 'CALM', 'Meditar': 'MEDITATION',
            'Soltar': 'RELEASE', 'Concentración': 'DEEP FOCUS'}
 AMBIENTE = {'mar': 'Ocean Waves', 'mar-aves': 'Ocean & Birds', 'zen': 'Zen Temple',
             'selva': 'Tropical Rainforest', 'lluvia-tambor': 'Rain on Leaves',
-            'jardin': 'Birds & Temple Bells', 'lluvia': 'Gentle Rain', 'theta': 'Headphones On', 'guqin': 'Guqin & Rain',
+            'jardin': 'Birds & Temple Bells', 'lluvia': 'Gentle Rain', 'theta': 'Headphones On', 'guqin': 'Guqin & Xiao',
             'marron': 'Brown Noise & Bells', 'delta': 'Headphones On'}
 # Obras con la promesa en grande en vez de la frecuencia (como la variante D
 # de la prueba del 29/09): la persona busca «dark screen sleep music», no «432 Hz».

@@ -73,8 +73,9 @@ RESP = {"Dormir": (4.5, 3.5), "Ansiedad": (6.0, 4.5), "Meditar": (5.5, 4.5),
 AMBIENTES = {
     "mar":           ("Olas del mar", "Ocean Waves", None, "--fondo mar"),
     "mar-aves":      ("Mar y pájaros", "Ocean and Birds", "aves", "--fondo mar --nivel-capa -4"),
+    # 05/10: el mar 5 dB más bajo, apenas un fondo: el ruido no debe sonar a estática
     "zen":           ("Templo zen", "Zen Temple", "zen",
-                      "--fondo mar --nivel-fondo -7 --nivel-capa 2"),
+                      "--fondo mar --nivel-fondo -12 --nivel-capa 2"),
     "selva":         ("Selva tropical", "Tropical Rainforest", "aves",
                       "--fondo selva --nivel-capa -2"),
     "lluvia-tambor": ("Lluvia sobre hojas", "Rain on Leaves", "ancestral",
@@ -82,15 +83,17 @@ AMBIENTES = {
     # Pájaros y campanitas de viento, con el mar muy lejos: lo «asiático sutil»
     # que pidió la escucha del 26/09, para la ansiedad
     "jardin":        ("Pájaros y campanas del templo", "Birds and Temple Bells", "jardin",
-                      "--fondo mar --nivel-fondo -8 --nivel-capa 0"),
+                      "--fondo mar --nivel-fondo -13 --nivel-capa 0"),
     # Lluvia sola, sin tambor ni capa: para dormir (29/09)
     "lluvia":        ("Lluvia suave", "Gentle Rain", None, "--fondo lluvia"),
     # Mar lejano y ondas theta que bajan a delta, para dormir con auriculares (30/09)
     # Guqin y xiao (tao_largo.py) sobre lluvia, para dormir (03/10). La obra
     # manda: en el TikTok aprobado los instrumentos van 12,7 dB sobre la
     # lluvia; acá ~8, y la lluvia gana terreno a medida que la música se retira.
-    "guqin":         ("Guqin y lluvia", "Guqin & Rain", None,
-                      "--fondo lluvia --nivel-obra 0 --nivel-fondo -6 --entrada-obra 6 --corte-obra 70"),
+    # 05/10: sin lluvia. La lluvia es ruido y en la escucha sonaba a «interferencia
+    # de televisión»; en los Shorts fue lo que menos retuvo (15 %).
+    "guqin":         ("Guqin y flauta xiao", "Guqin & Xiao Flute", None,
+                      "--fondo nada --nivel-obra 0 --entrada-obra 6 --corte-obra 70"),
     "theta":         ("Mar lejano y ondas theta", "Distant Ocean & Theta Waves", "theta",
                       "--fondo mar --nivel-fondo -4 --nivel-capa -11"),
     # Ruidos de color (04/10), lo más buscado para dormir. Manda el ruido: la
@@ -144,7 +147,7 @@ ETIQ_AMBIENTE = {
     "jardin":        ["birdsong", "wind chimes", "zen garden"],
     "lluvia":        ["rain sounds", "rain sounds for sleeping", "gentle rain"],
     "theta":         ["theta waves", "binaural beats", "ocean waves"],
-    "guqin":         ["guqin", "chinese music", "rain sounds"],
+    "guqin":         ["guqin", "chinese music", "xiao flute"],
     "marron":        ["brown noise", "brown noise for sleeping", "temple bells"],
     "delta":         ["pink noise", "delta waves", "binaural beats"],
 }
@@ -240,10 +243,10 @@ PROMESA = {
     # a las 3), solución (el reloj chino del cuerpo y la exhalación «xū») y
     # música (guqin en modo yu). La tendencia: «Chinamaxxing» (2026).
     45: dict(
-        titulo="Woke Up at 3 AM? 🌙 Chinese Guqin & Rain to Fall Back Asleep · Dark Screen · 3 Hours",
-        gancho=("Woke up at 3 AM again? Three hours of guqin, xiao flute and gentle rain to fall back asleep.",
+        titulo="Woke Up at 3 AM? 🌙 Chinese Guqin & Xiao Flute to Fall Back Asleep · Dark Screen · 3 Hours",
+        gancho=("Woke up at 3 AM again? Three hours of Chinese guqin and xiao flute to fall back asleep.",
                 "In the Chinese body clock, 1 to 3 AM is the liver's hour: the hour of what you couldn't let go of. Don't check the time. Breathe out slowly through your lips, \"shhh\" (xū), six times, and let the strings take it from there. The screen fades to black after 3 minutes."),
-        uso="🌙 Phone face down, volume low. The music thins out over the hours, until only the rain is left.",
+        uso="🌙 Phone face down, volume low. The music thins out over the hours, until only soft harmonics are left.",
         hashtags="#sleepmusic #guqin #chinesemusic",
         oscura=3,
         motor="tao",
@@ -251,7 +254,7 @@ PROMESA = {
         comentario="What time did you wake up tonight? 🌙 Tell us, then press play and breathe out slowly: shhh.",
         etiquetas=["woke up at 3am", "fall back asleep", "music to fall back asleep", "chinese sleep music",
                    "guqin", "guqin music", "chinese meditation music", "chinese music for sleep",
-                   "rain sounds for sleeping", "dark screen sleep music", "black screen sleep music",
+                   "chinese flute music", "dark screen sleep music", "black screen sleep music",
                    "deep sleep music", "sleep music", "traditional chinese medicine", "chinamaxxing",
                    "3 hours", "rin", "música para dormir"]),
     # 04/10 · calendario de 15 días, un video por día, alternando corto y largo.
@@ -259,8 +262,8 @@ PROMESA = {
     # vistas; las campanas y los pájaros son lo que más retiene (18:33 en «Stop
     # Overthinking»); el templo zen, lo más visto en Shorts.
     46: dict(
-        titulo="3 AM Reset 🌙 10 Minutes of Guqin & Rain to Fall Back Asleep · Chinese Sleep Music",
-        gancho=("Woke up at 3 AM? Ten minutes of guqin, xiao flute and gentle rain to fall back asleep.",
+        titulo="3 AM Reset 🌙 10 Minutes of Chinese Guqin to Fall Back Asleep · Sleep Music",
+        gancho=("Woke up at 3 AM? Ten minutes of Chinese guqin and xiao flute to fall back asleep.",
                 "Don't check the time. Breathe out slowly through your lips, \"shhh\", six times, and let the strings take it from there."),
         uso="🌙 Phone face down, volume low. If you're still awake at the end, the full 3 hours are on the channel.",
         hashtags="#sleepmusic #guqin #3am",
@@ -268,7 +271,7 @@ PROMESA = {
         nota="The yu scale is the one Chinese five-element music keeps for the night. A 2,000-year-old tradition, not medical advice.",
         comentario="What time did you wake up tonight? 🌙 Tell us, then breathe out slowly: shhh.",
         etiquetas=["3am reset", "fall back asleep", "woke up at 3am", "music to fall back asleep", "guqin",
-                   "chinese sleep music", "10 minute sleep music", "rain sounds for sleeping", "sleep music",
+                   "chinese sleep music", "10 minute sleep music", "chinese flute music", "sleep music",
                    "chinese meditation music", "rin", "música para dormir"]),
     47: dict(
         titulo="5-Minute Nervous System Reset 🔔 Zen Temple Bells to Calm Anxiety Fast · 528 Hz",
@@ -287,7 +290,7 @@ PROMESA = {
         uso="🌙 Lights off, phone face down, volume low.",
         hashtags="#sleepmusic #templebells #darkscreen",
         oscura=3,
-        comentario="Do bells help you sleep, or do you prefer rain? 🔔🌧️ Tell us, it shapes the next piece.",
+        comentario="Do bells help you sleep? 🔔 Tell us what sound you want next, it shapes the next piece.",
         etiquetas=["zen temple bells", "temple bells sleep", "zen sleep music", "dark screen sleep music",
                    "black screen sleep music", "deep sleep music", "sleep music", "calm your mind",
                    "zen music", "meditation music", "432 hz", "3 hours", "rin", "música para dormir"]),
