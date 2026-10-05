@@ -122,7 +122,21 @@ def fondo_rosa(d):
             f"[ri][rd]join=inputs=2:channel_layout=stereo[fondo];")
 
 
-FONDOS = {'mar': fondo_mar, 'selva': fondo_selva, 'fuego': fondo_fuego, 'lluvia': fondo_lluvia,
+def fondo_lluvia_grave(d):
+    """Lluvia profunda (05/10): la lluvia suave con menos agudos y más techo,
+    para el que busca ruido marrón pero oye «estática» en el ruido sintético."""
+    gotas = ("anoisesrc=c=pink:r=44100:d={d}:s={s},highpass=f=200,lowpass=f=2200,"
+             "volume='0.75+0.25*sin(2*PI*t/{p}+{f})':eval=frame")
+    return (f"{gotas.format(d=d, s=83, p=17, f=0)}[li];"
+            f"{gotas.format(d=d, s=94, p=19.3, f=2.1)}[ld];"
+            f"[li][ld]join=inputs=2:channel_layout=stereo[lluvia];"
+            f"anoisesrc=c=brown:r=44100:d={d}:s=99,highpass=f=50,lowpass=f=400,"
+            f"volume='0.5+0.1*sin(2*PI*t/29)':eval=frame,"
+            f"pan=stereo|c0=c0|c1=c0[techo];"
+            f"[lluvia][techo]amix=inputs=2:normalize=0:weights=0.4 0.6[fondo];")
+
+
+FONDOS = {'lluvia-grave': fondo_lluvia_grave, 'mar': fondo_mar, 'selva': fondo_selva, 'fuego': fondo_fuego, 'lluvia': fondo_lluvia,
           'marron': fondo_marron, 'rosa': fondo_rosa}
 
 
