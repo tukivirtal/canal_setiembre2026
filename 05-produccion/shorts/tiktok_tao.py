@@ -312,7 +312,18 @@ Composed from scratch by Rin, no samples. More meditations: link in bio.
 
 #396hz #tuningfork #soundhealing #letgo #meditation"""
 
+# 05/10: historia que acompaña al TikTok de diapasones («soltar»). Tao Te Ching
+# 48, traducción propia (dominio público), con el audio de los diapasones.
+TEXTOS_HIST_SOLTAR = [
+    (0.6, 15.0, {'titulo': 'To gain knowledge, add something every day. To find peace, let something go.',
+                 'fuente': 'TAO TE CHING · 48'}),
+]
+TEXTO_HIST_SOLTAR = "What will you let go of today? 🔔 Tao Te Ching 48"
+
 PIEZAS = {
+    'historia-soltar': dict(bucle='vertical-jardin.mp4', audio='historia-soltar/soltar-historia.wav', T=15,
+                            textos=TEXTOS_HIST_SOLTAR, texto=TEXTO_HIST_SOLTAR, out='historia-soltar',
+                            nombre='historia-soltar.mp4', kbps=4000, marca_fija=True),
     'diapasones': dict(bucle='vertical-jardin.mp4', audio='tiktok-diapasones/diapasones-master.wav', T=180,
                        textos=TEXTOS_DIAPASONES, texto=TEXTO_DIAPASONES, out='tiktok-diapasones',
                        nombre='396hz-tuning-forks-tiktok.mp4', kbps=1100),
