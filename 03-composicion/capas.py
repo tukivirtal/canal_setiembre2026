@@ -132,7 +132,7 @@ def palo_de_lluvia(rnd, dur):
     return b
 
 
-def theta(segundos, salida, raiz, pulsos=(6.0, 4.0, 2.0)):
+def theta(segundos, salida, raiz, pulsos=(6.0, 4.0, 2.0), octava_abajo=False):
     """Ondas theta que bajan a delta (29/09, idea de YouTube Studio para el
     canal): dos senos puros, uno por oído, en la tercera mayor justa (5/4) de
     la raíz bajada a 150-300 Hz: 432 -> 216 -> 270 Hz. No en la raíz misma: el
@@ -151,6 +151,8 @@ def theta(segundos, salida, raiz, pulsos=(6.0, 4.0, 2.0)):
         portadora /= 2.0
     portadora *= 5 / 4
     if portadora > 300:
+        portadora /= 2.0
+    if octava_abajo:
         portadora /= 2.0
     n, bloque = int(segundos * SR), 60 * SR
     hora = 3600.0
@@ -200,7 +202,11 @@ def main():
     if a.tipo == 'delta':
         # 04/10: ondas delta desde el principio, para el sueño profundo: de 3 Hz a
         # 2 en la primera hora y a 1,5 en la segunda. Va con el ruido rosa.
-        return theta(a.segundos, a.salida, a.raiz, pulsos=(3.0, 2.0, 1.5))
+        # Una octava abajo (135 Hz): los dos tonos, mezclados en el aire, hacen
+        # un temblor de 3 Hz que por el parlante del teléfono sonaba a
+        # interferencia (escucha de Fátima, 05/10). A 135 Hz el teléfono casi no
+        # lo reproduce y con auriculares el pulso sigue igual.
+        return theta(a.segundos, a.salida, a.raiz, pulsos=(3.0, 2.0, 1.5), octava_abajo=True)
     rnd = random.Random(a.semilla)
     n = int(a.segundos * SR)
     izq = array.array('d', [0.0]) * n; der = array.array('d', [0.0]) * n
