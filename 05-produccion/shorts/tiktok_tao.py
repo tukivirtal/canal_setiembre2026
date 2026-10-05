@@ -286,7 +286,18 @@ Composed from scratch by Rin, no samples. Save this for tonight. Full pieces on 
 
 #deltawaves #binauralbeats #sleepmusic #deepsleep #templebells"""
 
+# 05/10: historia con el Dhammapada 100 (traducción propia del pali, dominio
+# público), con el audio sin ruido del TikTok de ondas delta y campanas.
+TEXTOS_HIST_DHAMMA = [
+    (0.6, 15.0, {'titulo': 'Better than a thousand hollow words is one word that brings peace.',
+                 'fuente': 'DHAMMAPADA · 100'}),
+]
+TEXTO_HIST_DHAMMA = "Better than a thousand hollow words is one word that brings peace. Dhammapada 🌙"
+
 PIEZAS = {
+    'historia-dhamma': dict(bucle='vertical-zen.mp4', audio='historia-dhamma/dhamma-historia.wav', T=15,
+                            textos=TEXTOS_HIST_DHAMMA, texto=TEXTO_HIST_DHAMMA, out='historia-dhamma',
+                            nombre='historia-dhammapada.mp4', kbps=4000, marca_fija=True),
     'delta-campanas': dict(bucle='vertical-theta.mp4', audio='tiktok-delta-campanas/delta-campanas-master.wav', T=180,
                            textos=TEXTOS_DELTA_CAMPANAS, texto=TEXTO_DELTA_CAMPANAS, out='tiktok-delta-campanas',
                            nombre='delta-waves-temple-bells-tiktok.mp4', kbps=1100),
