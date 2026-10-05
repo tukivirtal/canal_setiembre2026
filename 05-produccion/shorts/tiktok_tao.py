@@ -320,7 +320,29 @@ TEXTOS_HIST_SOLTAR = [
 ]
 TEXTO_HIST_SOLTAR = "What will you let go of today? 🔔 Tao Te Ching 48"
 
+# 05/10: el mismo sonido de diapasones en 60 s, con golpes cada ~5 s y un texto
+# nuevo cada ~8: para comparar en TikTok contra el de 3 minutos (formato, no sonido).
+TEXTOS_SOLTAR60 = [
+    (0.0, 5.0, {'tipo': 'gancho', 'titulo': '60 seconds to let go', 'sub': 'One strike, one breath.'}),
+    (6.0, 13.0, {'titulo': 'Listen to the strike.'}),
+    (14.0, 21.0, {'titulo': 'Breathe in.'}),
+    (22.0, 30.0, {'titulo': 'Breathe out as it fades.'}),
+    (31.0, 39.0, {'titulo': 'Drop your shoulders.'}),
+    (40.0, 48.0, {'titulo': 'Let one thought go.'}),
+    (49.0, 55.0, {'titulo': 'Just one.'}),
+    (55.5, 60.0, {'tipo': 'fin', 'titulo': 'Do it again tomorrow',
+                  'sub': 'Rin · tuning forks at 396 Hz, composed from scratch.'}),
+]
+TEXTO_SOLTAR60 = """60 seconds to let go 🔔 One strike, one breath.
+Listen to the strike, breathe in, and breathe out as it fades. Let one thought go. Just one.
+Tuning forks at 396 Hz, composed from scratch by Rin. More meditations: link in bio.
+
+#letgo #60secondmeditation #396hz #breathe #calm"""
+
 PIEZAS = {
+    'soltar60': dict(bucle='vertical-zen.mp4', audio='tiktok-soltar60/soltar60-master.wav', T=60,
+                     textos=TEXTOS_SOLTAR60, texto=TEXTO_SOLTAR60, out='tiktok-soltar60',
+                     nombre='60-seconds-to-let-go-tiktok.mp4', kbps=1600),
     'historia-soltar': dict(bucle='vertical-jardin.mp4', audio='historia-soltar/soltar-historia.wav', T=15,
                             textos=TEXTOS_HIST_SOLTAR, texto=TEXTO_HIST_SOLTAR, out='historia-soltar',
                             nombre='historia-soltar.mp4', kbps=4000, marca_fija=True),
