@@ -130,10 +130,12 @@ def componer(salida, minutos, raiz, semilla, modo, resp=(4.5, 3.5)):
             x = (tb[i0:i1] - tc) / d
             resp_env[i0:i1] = np.where(x < 0.4, np.sin(math.pi * x / 0.8) ** 2,
                                        np.cos(math.pi * (x - 0.4) / 1.2) ** 2)
-        dr = (np.sin(2 * math.pi * raiz / 4 * tb) + 0.6 * np.sin(2 * math.pi * raiz * 3 / 8 * tb + 1)
-              + 0.25 * np.sin(2 * math.pi * raiz / 2 * tb + 2)) * (0.45 + 0.55 * resp_env)
+    # 05/10: sin la quinta grave ni el 108 Hz al frente: sumados y creciendo al
+        # inhalar, «retumbaban» y sonaban a bocina. Queda la octava media, suave, y
+        # la raíz grave apenas, con una respiración que casi no se nota.
+        dr = (np.sin(2 * math.pi * raiz / 2 * tb + 2) + 0.3 * np.sin(2 * math.pi * raiz / 4 * tb)) * (0.75 + 0.25 * resp_env)
         dr *= np.clip(tb / 6, 0, 1) * np.clip((total - 4 - tb) / 10, 0, 1)
-        mezcla[:, :n_ok] += 0.1 * np.stack([dr, dr])
+        mezcla[:, :n_ok] += 0.06 * np.stack([dr, dr])
 
         mezcla[:, :arrastre.shape[1]] += arrastre
         listo, arrastre = mezcla[:, :n_ok] * 0.4, mezcla[:, n_ok:]

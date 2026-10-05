@@ -61,27 +61,13 @@ def fondo_selva(d):
 
 def fondo_fuego(d):
     """Hoguera: el rumor grave del fuego (los chasquidos van en la capa
-    ancestral) y un zumbido tipo didgeridoo en 66 Hz, que es 528 Hz dos octavas
-    abajo, afinado con el resto del canal.
-
-    El zumbido entra recién a los 25 s y crece en 45: un grave sostenido que
-    aparece de golpe es justo lo que "retumba" en el oído. Sus "vocales" (el
-    peso de los armónicos 2 a 5) se mueven con ondas lentas que no coinciden,
-    así nunca se repite igual."""
-    w = "(0.5+0.5*sin(2*PI*t/5.7)*sin(2*PI*t/3.1+1))"
-    zumbido = (f"sin(2*PI*66*t+0.3*sin(2*PI*t/7))"
-               f"+(0.35+0.30*{w})*sin(2*PI*132*t)"
-               f"+(0.15+0.30*{w})*sin(2*PI*198*t)"
-               f"+(0.05+0.22*{w})*sin(2*PI*264*t)"
-               f"+(0.10*{w})*sin(2*PI*330*t)")
-    entra = "pow(min(1,max(0,(t-25)/45)),2)"
+    ancestral)."""
+    # 05/10: sin el zumbido. Un grave sostenido con armónicos es el timbre que la
+    # escucha describió como «bocina de auto»; queda solo el rumor del fuego.
     return (
         f"anoisesrc=c=brown:r=44100:d={d}:s=71,highpass=f=110,lowpass=f=700,"
         f"volume='0.55+0.12*sin(2*PI*t/4.1)+0.08*sin(2*PI*t/6.7+1)':eval=frame,"
-        f"pan=stereo|c0=c0|c1=c0[rumor];"
-        f"aevalsrc='0.06*{entra}*({zumbido})':s=44100:d={d},highpass=f=45,"
-        f"pan=stereo|c0=c0|c1=c0[zumbido];"
-        f"[rumor][zumbido]amix=inputs=2:normalize=0:weights=0.7 1[fondo];")
+        f"pan=stereo|c0=c0|c1=c0[fondo];")
 
 
 def fondo_lluvia(d):
@@ -168,6 +154,9 @@ def main():
                    help='segundos que tarda el tono en aparecer bajo el mar')
     p.add_argument('--nivel-obra', type=float, default=-16.0,
                    help='cuántos dB se baja la obra bajo la naturaleza')
+    # 05/10: los graves del drone «retumbaban» en el oído (la muestra C, con
+    # este corte, fue la que pasó la escucha). 0 = sin corte.
+    p.add_argument('--corte-obra', type=float, default=150.0)
     p.add_argument('--fondo', choices=list(FONDOS), default='mar')
     p.add_argument('--nivel-fondo', type=float, default=0.0,
                    help='dB del fondo. Negativo para que la capa mande (zen)')
@@ -188,12 +177,13 @@ def main():
     # El oleaje: ruido marrón sin agudos, que sube y baja cada ~10 s. Izquierda
     # y derecha con períodos distintos para que el mar tenga ancho y no pulse
     # en el centro de la cabeza.
+    corte = f'highpass=f={a.corte_obra}:poles=2,' if a.corte_obra else ''
     grafo = (
         # La obra aparece y desaparece en curva exponencial: casi nada durante
         # los primeros segundos y recién después se hace presente. Con una
         # subida lineal el oído la percibe entera de golpe (prueba del 23/09:
         # "rompe la tranquilidad de golpe").
-        f"[0]volume={a.nivel_obra}dB,"
+        f"[0]{corte}volume={a.nivel_obra}dB,"
         f"afade=t=in:d={e}:curve=exp,"
         f"afade=t=out:st={max(0, dur_obra - e)}:d={e}:curve=exp,"
         f"adelay={ms}|{ms},apad=whole_dur={d}[obra];"

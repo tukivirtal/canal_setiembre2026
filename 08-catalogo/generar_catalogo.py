@@ -90,7 +90,7 @@ AMBIENTES = {
     # manda: en el TikTok aprobado los instrumentos van 12,7 dB sobre la
     # lluvia; acá ~8, y la lluvia gana terreno a medida que la música se retira.
     "guqin":         ("Guqin y lluvia", "Guqin & Rain", None,
-                      "--fondo lluvia --nivel-obra 0 --nivel-fondo -6 --entrada-obra 6"),
+                      "--fondo lluvia --nivel-obra 0 --nivel-fondo -6 --entrada-obra 6 --corte-obra 70"),
     "theta":         ("Mar lejano y ondas theta", "Distant Ocean & Theta Waves", "theta",
                       "--fondo mar --nivel-fondo -4 --nivel-capa -11"),
     # Ruidos de color (04/10), lo más buscado para dormir. Manda el ruido: la

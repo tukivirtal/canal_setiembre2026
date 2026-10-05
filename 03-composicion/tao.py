@@ -195,17 +195,19 @@ def componer(seg, raiz, semilla, modo='gong'):
     poner('qin', guqin(qin[0], 8, vibrato=0.004, rnd=rnd), seg - 15, -0.15)
     poner('arm', armonico(raiz, 6, 0.7), seg - 13, 0.1)
 
-    # el bordón: raíz y quinta muy bajos, crecen al inhalar
+    # el bordón, muy bajo
     t = np.arange(L) / SR
     resp = np.zeros(L)
     for t0, d in ciclos:
         i0, i1 = int(t0 * SR), min(L, int((t0 + d) * SR))
         x = (np.arange(i1 - i0) / SR) / d
         resp[i0:i1] = np.where(x < 0.4, np.sin(math.pi * x / 0.8) ** 2, np.cos(math.pi * (x - 0.4) / 1.2) ** 2)
-    dr = (np.sin(2 * math.pi * raiz / 4 * t) + 0.6 * np.sin(2 * math.pi * raiz * 3 / 8 * t + 1)
-          + 0.25 * np.sin(2 * math.pi * raiz / 2 * t + 2)) * (0.45 + 0.55 * resp)
+    # 05/10: sin la quinta grave ni el 108 Hz al frente: sumados y creciendo al
+    # inhalar, «retumbaban» y sonaban a bocina. Queda la octava media, suave, y
+    # la raíz grave apenas, con una respiración que casi no se nota.
+    dr = (np.sin(2 * math.pi * raiz / 2 * t + 2) + 0.3 * np.sin(2 * math.pi * raiz / 4 * t)) * (0.75 + 0.25 * resp)
     dr *= np.clip(t / 6, 0, 1) * np.clip((seg - 12 - t) / 6, 0, 1)
-    capas['drone'] += 0.1 * np.stack([dr, dr])
+    capas['drone'] += 0.06 * np.stack([dr, dr])
 
     # sala: el guqin más seco, la xiao y los armónicos más lejos
     ir_c, ir_l = reverb(2.6, rnd, 5000), reverb(4.2, rnd, 4200)
