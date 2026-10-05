@@ -294,7 +294,28 @@ TEXTOS_HIST_DHAMMA = [
 ]
 TEXTO_HIST_DHAMMA = "Better than a thousand hollow words is one word that brings peace. Dhammapada 🌙"
 
+# 05/10: diapasones en 396 Hz y su cuarta abajo (264), puros, sobre el drone
+# nuevo sin graves: la muestra C, la única que pasó la escucha sin «bocina».
+TEXTOS_DIAPASONES = [
+    (0.0, 6.0, {'tipo': 'gancho', 'titulo': '396 Hz tuning forks',
+                'sub': 'The frequency of letting go. Just listen.'}),
+    (8.0, 40.0, {'titulo': 'Each strike rings, then fades', 'sub': 'Breathe out with the fading sound.'}),
+    (48.0, 85.0, {'titulo': "Let go of what you're carrying."}),
+    (95.0, 130.0, {'titulo': 'Unclench your jaw.', 'sub': 'Drop your shoulders.'}),
+    (172.0, 180.0, {'tipo': 'fin', 'titulo': 'Save this for a hard day',
+                    'sub': 'Rin · tuning forks at 396 Hz, composed from scratch.'}),
+]
+TEXTO_DIAPASONES = """396 Hz tuning forks 🔔 The solfeggio frequency of letting go.
+Each strike rings, then fades. Breathe out with the fading sound.
+Let go of what you're carrying. Unclench your jaw, drop your shoulders.
+Composed from scratch by Rin, no samples. More meditations: link in bio.
+
+#396hz #tuningfork #soundhealing #letgo #meditation"""
+
 PIEZAS = {
+    'diapasones': dict(bucle='vertical-jardin.mp4', audio='tiktok-diapasones/diapasones-master.wav', T=180,
+                       textos=TEXTOS_DIAPASONES, texto=TEXTO_DIAPASONES, out='tiktok-diapasones',
+                       nombre='396hz-tuning-forks-tiktok.mp4', kbps=1100),
     'historia-dhamma': dict(bucle='vertical-zen.mp4', audio='historia-dhamma/dhamma-historia.wav', T=15,
                             textos=TEXTOS_HIST_DHAMMA, texto=TEXTO_HIST_DHAMMA, out='historia-dhamma',
                             nombre='historia-dhammapada.mp4', kbps=4000, marca_fija=True),
