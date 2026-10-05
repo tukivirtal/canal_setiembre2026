@@ -59,7 +59,10 @@ SOLFEGGIO = {"396": 396.0, "417": 417.0, "528": 528.0,
 # Espectro del pad: armónicos impares con caída 1/n^1.6.
 # Los impares dan cuerpo tipo órgano; la caída pronunciada evita el brillo
 # metálico que delata al sintetizador barato.
-ESPECTRO_PAD = [(1, 1.00), (3, 0.26), (5, 0.11), (7, 0.05), (9, 0.025)]
+# 05/10: antes (1, 3, 5, 7, 9 con el 3.º a 0,26): solo armónicos impares, el
+# timbre del clarinete. Sostenido, la escucha lo describió como «una bocina de
+# auto» que molesta. Ahora casi puro, redondo, con un poco de octava.
+ESPECTRO_PAD = [(1, 1.00), (2, 0.10), (3, 0.03)]
 
 # Respiración: 6 resp/min al inicio, 4,5 al final. Descenso gradual.
 # El rango 4,5-6 no es arbitrario: es el que la investigación sobre respiración
