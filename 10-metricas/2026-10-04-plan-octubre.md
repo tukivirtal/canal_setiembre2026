@@ -98,3 +98,32 @@ Son estimaciones para medir contra algo, no promesas.
 - en Studio, lo pone en la lista «Deep Sleep Music» y elige el video relacionado de los Shorts;
 - sube el TikTok;
 - el 11/10 y el 19/10 manda capturas de Analytics.
+
+## Método desde el 05/10: probar en TikTok, escalar en YouTube
+
+La escucha del 05/10 encontró tres defectos que estaban en casi todo el canal:
+- un drone con timbre de bocina;
+- graves que retumban;
+- fondos de ruido (lluvia, ruido rosa y marrón) que suenan a estática de
+  televisión.
+
+Los datos de vidIQ coinciden: los Shorts de lluvia retienen el 15 %, los de mar
+con pájaros entre el 68 y el 78 %. El código ya está corregido.
+
+**El orden de trabajo:**
+
+1. **Lo que no está publicado se rehace antes de salir.** Las obras 45 a 49 se
+   rearman con el sonido nuevo: guqin sin lluvia, mar más bajo, drone puro y
+   corte de graves.
+2. **Toda idea nueva se prueba primero en TikTok,** porque es barato y en 24 a
+   48 h hay datos. Se mira el tiempo medio de visualización y el % que lo vio
+   completo, no solo las vistas.
+3. **Lo que gana en TikTok se escala a YouTube:** un largo de 3 h o de 10 min,
+   más 3 Shorts.
+4. **Los videos viejos no se rehacen todavía.** YouTube no deja reemplazar el
+   archivo de un video publicado: habría que subirlo de nuevo y ocultar el
+   viejo. Se hace solo con los que traen vistas (Before You Begin y A Brief
+   Pause), cuando el sonido nuevo esté confirmado con datos.
+5. **Regla de sonido:** nada de bocina, nada de retumbe, nada de estática. Si se
+   duda, Fátima escucha una muestra de 30 a 45 s por el parlante del teléfono
+   antes de armar nada.
