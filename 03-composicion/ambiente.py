@@ -136,7 +136,13 @@ def fondo_lluvia_grave(d):
             f"[lluvia][techo]amix=inputs=2:normalize=0:weights=0.4 0.6[fondo];")
 
 
-FONDOS = {'lluvia-grave': fondo_lluvia_grave, 'mar': fondo_mar, 'selva': fondo_selva, 'fuego': fondo_fuego, 'lluvia': fondo_lluvia,
+def fondo_nada(d):
+    """Sin fondo (05/10): la muestra C, ondas delta y campanas sin ruido, fue la
+    que más tranquilizó en la escucha. El ruido, por TikTok, suena a interferencia."""
+    return f"anullsrc=r=44100:cl=stereo:d={d}[fondo];"
+
+
+FONDOS = {'nada': fondo_nada, 'lluvia-grave': fondo_lluvia_grave, 'mar': fondo_mar, 'selva': fondo_selva, 'fuego': fondo_fuego, 'lluvia': fondo_lluvia,
           'marron': fondo_marron, 'rosa': fondo_rosa}
 
 

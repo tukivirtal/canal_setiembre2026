@@ -267,7 +267,29 @@ Composed from scratch by Rin, no samples. The full 3 hours, black screen, on You
 
 #pinknoise #deltawaves #binauralbeats #deepsleep #sleeptok"""
 
+# 05/10: la muestra C de la escucha, ondas delta y campanas del templo, sin
+# ruido: la que más tranquilizó. El ruido rosa y el marrón sonaban a interferencia.
+TEXTOS_DELTA_CAMPANAS = [
+    (0.0, 6.0, {'tipo': 'gancho', 'titulo': 'Delta waves for deep sleep',
+                'sub': 'With soft temple bells. Headphones on.'}),
+    (8.0, 40.0, {'titulo': 'Each ear hears a different tone',
+                 'sub': 'The difference is 2 Hz: the rhythm of deep sleep.'}),
+    (48.0, 85.0, {'titulo': 'Breathe out longer than you breathe in.'}),
+    (95.0, 130.0, {'titulo': 'Let your jaw soften.', 'sub': 'Nothing to do now. Just the bells.'}),
+    (172.0, 180.0, {'tipo': 'fin', 'titulo': 'Save this for tonight',
+                    'sub': 'Rin · delta waves and temple bells, composed from scratch.'}),
+]
+TEXTO_DELTA_CAMPANAS = """Delta waves for deep sleep 🌙 With soft zen temple bells.
+🎧 Headphones on: each ear hears a slightly different tone, and the 2 Hz difference is the rhythm of deep sleep.
+Breathe out longer than you breathe in. Nothing to do now, just the bells.
+Composed from scratch by Rin, no samples. Save this for tonight. Full pieces on YouTube, link in bio.
+
+#deltawaves #binauralbeats #sleepmusic #deepsleep #templebells"""
+
 PIEZAS = {
+    'delta-campanas': dict(bucle='vertical-theta.mp4', audio='tiktok-delta-campanas/delta-campanas-master.wav', T=180,
+                           textos=TEXTOS_DELTA_CAMPANAS, texto=TEXTO_DELTA_CAMPANAS, out='tiktok-delta-campanas',
+                           nombre='delta-waves-temple-bells-tiktok.mp4', kbps=1100),
     'marron': dict(bucle='vertical-zen-t35.mp4', audio='tiktok-marron/marron-master.wav', T=180,
                    textos=TEXTOS_MARRON, texto=TEXTO_MARRON, out='tiktok-marron',
                    nombre='brown-noise-tiktok.mp4', kbps=1100),
@@ -376,7 +398,7 @@ def main():
                  '-c:v', 'libx264', '-preset', 'medium', '-b:v', f"{P.get('kbps', 1600)}k", '-pix_fmt', 'yuv420p']
         log = str(tmp / 'x264')
         subprocess.run(args + comun + ['-pass', '1', '-passlogfile', log, '-an', '-f', 'null', '-'], check=True)
-        subprocess.run(args + comun + ['-pass', '2', '-passlogfile', log, '-c:a', 'aac', '-b:a', '192k',
+        subprocess.run(args + comun + ['-pass', '2', '-passlogfile', log, '-c:a', 'aac', '-b:a', '256k',
                                        '-ar', '48000', '-movflags', '+faststart', str(salida)], check=True)
     (OUT / 'textos.txt').write_text(P['texto'] + '\n', encoding='utf-8')
     print(f'{salida}  {salida.stat().st_size / 1e6:.1f} MB')
