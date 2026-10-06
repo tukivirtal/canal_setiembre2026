@@ -190,14 +190,17 @@ def main():
         + FONDOS[a.fondo](d) +
         f"[fondo]volume={a.nivel_fondo}dB[fondo2];"
         + (
+            # 06/10: duration=first. La capa dura 18 s más que la obra con su
+            # entrada y su cola; sin esto la mezcla se estiraba hasta la capa,
+            # ya con el fundido en cero: 18 s de silencio al final del video.
             # La capa lleva un eco corto de sala, sin agudos por encima de 6 kHz:
             # los pájaros y las campanitas son lo más agudo de la mezcla y es
             # justo la zona que incomoda.
             f"[1]lowpass=f=6000,aecho=0.8:0.6:70|130:0.22|0.12,"
             f"volume={a.nivel_capa}dB,apad=whole_dur={d}[capa];"
-            f"[obra][fondo2][capa]amix=inputs=3:normalize=0,"
+            f"[obra][fondo2][capa]amix=inputs=3:normalize=0:duration=first,"
             if a.capa else
-            f"[obra][fondo2]amix=inputs=2:normalize=0,"
+            f"[obra][fondo2]amix=inputs=2:normalize=0:duration=first,"
         ) +
         f"afade=t=in:d=6,afade=t=out:st={fin}:d=12"
     )
