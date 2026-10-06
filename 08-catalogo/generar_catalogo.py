@@ -53,7 +53,7 @@ for linea in open(MD, encoding="utf-8"):
         obras.append({"n": int(m.group(1)), "nombre": m.group(2), "name": m.group(3),
                       "raiz": int(m.group(4)), "modo": m.group(5), "dur": int(m.group(6)),
                       "pilar": pilar_actual, "ambiente": m.group(7)})
-assert len(obras) == 51, f"se esperaban 51 obras, se encontraron {len(obras)}"
+assert len(obras) == 52, f"se esperaban 52 obras, se encontraron {len(obras)}"
 
 # --- Derivar los campos ---
 # Idioma principal: INGLÉS (23/09). El español va como traducción del título y
@@ -102,6 +102,12 @@ AMBIENTES = {
     # obra queda como un drone muy lejano y la capa zen, pocas campanas.
     "marron":        ("Ruido marrón y campanas lejanas", "Brown Noise & Distant Temple Bells", "zen",
                       "--fondo marron --nivel-obra -24 --nivel-capa -9 --entrada-obra 4"),
+    # 06/10: el sonido de los TikToks que ganaron (63 y 43 seguidores en 12 h):
+    # diapasones sobre el drone muy bajo y sin graves, sin mar ni ruido. Niveles
+    # calibrados contra la mezcla del TikTok; a -16 LUFS, como allá.
+    "diapasones":    ("Diapasones", "Tuning Forks", "diapasones",
+                      "--fondo nada --nivel-capa 0 --nivel-obra -22 --corte-obra 220 "
+                      "--intro 0.3 --cola 1 --entrada-obra 4 --lufs -16"),
     "delta":         ("Ruido rosa y ondas delta", "Pink Noise & Delta Waves", "delta",
                       "--fondo rosa --nivel-fondo -1 --nivel-obra -22 --nivel-capa -13 --entrada-obra 4"),
 }
@@ -152,6 +158,7 @@ ETIQ_AMBIENTE = {
     "guqin":         ["guqin", "chinese music", "xiao flute"],
     "marron":        ["brown noise", "brown noise for sleeping", "temple bells"],
     "delta":         ["pink noise", "delta waves", "binaural beats"],
+    "diapasones":    ["tuning forks", "sound healing", "396 hz"],
 }
 SUSCRIBIR = "https://www.youtube.com/@rinchanneloficial?sub_confirmation=1"
 
@@ -333,6 +340,21 @@ PROMESA = {
                    "pink noise delta waves", "binaural beats", "binaural beats for sleep", "deep sleep",
                    "black screen sleep", "sleep sounds", "fall asleep fast", "3 hours", "rin",
                    "ruido rosa para dormir"]),
+    # 06/10: la versión de YouTube de los TikToks ganadores, «60 seconds to let
+    # go» y «396 Hz tuning forks»: el mismo sonido y las mismas palabras.
+    52: dict(
+        titulo="Let Go in 20 Minutes 🔔 396 Hz Tuning Forks · Release Tension & Calm Your Mind",
+        gancho=("Twenty minutes to let go: tuning forks at 396 Hz, one strike at a time, over a soft, warm drone.",
+                "Listen to the strike. Breathe in. Breathe out as it fades. Each time it rings, let one thought go. Just one."),
+        uso="🎧 Speaker or headphones, low volume. Drop your shoulders, unclench your jaw, and just listen.",
+        hashtags="#396hz #tuningfork #letgo",
+        motor="diapasones",
+        nota="Tuning forks at 396 Hz and its fourth below, 264 Hz. The solfeggio frequencies are a modern tradition, not medical advice.",
+        comentario="What are you letting go of today? 🔔 Write one word, then press play.",
+        etiquetas=["396 hz", "396 hz tuning fork", "tuning forks", "tuning fork sound healing", "let go",
+                   "letting go meditation", "396 hz let go", "solfeggio frequency", "sound healing",
+                   "release tension", "calm your mind", "20 minute meditation", "sound bath",
+                   "meditation music", "rin", "música para soltar"]),
 }
 
 
@@ -507,6 +529,11 @@ def construir_filas():
                 f'python3 03-composicion/tao_largo.py --minutos {o["dur"]} --raiz {o["raiz"]} '
                 f'--modo {o["modo"]} --semilla {s}'
                 if (p or {}).get("motor") == "tao" else
+                # diapasones: el drone de los TikToks, grave y sin pájaros
+                f'python3 03-composicion/compositor.py --minutos {o["dur"]} '
+                f'--raiz {o["raiz"]} --modo {o["modo"]} --semilla {s} '
+                f'--caracter sin-cuenco --registro grave --aves 0'
+                if (p or {}).get("motor") == "diapasones" else
                 f'python3 03-composicion/compositor.py --minutos {o["dur"]} '
                 f'--raiz {o["raiz"]} --modo {o["modo"]} --semilla {s} '
                 f'--caracter sin-cuenco'
@@ -673,7 +700,7 @@ texto = [
     ("titulo / descripcion_optimizada", "En inglés, el idioma principal del canal."),
     ("titulo_es / descripcion_es", "La traducción al español. Se carga en YouTube Studio → Subtítulos → Título y descripción."),
     ("tema", "Intención: qué acompaña la obra. Determina la palabra clave y el ciclo respiratorio."),
-    ("ambiente", "Ambiente aprobado en escucha: mar, mar-aves, zen, selva, lluvia-tambor, jardin, lluvia, theta, guqin, marron o delta."),
+    ("ambiente", "Ambiente aprobado en escucha: mar, mar-aves, zen, selva, lluvia-tambor, jardin, lluvia, theta, guqin, marron, delta o diapasones."),
     ("comando_ambiente", "Segundo paso: envuelve la obra compuesta en su ambiente."),
     ("comentario_fijado", "Comentario para escribir y fijar apenas se publica: una pregunta fácil de contestar."),
     ("pantalla_oscura_min", "Minutos de mandala antes de que la pantalla se funda a negro (videos para dormir). 0: el mandala dura todo el video."),

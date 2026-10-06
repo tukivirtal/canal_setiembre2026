@@ -203,6 +203,7 @@ título porque se busca, pero ya no es el tema.
 | 30 | Aire delgado | Thin Air | 741 | yo | 45 min | mar-aves |
 | 31 | Última luz | Last Light | 852 | hirajoshi | 45 min | zen |
 | 32 | Raíz de sal, larga | Salt Root, Long | 528 | hirajoshi | 180 min | mar-aves |
+| 52 | Soltar en veinte | Let Go in 20 | 396 | shin | 20 min | diapasones |
 
 ### Concentración
 

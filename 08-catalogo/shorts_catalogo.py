@@ -145,7 +145,8 @@ AMB_EN = {"mar": "Ocean Waves", "mar-aves": "Ocean and Birds", "zen": "Zen Templ
           "selva": "Tropical Rainforest", "lluvia-tambor": "Rain on Leaves",
           "jardin": "Birds and Temple Bells", "lluvia": "Gentle Rain",
           "theta": "Theta Waves", "guqin": "Guqin and Xiao Flute",
-          "marron": "Brown Noise", "delta": "Pink Noise and Delta Waves"}
+          "marron": "Brown Noise", "delta": "Pink Noise and Delta Waves",
+          "diapasones": "Tuning Forks"}
 
 
 def filas_shorts(obras):

@@ -27,7 +27,7 @@ def main():
     p.add_argument('--fps', type=int, default=24)
     p.add_argument('--salida', default=str(AQUI / 'mandala_bucle.mp4'))
     p.add_argument('--paleta', default='mar',
-                   help='mar, mar-aves, zen, selva, lluvia-tambor, jardin, lluvia, theta, guqin, marron o delta: una por ambiente')
+                   help='mar, mar-aves, zen, selva, lluvia-tambor, jardin, lluvia, theta, guqin, marron, delta o diapasones: una por ambiente')
     p.add_argument('--segundos', type=float, default=None,
                    help='solo los primeros N segundos: para previsualizar sin renderizar el bucle entero')
     p.add_argument('--tono', type=int, default=0,
