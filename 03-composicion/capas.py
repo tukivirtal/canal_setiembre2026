@@ -180,6 +180,42 @@ def theta(segundos, salida, raiz, pulsos=(6.0, 4.0, 2.0), octava_abajo=False):
     print(f'{salida}  ·  portadora {portadora:g} Hz, pulso {" -> ".join(f"{x:g}" for x in pulsos)} Hz en {segundos:g} s')
 
 
+def diapasones(segundos, salida, raiz, semilla=1):
+    """Diapasones (06/10): el sonido de los TikToks que ganaron («60 seconds to
+    let go» y «396 Hz tuning forks»: 63 y 43 seguidores en 12 h, con la misma
+    promoción que antes no traía ninguno). Un golpe cada 8,5–10,5 s, alternando
+    la raíz y su cuarta abajo (396 y 264), uno a cada lado. Tono puro, apenas el
+    «clang» del golpe (un parcial inarmónico a ~6,27 f que dura décimas) y una
+    sala corta. Se calcula golpe por golpe, así un video de 15 min no ocupa
+    gigas de memoria."""
+    import numpy as np
+    from scipy.signal import fftconvolve
+    n = int(segundos * SR)
+    izq = np.zeros(n, dtype=np.float32); der = np.zeros(n, dtype=np.float32)
+    sala = np.random.default_rng(1).standard_normal(int(2.2 * SR)) \
+        * np.exp(-np.arange(int(2.2 * SR)) / SR / 0.6) * 0.02
+    sala[0] += 1.0
+    tg = np.arange(int(14.0 * SR)) / SR
+    env = (1 - np.exp(-tg / 0.03)) * np.exp(-tg / 4.5)
+    rnd = np.random.default_rng(semilla)
+    t, k = 0.8, 0
+    while t < segundos - 12:
+        f = (raiz, raiz * 2 / 3)[k % 2]; pan = (0.35, 0.65)[k % 2]
+        golpe = np.sin(2 * np.pi * f * tg) * env \
+            + 0.12 * np.sin(2 * np.pi * 6.27 * f * tg) * np.exp(-tg / 0.08)
+        golpe = fftconvolve(golpe * rnd.uniform(0.8, 1.0) * 0.3, sala)
+        o = int(t * SR); m = min(len(golpe), n - o)
+        izq[o:o + m] += golpe[:m] * math.cos(pan * math.pi / 2)
+        der[o:o + m] += golpe[:m] * math.sin(pan * math.pi / 2)
+        k += 1; t += rnd.uniform(8.5, 10.5)
+    g = 0.5 / (max(np.abs(izq).max(), np.abs(der).max()) or 1.0)
+    est = np.empty(2 * n, dtype='<i2')
+    est[0::2] = (izq * g * 32767).astype('<i2'); est[1::2] = (der * g * 32767).astype('<i2')
+    with wave.open(salida, 'wb') as w:
+        w.setnchannels(2); w.setsampwidth(2); w.setframerate(SR); w.writeframes(est.tobytes())
+    print(f'{salida}  ·  diapasones {raiz:g} y {raiz * 2 / 3:g} Hz  ·  {k} golpes en {segundos:g} s')
+
+
 def poner(izq, der, buf, t, vol, pan):
     o = int(t * SR)
     for i in range(min(len(buf), len(izq) - o)):
@@ -189,7 +225,8 @@ def poner(izq, der, buf, t, vol, pan):
 
 def main():
     p = argparse.ArgumentParser()
-    p.add_argument('tipo', choices=['aves', 'zen', 'ancestral', 'jardin', 'theta', 'delta'])
+    p.add_argument('tipo', choices=['aves', 'zen', 'ancestral', 'jardin', 'theta', 'delta',
+                                    'diapasones'])
     p.add_argument('segundos', type=float)
     p.add_argument('salida')
     p.add_argument('--raiz', type=float, default=528.0)
@@ -199,6 +236,8 @@ def main():
     a = p.parse_args()
     if a.tipo == 'theta':
         return theta(a.segundos, a.salida, a.raiz)
+    if a.tipo == 'diapasones':
+        return diapasones(a.segundos, a.salida, a.raiz, a.semilla)
     if a.tipo == 'delta':
         # 04/10: ondas delta desde el principio, para el sueño profundo: de 3 Hz a
         # 2 en la primera hora y a 1,5 en la segunda. Va con el ruido rosa.
