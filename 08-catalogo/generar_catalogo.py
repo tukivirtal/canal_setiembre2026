@@ -91,9 +91,10 @@ AMBIENTES = {
     # manda: en el TikTok aprobado los instrumentos van 12,7 dB sobre la
     # lluvia; acá ~8, y la lluvia gana terreno a medida que la música se retira.
     # 05/10: sin lluvia. La lluvia es ruido y en la escucha sonaba a «interferencia
-    # de televisión»; en los Shorts fue lo que menos retuvo (15 %).
+    # de televisión»; en los Shorts fue lo que menos retuvo (15 %). Sin la lluvia
+    # que tapaba la entrada, el guqin tiene que sonar desde el primer segundo.
     "guqin":         ("Guqin y flauta xiao", "Guqin & Xiao Flute", None,
-                      "--fondo nada --nivel-obra 0 --entrada-obra 6 --corte-obra 70"),
+                      "--fondo nada --nivel-obra 0 --entrada-obra 1.5 --corte-obra 70"),
     "theta":         ("Mar lejano y ondas theta", "Distant Ocean & Theta Waves", "theta",
                       "--fondo mar --nivel-fondo -4 --nivel-capa -11"),
     # Ruidos de color (04/10), lo más buscado para dormir. Manda el ruido: la
