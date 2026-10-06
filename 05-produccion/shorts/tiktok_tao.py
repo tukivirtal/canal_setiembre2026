@@ -347,7 +347,40 @@ TEXTOS_HIST_SENECA = [
 ]
 TEXTO_HIST_SENECA = "Let one thought go 🔔 Seneca, Letters 13"
 
+# 06/10: curiosidad verdadera. Jámblico (Vida de Pitágoras) cuenta que los
+# pitagóricos cantaban con la lira al anochecer para calmar la mente del día y
+# dormir bien. Lira sintetizada (la cuerda pulsada de tao.py) en intervalos
+# pitagóricos, sin terceras, sobre el drone nuevo sin graves.
+TEXTOS_PITAGORAS = [
+    (0.0, 6.0, {'tipo': 'gancho', 'titulo': 'Pythagoras had a ritual for sleep',
+                'sub': 'His students ended every day like this.'}),
+    (8.0, 30.0, {'titulo': 'Before sleep, they sang with the lyre', 'sub': 'To quiet the noise of the day.',
+                 'fuente': 'IAMBLICHUS · LIFE OF PYTHAGORAS'}),
+    (34.0, 60.0, {'titulo': 'Then they went over the day.', 'sub': 'What did I do well? What can I let go of?'}),
+    (64.0, 95.0, {'titulo': 'Breathe out.', 'sub': 'Let the strings do the rest.'}),
+    (99.0, 114.0, {'titulo': 'A lyre in Pythagorean tuning', 'sub': 'Pure fifths, the intervals he measured.'}),
+    (115.0, 120.0, {'tipo': 'fin', 'titulo': 'Try it tonight',
+                    'sub': 'Rin · ancient sleep rituals, composed from scratch.'}),
+]
+TEXTO_PITAGORAS = """Pythagoras had a ritual for sleep 🌙 His students sang with the lyre every evening, to quiet the noise of the day. Then they went over the day: what did I do well, what can I let go of?
+This is a lyre in Pythagorean tuning, pure fifths, composed from scratch by Rin. Try it tonight. More meditations: link in bio.
+
+#pythagoras #sleepritual #ancientwisdom #lyre #sleepmusic"""
+
+# Historia: Versos dorados pitagóricos 40-44, traducción propia (dominio público).
+TEXTOS_HIST_VERSOS = [
+    (0.6, 15.0, {'titulo': 'Do not let sleep close your eyes before you have gone over each deed of the day.',
+                 'fuente': 'GOLDEN VERSES OF PYTHAGORAS'}),
+]
+TEXTO_HIST_VERSOS = "Tonight, before sleep 🌙 Golden Verses of Pythagoras"
+
 PIEZAS = {
+    'pitagoras': dict(bucle='vertical-lluvia.mp4', audio='tiktok-pitagoras/pitagoras-master.wav', T=120,
+                      textos=TEXTOS_PITAGORAS, texto=TEXTO_PITAGORAS, out='tiktok-pitagoras',
+                      nombre='pythagoras-sleep-ritual-tiktok.mp4', kbps=1400),
+    'historia-versos': dict(bucle='vertical-lluvia.mp4', audio='historia-versos/versos-historia.wav', T=15,
+                            textos=TEXTOS_HIST_VERSOS, texto=TEXTO_HIST_VERSOS, out='historia-versos',
+                            nombre='historia-versos-dorados.mp4', kbps=4000, marca_fija=True),
     'historia-seneca': dict(bucle='vertical-zen.mp4', audio='historia-seneca/seneca-historia.wav', T=15,
                             textos=TEXTOS_HIST_SENECA, texto=TEXTO_HIST_SENECA, out='historia-seneca',
                             nombre='historia-seneca.mp4', kbps=4000, marca_fija=True),
