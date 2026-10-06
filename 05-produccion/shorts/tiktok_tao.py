@@ -339,7 +339,18 @@ Tuning forks at 396 Hz, composed from scratch by Rin. More meditations: link in 
 
 #letgo #60secondmeditation #396hz #breathe #calm"""
 
+# 06/10: historia para el TikTok de 60 s. Séneca, Cartas a Lucilio 13.4,
+# traducción propia del latín (dominio público), con el audio de los diapasones.
+TEXTOS_HIST_SENECA = [
+    (0.6, 15.0, {'titulo': 'We suffer more often in imagination than in reality.',
+                 'fuente': 'SENECA · LETTERS 13'}),
+]
+TEXTO_HIST_SENECA = "Let one thought go 🔔 Seneca, Letters 13"
+
 PIEZAS = {
+    'historia-seneca': dict(bucle='vertical-zen.mp4', audio='historia-seneca/seneca-historia.wav', T=15,
+                            textos=TEXTOS_HIST_SENECA, texto=TEXTO_HIST_SENECA, out='historia-seneca',
+                            nombre='historia-seneca.mp4', kbps=4000, marca_fija=True),
     'soltar60': dict(bucle='vertical-zen.mp4', audio='tiktok-soltar60/soltar60-master.wav', T=60,
                      textos=TEXTOS_SOLTAR60, texto=TEXTO_SOLTAR60, out='tiktok-soltar60',
                      nombre='60-seconds-to-let-go-tiktok.mp4', kbps=1600),
