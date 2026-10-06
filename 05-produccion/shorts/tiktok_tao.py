@@ -354,12 +354,12 @@ TEXTO_HIST_SENECA = "Let one thought go 🔔 Seneca, Letters 13"
 TEXTOS_PITAGORAS = [
     (0.0, 6.0, {'tipo': 'gancho', 'titulo': 'Pythagoras had a ritual for sleep',
                 'sub': 'His students ended every day like this.'}),
-    (8.0, 30.0, {'titulo': 'Before sleep, they sang with the lyre', 'sub': 'To quiet the noise of the day.',
+    (8.0, 32.0, {'titulo': 'Before sleep, they sang with the lyre', 'sub': 'To quiet the noise of the day.',
                  'fuente': 'IAMBLICHUS · LIFE OF PYTHAGORAS'}),
-    (34.0, 60.0, {'titulo': 'Then they went over the day.', 'sub': 'What did I do well? What can I let go of?'}),
-    (64.0, 95.0, {'titulo': 'Breathe out.', 'sub': 'Let the strings do the rest.'}),
-    (99.0, 114.0, {'titulo': 'A lyre in Pythagorean tuning', 'sub': 'Pure fifths, the intervals he measured.'}),
-    (115.0, 120.0, {'tipo': 'fin', 'titulo': 'Try it tonight',
+    (36.0, 66.0, {'titulo': 'Then they went over the day.', 'sub': 'What did I do well? What can I let go of?'}),
+    (72.0, 104.0, {'titulo': 'Breathe out.', 'sub': 'Let the strings do the rest.'}),
+    (110.0, 140.0, {'titulo': 'A lyre in Pythagorean tuning', 'sub': 'Pure fifths, the intervals he measured.'}),
+    (290.0, 300.0, {'tipo': 'fin', 'titulo': 'Try it tonight',
                     'sub': 'Rin · ancient sleep rituals, composed from scratch.'}),
 ]
 TEXTO_PITAGORAS = """Pythagoras had a ritual for sleep 🌙 His students sang with the lyre every evening, to quiet the noise of the day. Then they went over the day: what did I do well, what can I let go of?
@@ -375,9 +375,9 @@ TEXTOS_HIST_VERSOS = [
 TEXTO_HIST_VERSOS = "Tonight, before sleep 🌙 Golden Verses of Pythagoras"
 
 PIEZAS = {
-    'pitagoras': dict(bucle='vertical-lluvia.mp4', audio='tiktok-pitagoras/pitagoras-master.wav', T=120,
+    'pitagoras': dict(bucle='vertical-lluvia.mp4', audio='tiktok-pitagoras/pitagoras-master.wav', T=300,
                       textos=TEXTOS_PITAGORAS, texto=TEXTO_PITAGORAS, out='tiktok-pitagoras',
-                      nombre='pythagoras-sleep-ritual-tiktok.mp4', kbps=1400),
+                      nombre='pythagoras-sleep-ritual-tiktok.mp4', kbps=650),
     'historia-versos': dict(bucle='vertical-lluvia.mp4', audio='historia-versos/versos-historia.wav', T=15,
                             textos=TEXTOS_HIST_VERSOS, texto=TEXTO_HIST_VERSOS, out='historia-versos',
                             nombre='historia-versos-dorados.mp4', kbps=4000, marca_fija=True),
