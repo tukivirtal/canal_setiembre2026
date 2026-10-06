@@ -80,7 +80,7 @@ def componer(salida, minutos, raiz, semilla, modo, resp=(4.5, 3.5)):
 
         pos = 7
         for tc, d in ciclos:
-            if not (t0 <= tc < t0 + dur) or tc < 4 or tc > total - 25:
+            if not (t0 <= tc < t0 + dur) or tc < 4 or tc > total - 18:
                 continue
             exh = tc + 0.4 * d
             if rnd.random() < entre(tc, frase):
@@ -106,8 +106,9 @@ def componer(salida, minutos, raiz, semilla, modo, resp=(4.5, 3.5)):
                       exh + 0.6 * d * rnd.uniform(0.3, 1), rnd.uniform(-0.3, 0.3))
 
         if t0 + dur >= total:                      # el cierre: la cuerda grave y un armónico
-            poner('qin', tao.guqin(qin[0], 8, vibrato=0.004, rnd=rnd), total - 18, -0.15)
-            poner('arm', tao.armonico(raiz, 6, 0.6), total - 16, 0.1)
+            # 06/10: el cierre más cerca del final: sin lluvia, la cola quedaba muda
+            poner('qin', tao.guqin(qin[0], 8, vibrato=0.004, rnd=rnd), total - 11, -0.15)
+            poner('arm', tao.armonico(raiz, 6, 0.6), total - 9, 0.1)
 
         def sala(x, ir, mojado):
             m = np.stack([fftconvolve(x[0], ir[0])[:L], fftconvolve(x[1], ir[1])[:L]])
@@ -134,7 +135,7 @@ def componer(salida, minutos, raiz, semilla, modo, resp=(4.5, 3.5)):
         # inhalar, «retumbaban» y sonaban a bocina. Queda la octava media, suave, y
         # la raíz grave apenas, con una respiración que casi no se nota.
         dr = (np.sin(2 * math.pi * raiz / 2 * tb + 2) + 0.3 * np.sin(2 * math.pi * raiz / 4 * tb)) * (0.75 + 0.25 * resp_env)
-        dr *= np.clip(tb / 6, 0, 1) * np.clip((total - 4 - tb) / 10, 0, 1)
+        dr *= np.clip(tb / 6, 0, 1) * np.clip((total - 0.5 - tb) / 10, 0, 1)
         mezcla[:, :n_ok] += 0.06 * np.stack([dr, dr])
 
         mezcla[:, :arrastre.shape[1]] += arrastre

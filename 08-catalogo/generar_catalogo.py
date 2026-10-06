@@ -95,7 +95,7 @@ AMBIENTES = {
     # de televisión»; en los Shorts fue lo que menos retuvo (15 %). Sin la lluvia
     # que tapaba la entrada, el guqin tiene que sonar desde el primer segundo.
     "guqin":         ("Guqin y flauta xiao", "Guqin & Xiao Flute", None,
-                      "--fondo nada --nivel-obra 0 --entrada-obra 1.5 --corte-obra 70 --intro 0.3 --cola 3"),
+                      "--fondo nada --nivel-obra 0 --entrada-obra 1.5 --corte-obra 70 --intro 0.3 --cola 1"),
     "theta":         ("Mar lejano y ondas theta", "Distant Ocean & Theta Waves", "theta",
                       "--fondo mar --nivel-fondo -4 --nivel-capa -11"),
     # Ruidos de color (04/10), lo más buscado para dormir. Manda el ruido: la
