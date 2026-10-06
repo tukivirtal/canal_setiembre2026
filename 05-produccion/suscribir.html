@@ -2,23 +2,35 @@
 <html lang="en"><head><meta charset="utf-8">
 <link rel="stylesheet" href="miniaturas/fuentes.css">
 <style>
-  /* La invitación a suscribirse de los videos para dormir (01/10). Va en los
-     primeros minutos, mientras todavía miran: al final ya están dormidos.
-     Chica, abajo y en crema, sin flechas ni rojo: acompaña, no interrumpe. */
+  /* La invitación a suscribirse (06/10): botón rojo de SUBSCRIBE y campana,
+     como se reconoce en YouTube, abajo al centro. Va entre el 0:45 y el 2:30,
+     mientras todavía miran, en todos los videos (antes solo en los de dormir y
+     en texto crema, y no se notaba). */
   *{margin:0;padding:0;box-sizing:border-box}
   html,body{background:transparent;width:1920px;height:1080px;overflow:hidden}
-  .caja{position:absolute;left:0;right:0;bottom:86px;text-align:center;font-family:Inter,sans-serif;
-    color:#f6e7b8;text-shadow:0 2px 14px rgba(0,0,0,.9),0 0 3px rgba(0,0,0,.9)}
-  .uno{font-weight:600;font-size:40px;letter-spacing:.02em}
-  .dos{font-weight:500;font-size:30px;margin-top:10px;opacity:.85;letter-spacing:.08em}
+  .caja{position:absolute;left:0;right:0;bottom:70px;display:flex;flex-direction:column;
+    align-items:center;font-family:Inter,sans-serif}
+  .fila{display:flex;align-items:center;gap:22px;padding:14px 18px 14px 30px;border-radius:999px;
+    background:rgba(10,10,14,.62);box-shadow:0 6px 30px rgba(0,0,0,.45)}
+  .canal{color:#f6e7b8;font-weight:600;font-size:34px;letter-spacing:.08em}
+  .boton{background:#e62117;color:#fff;font-weight:700;font-size:32px;letter-spacing:.06em;
+    padding:14px 34px;border-radius:999px}
+  .campana{width:52px;height:52px;margin-right:6px}
+  .texto{margin-top:16px;color:#f6e7b8;font-weight:500;font-size:28px;letter-spacing:.04em;
+    text-shadow:0 2px 12px rgba(0,0,0,.9)}
 </style></head><body>
 <div class="caja">
-  <div class="uno" id="uno"></div>
-  <div class="dos" id="dos"></div>
+  <div class="fila">
+    <div class="canal">RIN</div>
+    <div class="boton">SUBSCRIBE</div>
+    <svg class="campana" viewBox="0 0 24 24" aria-hidden="true">
+      <path fill="#f6e7b8" d="M12 22a2.5 2.5 0 0 0 2.45-2h-4.9A2.5 2.5 0 0 0 12 22zm7-6V11a7 7 0 0 0-5.5-6.84V3.5a1.5 1.5 0 0 0-3 0v.66A7 7 0 0 0 5 11v5l-2 2v1h18v-1l-2-2z"/>
+    </svg>
+  </div>
+  <div class="texto" id="texto"></div>
 </div>
 <script>
   const Q = new URLSearchParams(location.search);
-  document.getElementById('uno').textContent = Q.get('uno') || 'A new sleep piece every week';
-  document.getElementById('dos').textContent = Q.get('dos') || 'SUBSCRIBE · RIN';
+  document.getElementById('texto').textContent = Q.get('texto') || 'A new calm piece every week';
 </script>
 </body></html>

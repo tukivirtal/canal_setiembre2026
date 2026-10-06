@@ -108,6 +108,28 @@ def pantalla_oscura(hevc, final, video, dur, visible, crf):
     shutil.rmtree(tramos)
 
 
+def con_suscribir(hevc, final, video, dur, crf):
+    """Videos cortos sin pantalla negra (06/10): el botón de SUBSCRIBE con la
+    campana entre el 0:45 y el 2:30. Se recodifica el video entero (hasta 30
+    min, unos minutos en Actions); los largos siguen copiando el bucle."""
+    info = subprocess.run(['ffprobe', '-v', 'error', '-select_streams', 'v:0', '-show_entries',
+                           'stream=width,height,r_frame_rate', '-of', 'csv=p=0', str(hevc)],
+                          capture_output=True, text=True, check=True).stdout.strip().split(',')
+    w, h, fps = info[0], info[1], info[2]
+    png = video.with_name('suscribir.png')
+    rotulo_suscribir(png, w, h)
+    a, b = SUSCRIBIR_DESDE, min(SUSCRIBIR_HASTA, dur - 10)
+    correr(['ffmpeg', '-hide_banner', '-v', 'error', '-y', '-stream_loop', '-1', '-i', hevc,
+            '-loop', '1', '-framerate', fps, '-i', png, '-i', final, '-filter_complex',
+            f'[1:v]format=rgba,fade=t=in:st={a}:d=2:alpha=1,fade=t=out:st={b - 2}:d=2:alpha=1[s];'
+            f"[0:v][s]overlay=0:0:enable='between(t,{a},{b})'[v]",
+            '-map', '[v]', '-map', '2:a', '-t', f'{dur:.3f}',
+            '-c:v', 'libx265', '-crf', str(crf), '-preset', 'medium', '-tag:v', 'hvc1',
+            '-pix_fmt', 'yuv420p', '-x265-params', 'log-level=error',
+            '-c:a', 'aac', '-b:a', '320k', '-movflags', '+faststart', video])
+    png.unlink()
+
+
 def montar(o):
     d = PRODUCCION / o['id']
     d.mkdir(parents=True, exist_ok=True)
@@ -172,6 +194,8 @@ def montar(o):
         oscura = float(o.get('pantalla_oscura_min') or 0)
         if oscura:
             pantalla_oscura(hevc, final, video, dur, oscura * 60, crf)
+        elif dur <= 30 * 60:
+            con_suscribir(hevc, final, video, dur, crf)
         else:
             correr(['ffmpeg', '-hide_banner', '-v', 'error', '-y', '-stream_loop', '-1',
                     '-i', hevc, '-i', final, '-map', '0:v', '-map', '1:a', '-c:v', 'copy',

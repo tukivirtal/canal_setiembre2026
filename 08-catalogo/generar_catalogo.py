@@ -74,8 +74,9 @@ AMBIENTES = {
     "mar":           ("Olas del mar", "Ocean Waves", None, "--fondo mar"),
     "mar-aves":      ("Mar y pájaros", "Ocean and Birds", "aves", "--fondo mar --nivel-capa -4"),
     # 05/10: el mar 5 dB más bajo, apenas un fondo: el ruido no debe sonar a estática
+    # 06/10: el drone 7 dB más bajo; en la escucha todavía se sentía «la bocina».
     "zen":           ("Templo zen", "Zen Temple", "zen",
-                      "--fondo mar --nivel-fondo -12 --nivel-capa 2"),
+                      "--fondo mar --nivel-fondo -12 --nivel-capa 2 --nivel-obra -23"),
     "selva":         ("Selva tropical", "Tropical Rainforest", "aves",
                       "--fondo selva --nivel-capa -2"),
     "lluvia-tambor": ("Lluvia sobre hojas", "Rain on Leaves", "ancestral",
@@ -83,7 +84,7 @@ AMBIENTES = {
     # Pájaros y campanitas de viento, con el mar muy lejos: lo «asiático sutil»
     # que pidió la escucha del 26/09, para la ansiedad
     "jardin":        ("Pájaros y campanas del templo", "Birds and Temple Bells", "jardin",
-                      "--fondo mar --nivel-fondo -13 --nivel-capa 0"),
+                      "--fondo mar --nivel-fondo -13 --nivel-capa 0 --nivel-obra -23"),
     # Lluvia sola, sin tambor ni capa: para dormir (29/09)
     "lluvia":        ("Lluvia suave", "Gentle Rain", None, "--fondo lluvia"),
     # Mar lejano y ondas theta que bajan a delta, para dormir con auriculares (30/09)
@@ -94,7 +95,7 @@ AMBIENTES = {
     # de televisión»; en los Shorts fue lo que menos retuvo (15 %). Sin la lluvia
     # que tapaba la entrada, el guqin tiene que sonar desde el primer segundo.
     "guqin":         ("Guqin y flauta xiao", "Guqin & Xiao Flute", None,
-                      "--fondo nada --nivel-obra 0 --entrada-obra 1.5 --corte-obra 70"),
+                      "--fondo nada --nivel-obra 0 --entrada-obra 1.5 --corte-obra 70 --intro 0.3 --cola 3"),
     "theta":         ("Mar lejano y ondas theta", "Distant Ocean & Theta Waves", "theta",
                       "--fondo mar --nivel-fondo -4 --nivel-capa -11"),
     # Ruidos de color (04/10), lo más buscado para dormir. Manda el ruido: la
