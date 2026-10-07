@@ -417,7 +417,18 @@ Compuesto desde cero por Rin, sin muestras. Más meditaciones: link en la bio.
 
 #396hz #diapasones #taoismo #meditacion #soltar"""
 
+# 07/10: historia para los TikToks en español («Vacía tu taza» y «Sé como el
+# agua»). Zhuangzi, cap. 5 (人莫鑑於流水而鑑於止水), traducción propia.
+TEXTOS_HIST_QUIETA = [
+    (0.6, 15.0, {'titulo': 'Nadie se mira en el agua que corre. Nos miramos en el agua quieta.',
+                 'fuente': 'ZHUANGZI · 5'}),
+]
+TEXTO_HIST_QUIETA = "Quédate quieto un momento 💧 Zhuangzi"
+
 PIEZAS = {
+    'historia-quieta': dict(bucle='vertical-jardin.mp4', audio='historia-quieta/quieta-historia.wav', T=15,
+                            textos=TEXTOS_HIST_QUIETA, texto=TEXTO_HIST_QUIETA, out='historia-quieta',
+                            nombre='historia-agua-quieta.mp4', kbps=4000, marca_fija=True),
     'taza': dict(bucle='vertical-zen.mp4', audio='tiktok-taza/taza-master.wav', T=60,
                  textos=TEXTOS_TAZA, texto=TEXTO_TAZA, out='tiktok-taza',
                  nombre='vacia-tu-taza-tiktok.mp4', kbps=1600),
