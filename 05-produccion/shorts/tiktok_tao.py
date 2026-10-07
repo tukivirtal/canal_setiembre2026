@@ -374,7 +374,56 @@ TEXTOS_HIST_VERSOS = [
 ]
 TEXTO_HIST_VERSOS = "Tonight, before sleep 🌙 Golden Verses of Pythagoras"
 
+# 06/10: los primeros en español. El público de la promoción es de México,
+# Argentina y Chile, de 35 a 54 años. Mismo sonido que los ganadores
+# (diapasones en 396 Hz), con filosofía oriental. Español neutro (tú).
+# 1 min: la historia zen de la taza de té (Nan-in, Japón, era Meiji; contada
+# con palabras propias). Golpe cada ~5 s y un texto cada ~8, como «60 seconds».
+TEXTOS_TAZA = [
+    (0.0, 5.0, {'tipo': 'gancho', 'titulo': 'Vacía tu taza', 'sub': 'Una historia zen en 60 segundos.'}),
+    (6.0, 13.0, {'titulo': 'Un profesor fue a ver al maestro zen Nan-in.'}),
+    (14.0, 21.0, {'titulo': 'Nan-in le sirvió té. La taza se llenó, y siguió sirviendo.'}),
+    (22.0, 30.0, {'titulo': '«Está llena. Ya no entra nada más.»'}),
+    (31.0, 39.0, {'titulo': '«Como tú», dijo Nan-in. «Primero vacía tu taza.»'}),
+    (40.0, 48.0, {'titulo': 'Exhala con el sonido.', 'sub': 'Suelta una idea.'}),
+    (49.0, 55.0, {'titulo': 'Solo una.'}),
+    (55.5, 60.0, {'tipo': 'fin', 'titulo': 'Vuelve mañana',
+                  'sub': 'Rin · diapasones en 396 Hz, compuesto desde cero.'}),
+]
+TEXTO_TAZA = """Vacía tu taza 🍵 Una historia zen en 60 segundos.
+Un profesor fue a ver al maestro Nan-in. Nan-in le sirvió té y siguió sirviendo hasta que la taza rebalsó. «Como tú», le dijo. «Primero vacía tu taza.»
+Exhala con el sonido y suelta una idea. Solo una.
+Diapasones en 396 Hz, compuesto desde cero por Rin. Más meditaciones: link en la bio.
+
+#zen #meditacion #396hz #soltar #calma"""
+
+# 3 min: «Sé como el agua», Tao Te Ching 8 y 78 (traducción propia del chino,
+# dominio público), con el sonido y el ritmo del TikTok de diapasones de 3 min.
+TEXTOS_AGUA = [
+    (0.0, 6.0, {'tipo': 'gancho', 'titulo': 'Diapasones en 396 Hz',
+                'sub': 'Sé como el agua. Solo escucha.'}),
+    (8.0, 40.0, {'titulo': 'Cada golpe suena y se apaga', 'sub': 'Exhala mientras se apaga.'}),
+    (46.0, 78.0, {'titulo': 'La bondad más alta es como el agua.', 'fuente': 'TAO TE CHING · 8'}),
+    (84.0, 116.0, {'titulo': 'Nutre a todas las cosas y no compite.', 'fuente': 'TAO TE CHING · 8'}),
+    (122.0, 160.0, {'titulo': 'Nada es más blando que el agua, y nada la supera para vencer lo duro.',
+                    'fuente': 'TAO TE CHING · 78'}),
+    (172.0, 180.0, {'tipo': 'fin', 'titulo': 'Guárdalo para un día difícil',
+                    'sub': 'Rin · diapasones en 396 Hz, compuesto desde cero.'}),
+]
+TEXTO_AGUA = """Diapasones en 396 Hz 💧 Sé como el agua.
+Cada golpe suena y se apaga: exhala mientras se apaga.
+«La bondad más alta es como el agua: nutre a todas las cosas y no compite.» Tao Te Ching 8
+Compuesto desde cero por Rin, sin muestras. Más meditaciones: link en la bio.
+
+#396hz #diapasones #taoismo #meditacion #soltar"""
+
 PIEZAS = {
+    'taza': dict(bucle='vertical-zen.mp4', audio='tiktok-taza/taza-master.wav', T=60,
+                 textos=TEXTOS_TAZA, texto=TEXTO_TAZA, out='tiktok-taza',
+                 nombre='vacia-tu-taza-tiktok.mp4', kbps=1600),
+    'agua': dict(bucle='vertical-jardin.mp4', audio='tiktok-agua/agua-master.wav', T=180,
+                 textos=TEXTOS_AGUA, texto=TEXTO_AGUA, out='tiktok-agua',
+                 nombre='se-como-el-agua-tiktok.mp4', kbps=1100),
     'pitagoras': dict(bucle='vertical-lluvia.mp4', audio='tiktok-pitagoras/pitagoras-master.wav', T=300,
                       textos=TEXTOS_PITAGORAS, texto=TEXTO_PITAGORAS, out='tiktok-pitagoras',
                       nombre='pythagoras-sleep-ritual-tiktok.mp4', kbps=650),
