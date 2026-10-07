@@ -93,10 +93,53 @@ Público: México, Argentina y Chile; sobre todo de 34 a 50 años.
   que ganan prometen algo concreto y dan una instrucción corta («soltá»,
   «exhalá con el sonido»). Las historias y las citas van a las historias de
   TikTok, no a los videos.
-- Pendiente de confirmar que la promoción fue la misma en los dos: las 361
-  vistas de «Vacía tu taza» pueden ser también menos distribución.
+- La promoción fue la misma en los dos (confirmado por Fátima): la diferencia
+  es el contenido. Su lectura: «había que prestar atención a la lectura y a la
+  gente no le interesa; hay que darle algo digerido, que se sienta
+  identificada: ¡esto me pasa a mí!, ¡qué bueno que vi esto, lo estaba
+  necesitando!».
 
 **Próximo paso:** «60 segundos para soltar», la versión en español del 60 s
 ganador, para medir el idioma con el formato corto, y otro de 3 min de
 diapasones con una promesa nueva para el público de 34 a 50 (estrés del
 trabajo, la cabeza que no para a la noche).
+
+## La fórmula para TikTok (07/10)
+
+1. **Primer segundo: una situación que la persona reconoce**, en una línea
+   («¿Te acuestas y la cabeza no para?»). Es el «esto me pasa a mí».
+2. Segunda línea: qué le da el video («60 segundos para dejarlo afuera»,
+   «Diapasones en 396 Hz»).
+3. Instrucciones de 2 a 6 palabras, una cada 7–8 s. Nada que haya que leer de
+   corrido: ni historias ni citas largas.
+4. **Una frase que alivia** («Lo pendiente puede esperar», «No tienes que
+   resolver nada esta noche»). Es el «lo estaba necesitando».
+5. Cierre con una acción: guardarlo o mandárselo a alguien.
+6. Diapasones en 396 Hz, en español neutro (tú), con el título escrito a mano
+   en TikTok.
+7. Las historias y las citas, para las historias de TikTok.
+
+**Situaciones para los próximos** (público de 34 a 50, México, Argentina y
+Chile):
+- llegar a casa con la cabeza en el trabajo (07/10);
+- acostarse y que la cabeza no pare (07/10);
+- el domingo a la noche, pensando en el lunes;
+- cuidar de todos y que nadie te pregunte cómo estás;
+- despertarse a las 3 y repasar todo;
+- el pecho apretado sin saber por qué;
+- sentir que no llegas a todo.
+
+**Tanda del 07/10** (cinco videos, cada uno con su color y su nota, para que el
+perfil no se vea repetido; el timbre de diapasón se mantiene):
+
+| Video | Duración | Nota | Mandala |
+|---|---|---|---|
+| ¿Tu cabeza sigue en el trabajo? | 60 s | 432 Hz | ámbar |
+| ¿Siempre cuidas de todos? | 60 s | 528 Hz | ciruela |
+| ¿Sientes que no llegas a todo? | 60 s | 417 Hz | celeste |
+| ¿Una discusión te quedó dando vueltas? | 2 min | 396 + 528 Hz | violeta |
+| ¿Te acuestas y la cabeza no para? | 3 min | 396 Hz | azul |
+
+Se comparan contra «60 seconds to let go» (41 seguidores cada 1.000 vistas) y
+«Sé como el agua» (37). Además de la pregunta del principio, ahora cambia la
+nota: si alguno rinde mucho menos, mirar primero si es la nota.

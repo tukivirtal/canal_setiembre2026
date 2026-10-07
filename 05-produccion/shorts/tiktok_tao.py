@@ -294,7 +294,7 @@ TEXTOS_HIST_DHAMMA = [
 ]
 TEXTO_HIST_DHAMMA = "Better than a thousand hollow words is one word that brings peace. Dhammapada 🌙"
 
-# 05/10: diapasones en 396 Hz y su cuarta abajo (264), puros, sobre el drone
+# 05/10: diapasones en 396 Hz y su quinta abajo (264, 3:2), puros, sobre el drone
 # nuevo sin graves: la muestra C, la única que pasó la escucha sin «bocina».
 TEXTOS_DIAPASONES = [
     (0.0, 6.0, {'tipo': 'gancho', 'titulo': '396 Hz tuning forks',
@@ -388,7 +388,7 @@ TEXTOS_TAZA = [
     (40.0, 48.0, {'titulo': 'Exhala con el sonido.', 'sub': 'Suelta una idea.'}),
     (49.0, 55.0, {'titulo': 'Solo una.'}),
     (55.5, 60.0, {'tipo': 'fin', 'titulo': 'Vuelve mañana',
-                  'sub': 'Rin · diapasones en 396 Hz, compuesto desde cero.'}),
+                  'sub': 'Rin · diapasones en 396\u00a0Hz, compuesto desde cero.'}),
 ]
 TEXTO_TAZA = """Vacía tu taza 🍵 Una historia zen en 60 segundos.
 Un profesor fue a ver al maestro Nan-in. Nan-in le sirvió té y siguió sirviendo hasta que la taza rebalsó. «Como tú», le dijo. «Primero vacía tu taza.»
@@ -408,7 +408,7 @@ TEXTOS_AGUA = [
     (122.0, 160.0, {'titulo': 'Nada es más blando que el agua, y nada la supera para vencer lo duro.',
                     'fuente': 'TAO TE CHING · 78'}),
     (172.0, 180.0, {'tipo': 'fin', 'titulo': 'Guárdalo para un día difícil',
-                    'sub': 'Rin · diapasones en 396 Hz, compuesto desde cero.'}),
+                    'sub': 'Rin · diapasones en 396\u00a0Hz, compuesto desde cero.'}),
 ]
 TEXTO_AGUA = """Diapasones en 396 Hz 💧 Sé como el agua.
 Cada golpe suena y se apaga: exhala mientras se apaga.
@@ -425,7 +425,125 @@ TEXTOS_HIST_QUIETA = [
 ]
 TEXTO_HIST_QUIETA = "Quédate quieto un momento 💧 Zhuangzi"
 
+# 07/10: la fórmula que sale de los cuatro primeros (y de la lectura de
+# Fátima: «al público hay que darle algo digerido, que se sienta
+# identificado: esto me pasa a mí, qué bueno que vi esto»). En el primer
+# segundo, una situación que la persona reconoce; después, instrucciones de
+# pocas palabras y una frase que alivia. Nada que haya que leer de corrido.
+# 1 min: el ritmo del «60 seconds to let go» ganador, golpe cada ~5 s.
+TEXTOS_TRABAJO = [
+    (0.0, 5.0, {'tipo': 'gancho', 'titulo': '¿Tu cabeza sigue en el trabajo?',
+                'sub': '60 segundos para dejarlo afuera.'}),
+    (6.0, 13.0, {'titulo': 'Escucha el golpe.'}),
+    (14.0, 21.0, {'titulo': 'Inhala.'}),
+    (22.0, 30.0, {'titulo': 'Exhala mientras se apaga.'}),
+    (31.0, 39.0, {'titulo': 'Suelta los hombros.'}),
+    (40.0, 48.0, {'titulo': 'Lo que quedó pendiente puede esperar.'}),
+    (49.0, 55.0, {'titulo': 'Ya estás en casa.'}),
+    (55.5, 60.0, {'tipo': 'fin', 'titulo': 'Mándaselo a quien lo necesite',
+                  'sub': 'Rin · diapasones en 432\u00a0Hz, compuesto desde cero.'}),
+]
+TEXTO_TRABAJO = """¿Llegaste a casa pero tu cabeza sigue en el trabajo? 🔔
+60 segundos para dejarlo afuera: escucha el golpe, exhala mientras se apaga y suelta los hombros. Lo pendiente puede esperar.
+Diapasones en 432 Hz, compuesto desde cero por Rin. Más meditaciones: link en la bio.
+Mándaselo a quien lo necesite 🤍
+
+#estres #ansiedad #calma #432hz #soltar"""
+
+# 07/10, pedido de Fátima: cada video con su color y sus notas, para que el
+# perfil no se vea repetido. El timbre de diapasón (lo que funcionó) se queda;
+# cambia la nota: 432, 528, 417, 396 y 396 + 528 Hz. Cada par es la raíz y su
+# quinta abajo (3:2), salvo el de 396 + 528, que es una cuarta (4:3).
+TEXTOS_CUIDAS = [
+    (0.0, 5.0, {'tipo': 'gancho', 'titulo': '¿Siempre cuidas de todos?',
+                'sub': 'Estos 60 segundos son para ti.'}),
+    (6.0, 13.0, {'titulo': 'Escucha el golpe.'}),
+    (14.0, 21.0, {'titulo': 'Inhala.'}),
+    (22.0, 30.0, {'titulo': 'Exhala mientras se apaga.'}),
+    (31.0, 39.0, {'titulo': 'Pon una mano en el pecho.'}),
+    (40.0, 48.0, {'titulo': 'Tú también mereces una pausa.'}),
+    (49.0, 55.0, {'titulo': 'Tómala sin culpa.'}),
+    (55.5, 60.0, {'tipo': 'fin', 'titulo': 'Mándaselo a alguien que cuida de todos',
+                  'sub': 'Rin · diapasones en 528\u00a0Hz, compuesto desde cero.'}),
+]
+TEXTO_CUIDAS = """¿Siempre cuidas de todos? 🤍
+Estos 60 segundos son para ti: escucha el golpe, exhala mientras se apaga y pon una mano en el pecho. Tú también mereces una pausa. Tómala sin culpa.
+Diapasones en 528 Hz, compuesto desde cero por Rin. Más meditaciones: link en la bio.
+Mándaselo a alguien que cuida de todos.
+
+#ansiedad #estres #autocuidado #528hz #calma"""
+
+TEXTOS_NOLLEGO = [
+    (0.0, 5.0, {'tipo': 'gancho', 'titulo': '¿Sientes que no llegas a todo?',
+                'sub': '60 segundos para parar.'}),
+    (6.0, 13.0, {'titulo': 'Para un momento.'}),
+    (14.0, 21.0, {'titulo': 'Escucha el golpe.'}),
+    (22.0, 30.0, {'titulo': 'Exhala mientras se apaga.'}),
+    (31.0, 39.0, {'titulo': 'Suelta los hombros.'}),
+    (40.0, 48.0, {'titulo': 'Haces lo que puedes.'}),
+    (49.0, 55.0, {'titulo': 'Y eso es suficiente.'}),
+    (55.5, 60.0, {'tipo': 'fin', 'titulo': 'Guárdalo para un día difícil',
+                  'sub': 'Rin · diapasones en 417\u00a0Hz, compuesto desde cero.'}),
+]
+TEXTO_NOLLEGO = """¿Sientes que no llegas a todo? 🔔
+60 segundos para parar: escucha el golpe, exhala mientras se apaga y suelta los hombros. Haces lo que puedes, y eso es suficiente.
+Diapasones en 417 Hz, compuesto desde cero por Rin. Más meditaciones: link en la bio.
+Guárdalo para un día difícil.
+
+#ansiedad #estres #calma #417hz #soltar"""
+
+# 2 min: golpe cada ~9 s, 528 y 396 Hz alternados.
+TEXTOS_DISCUSION = [
+    (0.0, 6.0, {'tipo': 'gancho', 'titulo': '¿Una discusión te quedó dando vueltas?',
+                'sub': 'Diapasones en 396 y 528 Hz. Solo escucha.'}),
+    (8.0, 30.0, {'titulo': 'No tienes que responder ahora.'}),
+    (35.0, 57.0, {'titulo': 'Escucha cada golpe hasta que se apague.', 'sub': 'Exhala con él.'}),
+    (62.0, 84.0, {'titulo': 'Afloja las manos.', 'sub': 'Suelta la mandíbula.'}),
+    (89.0, 110.0, {'titulo': 'Primero, calma. Después, palabras.'}),
+    (113.0, 120.0, {'tipo': 'fin', 'titulo': 'Guárdalo para la próxima vez',
+                    'sub': 'Rin · diapasones en 396 y 528\u00a0Hz, compuesto desde cero.'}),
+]
+TEXTO_DISCUSION = """¿Una discusión te quedó dando vueltas? 🌙
+No tienes que responder ahora. Escucha cada golpe hasta que se apague y exhala con él. Primero, calma. Después, palabras.
+Diapasones en 396 y 528 Hz, compuesto desde cero por Rin. Más meditaciones: link en la bio.
+¿Te pasa seguido? Cuéntame 👇
+
+#ansiedad #estres #calma #396hz #528hz"""
+
+# 3 min: el ritmo del de diapasones de 3 min, golpe cada ~9 s.
+TEXTOS_NOCHE = [
+    (0.0, 6.0, {'tipo': 'gancho', 'titulo': '¿Te acuestas y la cabeza no para?',
+                'sub': 'Diapasones en 396 Hz. Solo escucha.'}),
+    (8.0, 40.0, {'titulo': 'No tienes que resolver nada esta noche.'}),
+    (46.0, 78.0, {'titulo': 'Escucha cada golpe hasta que se apague.', 'sub': 'Exhala con él.'}),
+    (84.0, 116.0, {'titulo': 'Afloja la mandíbula.', 'sub': 'Suelta los hombros.'}),
+    (122.0, 160.0, {'titulo': 'Lo que no hiciste hoy puede esperar a mañana.'}),
+    (172.0, 180.0, {'tipo': 'fin', 'titulo': 'Guárdalo para esta noche',
+                    'sub': 'Rin · diapasones en 396\u00a0Hz, compuesto desde cero.'}),
+]
+TEXTO_NOCHE = """¿Te acuestas y la cabeza no para? 🌙
+No tienes que resolver nada esta noche. Escucha cada golpe hasta que se apague y exhala con él.
+Diapasones en 396 Hz, compuesto desde cero por Rin. Más meditaciones: link en la bio.
+¿Qué es lo que más te da vueltas de noche? Cuéntame 👇
+
+#insomnio #ansiedad #dormir #396hz #meditacion"""
+
 PIEZAS = {
+    'trabajo': dict(bucle='vertical-zen-t35.mp4', audio='tiktok-trabajo/trabajo-master.wav', T=60,
+                    textos=TEXTOS_TRABAJO, texto=TEXTO_TRABAJO, out='tiktok-trabajo',
+                    nombre='cabeza-en-el-trabajo-tiktok.mp4', kbps=1600),
+    'noche': dict(bucle='vertical-lluvia.mp4', audio='tiktok-noche/noche-master.wav', T=180,
+                  textos=TEXTOS_NOCHE, texto=TEXTO_NOCHE, out='tiktok-noche',
+                  nombre='cabeza-no-para-tiktok.mp4', kbps=1100),
+    'cuidas': dict(bucle='vertical-delta.mp4', audio='tiktok-cuidas/cuidas-master.wav', T=60,
+                   textos=TEXTOS_CUIDAS, texto=TEXTO_CUIDAS, out='tiktok-cuidas',
+                   nombre='cuidas-de-todos-tiktok.mp4', kbps=1600),
+    'nollego': dict(bucle='vertical-mar-aves.mp4', audio='tiktok-nollego/nollego-master.wav', T=60,
+                    textos=TEXTOS_NOLLEGO, texto=TEXTO_NOLLEGO, out='tiktok-nollego',
+                    nombre='no-llegas-a-todo-tiktok.mp4', kbps=1600),
+    'discusion': dict(bucle='vertical-theta.mp4', audio='tiktok-discusion/discusion-master.wav', T=120,
+                      textos=TEXTOS_DISCUSION, texto=TEXTO_DISCUSION, out='tiktok-discusion',
+                      nombre='discusion-dando-vueltas-tiktok.mp4', kbps=1400),
     'historia-quieta': dict(bucle='vertical-jardin.mp4', audio='historia-quieta/quieta-historia.wav', T=15,
                             textos=TEXTOS_HIST_QUIETA, texto=TEXTO_HIST_QUIETA, out='historia-quieta',
                             nombre='historia-agua-quieta.mp4', kbps=4000, marca_fija=True),

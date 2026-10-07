@@ -184,7 +184,7 @@ def diapasones(segundos, salida, raiz, semilla=1):
     """Diapasones (06/10): el sonido de los TikToks que ganaron («60 seconds to
     let go» y «396 Hz tuning forks»: 63 y 43 seguidores en 12 h, con la misma
     promoción que antes no traía ninguno). Un golpe cada 8,5–10,5 s, alternando
-    la raíz y su cuarta abajo (396 y 264), uno a cada lado. Tono puro, apenas el
+    la raíz y su quinta abajo (396 y 264, 3:2), uno a cada lado. Tono puro, apenas el
     «clang» del golpe (un parcial inarmónico a ~6,27 f que dura décimas) y una
     sala corta. Se calcula golpe por golpe, así un video de 15 min no ocupa
     gigas de memoria."""

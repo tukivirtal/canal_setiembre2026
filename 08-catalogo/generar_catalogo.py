@@ -349,7 +349,7 @@ PROMESA = {
         uso="🎧 Speaker or headphones, low volume. Drop your shoulders, unclench your jaw, and just listen.",
         hashtags="#396hz #tuningfork #letgo",
         motor="diapasones",
-        nota="Tuning forks at 396 Hz and its fourth below, 264 Hz. The solfeggio frequencies are a modern tradition, not medical advice.",
+        nota="Tuning forks at 396 Hz and its fifth below, 264 Hz. The solfeggio frequencies are a modern tradition, not medical advice.",
         comentario="What are you letting go of today? 🔔 Write one word, then press play.",
         etiquetas=["396 hz", "396 hz tuning fork", "tuning forks", "tuning fork sound healing", "let go",
                    "letting go meditation", "396 hz let go", "solfeggio frequency", "sound healing",
