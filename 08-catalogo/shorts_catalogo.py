@@ -14,7 +14,7 @@ En TikTok van DOS textos distintos, y no se mezclan:
 Si se programa con Metricool, NO se usa su campo de título de TikTok: estamparía
 el título en el video. Solo la descripción.
 """
-import csv, os
+import csv, re, os
 
 N_SHORTS = 7            # obras 1 a 42: ya armados y en la cola de Make
 N_SHORTS_NUEVAS = 3     # desde la 43 (29/09): 7 por obra eran demasiados
@@ -125,12 +125,25 @@ def n_shorts(obra_id):
     return N_SHORTS if n <= 42 else N_SHORTS_NUEVAS
 
 
-def inicios(duracion_min, n=N_SHORTS):
+def bordes(o):
+    """Segundos de ambiente solo antes y después de la obra. Hasta la 44 eran
+    20 y 20. Desde el rearmado del 06/10 (obras 45 en adelante) salen del
+    comando de ambiente.py: 2 y 20 por defecto, y el guqin y los diapasones
+    casi nada (0,3 y 1). Con los 40 s fijos, el tercer Short de un video
+    de 20 min arrancaba a 26 s del final y la mitad salía muda (OBRA-052, 07/10)."""
+    if int(o["id"].split("-")[-1]) < 45:
+        return 40
+    cmd = o.get("comando_ambiente", "")
+    leer = lambda k, d: float((re.findall(rf"--{k} ([\d.]+)", cmd) or [d])[-1])
+    return leer("intro", 2.0) + leer("cola", 20.0)
+
+
+def inicios(duracion_min, n=N_SHORTS, extra=40):
     """Los tramos de la obra, pasada la entrada lenta del ambiente (la obra
     aparece entera hacia los 70 s) y antes de la salida. Los 5 primeros se
     reparten parejos (así se hicieron los de las obras 12, 15 y 20); el 6 y el 7
     caen entre el 1 y el 2 y entre el 3 y el 4, lejos de los anteriores."""
-    total = duracion_min * 60 + 40                  # 20 s de entrada y 20 de salida
+    total = duracion_min * 60 + extra               # el ambiente solo, antes y después
     a, b = 90, total - DURACION - 20
     t = [round(a + (b - a) * k / 4) for k in range(5)]
     if n == N_SHORTS_NUEVAS:                        # principio, medio y final
@@ -161,7 +174,7 @@ def filas_shorts(obras):
         amb = AMB_EN[o["ambiente"]]
         dur = dur_corta(o["duracion_min"])
         tags = " ".join(HASHTAGS[tema] + [f"#{hz}hz"])
-        tramos = inicios(int(o["duracion_min"]), n_shorts(o["id"]))
+        tramos = inicios(int(o["duracion_min"]), n_shorts(o["id"]), bordes(o))
         if "tao_largo" in o.get("comando_regeneracion", "") and int(o["duracion_min"]) >= 40:
             # las de guqin se van retirando: los Shorts salen de la primera media
             # hora, cuando todavía suenan el guqin y la xiao
