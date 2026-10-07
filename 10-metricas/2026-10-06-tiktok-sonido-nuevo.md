@@ -69,3 +69,34 @@ volumen de antes «un poco se siente la bocina». Los dos videos se rehacen con
 el sonido de los TikToks ganadores: **diapasones** (`capas.py diapasones`) sobre
 el drone muy bajo y sin graves, sin mar (`--fondo nada --nivel-obra -22
 --corte-obra 220 --lufs -16`, calibrado contra la mezcla del TikTok).
+
+## Los dos en español (capturas del 07/10, unas 21 h después de publicar)
+
+| | Vacía tu taza (1 min) | Sé como el agua (3 min) | Comparar: 60 s en inglés | Comparar: 3 min en inglés |
+|---|---|---|---|---|
+| Contenido | historia zen (Nan-in) | diapasones + Tao Te Ching | instrucción («let go») | diapasones + instrucción |
+| Vistas | 361 | 1.950 | 1.547 | 1.116 |
+| Me gusta | 9 (2,5 %) | 82 (4,2 %) | 77 (5,0 %) | 42 (3,8 %) |
+| Guardados | 2 | **26** | 18 | 9 |
+| Tiempo promedio | 4,7 s | 10,3 s | 7,9 s | 10,1 s |
+| Lo vio completo | 0,76 % | 1,37 % | 2,43 % | 0,69 % |
+| Seguidores | 4 | **72** | 63 | 43 |
+| Seguidores cada 1.000 vistas | 11 | 37 | 41 | 39 |
+
+Público: México, Argentina y Chile; sobre todo de 34 a 50 años.
+
+**Lectura.**
+- **El español no perjudica.** El de 3 min en español rinde igual que en inglés
+  en seguidores por vista y lo supera en guardados y en vistas completas.
+- **La historia pierde.** «Vacía tu taza» y Pitágoras, los dos que cuentan una
+  historia, se quedan en 2,5–4,7 s de promedio y traen pocos seguidores. Los
+  que ganan prometen algo concreto y dan una instrucción corta («soltá»,
+  «exhalá con el sonido»). Las historias y las citas van a las historias de
+  TikTok, no a los videos.
+- Pendiente de confirmar que la promoción fue la misma en los dos: las 361
+  vistas de «Vacía tu taza» pueden ser también menos distribución.
+
+**Próximo paso:** «60 segundos para soltar», la versión en español del 60 s
+ganador, para medir el idioma con el formato corto, y otro de 3 min de
+diapasones con una promesa nueva para el público de 34 a 50 (estrés del
+trabajo, la cabeza que no para a la noche).
