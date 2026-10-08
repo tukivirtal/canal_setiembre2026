@@ -570,7 +570,8 @@ Mándaselo a quien trabajó de más esta semana 🤍
 #estres #trabajo #calma #432hz #viernes"""
 
 TEXTOS_DOMINGO = [
-    (0.0, 5.0, {'tipo': 'gancho', 'titulo': '¿Domingo a la noche y ya estás pensando en el lunes?',
+    # el gancho largo ocupaba cuatro renglones y tapaba el mandala: corto, y el domingo va abajo
+    (0.0, 5.0, {'tipo': 'gancho', 'titulo': '¿Ya estás pensando en el lunes?',
                 'sub': '60 segundos para quedarte en el domingo.'}),
     (6.0, 13.0, {'titulo': 'Escucha el golpe.'}),
     (14.0, 21.0, {'titulo': 'Inhala.'}),
