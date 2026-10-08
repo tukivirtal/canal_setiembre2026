@@ -143,3 +143,27 @@ perfil no se vea repetido; el timbre de diapasón se mantiene):
 Se comparan contra «60 seconds to let go» (41 seguidores cada 1.000 vistas) y
 «Sé como el agua» (37). Además de la pregunta del principio, ahora cambia la
 nota: si alguno rinde mucho menos, mirar primero si es la nota.
+
+## La tanda del 07/10 a ~20 h (captura del perfil, 08/10 20:07)
+
+**Seguidores: 752** (el 07/10 eran ~500). Cuatro videos promocionados con el mismo
+presupuesto; el de la noche quedó sin promoción por error.
+
+| Video | Vistas |
+|---|---|
+| **¿Tu cabeza sigue en el trabajo?** (60 s, 432 Hz, ámbar) | **5.120** |
+| ¿Sientes que no llegas a todo? (60 s, 417 Hz, celeste) | 1.077 |
+| ¿Siempre cuidas de todos? (60 s, 528 Hz, ciruela) | 599 |
+| ¿Una discusión te quedó dando vueltas? (2 min, violeta) | 458 |
+| ¿Te acuestas y la cabeza no para? (3 min, azul) | 88, sin promoción |
+
+**Lectura.** Con la misma plata, el del trabajo sacó entre 5 y 11 veces más que
+los otros: TikTok lo empujó solo. El trabajo es la situación que más pega en este
+público. Siguientes: el viernes («¿Terminó la semana y tu cabeza sigue en el
+trabajo?») y el domingo («¿Domingo a la noche y ya estás pensando en el lunes?»).
+Falta ver sus seguidores, su tiempo promedio y las vistas completas para
+confirmarlo.
+
+**Perfil:** los dos videos fijados son de los viejos en inglés y la biografía
+está en inglés; el público que llega es de habla hispana. Fijar los ganadores en
+español y pasar la biografía al español.

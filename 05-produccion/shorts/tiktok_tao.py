@@ -547,7 +547,54 @@ TEXTOS_HIST_SUFICIENTE = [
 ]
 TEXTO_HIST_SUFICIENTE = "Lo que hiciste hoy alcanza 🔔 Tao Te Ching"
 
+# 08/10: «¿Tu cabeza sigue en el trabajo?» sacó 5.120 vistas con la misma
+# promoción que los otros (458–1.077). Dos más sobre el trabajo, para el
+# viernes a la tarde y el domingo a la noche.
+TEXTOS_VIERNES = [
+    (0.0, 5.0, {'tipo': 'gancho', 'titulo': '¿Terminó la semana y tu cabeza sigue en el trabajo?',
+                'sub': '60 segundos para cerrar la semana.'}),
+    (6.0, 13.0, {'titulo': 'Escucha el golpe.'}),
+    (14.0, 21.0, {'titulo': 'Inhala.'}),
+    (22.0, 30.0, {'titulo': 'Exhala mientras se apaga.'}),
+    (31.0, 39.0, {'titulo': 'Suelta los hombros.'}),
+    (40.0, 48.0, {'titulo': 'La semana ya terminó.'}),
+    (49.0, 55.0, {'titulo': 'Lo que falta, el lunes.'}),
+    (55.5, 60.0, {'tipo': 'fin', 'titulo': 'Mándaselo a quien trabajó de más esta semana',
+                  'sub': 'Rin · diapasones en 432\u00a0Hz, compuesto desde cero.'}),
+]
+TEXTO_VIERNES = """¿Terminó la semana y tu cabeza sigue en el trabajo? 🔔
+60 segundos para cerrar la semana: escucha el golpe, exhala mientras se apaga y suelta los hombros. Lo que falta, el lunes.
+Diapasones en 432 Hz, compuesto desde cero por Rin. Más meditaciones: link en la bio.
+Mándaselo a quien trabajó de más esta semana 🤍
+
+#estres #trabajo #calma #432hz #viernes"""
+
+TEXTOS_DOMINGO = [
+    (0.0, 5.0, {'tipo': 'gancho', 'titulo': '¿Domingo a la noche y ya estás pensando en el lunes?',
+                'sub': '60 segundos para quedarte en el domingo.'}),
+    (6.0, 13.0, {'titulo': 'Escucha el golpe.'}),
+    (14.0, 21.0, {'titulo': 'Inhala.'}),
+    (22.0, 30.0, {'titulo': 'Exhala mientras se apaga.'}),
+    (31.0, 39.0, {'titulo': 'Afloja la mandíbula.'}),
+    (40.0, 48.0, {'titulo': 'El lunes todavía no llegó.'}),
+    (49.0, 55.0, {'titulo': 'Hoy todavía es domingo.'}),
+    (55.5, 60.0, {'tipo': 'fin', 'titulo': 'Guárdalo para cada domingo',
+                  'sub': 'Rin · diapasones en 396\u00a0Hz, compuesto desde cero.'}),
+]
+TEXTO_DOMINGO = """¿Domingo a la noche y ya estás pensando en el lunes? 🌙
+60 segundos para quedarte en el domingo: escucha el golpe, exhala mientras se apaga y afloja la mandíbula. El lunes todavía no llegó.
+Diapasones en 396 Hz, compuesto desde cero por Rin. Más meditaciones: link en la bio.
+Guárdalo para cada domingo.
+
+#estres #trabajo #ansiedad #396hz #domingo"""
+
 PIEZAS = {
+    'viernes': dict(bucle='vertical-zen.mp4', audio='tiktok-viernes/viernes-master.wav', T=60,
+                    textos=TEXTOS_VIERNES, texto=TEXTO_VIERNES, out='tiktok-viernes',
+                    nombre='viernes-cerrar-la-semana-tiktok.mp4', kbps=1600),
+    'domingo': dict(bucle='vertical-jardin.mp4', audio='tiktok-domingo/domingo-master.wav', T=60,
+                    textos=TEXTOS_DOMINGO, texto=TEXTO_DOMINGO, out='tiktok-domingo',
+                    nombre='domingo-pensando-en-el-lunes-tiktok.mp4', kbps=1600),
     'historia-imaginar': dict(bucle='vertical-lluvia.mp4', audio='historia-imaginar/imaginar-historia.wav', T=15,
                               textos=TEXTOS_HIST_IMAGINAR, texto=TEXTO_HIST_IMAGINAR, out='historia-imaginar',
                               nombre='historia-seneca-imaginacion.mp4', kbps=4000, marca_fija=True),
