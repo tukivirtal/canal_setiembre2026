@@ -167,3 +167,30 @@ confirmarlo.
 **Perfil:** los dos videos fijados son de los viejos en inglés y la biografía
 está en inglés; el público que llega es de habla hispana. Fijar los ganadores en
 español y pasar la biografía al español.
+
+### Los dos mejores, por dentro (capturas del 08/10, 20:41)
+
+| | ¿Tu cabeza sigue en el trabajo? | ¿Sientes que no llegas a todo? |
+|---|---|---|
+| Vistas | 5.120 | 1.077 |
+| Me gusta | 222 (4,3 %) | 39 (3,6 %) |
+| Compartidos | 10 | 3 |
+| Guardados | 72 (1,4 %) | 12 (1,1 %) |
+| Comentarios | 0 | 2 |
+| Tiempo promedio | 6,1 s | 9,7 s |
+| Lo vio completo | 1,81 % | 1,69 % |
+| **Seguidores** | **197** | 29 |
+| Seguidores cada 1.000 vistas | **38** | 27 |
+
+**Lectura.**
+- **El del trabajo es el que más seguidores trajo de todos** (197, contra 72 del
+  mejor anterior). Convierte igual que los ganadores (38 cada 1.000 vistas):
+  la diferencia es que TikTok lo mostró cinco veces más. El trabajo es la puerta
+  de entrada más ancha para este público.
+- «No llegas a todo» retiene más (9,7 s) pero convierte menos (27 cada 1.000):
+  gusta, pero no hace seguir tanto.
+- El cierre «Mándaselo a quien lo necesite» trajo 10 compartidos; «Guárdalo», 3.
+
+**Decisión propuesta:** el producto y el regalo arrancan por el trabajo, y la
+micro-landing repite la misma pregunta del video que trae a la persona
+(«¿Tu cabeza sigue en el trabajo?»).
