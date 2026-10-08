@@ -528,7 +528,32 @@ Diapasones en 396 Hz, compuesto desde cero por Rin. Más meditaciones: link en l
 
 #insomnio #ansiedad #dormir #396hz #meditacion"""
 
+# 08/10: dos historias con la fórmula nueva, en dos tiempos: primero la
+# pregunta en la que la persona se reconoce, después la respuesta de un
+# antiguo, corta y verdadera. Un golpe de diapasón por cada cambio.
+# Séneca, Cartas a Lucilio 13.4 («saepius opinione quam re laboramus»).
+TEXTOS_HIST_IMAGINAR = [
+    (0.3, 5.2, {'tipo': 'gancho', 'titulo': '¿Tu cabeza siempre imagina lo peor?'}),
+    (5.4, 15.0, {'titulo': 'Sufrimos más a menudo en la imaginación que en la realidad.',
+                 'fuente': 'SÉNECA · CARTAS A LUCILIO, 13'}),
+]
+TEXTO_HIST_IMAGINAR = "Hace 2.000 años ya nos pasaba 🌙 Séneca"
+
+# Tao Te Ching 46 (知足之足，常足矣), traducción propia.
+TEXTOS_HIST_SUFICIENTE = [
+    (0.3, 5.2, {'tipo': 'gancho', 'titulo': '¿Sientes que nunca es suficiente?'}),
+    (5.4, 15.0, {'titulo': 'Quien sabe que lo suficiente es suficiente, siempre tiene suficiente.',
+                 'fuente': 'TAO TE CHING · 46'}),
+]
+TEXTO_HIST_SUFICIENTE = "Lo que hiciste hoy alcanza 🔔 Tao Te Ching"
+
 PIEZAS = {
+    'historia-imaginar': dict(bucle='vertical-lluvia.mp4', audio='historia-imaginar/imaginar-historia.wav', T=15,
+                              textos=TEXTOS_HIST_IMAGINAR, texto=TEXTO_HIST_IMAGINAR, out='historia-imaginar',
+                              nombre='historia-seneca-imaginacion.mp4', kbps=4000, marca_fija=True),
+    'historia-suficiente': dict(bucle='vertical-zen-t35.mp4', audio='historia-suficiente/suficiente-historia.wav', T=15,
+                                textos=TEXTOS_HIST_SUFICIENTE, texto=TEXTO_HIST_SUFICIENTE, out='historia-suficiente',
+                                nombre='historia-tao-suficiente.mp4', kbps=4000, marca_fija=True),
     'trabajo': dict(bucle='vertical-zen-t35.mp4', audio='tiktok-trabajo/trabajo-master.wav', T=60,
                     textos=TEXTOS_TRABAJO, texto=TEXTO_TRABAJO, out='tiktok-trabajo',
                     nombre='cabeza-en-el-trabajo-tiktok.mp4', kbps=1600),
