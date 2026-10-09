@@ -36,11 +36,11 @@ momento es cuando se usa el producto.
 
 ## Lo que se vende en el nicho
 
-- **Sueño y ansiedad están entre los nichos que crecen en Hotmart para 2026.** Los
-  **retos de 21 días**, como uno de meditación para la ansiedad, aparecen entre los
-  formatos más vendidos. *Lo dicen blogs del rubro; Hotmart no publica cifras.*
+- **Sueño y ansiedad están entre los nichos en alza en Hotmart para 2026.** Los
+  **retos de 21 días**, como uno de meditación para la ansiedad, aparecen como tendencia
+  en un ranking de lo más vendido. *Lo dicen blogs del rubro; Hotmart no publica cifras.*
 - **Lo específico le gana a lo general.** En Etsy y Gumroad, las guías y cuadernos para la
-  ansiedad y el sobrepensar venden de forma constante. Ganan los que prometen un resultado
+  ansiedad y el agotamiento venden de forma constante. Ganan los que prometen un resultado
   concreto a una persona concreta, no «bienestar».
 - **De noche se busca algo simple.** El *cognitive shuffling* (imaginar cosas al azar para
   dormirse) se volvió viral en TikTok: un solo video pasó los 37 millones de vistas. El
