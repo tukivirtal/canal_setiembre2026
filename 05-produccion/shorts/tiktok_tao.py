@@ -676,7 +676,32 @@ Guárdalo para cuando te pase.
 
 #ansiedad #estres #calma #396hz #noche"""
 
+# 09/10: dos historias sobre el sobrepensar. Solo frases con fuente verificable:
+# muchas citas de psicólogos que circulan (Frankl, Jung) son falsas.
+# Epicteto, Enquiridión 5 (traducción propia del griego).
+TEXTOS_HIST_VUELTAS = [
+    (0.3, 5.2, {'tipo': 'gancho', 'titulo': '¿Le das vueltas a lo mismo una y otra vez?'}),
+    (5.4, 15.0, {'titulo': 'Lo que nos perturba no son las cosas, sino lo que pensamos de ellas.',
+                 'fuente': 'EPICTETO · ENQUIRIDIÓN, 5'}),
+]
+TEXTO_HIST_VUELTAS = "No es lo que pasó: es lo que pensamos 🔔 Epicteto"
+
+# Marco Aurelio, Meditaciones 7.8, abreviada («si tienes que llegar», «que hoy usas para el
+# presente»): entera ocupaba cinco renglones y la fuente quedaba sobre el mandala.
+TEXTOS_HIST_FUTURO = [
+    (0.3, 5.2, {'tipo': 'gancho', 'titulo': '¿Piensas en todo lo que podría salir mal?'}),
+    (5.4, 15.0, {'titulo': 'Que el futuro no te perturbe: llegarás a él con la misma razón de hoy.',
+                 'fuente': 'MARCO AURELIO · MEDITACIONES, 7.8'}),
+]
+TEXTO_HIST_FUTURO = "Lo de mañana, mañana 🌙 Marco Aurelio"
+
 PIEZAS = {
+    'historia-vueltas': dict(bucle='vertical-delta.mp4', audio='historia-vueltas/vueltas-historia.wav', T=15,
+                             textos=TEXTOS_HIST_VUELTAS, texto=TEXTO_HIST_VUELTAS, out='historia-vueltas',
+                             nombre='historia-epicteto-vueltas.mp4', kbps=4000, marca_fija=True),
+    'historia-futuro': dict(bucle='vertical-jardin.mp4', audio='historia-futuro/futuro-historia.wav', T=15,
+                            textos=TEXTOS_HIST_FUTURO, texto=TEXTO_HIST_FUTURO, out='historia-futuro',
+                            nombre='historia-marco-aurelio-futuro.mp4', kbps=4000, marca_fija=True),
     'casa': dict(bucle='vertical-zen.mp4', audio='tiktok-casa/casa-master.wav', T=60,
                  textos=TEXTOS_CASA, texto=TEXTO_CASA, out='tiktok-casa',
                  nombre='trabajo-a-casa-tiktok.mp4', kbps=1600),
