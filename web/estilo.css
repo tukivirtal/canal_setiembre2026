@@ -1,0 +1,220 @@
+/* Rin · estilos compartidos de la landing y de la página de las noches.
+   Negro mate con vetas azul noche y oro (la textura sale de 11-web/vetas.py). */
+:root {
+  --negro: #0b0c0f;
+  --panel: rgba(10, 11, 14, .78);
+  --borde: rgba(230, 196, 106, .22);
+  --oro: #e6c46a;
+  --oro-hondo: #c9a75a;
+  --crema: #f6e7b8;
+  --texto: #ece4d2;
+  --suave: #b9b09f;
+  --error: #f0a48c;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --capitales: Cinzel, Georgia, serif;
+  --sans: 'Nunito Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body {
+  min-height: 100vh;
+  background: var(--negro);
+  color: var(--texto);
+  font: 400 1.125rem/1.6 var(--sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+/* La textura va fija detrás de todo (background-attachment: fixed falla en iPhone). */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: var(--negro) url(/img/vetas-movil.webp) center / cover no-repeat;
+}
+@media (min-aspect-ratio: 1/1) {
+  body::before { background-image: url(/img/vetas-ancho.webp); }
+}
+
+a { color: var(--oro); }
+img { max-width: 100%; height: auto; display: block; }
+.oculto { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+.contenedor { width: 100%; max-width: 640px; margin: 0 auto; padding: 0 16px; }
+
+.marca {
+  display: block;
+  margin: 34px auto 0;
+  text-align: center;
+  font: 400 .95rem var(--capitales);
+  letter-spacing: .42em;
+  padding-left: .42em;
+  color: var(--oro);
+  text-decoration: none;
+}
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--borde);
+  border-radius: 24px;
+  padding: 34px 22px;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, .45);
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+}
+@media (min-width: 560px) { .panel { padding: 44px 40px; } }
+
+.ceja {
+  font: 600 .78rem var(--capitales);
+  letter-spacing: .3em;
+  padding-left: .3em;
+  color: var(--oro);
+  text-transform: uppercase;
+}
+
+h1, h2 {
+  font-family: var(--serif);
+  font-weight: 600;
+  color: var(--crema);
+  text-wrap: balance;
+  line-height: 1.05;
+  font-variant-numeric: lining-nums;
+}
+h1 { font-size: clamp(2.45rem, 10.5vw, 3.6rem); margin-top: 14px; }
+h2 { font-size: clamp(2rem, 8vw, 2.6rem); }
+.italica { font-family: var(--serif); font-style: italic; font-weight: 500; font-variant-numeric: lining-nums; }
+
+.entrada { margin-top: 18px; font-size: 1.15rem; color: var(--texto); }
+
+section { margin-top: 22px; }
+section p + p { margin-top: 14px; }
+.centro { text-align: center; }
+.suave { color: var(--suave); }
+.chico { font-size: .95rem; }
+
+.raya {
+  width: 120px;
+  height: 1px;
+  margin: 26px auto;
+  background: linear-gradient(90deg, transparent, var(--oro), transparent);
+}
+
+/* Formulario: un solo campo y un solo botón, el único elemento dorado lleno de la página. */
+.formulario { margin-top: 26px; }
+.formulario .fila { display: flex; flex-direction: column; gap: 10px; }
+@media (min-width: 560px) { .formulario .fila { flex-direction: row; } }
+.formulario input {
+  flex: 1;
+  min-height: 56px;
+  padding: 0 18px;
+  border-radius: 14px;
+  border: 1px solid rgba(230, 196, 106, .4);
+  background: rgba(5, 6, 8, .7);
+  color: var(--crema);
+  font: 400 1.1rem var(--sans);
+}
+.formulario input::placeholder { color: #8f8778; }
+.formulario input:focus { outline: none; border-color: var(--oro); box-shadow: 0 0 0 3px rgba(230, 196, 106, .18); }
+.boton {
+  min-height: 56px;
+  padding: 0 26px;
+  border: 0;
+  border-radius: 14px;
+  background: linear-gradient(180deg, #f0d27c, var(--oro) 55%, var(--oro-hondo));
+  color: #17130a;
+  font: 700 1.1rem var(--sans);
+  cursor: pointer;
+  box-shadow: 0 8px 26px rgba(230, 196, 106, .22);
+}
+.boton:hover { filter: brightness(1.05); }
+.boton:disabled { opacity: .75; cursor: progress; }
+.boton:focus-visible { outline: 3px solid var(--crema); outline-offset: 3px; }
+.formulario .aviso { margin-top: 12px; font-size: .92rem; color: var(--suave); text-align: center; }
+.formulario .error { margin-top: 10px; font-size: .95rem; color: var(--error); text-align: center; min-height: 1.2em; }
+.prueba { margin-top: 20px; text-align: center; font-size: .95rem; color: var(--suave); }
+.prueba b { color: var(--crema); font-weight: 700; }
+
+/* Muestra de audio */
+.muestra { display: flex; align-items: center; gap: 16px; margin-top: 18px; }
+.reproducir {
+  flex: none;
+  width: 64px; height: 64px;
+  border-radius: 50%;
+  border: 1px solid var(--oro);
+  background: rgba(230, 196, 106, .1);
+  color: var(--oro);
+  cursor: pointer;
+  display: grid; place-items: center;
+}
+.reproducir svg { width: 24px; height: 24px; }
+.reproducir:focus-visible { outline: 3px solid var(--crema); outline-offset: 3px; }
+.barra { height: 3px; border-radius: 3px; background: rgba(246, 231, 184, .15); margin-top: 10px; overflow: hidden; }
+.barra i { display: block; height: 100%; width: 0; background: var(--oro); transition: width .25s linear; }
+
+/* Pasos numerados */
+.pasos { list-style: none; margin-top: 18px; counter-reset: paso; }
+.pasos li { position: relative; padding-left: 44px; margin-top: 16px; counter-increment: paso; }
+.pasos li::before {
+  content: counter(paso);
+  position: absolute; left: 0; top: -1px;
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  border: 1px solid var(--borde);
+  color: var(--oro);
+  font: 700 .95rem/28px var(--sans);
+  text-align: center;
+}
+
+/* Las tres tarjetas, abiertas en abanico */
+.abanico { position: relative; height: 250px; margin: 26px auto 6px; max-width: 320px; }
+.abanico img {
+  position: absolute; top: 0; left: 50%;
+  width: 124px; height: 220px; object-fit: cover;
+  border-radius: 12px;
+  border: 1px solid var(--borde);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, .6);
+}
+.abanico img:nth-child(1) { transform: translateX(-118%) rotate(-9deg) translateY(16px); }
+.abanico img:nth-child(2) { transform: translateX(-50%); z-index: 1; }
+.abanico img:nth-child(3) { transform: translateX(18%) rotate(9deg) translateY(16px); }
+
+.noches { list-style: none; margin-top: 10px; }
+.noches li { padding: 16px 0; border-bottom: 1px solid rgba(230, 196, 106, .12); }
+.noches li:last-child { border-bottom: 0; }
+.noches .ceja { display: block; font-size: .7rem; color: var(--oro); }
+.noches strong { display: block; margin-top: 4px; font: 600 1.45rem/1.15 var(--serif); color: var(--crema); }
+.noches span { color: var(--suave); }
+
+footer { margin: 40px 0 34px; text-align: center; font-size: .88rem; color: var(--suave); }
+footer .redes { margin-top: 10px; }
+footer .redes a { margin: 0 8px; text-decoration: none; }
+footer p + p { margin-top: 10px; }
+
+/* Página de las noches */
+.bienvenida {
+  margin-top: 22px;
+  padding: 14px 18px;
+  border-radius: 14px;
+  border: 1px solid rgba(230, 196, 106, .35);
+  background: rgba(230, 196, 106, .08);
+  color: var(--crema);
+  text-align: center;
+}
+.noche { scroll-margin-top: 16px; }
+.noche .tarjeta { width: 100%; max-width: 300px; height: auto; margin: 20px auto 0; border-radius: 16px; border: 1px solid var(--borde); }
+.noche audio { width: 100%; margin-top: 20px; color-scheme: dark; }
+.acciones { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 22px; margin-top: 14px; font-size: .95rem; }
+.acciones a { text-decoration: none; border-bottom: 1px solid rgba(230, 196, 106, .4); }
+.compartir {
+  margin-top: 16px;
+  min-height: 52px;
+  padding: 0 24px;
+  border-radius: 14px;
+  border: 1px solid var(--oro);
+  background: transparent;
+  color: var(--oro);
+  font: 700 1rem var(--sans);
+  cursor: pointer;
+}

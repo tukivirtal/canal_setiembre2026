@@ -19,3 +19,7 @@ __pycache__/
 
 # Lo que produce montar.py: video, miniatura y metadatos por obra. Se regenera.
 produccion/
+
+# La web del regalo publica sus audios desde el repositorio (Cloudflare Pages): esos sí van.
+!web/audio/
+!web/audio/*.mp3
