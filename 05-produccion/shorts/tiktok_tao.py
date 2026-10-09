@@ -634,7 +634,55 @@ Mándaselo a quien nunca desconecta 🤍
 
 #estres #trabajo #desconectar #432hz #calma"""
 
+# 09/10, Fátima: «no sé si conviene poner el día: hay gente que lo ve el sábado
+# y no se siente identificada». TikTok muestra un video durante días, así que
+# desde acá nada de días de la semana. El del viernes y el del domingo pasan a
+# situaciones de cualquier día (con el mismo audio).
+TEXTOS_CASA = [
+    (0.0, 5.0, {'tipo': 'gancho', 'titulo': '¿Te llevaste el trabajo a casa otra vez?',
+                'sub': '60 segundos para dejarlo en la puerta.'}),
+    (6.0, 13.0, {'titulo': 'Siente los pies en el piso.'}),
+    (14.0, 21.0, {'titulo': 'Respira hondo, una vez.'}),
+    (22.0, 30.0, {'titulo': 'Suelta el aire con un suspiro.'}),
+    (31.0, 39.0, {'titulo': 'Afloja la frente.'}),
+    (40.0, 48.0, {'titulo': 'Lo que falta, mañana.'}),
+    (49.0, 55.0, {'titulo': 'Esta noche es tuya.'}),
+    (55.5, 60.0, {'tipo': 'fin', 'titulo': 'Mándaselo a quien siempre se lleva trabajo a casa',
+                  'sub': 'Rin · sonido en 432\u00a0Hz, compuesto desde cero.'}),
+]
+TEXTO_CASA = """¿Te llevaste el trabajo a casa otra vez? 🔔
+Lo que falta, mañana. Esta noche es tuya.
+Sonido suave en 432 Hz, compuesto desde cero por Rin. Más pausas en el perfil.
+Mándaselo a quien siempre se lleva trabajo a casa 🤍
+
+#estres #trabajo #calma #432hz #desconectar"""
+
+TEXTOS_MANANA = [
+    (0.0, 5.0, {'tipo': 'gancho', 'titulo': '¿Ya estás pensando en todo lo de mañana?',
+                'sub': '60 segundos para estar aquí.'}),
+    (6.0, 13.0, {'titulo': 'Apoya la cabeza.'}),
+    (14.0, 21.0, {'titulo': 'Inhala por la nariz.'}),
+    (22.0, 30.0, {'titulo': 'Suelta el aire por la boca.'}),
+    (31.0, 39.0, {'titulo': 'Afloja la mandíbula.'}),
+    (40.0, 48.0, {'titulo': 'Mañana todavía no llegó.'}),
+    (49.0, 55.0, {'titulo': 'Ahora, solo este sonido.'}),
+    (55.5, 60.0, {'tipo': 'fin', 'titulo': 'Guárdalo para cuando te pase',
+                  'sub': 'Rin · sonido en 396\u00a0Hz, compuesto desde cero.'}),
+]
+TEXTO_MANANA = """¿Ya estás pensando en todo lo de mañana? 🌙
+Mañana todavía no llegó. Ahora, solo este sonido.
+Sonido suave en 396 Hz, compuesto desde cero por Rin. Más pausas en el perfil.
+Guárdalo para cuando te pase.
+
+#ansiedad #estres #calma #396hz #noche"""
+
 PIEZAS = {
+    'casa': dict(bucle='vertical-zen.mp4', audio='tiktok-casa/casa-master.wav', T=60,
+                 textos=TEXTOS_CASA, texto=TEXTO_CASA, out='tiktok-casa',
+                 nombre='trabajo-a-casa-tiktok.mp4', kbps=1600),
+    'manana': dict(bucle='vertical-jardin.mp4', audio='tiktok-manana/manana-master.wav', T=60,
+                   textos=TEXTOS_MANANA, texto=TEXTO_MANANA, out='tiktok-manana',
+                   nombre='pensando-en-manana-tiktok.mp4', kbps=1600),
     'jueves': dict(bucle='vertical-mar-aves.mp4', audio='tiktok-jueves/jueves-master.wav', T=60,
                    textos=TEXTOS_JUEVES, texto=TEXTO_JUEVES, out='tiktok-jueves',
                    nombre='jueves-ya-no-puedes-mas-tiktok.mp4', kbps=1600),

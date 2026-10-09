@@ -120,6 +120,10 @@ trabajo, la cabeza que no para a la noche).
 4. **Una frase que alivia** («Lo pendiente puede esperar», «No tienes que
    resolver nada esta noche»). Es el «lo estaba necesitando».
 5. Cierre con una acción: guardarlo o mandárselo a alguien.
+5b. **Sin días de la semana** (09/10, Fátima: quien lo ve otro día no se siente
+   identificado). TikTok muestra un video durante días: situaciones que pasan
+   cualquier día («¿Te llevaste el trabajo a casa otra vez?», «¿Ya estás
+   pensando en todo lo de mañana?»).
 6. Diapasones en 396 Hz, en español neutro (tú), con el título escrito a mano
    en TikTok.
 7. Las historias y las citas, para las historias de TikTok.
