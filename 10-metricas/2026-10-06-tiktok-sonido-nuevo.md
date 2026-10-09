@@ -203,3 +203,26 @@ español y pasar la biografía al español.
 **Decisión propuesta:** el producto y el regalo arrancan por el trabajo, y la
 micro-landing repite la misma pregunta del video que trae a la persona
 («¿Tu cabeza sigue en el trabajo?»).
+
+## 1.000 seguidores (09/10, 18:45): 1.060
+
+Meta cumplida un día antes de lo previsto (el sábado). Me gusta del perfil: 1.346.
+
+| Video | Vistas | Seguidores | Cada 1.000 | Tiempo prom. | Guardados |
+|---|---|---|---|---|---|
+| ¿Tu cabeza sigue en el trabajo? (60 s) | 5.130 | 197 | 38 | 6,1 s | 72 |
+| **¿Te acuestas y la cabeza no para?** (3 min, promocionado el 08/10) | 4.459 | **177** | **40** | 8,8 s | **84** |
+| ¿Ya estás pensando en todo lo de mañana? (60 s) | 3.727 | 138 | 37 | 6,3 s | 43 |
+| ¿Sientes que no llegas a todo? | 1.080 | 29 | 27 | 9,7 s | 12 |
+| ¿Te llevaste el trabajo a casa otra vez? | 566 | — | — | — | — |
+
+**Lectura.** Los tres que más seguidores traen hablan de lo mismo: **la cabeza que
+no para**, al salir del trabajo y a la noche. El de 3 min de la noche es el que más
+se guarda (84).
+
+**Aviso en «¿Ya estás pensando en todo lo de mañana?»:** «Tu video no es apto para
+recomendarse en el feed Para ti». Las vistas se cortaron a las ~10 h. El aviso no
+dice el motivo en el resumen; hay que tocarlo para verlo y apelar. El video es
+original y no tiene nada que infrinja las normas: probable error del sistema
+automático, o lo leyó como repetido por la plantilla. Por eso, además de apelar,
+seguir variando colores, instrucciones y textos entre videos.
