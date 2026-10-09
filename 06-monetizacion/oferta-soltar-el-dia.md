@@ -102,14 +102,19 @@ Qué trae:
   salteaste una noche.
 
 **Precio:** USD 9 hasta el 31 de octubre; después, 14. La fecha es real: el precio sube.
+En Payhip, el producto vale 14 y una oferta de **Run Sale** lo deja en 9 hasta el 31/10.
+Al terminar, el precio vuelve solo.
 **Garantía de 7 días:** si no le sirve, se le devuelve la plata.
 
 ### El agregado en el pago: «Noches largas» (+USD 4)
 
 Son 3 obras de 60 minutos con el mismo sonido, para dormirse sin que nada se corte. Lo
-compra quien ya decidió comprar, así que sube el ticket sin buscar un cliente más. Si
-Payhip no tiene «Upsells» en Marketing (no está confirmado que lo tenga), va como combo a
-USD 13.
+compra quien ya decidió comprar, así que sube el ticket sin buscar un cliente más.
+
+En Payhip va con **Cross Selling** (Marketing): «Noches largas» se vende sola a USD 8, y
+quien compra «Soltar el día» la ve en el pago a mitad de precio, USD 4. Se prueba en el
+celular antes de lanzar (una vendedora contó que la ventana emergente no siempre aparece
+en el teléfono); si falla, va como combo a USD 13 en la landing.
 
 ### Después, no ahora
 
@@ -212,7 +217,10 @@ del regalo y los correos; los TikToks que llevan al regalo.
 - Medios de pago de Hotmart: [Ayuda de Hotmart](https://help.hotmart.com/es/article/25588460435085/)
 - Payhip: [conexión con MailerLite](https://help.payhip.com/article/276-mailerlite),
   [archivos de hasta 5 GB](https://help.payhip.com/article/59-adding-a-digital-product),
-  [cursos](https://payhip.com/blog/new-feature-courses/)
+  [cursos](https://payhip.com/blog/new-feature-courses/),
+  [Cross Selling](https://help.payhip.com/article/89-cross-selling),
+  [novedades 2025](https://payhip.com/blog/whats-new-at-payhip-2025/),
+  [la ventana emergente en el celular](https://jessicadavidson.co.uk/2024/10/22/how-to-use-coupons-and-claim-discounts-on-payhip/)
 - Creadores chicos en 2026: [LSEO](https://lseo.com/blog/social-media-marketing/tiktok-ads/the-future-of-tiktok-advertising-trends-to-watch-in-2026/)
 - Estudios: lista antes de dormir, [Scullin y otros, 2018](https://doi.org/10.1037/xge0000374);
   progreso ya hecho, [Nunes y Drèze, 2006](https://doi.org/10.1086/500480)
