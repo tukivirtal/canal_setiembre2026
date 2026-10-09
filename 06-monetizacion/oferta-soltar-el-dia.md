@@ -108,7 +108,8 @@ Qué trae:
 
 Son 3 obras de 60 minutos con el mismo sonido, para dormirse sin que nada se corte. Lo
 compra quien ya decidió comprar, así que sube el ticket sin buscar un cliente más. Si
-Payhip no permite el agregado en el pago, va como combo a USD 13.
+Payhip no tiene «Upsells» en Marketing (no está confirmado que lo tenga), va como combo a
+USD 13.
 
 ### Después, no ahora
 
@@ -148,9 +149,25 @@ ser lo honesto, es lo que exigen las reglas de anuncios de TikTok y de Meta.
 ## Cómo se cobra
 
 **Payhip con PayPal**, como está decidido en `plan-facturacion.md`: ya funciona y ya cobra.
-El riesgo es que no ofrece OXXO (México) ni Mercado Pago (Argentina). Si mucha gente
+PayPal solo cobra; Payhip cobra con esa misma cuenta de PayPal y **entrega el producto
+apenas se acredita el pago**. Así la entrega no depende de ningún escenario de Make.
+
+**El recorrido, sin Make en ningún paso:**
+
+| Paso | Quién lo hace solo |
+|---|---|
+| El regalo | El formulario de MailerLite en la landing. La automatización de MailerLite manda el regalo y un recordatorio cada noche |
+| La compra | Payhip cobra y entrega |
+| El comprador, a la lista | Payhip lo suma al grupo «Compradores» de MailerLite con su conexión propia (casilla en el producto, cada 10 minutos), y ahí deja de recibir los correos de venta |
+
+**La entrega, pensada para la cama.** Con la pantalla bloqueada, un video en el celular se
+corta y un audio sigue sonando. Por eso Payhip entrega un PDF corto con el enlace a una
+página privada donde cada noche se escucha como audio, más los MP3 para descargar.
+
+**El riesgo:** Payhip no ofrece OXXO (México) ni Mercado Pago (Argentina). Si mucha gente
 abandona en el pago, el plan B es Hotmart, que sí tiene esos medios (aunque no en el
-agregado del pago). Antes hay que confirmar en su sitio que acepta vendedores de Uruguay.
+agregado del pago) y también entrega solo. Antes hay que confirmar en su sitio que acepta
+vendedores de Uruguay.
 
 Los correos van por MailerLite, con el plan gratis. La cuenta la creás vos, desde el sitio
 oficial.
@@ -193,6 +210,9 @@ del regalo y los correos; los TikToks que llevan al regalo.
   [Triple Whale](https://www.triplewhale.com/blog/tiktok-benchmarks),
   [Influee](https://influee.co/blog/tiktok-ads-benchmarks)
 - Medios de pago de Hotmart: [Ayuda de Hotmart](https://help.hotmart.com/es/article/25588460435085/)
+- Payhip: [conexión con MailerLite](https://help.payhip.com/article/276-mailerlite),
+  [archivos de hasta 5 GB](https://help.payhip.com/article/59-adding-a-digital-product),
+  [cursos](https://payhip.com/blog/new-feature-courses/)
 - Creadores chicos en 2026: [LSEO](https://lseo.com/blog/social-media-marketing/tiktok-ads/the-future-of-tiktok-advertising-trends-to-watch-in-2026/)
 - Estudios: lista antes de dormir, [Scullin y otros, 2018](https://doi.org/10.1037/xge0000374);
   progreso ya hecho, [Nunes y Drèze, 2006](https://doi.org/10.1086/500480)
