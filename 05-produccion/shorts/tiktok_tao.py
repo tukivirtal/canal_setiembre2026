@@ -553,18 +553,18 @@ TEXTO_HIST_SUFICIENTE = "Lo que hiciste hoy alcanza 🔔 Tao Te Ching"
 TEXTOS_VIERNES = [
     (0.0, 5.0, {'tipo': 'gancho', 'titulo': '¿Terminó la semana y tu cabeza sigue en el trabajo?',
                 'sub': '60 segundos para cerrar la semana.'}),
-    (6.0, 13.0, {'titulo': 'Escucha el golpe.'}),
-    (14.0, 21.0, {'titulo': 'Inhala.'}),
-    (22.0, 30.0, {'titulo': 'Exhala mientras se apaga.'}),
-    (31.0, 39.0, {'titulo': 'Suelta los hombros.'}),
+    (6.0, 13.0, {'titulo': 'Siente los pies en el piso.'}),
+    (14.0, 21.0, {'titulo': 'Respira hondo, una vez.'}),
+    (22.0, 30.0, {'titulo': 'Suelta el aire con un suspiro.'}),
+    (31.0, 39.0, {'titulo': 'Afloja la frente.'}),
     (40.0, 48.0, {'titulo': 'La semana ya terminó.'}),
     (49.0, 55.0, {'titulo': 'Lo que falta, el lunes.'}),
     (55.5, 60.0, {'tipo': 'fin', 'titulo': 'Mándaselo a quien trabajó de más esta semana',
-                  'sub': 'Rin · diapasones en 432\u00a0Hz, compuesto desde cero.'}),
+                  'sub': 'Rin · sonido en 432\u00a0Hz, compuesto desde cero.'}),
 ]
 TEXTO_VIERNES = """¿Terminó la semana y tu cabeza sigue en el trabajo? 🔔
-60 segundos para cerrar la semana: escucha el golpe, exhala mientras se apaga y suelta los hombros. Lo que falta, el lunes.
-Diapasones en 432 Hz, compuesto desde cero por Rin. Más meditaciones: link en la bio.
+La semana ya terminó. Lo que falta, el lunes.
+Sonido suave en 432 Hz, compuesto desde cero por Rin. Más pausas en el perfil.
 Mándaselo a quien trabajó de más esta semana 🤍
 
 #estres #trabajo #calma #432hz #viernes"""
@@ -573,23 +573,74 @@ TEXTOS_DOMINGO = [
     # el gancho largo ocupaba cuatro renglones y tapaba el mandala: corto, y el domingo va abajo
     (0.0, 5.0, {'tipo': 'gancho', 'titulo': '¿Ya estás pensando en el lunes?',
                 'sub': '60 segundos para quedarte en el domingo.'}),
-    (6.0, 13.0, {'titulo': 'Escucha el golpe.'}),
-    (14.0, 21.0, {'titulo': 'Inhala.'}),
-    (22.0, 30.0, {'titulo': 'Exhala mientras se apaga.'}),
+    (6.0, 13.0, {'titulo': 'Apoya la cabeza.'}),
+    (14.0, 21.0, {'titulo': 'Inhala por la nariz.'}),
+    (22.0, 30.0, {'titulo': 'Suelta el aire por la boca.'}),
     (31.0, 39.0, {'titulo': 'Afloja la mandíbula.'}),
     (40.0, 48.0, {'titulo': 'El lunes todavía no llegó.'}),
     (49.0, 55.0, {'titulo': 'Hoy todavía es domingo.'}),
     (55.5, 60.0, {'tipo': 'fin', 'titulo': 'Guárdalo para cada domingo',
-                  'sub': 'Rin · diapasones en 396\u00a0Hz, compuesto desde cero.'}),
+                  'sub': 'Rin · sonido en 396\u00a0Hz, compuesto desde cero.'}),
 ]
 TEXTO_DOMINGO = """¿Domingo a la noche y ya estás pensando en el lunes? 🌙
-60 segundos para quedarte en el domingo: escucha el golpe, exhala mientras se apaga y afloja la mandíbula. El lunes todavía no llegó.
-Diapasones en 396 Hz, compuesto desde cero por Rin. Más meditaciones: link en la bio.
+El lunes todavía no llegó. Hoy todavía es domingo.
+Sonido suave en 396 Hz, compuesto desde cero por Rin. Más pausas en el perfil.
 Guárdalo para cada domingo.
 
 #estres #trabajo #ansiedad #396hz #domingo"""
 
+# 09/10, Fátima: «escucha el golpe, exhala mientras se apaga y suelta los hombros»
+# estaba en casi todos y sonaba repetido. Desde acá cada video trae sus propias
+# instrucciones (otra parte del cuerpo, otra respiración) y la descripción ya no
+# las repite: la pregunta, la frase que alivia y el cierre.
+# 08/10: dos más sobre el trabajo para publicar el mismo jueves. Desde estos, en
+# pantalla dice «sonido» y no «diapasones» (Fátima: quien entra no sabe qué es un
+# diapasón), y la descripción manda al perfil, porque todavía no hay enlace.
+TEXTOS_JUEVES = [
+    (0.0, 5.0, {'tipo': 'gancho', 'titulo': '¿Todavía es jueves y ya no puedes más?',
+                'sub': '60 segundos para llegar al viernes.'}),
+    (6.0, 13.0, {'titulo': 'Apoya la espalda.'}),
+    (14.0, 21.0, {'titulo': 'Respira despacio.'}),
+    (22.0, 30.0, {'titulo': 'Escucha hasta que el sonido se vaya.'}),
+    (31.0, 39.0, {'titulo': 'Descansa la mirada.'}),
+    (40.0, 48.0, {'titulo': 'Hiciste mucho esta semana.'}),
+    (49.0, 55.0, {'titulo': 'Mañana es viernes.'}),
+    (55.5, 60.0, {'tipo': 'fin', 'titulo': 'Mándaselo a quien también cuenta los días',
+                  'sub': 'Rin · sonido en 528\u00a0Hz, compuesto desde cero.'}),
+]
+TEXTO_JUEVES = """¿Todavía es jueves y ya no puedes más? 🔔
+Hiciste mucho esta semana. Mañana es viernes.
+Sonido suave en 528 Hz, compuesto desde cero por Rin. Más pausas en el perfil.
+Mándaselo a quien también cuenta los días 🤍
+
+#estres #trabajo #calma #528hz #jueves"""
+
+TEXTOS_MENSAJES = [
+    (0.0, 5.0, {'tipo': 'gancho', 'titulo': '¿Sigues contestando mensajes del trabajo?',
+                'sub': '60 segundos sin responderle a nadie.'}),
+    (6.0, 13.0, {'titulo': 'Mira el centro del círculo.'}),
+    (14.0, 21.0, {'titulo': 'Una respiración larga.'}),
+    (22.0, 30.0, {'titulo': 'Suelta el aire, despacio.'}),
+    (31.0, 39.0, {'titulo': 'Abre las manos.'}),
+    (40.0, 48.0, {'titulo': 'Ese mensaje puede esperar a mañana.'}),
+    (49.0, 55.0, {'titulo': 'Tu tiempo también es tuyo.'}),
+    (55.5, 60.0, {'tipo': 'fin', 'titulo': 'Mándaselo a quien nunca desconecta',
+                  'sub': 'Rin · sonido en 432\u00a0Hz, compuesto desde cero.'}),
+]
+TEXTO_MENSAJES = """¿Sigues contestando mensajes del trabajo? 🔔
+Ese mensaje puede esperar a mañana. Tu tiempo también es tuyo.
+Sonido suave en 432 Hz, compuesto desde cero por Rin. Más pausas en el perfil.
+Mándaselo a quien nunca desconecta 🤍
+
+#estres #trabajo #desconectar #432hz #calma"""
+
 PIEZAS = {
+    'jueves': dict(bucle='vertical-mar-aves.mp4', audio='tiktok-jueves/jueves-master.wav', T=60,
+                   textos=TEXTOS_JUEVES, texto=TEXTO_JUEVES, out='tiktok-jueves',
+                   nombre='jueves-ya-no-puedes-mas-tiktok.mp4', kbps=1600),
+    'mensajes': dict(bucle='vertical-delta.mp4', audio='tiktok-mensajes/mensajes-master.wav', T=60,
+                     textos=TEXTOS_MENSAJES, texto=TEXTO_MENSAJES, out='tiktok-mensajes',
+                     nombre='mensajes-del-trabajo-tiktok.mp4', kbps=1600),
     'viernes': dict(bucle='vertical-zen.mp4', audio='tiktok-viernes/viernes-master.wav', T=60,
                     textos=TEXTOS_VIERNES, texto=TEXTO_VIERNES, out='tiktok-viernes',
                     nombre='viernes-cerrar-la-semana-tiktok.mp4', kbps=1600),

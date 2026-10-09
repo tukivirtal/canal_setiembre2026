@@ -111,7 +111,12 @@ trabajo, la cabeza que no para a la noche).
 2. Segunda línea: qué le da el video («60 segundos para dejarlo afuera»,
    «Diapasones en 396 Hz»).
 3. Instrucciones de 2 a 6 palabras, una cada 7–8 s. Nada que haya que leer de
-   corrido: ni historias ni citas largas.
+   corrido: ni historias ni citas largas. **Cada video con las suyas** (09/10,
+   Fátima: «escucha el golpe, exhala mientras se apaga, suelta los hombros»
+   estaba en casi todos y sonaba repetido). Se alternan la parte del cuerpo
+   (pies, espalda, manos, frente, mandíbula, mirada, cabeza) y la respiración
+   (por la nariz, un suspiro, una larga, por la boca). La descripción no repite
+   las instrucciones: la pregunta, la frase que alivia y el cierre.
 4. **Una frase que alivia** («Lo pendiente puede esperar», «No tienes que
    resolver nada esta noche»). Es el «lo estaba necesitando».
 5. Cierre con una acción: guardarlo o mandárselo a alguien.
