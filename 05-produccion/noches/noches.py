@@ -85,16 +85,19 @@ def drone(segundos, raiz, semilla, carpeta):
     return d * np.clip(np.arange(n) / SR / 3, 0, 1)[:, None]
 
 
-def sonoridad(wav):
-    """Sonoridad integrada (LUFS) medida por ffmpeg."""
-    r = subprocess.run(['ffmpeg', '-hide_banner', '-nostats', '-i', wav, '-af', 'ebur128',
+def sonoridad(wav, desde=0.0, segundos=None):
+    """Sonoridad integrada (LUFS) medida por ffmpeg, de todo o de un tramo."""
+    tramo = ['-ss', str(desde)] + (['-t', str(segundos)] if segundos else [])
+    r = subprocess.run(['ffmpeg', '-hide_banner', '-nostats'] + tramo + ['-i', wav, '-af', 'ebur128',
                         '-f', 'null', '-'], capture_output=True, text=True)
     resumen = r.stderr[r.stderr.rfind('Summary:'):]
     return float(resumen.split('I:')[1].split('LUFS')[0])
 
 
-def mp3(wav, salida, titulo, album, nota, ganancia=0.0, desde=0.0, segundos=None, fundido=0.0):
+def mp3(wav, salida, titulo, album, nota, ganancia=0.0, desde=0.0, segundos=None, fundido=0.0, entrada=0.0):
     filtros = [f'volume={ganancia:.2f}dB']
+    if entrada:
+        filtros.append(f'afade=t=in:st=0:d={entrada}')
     if fundido:
         filtros.append(f'afade=t=out:st={segundos - fundido}:d={fundido}')
     cmd = ['ffmpeg', '-hide_banner', '-v', 'error', '-y', '-ss', str(desde), '-i', wav]
@@ -121,6 +124,11 @@ def main():
                    help='sonoridad integrada; más baja que los TikToks (-16) porque es para la cama')
     a.add_argument('--muestra', help='además, un mp3 con los primeros segundos (para la landing)')
     a.add_argument('--segundos-muestra', type=float, default=40)
+    a.add_argument('--muestra-desde', type=float, default=8,
+                   help='la muestra empieza con el fondo ya sonando, no con el primer golpe solo')
+    a.add_argument('--muestra-lufs', type=float, default=-23,
+                   help='la muestra va más baja: en la landing se escucha fuerte y con auriculares, '
+                        'y al principio de la noche los golpes son los más fuertes')
     a.add_argument('--wav', help='guardar también el master en wav')
     x = a.parse_args()
 
@@ -140,8 +148,9 @@ def main():
         os.makedirs(os.path.dirname(os.path.abspath(x.salida)), exist_ok=True)
         mp3(wav, x.salida, x.titulo, x.album, nota, ganancia)
         if x.muestra:
-            mp3(wav, x.muestra, f'{x.titulo} (muestra)', x.album, nota, ganancia,
-                segundos=x.segundos_muestra, fundido=5)
+            g = min(x.muestra_lufs - sonoridad(wav, x.muestra_desde, x.segundos_muestra), 0.0)
+            mp3(wav, x.muestra, f'{x.titulo} (muestra)', x.album, nota, g, desde=x.muestra_desde,
+                segundos=x.segundos_muestra, fundido=5, entrada=2)
     print(f'{x.salida}: {k} golpes, {x.minutos:g} min, {x.raiz:g} Hz, '
           f'{medida + ganancia:.1f} LUFS (ganancia {ganancia:+.1f} dB)')
 
