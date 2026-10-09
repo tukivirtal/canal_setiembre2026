@@ -226,3 +226,17 @@ dice el motivo en el resumen; hay que tocarlo para verlo y apelar. El video es
 original y no tiene nada que infrinja las normas: probable error del sistema
 automático, o lo leyó como repetido por la plantilla. Por eso, además de apelar,
 seguir variando colores, instrucciones y textos entre videos.
+
+**Motivo que da TikTok (09/10, 18:58):** «Contenido de código QR, de baja calidad o
+no original». No original: importado o copiado sin edición creativa nueva, o con
+marca de agua o logotipo. Baja calidad: videos muy cortos, imágenes estáticas o
+solo GIF. Se apeló.
+
+Lo más probable, en nuestro caso:
+- **el mismo bucle de mandala repetido**: el verde (`vertical-jardin`) ya estaba en
+  tres videos anteriores, y el sistema pudo leer el fondo como copiado;
+- **la marca «RIN» arriba**, que puede leerse como un logotipo o marca de agua.
+
+**Desde el próximo:** ningún bucle se repite tal cual (cada video con su giro de
+color, su zoom, su rotación y su punto de arranque) y sin la marca «RIN» arriba:
+el nombre ya está en el perfil.
