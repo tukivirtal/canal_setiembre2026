@@ -3,6 +3,9 @@
 *Propuesta, pendiente de las decisiones de Fátima (al final). Actualiza
 `plan-facturacion.md` para el público de TikTok, que no es el de YouTube.*
 
+> **09/10:** el regalo y el producto se redefinieron en `oferta-soltar-el-dia.md`, con la
+> investigación del nicho. «Apagar» quedó descartado.
+
 ## Lo que dicen los datos
 
 - **Público:** México, Argentina y Chile, de 34 a 50 años, en español.
