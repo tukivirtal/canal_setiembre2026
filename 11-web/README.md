@@ -12,6 +12,7 @@
 | `11-web/tarjetas.py` | Las tarjetas de cada noche (1080 × 1920) |
 | `11-web/extras.py` | Las miniaturas, la imagen para compartir y los íconos |
 | `11-web/correos.py` | Los 3 correos del regalo (ya cargados en MailerLite) |
+| `11-web/carrusel.py` | El carrusel de fotos de TikTok: portada, las 3 tarjetas y el cierre (en `produccion/carrusel-regalo/`) |
 
 Las tres noches: 1, «Dejar el trabajo en la puerta» (432 Hz); 2, «La lista de la almohada»
 (396 Hz); 3, «Cuando la cabeza da vueltas» (417 Hz). Duran 12 minutos y están a -20 LUFS,

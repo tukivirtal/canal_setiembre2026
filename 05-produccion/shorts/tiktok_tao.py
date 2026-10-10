@@ -755,7 +755,77 @@ TEXTOS_HIST_REFUGIO = [
 ]
 TEXTO_HIST_REFUGIO = "El descanso empieza adentro 🌙 Marco Aurelio"
 
+# 10/10 (noche): videos de 15 s en bucle, con la fórmula de los que más crecieron en julio a
+# octubre en español (vidIQ): una frase en la que la persona se reconoce, un alivio y el regalo
+# en la descripción («Regalo gratis… en mi perfil», como @app.agape). Los golpes caen cuando
+# cambia el texto (sonido_tiktok.py --golpes). El del regalo cierra con las 3 tarjetas.
+NBSP = '\u00a0'
+TEXTOS_REGALO = [
+    (0.0, 5.0, {'tipo': 'gancho', 'titulo': f'Guarda esto para las 3{NBSP}a.{NBSP}m., cuando la cabeza no se apaga.'}),
+    (5.1, 9.9, {'titulo': 'No mires la hora. Cada vez que suene, exhala largo.'}),
+    (10.0, 16.2, {'tipo': 'fin', 'titulo': 'Te regalo 3 noches para soltar el día',
+                  'sub': 'Una tarjeta y un audio por noche.\nGratis, en el enlace de mi perfil.', 'tarjetas': '1'}),
+]
+TEXTO_REGALO = """Guarda esto para las 3 a. m. 🌙
+No mires la hora. Cada vez que suene, exhala largo.
+🎁 Te regalo 3 noches para soltar el día: una tarjeta y un audio de 12 minutos por noche, sin voz. Están gratis en el enlace de mi perfil.
+Sonido en 396 Hz, compuesto desde cero por Rin.
+
+#insomnio #noche #calma #ansiedad #396hz"""
+
+TEXTOS_CABEZA_TRABAJO = [
+    (0.0, 7.4, {'tipo': 'gancho', 'titulo': 'El cuerpo ya se acostó. La cabeza sigue en el trabajo.'}),
+    (7.5, 16.2, {'titulo': 'Por hoy, terminaste. El trabajo puede esperar hasta mañana.',
+                 'sub': 'Exhala largo cada vez que suene.'}),
+]
+TEXTO_CABEZA_TRABAJO = """El cuerpo ya se acostó. La cabeza sigue en el trabajo 🌙
+Por hoy, terminaste. Exhala largo cada vez que suene.
+🎁 3 noches gratis para soltar el día, en el enlace de mi perfil.
+Sonido en 432 Hz, compuesto desde cero por Rin.
+
+#trabajo #estres #noche #calma #432hz"""
+
+TEXTOS_SOSTIENE = [
+    (0.0, 7.4, {'tipo': 'gancho', 'titulo': 'Ser la que sostiene todo también cansa.'}),
+    (7.5, 16.2, {'titulo': 'Descansar no es rendirse. Es lo que te deja seguir.',
+                 'sub': 'Suelta los hombros y exhala cuando suene.'}),
+]
+TEXTO_SOSTIENE = """Ser la que sostiene todo también cansa 🤍
+Descansar no es rendirse. Es lo que te deja seguir.
+🎁 3 noches gratis para soltar el día, en el enlace de mi perfil.
+Sonido en 528 Hz, compuesto desde cero por Rin.
+
+#cansancio #descanso #mujeres #calma #528hz"""
+
+TEXTOS_DESPERTADOR = [
+    (0.0, 7.4, {'tipo': 'gancho', 'titulo': 'Todavía no te dormiste y ya estás pensando en el despertador.'}),
+    (7.5, 16.2, {'titulo': 'No cuentes las horas que te quedan.',
+                 'sub': 'Cuenta las exhalaciones: una cada vez que suene.'}),
+]
+TEXTO_DESPERTADOR = """¿Todavía no te dormiste y ya estás pensando en el despertador? 🌙
+No cuentes las horas que te quedan. Cuenta las exhalaciones.
+🎁 3 noches gratis para soltar el día, en el enlace de mi perfil.
+Sonido en 417 Hz, compuesto desde cero por Rin.
+
+#insomnio #sobrepensar #noche #calma #417hz"""
+
 PIEZAS = {
+    'regalo': dict(bucle='vertical-lluvia.mp4', audio='tiktok-regalo/regalo-master.wav', T=15,
+                   textos=TEXTOS_REGALO, texto=TEXTO_REGALO, out='tiktok-regalo',
+                   nombre='regalo-3-noches-tiktok.mp4', kbps=4000, sin_marca=True,
+                   variar=dict(tono=10, zoom=1.05, espejo=True, desde=30)),
+    'cabeza-trabajo': dict(bucle='vertical-zen-t35.mp4', audio='tiktok-cabeza-trabajo/cabeza-trabajo-master.wav', T=15,
+                           textos=TEXTOS_CABEZA_TRABAJO, texto=TEXTO_CABEZA_TRABAJO, out='tiktok-cabeza-trabajo',
+                           nombre='cabeza-en-el-trabajo-tiktok.mp4', kbps=4000, sin_marca=True,
+                           variar=dict(zoom=1.1, espejo=True, desde=6)),
+    'sostiene': dict(bucle='vertical-delta.mp4', audio='tiktok-sostiene/sostiene-master.wav', T=15,
+                     textos=TEXTOS_SOSTIENE, texto=TEXTO_SOSTIENE, out='tiktok-sostiene',
+                     nombre='la-que-sostiene-todo-tiktok.mp4', kbps=4000, sin_marca=True,
+                     variar=dict(tono=-15, zoom=1.07, desde=20)),
+    'despertador': dict(bucle='vertical-theta.mp4', audio='tiktok-despertador/despertador-master.wav', T=15,
+                        textos=TEXTOS_DESPERTADOR, texto=TEXTO_DESPERTADOR, out='tiktok-despertador',
+                        nombre='el-despertador-tiktok.mp4', kbps=4000, sin_marca=True,
+                        variar=dict(tono=-10, zoom=1.12, espejo=True, desde=17)),
     'cansada': dict(bucle='vertical-delta.mp4', audio='tiktok-cansada/cansada-master.wav', T=60,
                     textos=TEXTOS_CANSADA, texto=TEXTO_CANSADA, out='tiktok-cansada',
                     nombre='cuerpo-cansado-tiktok.mp4', kbps=1600, sin_marca=True,

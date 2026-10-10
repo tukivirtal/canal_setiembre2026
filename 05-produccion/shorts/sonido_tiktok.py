@@ -5,7 +5,8 @@ Es la receta de los TikToks que funcionaron (trabajo, noche, mañana), que hasta
 comandos sueltos:
   corto     ~60 s: golpes cada 4,8–5,6 s, cola de 3,2 s
   largo     2–3 min: golpes cada 8,5–10,5 s, cola de 4,5 s
-  historia  15 s: tres golpes, en 0,3 · 5,3 · 10,2 s
+  historia  15 s: tres golpes, en 0,3 · 5,3 · 10,2 s (o donde diga --golpes, para que caigan
+            cuando cambia el texto)
 
 Uso:
   python3 05-produccion/shorts/sonido_tiktok.py --modo corto --raiz 417 --segundos 60 \\
@@ -43,13 +44,16 @@ def main():
     a.add_argument('--segundos', type=float, required=True)
     a.add_argument('--semilla', type=int, default=1)
     a.add_argument('--salida', required=True)
+    a.add_argument('--golpes', help='segundos de cada golpe, separados por comas (reemplaza los del modo)')
     x = a.parse_args()
     m = MODOS[x.modo]
     dur = x.segundos
     n = int((dur + 4) * SR)
     rnd = np.random.default_rng(x.semilla)
     izq, der = np.zeros(n), np.zeros(n)
-    if 'golpes' in m:
+    if x.golpes:
+        tiempos = [float(t) for t in x.golpes.split(',')]
+    elif 'golpes' in m:
         tiempos = list(m['golpes'])
     else:
         tiempos, t = [], m['inicio']
