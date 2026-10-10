@@ -53,18 +53,22 @@ Catálogo Vende. Se ve en **Team settings → Billing / Usage**. Las cuentas ant
 tienen 100 GB por mes y no pausan. Con el tráfico de las primeras semanas alcanza; si el
 consumo se acerca al tope, los audios (lo que más pesa) se mudan a otro lado.
 
-## MailerLite: tres cosas en el panel
+## MailerLite y el correo del dominio
 
-1. **Formulario «Rin · Regalo 3 noches (landing)»: apagar la doble confirmación.** La
-   persona ya recibe el regalo en la página. Con doble confirmación, solo recibirían los
-   correos quienes confirmen. Si el formulario pide un diseño, se elige cualquier plantilla
-   y se guarda: no se usa, porque la página tiene el suyo.
-2. **Automatización «Rin · Regalo 3 noches»: el remitente.** Salía como «SilentClarity»
-   desde `contact@emotionalvaults.com`, pero ese dominio dejó de estar autenticado y la
-   automatización quedó marcada como rota. El remitente nuevo: **Rin**, desde
-   `hola@estudioarmonia.com` (hay que autenticar el dominio en MailerLite y darle una casilla
-   que reenvíe a Gmail, para verificarla y para leer las respuestas a «¿Cómo te fue anoche?»).
-3. **Activarla** cuando la página esté publicada y la prueba de abajo haya salido bien.
+- **Remitente de los 3 correos:** Rin, `hola@estudioarmonia.com` (también como «responder a»).
+  Antes salían como «SilentClarity» desde `contact@emotionalvaults.com`, que dejó de estar
+  autenticado.
+- **Dominio autenticado en MailerLite** (10/10): `CNAME litesrv._domainkey →
+  litesrv._domainkey.mlsend.com` (DKIM), `TXT @ mailerlite-domain-verification=…` y el SPF
+  compartido `v=spf1 include:spf.improvmx.com include:_spf.mlsend.com ~all`.
+- **Casilla `hola@`:** ImprovMX (cuenta de `rinchanneloficial@gmail.com`) reenvía
+  `hola@estudioarmonia.com` al Gmail de Rin, para leer las respuestas a «¿Cómo te fue
+  anoche?». Registros: `MX mx1.improvmx.com (10)`, `MX mx2.improvmx.com (20)` y el TXT
+  `436bb718._improvmx` de la transferencia entre cuentas (se puede borrar).
+- **Formulario «Rin · Regalo 3 noches (landing)»:** doble confirmación apagada. La persona ya
+  recibe el regalo en la página.
+- **Automatización «Rin · Regalo 3 noches»:** remitente nuevo y texto plano con los enlaces
+  de `estudioarmonia.com`. Se activa a mano en el panel.
 
 Hoy hay 31 contactos en la cuenta. Según las fuentes, el tope del plan gratis bajó a 250 o
 500 contactos desde julio de 2026. Cuando se acerque, se decide si se paga MailerLite, se
@@ -84,6 +88,5 @@ Recién ahí, el enlace va a la biografía.
 ## Hecho con la dirección definitiva
 
 - `og:image`, `og:url` y `canonical` de `web/index.html` con `https://estudioarmonia.com`.
-- Los enlaces de `11-web/correos.py` y de los 3 correos en MailerLite apuntan a
-  `https://estudioarmonia.com`. El texto plano de los correos todavía dice la dirección vieja:
-  MailerLite no deja editarlo hasta que el remitente esté verificado.
+- Los enlaces de `11-web/correos.py` y de los 3 correos en MailerLite (HTML y texto plano)
+  apuntan a `https://estudioarmonia.com`.
