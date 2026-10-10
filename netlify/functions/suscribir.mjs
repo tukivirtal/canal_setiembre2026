@@ -1,5 +1,5 @@
 // Guarda el correo del regalo en MailerLite, en el grupo «Rin · Regalo 3 noches».
-// La clave de la API vive en Netlify (variable MAILERLITE_TOKEN), nunca en el repositorio.
+// La clave de la API vive en Netlify (variable Web_Estudio_Armonia), nunca en el repositorio.
 const GRUPO = '200892866020509036';
 const CORREO = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 const ORIGENES = /^https:\/\/((www\.)?estudioarmonia\.com|([a-z0-9-]+--)?estudioarmonia\.netlify\.app)$/;
@@ -17,7 +17,7 @@ export default async (req) => {
   if (datos.sitio_web) return respuesta({ ok: true });
   const correo = String(datos.correo || '').trim().toLowerCase();
   if (correo.length > 254 || !CORREO.test(correo)) return respuesta({ ok: false, error: 'correo' }, 400);
-  const token = process.env.MAILERLITE_TOKEN;
+  const token = process.env.Web_Estudio_Armonia || process.env.MAILERLITE_TOKEN;
   if (!token) return respuesta({ ok: false, error: 'configuracion' }, 500);
   const r = await fetch('https://connect.mailerlite.com/api/subscribers', {
     method: 'POST',

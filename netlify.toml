@@ -6,6 +6,7 @@
   ignore = "test \"$CACHED_COMMIT_REF\" != \"$COMMIT_REF\" && git diff --quiet \"$CACHED_COMMIT_REF\" \"$COMMIT_REF\" -- web/ netlify.toml netlify/"
 
 # La función que guarda los correos del regalo en MailerLite (/api/suscribir).
-# Necesita la variable MAILERLITE_TOKEN en Project configuration → Environment variables.
+# Necesita la variable Web_Estudio_Armonia (la clave de la API de MailerLite) en
+# Project configuration → Environment variables.
 [functions]
   directory = "netlify/functions"
