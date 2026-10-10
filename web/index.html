@@ -30,10 +30,11 @@
     <h1>¿Te acuestas y la cabeza no para?</h1>
     <p class="entrada">Tres pausas de 12 minutos para soltar el día: el trabajo, lo de mañana y las vueltas. Sin voces y sin tener que saber meditar.</p>
 
-    <form class="formulario" data-regalo novalidate>
+    <form class="formulario" data-regalo action="/tus-noches/" method="get" novalidate>
       <div class="fila">
         <label class="oculto" for="correo-1">Tu correo</label>
-        <input id="correo-1" type="email" name="email" placeholder="Tu correo" autocomplete="email" inputmode="email" required>
+        <input id="correo-1" type="email" placeholder="Tu correo" autocomplete="email" inputmode="email" required>
+        <input class="oculto" type="text" name="sitio_web" tabindex="-1" autocomplete="off" aria-hidden="true">
         <button class="boton" type="submit">Quiero mis 3 noches</button>
       </div>
       <p class="error" role="alert"></p>
@@ -87,10 +88,11 @@
 
   <section class="panel centro">
     <h2>Empieza esta noche</h2>
-    <form class="formulario" data-regalo novalidate>
+    <form class="formulario" data-regalo action="/tus-noches/" method="get" novalidate>
       <div class="fila">
         <label class="oculto" for="correo-2">Tu correo</label>
-        <input id="correo-2" type="email" name="email" placeholder="Tu correo" autocomplete="email" inputmode="email" required>
+        <input id="correo-2" type="email" placeholder="Tu correo" autocomplete="email" inputmode="email" required>
+        <input class="oculto" type="text" name="sitio_web" tabindex="-1" autocomplete="off" aria-hidden="true">
         <button class="boton" type="submit">Quiero mis 3 noches</button>
       </div>
       <p class="error" role="alert"></p>

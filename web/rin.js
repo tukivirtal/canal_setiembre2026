@@ -1,6 +1,6 @@
 /* Rin · formulario del regalo, muestra de audio y página de las noches.
-   El formulario manda el correo a MailerLite y abre las noches enseguida: la persona
-   recibe el regalo aunque MailerLite tarde o falle. */
+   El formulario guarda el correo en MailerLite (por la función /api/suscribir de Netlify) y
+   abre las noches enseguida: la persona recibe el regalo aunque el guardado tarde o falle. */
 var RIN = {
   mailerlite: { cuenta: '1921447', formulario: '200892869569939404' },
   noches: '/tus-noches/'
@@ -9,17 +9,27 @@ var RIN = {
 (function () {
   var CORREO = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
-  function suscribir(correo) {
+  // Respaldo: el formulario integrado de MailerLite, si la función no responde bien.
+  function respaldo(correo) {
     var url = 'https://assets.mailerlite.com/jsonp/' + RIN.mailerlite.cuenta + '/forms/' +
       RIN.mailerlite.formulario + '/subscribe';
     var datos = new FormData();
     datos.append('fields[email]', correo);
     datos.append('ml-submit', '1');
     datos.append('anticsrf', 'true');
-    // sendBeacon sigue aunque la página cambie; si no está, fetch sin esperar respuesta.
-    if (navigator.sendBeacon && navigator.sendBeacon(url, datos)) return Promise.resolve();
-    var envio = fetch(url, { method: 'POST', body: datos, mode: 'no-cors', keepalive: true }).catch(function () {});
-    return Promise.race([envio, new Promise(function (r) { setTimeout(r, 2500); })]);
+    if (navigator.sendBeacon) navigator.sendBeacon(url, datos);
+  }
+
+  function suscribir(correo, trampa) {
+    var guardado = fetch('/api/suscribir', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ correo: correo, sitio_web: trampa }),
+      keepalive: true
+    }).then(function (r) { return r.json(); }).then(function (d) {
+      if (!d || !d.ok) throw new Error('sin guardar');
+    }).catch(function () { respaldo(correo); });
+    return Promise.race([guardado, new Promise(function (r) { setTimeout(r, 3500); })]);
   }
 
   document.querySelectorAll('form[data-regalo]').forEach(function (f) {
@@ -37,7 +47,8 @@ var RIN = {
       error.textContent = '';
       boton.disabled = true;
       boton.textContent = 'Abriendo tus noches…';
-      suscribir(correo).then(function () {
+      var trampa = (f.querySelector('input[name=sitio_web]') || {}).value || '';
+      suscribir(correo, trampa).then(function () {
         setTimeout(function () { location.href = RIN.noches + '?bienvenida=1'; }, 250);
       });
     });
