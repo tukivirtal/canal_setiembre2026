@@ -695,7 +695,83 @@ TEXTOS_HIST_FUTURO = [
 ]
 TEXTO_HIST_FUTURO = "Lo de mañana, mañana 🌙 Marco Aurelio"
 
+# 10/10: dos TikToks y dos historias. Desde estos, cada pieza tiene su propia versión del
+# fondo (tono, espejo, acercamiento y punto de arranque del bucle) y no lleva la marca «RIN»
+# arriba: TikTok restringió «mañana» por «contenido no original» (el mismo bucle en varios
+# videos y una marca que puede leerse como logo).
+TEXTOS_CANSADA = [
+    (0.0, 5.0, {'tipo': 'gancho', 'titulo': '¿El cuerpo está cansado y la cabeza sigue despierta?',
+                'sub': '60 segundos para que la cabeza también descanse.'}),
+    (6.0, 13.0, {'titulo': 'Apoya la espalda. Deja caer el peso.'}),
+    (14.0, 21.0, {'titulo': 'Exhala por la boca, despacio.'}),
+    (22.0, 30.0, {'titulo': 'Afloja la frente y los ojos.'}),
+    (31.0, 39.0, {'titulo': 'Abre las manos.'}),
+    (40.0, 48.0, {'titulo': 'El día ya terminó. No tienes que resolverlo hoy.'}),
+    (49.0, 55.0, {'titulo': 'Deja que el sonido haga el resto.'}),
+    (55.5, 60.0, {'tipo': 'fin', 'titulo': 'Guárdalo para esta noche',
+                  'sub': 'Rin · sonido en 417\u00a0Hz, compuesto desde cero.'}),
+]
+TEXTO_CANSADA = """¿El cuerpo cansado y la cabeza despierta? 🌙
+El día ya terminó. No tienes que resolverlo hoy.
+Sonido suave en 417 Hz, compuesto desde cero por Rin. Más pausas en el perfil.
+Guárdalo para esta noche.
+
+#estres #calma #noche #417hz #descanso"""
+
+TEXTOS_REPITE = [
+    (0.0, 6.0, {'tipo': 'gancho', 'titulo': '¿Sigues repitiendo en tu cabeza lo que te dijeron hoy?',
+                'sub': '3 minutos para soltarlo.'}),
+    (8.0, 26.0, {'titulo': 'Nota la frase que vuelve. No le respondas.'}),
+    (30.0, 50.0, {'titulo': 'Cuando suene, imagina que la escribes en un papel.'}),
+    (54.0, 74.0, {'titulo': 'Dobla el papel. Exhala largo.'}),
+    (78.0, 98.0, {'titulo': 'Déjalo a un lado. No tienes que resolverlo ahora.'}),
+    (102.0, 122.0, {'titulo': 'Si vuelve, lo doblas otra vez.'}),
+    (126.0, 146.0, {'titulo': 'Afloja las manos.'}),
+    (150.0, 168.0, {'titulo': 'Lo que te dijeron ya pasó. Ahora solo estás tú y el sonido.'}),
+    (170.0, 180.0, {'tipo': 'fin', 'titulo': 'Mándaselo a quien también le da vueltas a todo',
+                    'sub': 'Rin · sonido en 432\u00a0Hz, compuesto desde cero.'}),
+]
+TEXTO_REPITE = """¿Sigues repitiendo en tu cabeza lo que te dijeron hoy? 🌙
+Lo que te dijeron ya pasó. Ahora solo estás tú y el sonido.
+Sonido suave en 432 Hz, compuesto desde cero por Rin. Más pausas en el perfil.
+Mándaselo a quien también le da vueltas a todo 🤍
+
+#sobrepensar #calma #ansiedad #432hz #soltar"""
+
+# Epicteto, Enquiridión 1 (la primera línea del libro).
+TEXTOS_HIST_DEPENDE = [
+    (0.3, 5.2, {'tipo': 'gancho', 'titulo': '¿Le das vueltas a algo que no depende de ti?'}),
+    (5.4, 15.0, {'titulo': 'De las cosas, unas dependen de nosotros y otras no.',
+                 'fuente': 'EPICTETO · ENQUIRIDIÓN, 1'}),
+]
+TEXTO_HIST_DEPENDE = "Lo que no depende de ti, suéltalo 🔔 Epicteto"
+
+# Marco Aurelio, Meditaciones 4.3, abreviada (traducción propia): con la frase entera la
+# fuente caía sobre el mandala.
+TEXTOS_HIST_REFUGIO = [
+    (0.3, 5.2, {'tipo': 'gancho', 'titulo': '¿Sientes que necesitas irte lejos para descansar?'}),
+    (5.4, 15.0, {'titulo': 'No hay retiro más tranquilo que tu propia alma.',
+                 'fuente': 'MARCO AURELIO · MEDITACIONES, 4.3'}),
+]
+TEXTO_HIST_REFUGIO = "El descanso empieza adentro 🌙 Marco Aurelio"
+
 PIEZAS = {
+    'cansada': dict(bucle='vertical-delta.mp4', audio='tiktok-cansada/cansada-master.wav', T=60,
+                    textos=TEXTOS_CANSADA, texto=TEXTO_CANSADA, out='tiktok-cansada',
+                    nombre='cuerpo-cansado-tiktok.mp4', kbps=1600, sin_marca=True,
+                    variar=dict(tono=35, zoom=1.08, espejo=True, desde=7)),
+    'repite': dict(bucle='vertical-lluvia.mp4', audio='tiktok-repite/repite-master.wav', T=180,
+                   textos=TEXTOS_REPITE, texto=TEXTO_REPITE, out='tiktok-repite',
+                   nombre='lo-que-te-dijeron-tiktok.mp4', kbps=1050, sin_marca=True,
+                   variar=dict(tono=-20, zoom=1.12, desde=13)),
+    'historia-depende': dict(bucle='vertical-theta.mp4', audio='historia-depende/depende-historia.wav', T=15,
+                             textos=TEXTOS_HIST_DEPENDE, texto=TEXTO_HIST_DEPENDE, out='historia-depende',
+                             nombre='historia-epicteto-depende.mp4', kbps=4000, sin_marca=True,
+                             variar=dict(tono=25, zoom=1.06, espejo=True, desde=4)),
+    'historia-refugio': dict(bucle='vertical-mar-aves.mp4', audio='historia-refugio/refugio-historia.wav', T=15,
+                             textos=TEXTOS_HIST_REFUGIO, texto=TEXTO_HIST_REFUGIO, out='historia-refugio',
+                             nombre='historia-marco-aurelio-refugio.mp4', kbps=4000, sin_marca=True,
+                             variar=dict(tono=-15, zoom=1.1, desde=9)),
     'historia-vueltas': dict(bucle='vertical-delta.mp4', audio='historia-vueltas/vueltas-historia.wav', T=15,
                              textos=TEXTOS_HIST_VUELTAS, texto=TEXTO_HIST_VUELTAS, out='historia-vueltas',
                              nombre='historia-epicteto-vueltas.mp4', kbps=4000, marca_fija=True),
@@ -860,11 +936,19 @@ def main():
     with tempfile.TemporaryDirectory() as t:
         tmp = pathlib.Path(t)
         rutas, velo = pngs(tmp, TEXTOS, T)
-        args = ['ffmpeg', '-hide_banner', '-v', 'error', '-y', '-stream_loop', '-1', '-i', str(BUCLE),
-                '-i', str(audio), '-loop', '1', '-framerate', '24', '-t', str(T), '-i', str(velo)]
+        v = P.get('variar') or {}
+        args = ['ffmpeg', '-hide_banner', '-v', 'error', '-y', '-stream_loop', '-1'] + \
+            (['-ss', str(v['desde'])] if v.get('desde') else []) + ['-i', str(BUCLE),
+            '-i', str(audio), '-loop', '1', '-framerate', '24', '-t', str(T), '-i', str(velo)]
         for r in rutas:
             args += ['-loop', '1', '-framerate', '24', '-t', str(T), '-i', str(r)]
-        f = ['[0:v]fps=24,format=yuv420p[m0]', '[m0][2:v]overlay=0:0[m1]']
+        # Cada pieza con su propia versión del fondo, para que no sea «el mismo bucle» de otros videos.
+        fondo = '[0:v]fps=24' + (',hflip' if v.get('espejo') else '')
+        if v.get('zoom', 1) != 1:
+            fondo += f",scale=trunc(iw*{v['zoom']}/2)*2:trunc(ih*{v['zoom']}/2)*2,crop=1080:1920"
+        if v.get('tono'):
+            fondo += f",hue=h={v['tono']}"
+        f = [fondo + ',format=yuv420p[m0]', '[m0][2:v]overlay=0:0[m1]']
         cur = 'm1'
         for k, (a, b, q) in enumerate(TEXTOS):
             ent = 0.0 if a == 0 else 0.8
@@ -874,9 +958,12 @@ def main():
             f.append(f"[{cur}][x{k}]overlay=0:0:enable='between(t,{a},{b})'[m{k + 2}]")
             cur = f'm{k + 2}'
         marca = len(TEXTOS) + 3
-        # la marca «Rin» queda fija, salvo cuando el texto final ya la nombra
-        cuando = '1' if P.get('marca_fija') else f'lt(t,{TEXTOS[-1][0]})'
-        f.append(f"[{cur}][{marca}:v]overlay=0:0:enable='{cuando}'[v]")
+        if P.get('sin_marca'):
+            f.append(f'[{cur}]null[v]')
+        else:
+            # la marca «Rin» queda fija, salvo cuando el texto final ya la nombra
+            cuando = '1' if P.get('marca_fija') else f'lt(t,{TEXTOS[-1][0]})'
+            f.append(f"[{cur}][{marca}:v]overlay=0:0:enable='{cuando}'[v]")
         salida = OUT / P['nombre']
         comun = ['-filter_complex', ';'.join(f), '-map', '[v]', '-map', '1:a', '-t', str(T),
                  '-c:v', 'libx264', '-preset', 'medium', '-b:v', f"{P.get('kbps', 1600)}k", '-pix_fmt', 'yuv420p']
