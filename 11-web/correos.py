@@ -10,7 +10,7 @@ Uso: python3 11-web/correos.py [--sitio https://...]  → imprime un JSON con lo
 import argparse
 import json
 
-SITIO = 'https://rin-pausas.pages.dev'
+SITIO = 'https://rin-pausas.netlify.app'
 
 CORREOS = [
     dict(asunto='Tus 3 noches ya están aquí',

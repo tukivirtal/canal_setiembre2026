@@ -1,4 +1,4 @@
-# Cloudflare Pages (y Netlify) leen este archivo.
+# Netlify (y Cloudflare Pages) leen este archivo.
 /tus-noches/*
   X-Robots-Tag: noindex
 /fuentes/*

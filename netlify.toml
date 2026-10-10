@@ -1,0 +1,6 @@
+# La web del regalo de Rin. Netlify publica la carpeta web/ tal cual: no hay nada que compilar.
+[build]
+  publish = "web"
+  # Solo se republica cuando cambia la web, así el resto del repositorio (el canal) no gasta
+  # despliegues. En la primera publicación las dos referencias son iguales y se publica igual.
+  ignore = "test \"$CACHED_COMMIT_REF\" != \"$COMMIT_REF\" && git diff --quiet \"$CACHED_COMMIT_REF\" \"$COMMIT_REF\" -- web/ netlify.toml"

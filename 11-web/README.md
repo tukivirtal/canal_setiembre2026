@@ -28,32 +28,27 @@ TikTok (biografía) → landing → deja el correo → se abren las 3 noches al 
 El formulario manda el correo a MailerLite y abre las noches sin esperar la respuesta.
 Así la persona recibe el regalo aunque MailerLite tarde o falle.
 
-## Publicar: Cloudflare Pages, una sola vez
+## Publicar: Netlify, una sola vez
 
-**Por qué Cloudflare y no Netlify:** en el plan gratis nuevo de Netlify (300 créditos por
-mes), cada GB de descarga gasta créditos. Cuando se acaban, **se pausan todos los sitios de
-la cuenta**, y eso incluye Tu Catálogo Vende. Los audios pesan 11 MB cada uno. El plan gratis
-de Cloudflare Pages no cobra la descarga de archivos.
+Primero se probó Cloudflare Pages (no cobra la descarga), pero su panel empuja a crear
+Workers y no se encontró la opción de Pages. Se publica en Netlify, que Fátima ya usa para
+Tu Catálogo Vende. `netlify.toml` ya dice qué carpeta publicar y hace que solo se republique
+cuando cambia `web/`.
 
-1. Entrar a **dash.cloudflare.com** (la cuenta es gratis).
-2. **Workers y Pages → Crear → Pages → Conectar a Git** → autorizar GitHub → elegir
+1. En Netlify: **Add new site → Import an existing project → GitHub** →
    `tukivirtal/canal_setiembre2026`.
-3. Configurar:
+2. **Branch to deploy:** `claude/clever-gates-03t347`. El resto queda como viene
+   (`netlify.toml` pone `web` como carpeta de publicación).
+3. **Deploy.**
+4. **Site configuration → Change site name** → `rin-pausas`. La dirección queda
+   `https://rin-pausas.netlify.app`, que es la que llevan los correos.
 
-   | Campo | Valor |
-   |---|---|
-   | Nombre del proyecto | `rin-pausas` (queda `rin-pausas.pages.dev`) |
-   | Rama de producción | `claude/clever-gates-03t347` |
-   | Framework | Ninguno |
-   | Comando de compilación | *(vacío)* |
-   | **Directorio de salida** | **`web`** |
-
-4. **Guardar y desplegar.**
-5. En **Configuración → Compilaciones → Rutas de observación de compilación**, incluir
-   `web/*`. Así solo se republica cuando cambia la web, no con cada cambio del canal.
-
-Si el nombre `rin-pausas` está tomado, Cloudflare da otra dirección. En ese caso hay que
-cambiar los enlaces de los correos y la imagen para compartir.
+**El cuidado con los créditos.** Si la cuenta de Netlify está en el plan gratis nuevo (con
+créditos, cuentas creadas desde septiembre de 2025), cada GB de descarga y cada publicación
+gastan créditos, y cuando se acaban **se pausan todos los sitios de la cuenta**, también Tu
+Catálogo Vende. Se ve en **Team settings → Billing / Usage**. Las cuentas anteriores
+tienen 100 GB por mes y no pausan. Con el tráfico de las primeras semanas alcanza; si el
+consumo se acerca al tope, los audios (lo que más pesa) se mudan a otro lado.
 
 ## MailerLite: tres cosas en el panel
 
@@ -87,4 +82,4 @@ Recién ahí, el enlace va a la biografía.
 - `og:image` de `web/index.html` con la dirección completa (algunas apps no leen la
   relativa).
 - Si cambia la dirección: los enlaces de `11-web/correos.py` y de los 3 correos en
-  MailerLite.
+  MailerLite (hoy apuntan a `rin-pausas.netlify.app`).
