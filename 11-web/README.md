@@ -25,8 +25,12 @@ TikTok (biografía) → landing → deja el correo → se abren las 3 noches al 
                                         → correo 1 al instante, 2 y 3 con un día de espera
 ```
 
-El formulario manda el correo a MailerLite y abre las noches sin esperar la respuesta.
-Así la persona recibe el regalo aunque MailerLite tarde o falle.
+El correo se guarda con la función de Netlify `/api/suscribir` (`netlify/functions/suscribir.mjs`),
+que lo agrega al grupo con la API de MailerLite. La clave está en Netlify, en la variable
+`Web_Estudio_Armonia` (en MailerLite el token se llama «Rin»). La página abre las noches sin
+esperar la respuesta, así la persona recibe el regalo aunque el guardado tarde o falle; si la
+función no responde, prueba con el formulario integrado de MailerLite. Probado el 10/10: la
+alta de prueba entró al grupo.
 
 ## Dónde está publicada
 
