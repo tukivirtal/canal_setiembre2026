@@ -835,7 +835,21 @@ Mándaselo a alguien que hoy se sienta así.
 
 #soledad #calma #pazmental #reflexion #396hz"""
 
+# 11/10: historia cálida para el mismo día que «con quién estar»: de la soledad a pensar en
+# quien te hace bien. Marco Aurelio, Meditaciones 6.48, abreviada (traducción propia:
+# τῶν συμβιούντων σοι, «quienes viven contigo», como «quienes te rodean»).
+TEXTOS_HIST_ALGUIEN = [
+    (0.3, 5.2, {'tipo': 'gancho', 'titulo': 'Piensa en alguien que te hace bien.'}),
+    (5.4, 15.0, {'titulo': 'Cuando quieras alegrarte, piensa en lo bueno de quienes te rodean.',
+                 'fuente': 'MARCO AURELIO · MEDITACIONES, 6.48'}),
+]
+TEXTO_HIST_ALGUIEN = "Y si puedes, díselo hoy 🤍 Marco Aurelio"
+
 PIEZAS = {
+    'historia-alguien': dict(bucle='vertical-zen-t35.mp4', audio='historia-alguien/alguien-historia.wav', T=15,
+                             textos=TEXTOS_HIST_ALGUIEN, texto=TEXTO_HIST_ALGUIEN, out='historia-alguien',
+                             nombre='historia-marco-aurelio-alegrarte.mp4', kbps=4000, sin_marca=True,
+                             variar=dict(tono=-12, zoom=1.15, desde=25)),
     'soledad': dict(bucle='vertical-zen-t165.mp4', audio='tiktok-soledad/soledad-master.wav', T=60,
                     textos=TEXTOS_SOLEDAD, texto=TEXTO_SOLEDAD, out='tiktok-soledad',
                     nombre='con-quien-estar-tiktok.mp4', kbps=1600, sin_marca=True,
