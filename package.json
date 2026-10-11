@@ -1,0 +1,8 @@
+{
+  "name": "estudioarmonia-web",
+  "private": true,
+  "description": "Dependencias de las funciones de Netlify de la web del regalo (netlify/functions): el almacén del embudo.",
+  "dependencies": {
+    "@netlify/blobs": "10.7.13"
+  }
+}

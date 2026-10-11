@@ -86,6 +86,34 @@ pasa a otra plataforma o se usa la planilla.
 
 Recién ahí, el enlace va a la biografía.
 
+## El embudo: qué pasa en la página
+
+Desde el 11/10 la web mide el camino completo, sin cookies ni datos personales (no guarda la IP
+ni el correo; la «sesión» es un número al azar que vive mientras la pestaña está abierta).
+
+| Qué | Dónde |
+|---|---|
+| La página manda cada paso a `/api/evento` (`netlify/functions/evento.mjs`) | `web/rin.js` |
+| La función del correo anota si se guardó o falló, y por qué | `netlify/functions/suscribir.mjs` |
+| Todo se guarda en Netlify Blobs, almacén `embudo`, una clave por evento | `netlify/lib/embudo.mjs` |
+| El tablero | `https://estudioarmonia.com/api/embudo?clave=…` (`netlify/functions/tablero.mjs`) |
+
+Lo que muestra el tablero (hoy, 7 o 30 días, en hora de Argentina): cuántas personas llegaron,
+tocaron el campo del correo, tocaron el botón, quedaron guardadas, abrieron las noches y
+pusieron una; cuánto se quedaron y cuánto bajaron los que se fueron sin anotarse; de dónde
+llegan (TikTok, promoción, Instagram…), países, dispositivos y días; las noches escuchadas hasta
+la mitad y hasta el final, la muestra, las descargas, las veces que compartieron, y los
+problemas (correo mal escrito, fallos al guardar, robots).
+
+- **La clave** es la variable `EMBUDO_CLAVE` de Netlify (Project configuration → Environment
+  variables). Nunca va en el repositorio, que es público. Después de crearla o cambiarla hay
+  que publicar de nuevo (Deploys → Trigger deploy).
+- **Para separar una promoción**, en la dirección del sitio de la promoción va
+  `https://estudioarmonia.com/?o=promo` (o `?o=promo-noche1`). Sin eso, la visita queda como
+  «TikTok» si viene de la app, o «TikTok (promoción)» si el anuncio agrega `ttclid`.
+- **El costo:** cada paso es una llamada a una función de Netlify. Con el tráfico de ahora es
+  poco, pero conviene mirar el consumo de créditos la primera semana.
+
 ## Hecho con la dirección definitiva
 
 - `og:image`, `og:url` y `canonical` de `web/index.html` con `https://estudioarmonia.com`.
