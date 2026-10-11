@@ -809,7 +809,37 @@ Sonido en 417 Hz, compuesto desde cero por Rin.
 
 #insomnio #sobrepensar #noche #calma #417hz"""
 
+# 11/10: 60 s sin promoción, para el domingo (sin nombrarlo): la soledad de cuando todos
+# parecen tener con quién estar. Epicteto, Disertaciones III, 13.1 (traducción propia del
+# griego): «no por estar solo uno está desamparado (ἔρημος), ni deja de estarlo por estar
+# entre muchos». Cierra pidiendo que lo manden: compartir es la forma de no estar solo.
+TEXTOS_SOLEDAD = [
+    (0.0, 5.0, {'tipo': 'gancho', 'titulo': '¿Sientes que todos tienen con quién estar, menos tú?',
+                'sub': '60 segundos para que pese un poco menos.'}),
+    (6.0, 13.0, {'titulo': 'Lo que ves en las historias de los demás es solo un pedazo.'}),
+    (14.0, 21.0, {'titulo': 'Pon una mano en el pecho. Siente cómo sube y baja.'}),
+    (22.0, 30.0, {'titulo': 'Exhala despacio, más largo de lo que inhalas.'}),
+    (31.0, 39.0, {'titulo': 'Sentirte así no dice nada malo de ti.'}),
+    (40.0, 48.0, {'titulo': 'No por estar solo uno está desamparado, ni deja de estarlo por estar entre muchos.',
+                  'fuente': 'EPICTETO · DISERTACIONES III, 13'}),
+    (49.0, 55.0, {'titulo': 'Si puedes, escríbele a alguien. Un «me acordé de ti» alcanza.'}),
+    (55.5, 60.0, {'tipo': 'fin', 'titulo': 'Mándaselo a alguien que hoy se sienta así',
+                  'sub': 'Rin · sonido en 396\u00a0Hz, compuesto desde cero.'}),
+]
+TEXTO_SOLEDAD = """¿Sientes que todos tienen con quién estar, menos tú? 🤍
+Lo que ves en las historias de los demás es solo un pedazo. Sentirte así no dice nada malo de ti.
+«No por estar solo uno está desamparado.» Epicteto
+Sonido suave en 396 Hz, compuesto desde cero por Rin.
+Si hace tiempo que pesa, hablarlo con alguien de confianza o con un profesional ayuda.
+Mándaselo a alguien que hoy se sienta así.
+
+#soledad #calma #pazmental #reflexion #396hz"""
+
 PIEZAS = {
+    'soledad': dict(bucle='vertical-zen-t165.mp4', audio='tiktok-soledad/soledad-master.wav', T=60,
+                    textos=TEXTOS_SOLEDAD, texto=TEXTO_SOLEDAD, out='tiktok-soledad',
+                    nombre='con-quien-estar-tiktok.mp4', kbps=1600, sin_marca=True,
+                    variar=dict(tono=15, zoom=1.09, espejo=True, desde=9)),
     'regalo': dict(bucle='vertical-lluvia.mp4', audio='tiktok-regalo/regalo-master.wav', T=15,
                    textos=TEXTOS_REGALO, texto=TEXTO_REGALO, out='tiktok-regalo',
                    nombre='regalo-3-noches-tiktok.mp4', kbps=4000, sin_marca=True,
