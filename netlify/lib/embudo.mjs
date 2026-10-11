@@ -282,8 +282,9 @@ export async function manejarEmbudo(req, store, claveEsperada) {
   const url = new URL(req.url);
   const dada = url.searchParams.get('clave') || '';
   if (!claveEsperada) {
-    return html(503, aviso('Falta la variable EMBUDO_CLAVE en Netlify (Project configuration → Environment variables). ' +
-      'Después de crearla, publica de nuevo el sitio (Deploys → Trigger deploy).'));
+    return html(503, aviso('El tablero todavía no ve la variable EMBUDO_CLAVE. Si ya la creaste en Netlify ' +
+      '(Project configuration → Environment variables), falta publicar de nuevo el sitio: ' +
+      'Project overview → Deploys → Trigger deploy → Deploy project.'));
   }
   if (!iguales(dada, claveEsperada)) return html(403, aviso('La clave no es correcta.'));
   const dias = Math.min(Math.max(parseInt(url.searchParams.get('dias'), 10) || 7, 1), 31);
