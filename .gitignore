@@ -23,3 +23,6 @@ produccion/
 # La web del regalo publica sus audios desde el repositorio (Cloudflare Pages): esos sí van.
 !web/audio/
 !web/audio/*.mp3
+
+# Dependencias de las funciones de Netlify (se instalan solas al publicar).
+node_modules/
