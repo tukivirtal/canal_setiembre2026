@@ -917,7 +917,21 @@ Sonido en 396 Hz, compuesto desde cero por Rin.
 
 #dinero #estres #insomnio #calma #396hz"""
 
+# 12/10: historia para la noche de «¿Te acuestas haciendo cuentas?». Marco Aurelio,
+# Meditaciones VIII 36 (traducción propia, abreviada, del griego: «que no te confunda la imagen
+# de toda tu vida… pregúntate en cada cosa presente: ¿qué hay aquí de insoportable?»).
+TEXTOS_HIST_FIN_DE_MES = [
+    (0.3, 5.2, {'tipo': 'gancho', 'titulo': 'Para cuando la cabeza ya está en fin de mes.'}),
+    (5.4, 15.0, {'titulo': 'No te abrumes con toda tu vida de una vez. Pregúntate: ahora, ¿qué hay de insoportable?',
+                 'fuente': 'MARCO AURELIO · MEDITACIONES, 8.36'}),
+]
+TEXTO_HIST_FIN_DE_MES = "No todo el mes de una vez 🌙 Marco Aurelio"
+
 PIEZAS = {
+    'historia-fin-de-mes': dict(bucle='vertical-lluvia.mp4', audio='historia-fin-de-mes/fin-de-mes-historia.wav', T=15,
+                                textos=TEXTOS_HIST_FIN_DE_MES, texto=TEXTO_HIST_FIN_DE_MES, out='historia-fin-de-mes',
+                                nombre='historia-marco-aurelio-fin-de-mes.mp4', kbps=4000, sin_marca=True,
+                                variar=dict(zoom=1.15, espejo=True, desde=20)),
     'cuentas': dict(bucle='vertical-lluvia.mp4', audio='tiktok-cuentas/cuentas-master.wav', T=60,
                     textos=TEXTOS_CUENTAS, texto=TEXTO_CUENTAS, out='tiktok-cuentas',
                     nombre='haciendo-cuentas-tiktok.mp4', kbps=1600, sin_marca=True,
