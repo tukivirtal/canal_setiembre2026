@@ -846,17 +846,19 @@ TEXTOS_HIST_ALGUIEN = [
 TEXTO_HIST_ALGUIEN = "Y si puedes, díselo hoy 🤍 Marco Aurelio"
 
 # 11/10 (noche): el video para promocionar a las 22 (Uruguay), con «visitas al sitio web» y la
-# dirección https://estudioarmonia.com/?o=promo. Los primeros 2,5 s van sin texto: la portada
-# queda limpia para el título a mano de TikTok. Ataca el dolor (la cabeza en el trabajo), guía
+# dirección https://estudioarmonia.com/?o=promo. Arranca con una pregunta corta, de dos líneas
+# arriba: el título a mano de TikTok (el marco rojo, que solo se ve en el perfil) necesita el
+# medio libre, y en el feed la pregunta es lo primero que se lee. Ataca el dolor, guía
 # la noche 1 del regalo y recién al final invita a las otras dos, con las tarjetas.
 TEXTOS_PROMO_NOCHE1 = [
-    (2.5, 10.0, {'titulo': '¿Te acostaste y la cabeza sigue en el trabajo?'}),
-    (11.0, 18.0, {'titulo': 'Di en voz baja: «Por hoy, terminé».'}),
-    (19.0, 26.0, {'titulo': 'Cada vez que suene, exhala largo.'}),
-    (27.0, 34.0, {'titulo': 'Afloja la frente y la mandíbula.'}),
-    (35.0, 42.0, {'titulo': 'Suelta los hombros. Abre las manos.'}),
-    (43.0, 50.0, {'titulo': 'Lo pendiente puede esperar a mañana.'}),
-    (51.0, 55.4, {'titulo': 'Esta fue la noche\u00a01. Hay dos más.'}),
+    (0.0, 7.0, {'tipo': 'gancho', 'titulo': '¿La cabeza sigue en el trabajo?',
+                'sub': '60 segundos para cerrar el día.'}),
+    (8.0, 15.5, {'titulo': 'Di en voz baja: «Por hoy, terminé».'}),
+    (16.5, 24.0, {'titulo': 'Cada vez que suene, exhala largo.'}),
+    (25.0, 32.5, {'titulo': 'Afloja la frente y la mandíbula.'}),
+    (33.5, 41.0, {'titulo': 'Suelta los hombros. Abre las manos.'}),
+    (42.0, 49.5, {'titulo': 'Lo pendiente puede esperar a mañana.'}),
+    (50.5, 55.4, {'titulo': 'Esta fue la noche\u00a01. Hay dos más.'}),
     (55.5, 61.2, {'tipo': 'fin', 'titulo': 'Te regalo las 3\u00a0noches completas',
                   'sub': 'Con su audio de 12 minutos.\nGratis, en el enlace.', 'tarjetas': '1'}),
 ]
