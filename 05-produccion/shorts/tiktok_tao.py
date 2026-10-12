@@ -845,7 +845,33 @@ TEXTOS_HIST_ALGUIEN = [
 ]
 TEXTO_HIST_ALGUIEN = "Y si puedes, díselo hoy 🤍 Marco Aurelio"
 
+# 11/10 (noche): el video para promocionar a las 22 (Uruguay), con «visitas al sitio web» y la
+# dirección https://estudioarmonia.com/?o=promo. Los primeros 2,5 s van sin texto: la portada
+# queda limpia para el título a mano de TikTok. Ataca el dolor (la cabeza en el trabajo), guía
+# la noche 1 del regalo y recién al final invita a las otras dos, con las tarjetas.
+TEXTOS_PROMO_NOCHE1 = [
+    (2.5, 10.0, {'titulo': '¿Te acostaste y la cabeza sigue en el trabajo?'}),
+    (11.0, 18.0, {'titulo': 'Di en voz baja: «Por hoy, terminé».'}),
+    (19.0, 26.0, {'titulo': 'Cada vez que suene, exhala largo.'}),
+    (27.0, 34.0, {'titulo': 'Afloja la frente y la mandíbula.'}),
+    (35.0, 42.0, {'titulo': 'Suelta los hombros. Abre las manos.'}),
+    (43.0, 50.0, {'titulo': 'Lo pendiente puede esperar a mañana.'}),
+    (51.0, 55.4, {'titulo': 'Esta fue la noche\u00a01. Hay dos más.'}),
+    (55.5, 61.2, {'tipo': 'fin', 'titulo': 'Te regalo las 3\u00a0noches completas',
+                  'sub': 'Con su audio de 12 minutos.\nGratis, en el enlace.', 'tarjetas': '1'}),
+]
+TEXTO_PROMO_NOCHE1 = """¿Te acostaste y la cabeza sigue en el trabajo? 🌙
+Di en voz baja «Por hoy, terminé» y exhala largo cada vez que suene.
+Esta es la noche 1 de 3. Te regalo las tres completas, con su audio de 12 minutos: están en el enlace de mi perfil 🎁
+Sonido en 432 Hz, compuesto desde cero por Rin.
+
+#trabajo #estres #insomnio #calma #432hz"""
+
 PIEZAS = {
+    'promo-noche1': dict(bucle='vertical-zen-t35.mp4', audio='tiktok-promo-noche1/promo-noche1-master.wav', T=60,
+                         textos=TEXTOS_PROMO_NOCHE1, texto=TEXTO_PROMO_NOCHE1, out='tiktok-promo-noche1',
+                         nombre='por-hoy-termine-tiktok.mp4', kbps=1600, sin_marca=True,
+                         variar=dict(tono=-12, zoom=1.12, desde=15)),
     'historia-alguien': dict(bucle='vertical-zen-t35.mp4', audio='historia-alguien/alguien-historia.wav', T=15,
                              textos=TEXTOS_HIST_ALGUIEN, texto=TEXTO_HIST_ALGUIEN, out='historia-alguien',
                              nombre='historia-marco-aurelio-alegrarte.mp4', kbps=4000, sin_marca=True,
