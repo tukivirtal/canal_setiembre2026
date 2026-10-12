@@ -870,7 +870,33 @@ Sonido en 432 Hz, compuesto desde cero por Rin.
 
 #trabajo #estres #insomnio #calma #432hz"""
 
+# 11/10 (noche): dos historias para después de «por hoy, terminé», sin vender nada.
+# Una pregunta para que respondan (las respuestas llegan por mensaje) y Séneca, Sobre la ira
+# III 36: cada noche, con la luz apagada, repasaba su día, y «qué sueño sigue a ese repaso:
+# qué tranquilo, qué profundo, qué libre» (traducción propia del latín: «qualis ille somnus
+# post recognitionem sui sequitur, quam tranquillus, quam altus ac liber»).
+TEXTOS_HIST_LLEGASTE = [
+    (0.3, 5.2, {'tipo': 'gancho', 'titulo': '¿Cómo llegaste a esta noche?'}),
+    (5.4, 15.0, {'titulo': 'Respóndeme con una palabra.', 'sub': 'Las leo todas.'}),
+]
+TEXTO_HIST_LLEGASTE = "¿Cómo llegaste a esta noche? 🤍"
+
+TEXTOS_HIST_SENECA_NOCHE = [
+    (0.3, 5.2, {'tipo': 'gancho', 'titulo': 'Séneca tenía un ritual para cerrar el día.'}),
+    (5.4, 15.0, {'titulo': 'Qué sueño sigue a ese repaso: qué tranquilo, qué profundo, qué libre.',
+                 'fuente': 'SÉNECA · SOBRE LA IRA, III 36'}),
+]
+TEXTO_HIST_SENECA_NOCHE = "Cerrar el día también es un ritual 🌙 Séneca"
+
 PIEZAS = {
+    'historia-llegaste': dict(bucle='vertical-zen-t35.mp4', audio='historia-llegaste/llegaste-historia.wav', T=15,
+                              textos=TEXTOS_HIST_LLEGASTE, texto=TEXTO_HIST_LLEGASTE, out='historia-llegaste',
+                              nombre='historia-como-llegaste.mp4', kbps=4000, sin_marca=True,
+                              variar=dict(tono=20, zoom=1.18, espejo=True, desde=30)),
+    'historia-seneca-noche': dict(bucle='vertical-zen-t35.mp4', audio='historia-seneca-noche/seneca-noche-historia.wav', T=15,
+                                  textos=TEXTOS_HIST_SENECA_NOCHE, texto=TEXTO_HIST_SENECA_NOCHE, out='historia-seneca-noche',
+                                  nombre='historia-seneca-ritual.mp4', kbps=4000, sin_marca=True,
+                                  variar=dict(tono=-35, zoom=1.08, desde=40)),
     'promo-noche1': dict(bucle='vertical-zen-t35.mp4', audio='tiktok-promo-noche1/promo-noche1-master.wav', T=60,
                          textos=TEXTOS_PROMO_NOCHE1, texto=TEXTO_PROMO_NOCHE1, out='tiktok-promo-noche1',
                          nombre='por-hoy-termine-tiktok.mp4', kbps=1600, sin_marca=True,
