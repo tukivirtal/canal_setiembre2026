@@ -199,7 +199,8 @@ function tabla(grupos, fmt = nombre) {
 
 export function pagina(r, { dias, clave: c, desde, hasta }) {
   const llegaron = r.embudo[0][1];
-  const periodo = (d, t) => `<a${d === dias ? ' class="activo"' : ''} href="?clave=${encodeURIComponent(c)}&dias=${d}">${t}</a>`;
+  const periodo = (d, t) => `<form method="post" action="/api/embudo"><input type="hidden" name="clave" value="${esc(c)}">` +
+    `<input type="hidden" name="dias" value="${d}"><button${d === dias ? ' class="activo"' : ''}>${t}</button></form>`;
   return `<!doctype html><html lang="es"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex">
 <title>Embudo · Estudio Armonía</title><link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -210,8 +211,8 @@ export function pagina(r, { dias, clave: c, desde, hasta }) {
   h1{font:600 1.5rem Georgia,serif;color:var(--crema)}
   h2{font:600 .78rem system-ui;letter-spacing:.14em;text-transform:uppercase;color:var(--oro);margin:26px 0 10px}
   .periodo{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
-  .periodo a{color:var(--texto);text-decoration:none;border:1px solid var(--borde);border-radius:999px;padding:4px 12px;font-size:.9rem}
-  .periodo a.activo{background:var(--oro);color:#17130a;border-color:var(--oro);font-weight:700}
+  .periodo button{color:var(--texto);background:none;border:1px solid var(--borde);border-radius:999px;padding:5px 14px;font:inherit;font-size:.9rem;cursor:pointer}
+  .periodo button.activo{background:var(--oro);color:#17130a;border-color:var(--oro);font-weight:700}
   .suave{color:var(--suave);font-size:.85rem;margin-top:6px}
   .caja{border:1px solid var(--borde);border-radius:14px;padding:12px 14px;background:rgba(255,255,255,.02)}
   .fila{position:relative;display:flex;gap:10px;align-items:baseline;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.05)}
@@ -264,6 +265,35 @@ Descargaron audios: ${r.descargas}. Guardaron tarjetas: ${r.tarjetas}. Compartie
 </body></html>`;
 }
 
+function entrada(error = '') {
+  return `<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex"><title>Embudo · Estudio Armonía</title><link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#0b0c0f;color:#ece4d2;font:17px/1.5 system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;padding:48px 16px;max-width:420px;margin:0 auto}
+  h1{font:600 1.6rem Georgia,serif;color:#f6e7b8}
+  p{margin-top:8px;color:#a39b8b;font-size:.95rem}
+  label{display:block;margin-top:26px;font-weight:600}
+  input[type=password],input[type=text]{width:100%;margin-top:8px;min-height:52px;padding:0 14px;border-radius:12px;border:1px solid rgba(230,196,106,.4);
+    background:#050608;color:#f6e7b8;font:inherit}
+  .mostrar{display:flex;gap:8px;align-items:center;margin-top:10px;font-weight:400;font-size:.95rem;color:#a39b8b}
+  button{margin-top:20px;width:100%;min-height:52px;border:0;border-radius:12px;background:#e6c46a;color:#17130a;font:700 1.05rem system-ui;cursor:pointer}
+  .error{color:#f0a48c;margin-top:16px}
+</style></head><body>
+<h1>Embudo del regalo</h1>
+<p>Escribe la clave que guardaste en Netlify (la variable EMBUDO_CLAVE).</p>
+${error ? `<p class="error">${esc(error)}</p>` : ''}
+<form method="post" action="/api/embudo">
+  <input type="text" name="usuario" value="estudioarmonia" autocomplete="username" hidden>
+  <label for="clave">Clave</label>
+  <input id="clave" type="password" name="clave" autocomplete="current-password" autocapitalize="off" autocorrect="off" spellcheck="false" required autofocus>
+  <label class="mostrar"><input type="checkbox" onclick="document.getElementById('clave').type=this.checked?'text':'password'"> Mostrar la clave</label>
+  <input type="hidden" name="dias" value="7">
+  <button>Entrar</button>
+</form>
+</body></html>`;
+}
+
 function aviso(texto) {
   return `<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex"><title>Embudo</title></head>
@@ -275,19 +305,31 @@ const html = (estado, cuerpo) => new Response(cuerpo, {
   headers: { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'no-store', 'X-Robots-Tag': 'noindex' },
 });
 
-const iguales = (a, b) => timingSafeEqual(createHash('sha256').update(a).digest(), createHash('sha256').update(b).digest());
+// La clave se compara sin espacios de más y con los acentos normalizados (el celular puede escribirlos distinto).
+const normal = (t) => String(t ?? '').normalize('NFC').trim();
+const iguales = (a, b) => timingSafeEqual(createHash('sha256').update(normal(a)).digest(), createHash('sha256').update(normal(b)).digest());
 
-// GET /api/embudo?clave=…&dias=7. La clave vive en Netlify (variable EMBUDO_CLAVE), nunca en el repositorio.
+// /api/embudo: pide la clave en un formulario (también acepta ?clave=…). La clave vive en Netlify
+// (variable EMBUDO_CLAVE), nunca en el repositorio.
 export async function manejarEmbudo(req, store, claveEsperada) {
   const url = new URL(req.url);
-  const dada = url.searchParams.get('clave') || '';
+  let dada = url.searchParams.get('clave');
+  let diasPedidos = url.searchParams.get('dias');
+  if (req.method === 'POST') {
+    const f = new URLSearchParams(await req.text());
+    dada = f.get('clave');
+    diasPedidos = f.get('dias') ?? diasPedidos;
+  }
   if (!claveEsperada) {
     return html(503, aviso('El tablero todavía no ve la variable EMBUDO_CLAVE. Si ya la creaste en Netlify ' +
       '(Project configuration → Environment variables), falta publicar de nuevo el sitio: ' +
       'Project overview → Deploys → Trigger deploy → Deploy project.'));
   }
-  if (!iguales(dada, claveEsperada)) return html(403, aviso('La clave no es correcta.'));
-  const dias = Math.min(Math.max(parseInt(url.searchParams.get('dias'), 10) || 7, 1), 31);
+  if (!normal(dada)) return html(200, entrada());
+  // En la dirección, el «+» llega como espacio: se prueba también con «+».
+  const valida = iguales(dada, claveEsperada) || (req.method !== 'POST' && iguales(dada.replace(/ /g, '+'), claveEsperada));
+  if (!valida) return html(403, entrada('La clave no es correcta. Mayúsculas y minúsculas cuentan; prueba con «Mostrar la clave».'));
+  const dias = Math.min(Math.max(parseInt(diasPedidos, 10) || 7, 1), 31);
   const ahora = Date.now();
   const fechas = [...new Set(Array.from({ length: dias }, (_, i) => dia(new Date(ahora - i * 864e5))))];
   const claves = [];

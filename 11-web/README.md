@@ -96,7 +96,7 @@ ni el correo; la «sesión» es un número al azar que vive mientras la pestaña
 | La página manda cada paso a `/api/evento` (`netlify/functions/evento.mjs`) | `web/rin.js` |
 | La función del correo anota si se guardó o falló, y por qué | `netlify/functions/suscribir.mjs` |
 | Todo se guarda en Netlify Blobs, almacén `embudo`, una clave por evento | `netlify/lib/embudo.mjs` |
-| El tablero | `https://estudioarmonia.com/api/embudo?clave=…` (`netlify/functions/tablero.mjs`) |
+| El tablero | `https://estudioarmonia.com/api/embudo`: pide la clave en un campo (`netlify/functions/tablero.mjs`) |
 
 Lo que muestra el tablero (hoy, 7 o 30 días, en hora de Argentina): cuántas personas llegaron,
 tocaron el campo del correo, tocaron el botón, quedaron guardadas, abrieron las noches y
