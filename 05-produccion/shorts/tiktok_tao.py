@@ -888,7 +888,17 @@ TEXTOS_HIST_SENECA_NOCHE = [
 ]
 TEXTO_HIST_SENECA_NOCHE = "Cerrar el día también es un ritual 🌙 Séneca"
 
+# La misma pregunta para usar con el sticker de respuestas de TikTok: queda arriba los 15 s y el
+# medio libre para el sticker (la caja de texto, o la encuesta).
+TEXTOS_HIST_LLEGASTE_STICKER = [
+    (0.0, 16.2, {'tipo': 'gancho', 'titulo': '¿Cómo llegaste a esta noche?'}),
+]
+
 PIEZAS = {
+    'historia-llegaste-sticker': dict(bucle='vertical-zen-t35.mp4', audio='historia-llegaste/llegaste-historia.wav', T=15,
+                                      textos=TEXTOS_HIST_LLEGASTE_STICKER, texto=TEXTO_HIST_LLEGASTE, out='historia-llegaste',
+                                      nombre='historia-como-llegaste-sticker.mp4', kbps=4000, sin_marca=True,
+                                      variar=dict(tono=20, zoom=1.18, espejo=True, desde=30)),
     'historia-llegaste': dict(bucle='vertical-zen-t35.mp4', audio='historia-llegaste/llegaste-historia.wav', T=15,
                               textos=TEXTOS_HIST_LLEGASTE, texto=TEXTO_HIST_LLEGASTE, out='historia-llegaste',
                               nombre='historia-como-llegaste.mp4', kbps=4000, sin_marca=True,
