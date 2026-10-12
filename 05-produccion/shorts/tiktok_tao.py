@@ -848,11 +848,12 @@ TEXTO_HIST_ALGUIEN = "Y si puedes, díselo hoy 🤍 Marco Aurelio"
 # 11/10 (noche): el video para promocionar a las 22 (Uruguay), con «visitas al sitio web» y la
 # dirección https://estudioarmonia.com/?o=promo. Arranca con una pregunta corta, de dos líneas
 # arriba: el título a mano de TikTok (el marco rojo, que solo se ve en el perfil) necesita el
-# medio libre, y en el feed la pregunta es lo primero que se lee. Ataca el dolor, guía
+# medio libre, y en el feed la pregunta es lo primero que se lee. La pregunta no repite las del
+# trabajo que ya se usaron («¿Tu cabeza sigue en el trabajo?» y otras cuatro). Ataca el dolor, guía
 # la noche 1 del regalo y recién al final invita a las otras dos, con las tarjetas.
 TEXTOS_PROMO_NOCHE1 = [
-    (0.0, 7.0, {'tipo': 'gancho', 'titulo': '¿La cabeza sigue en el trabajo?',
-                'sub': '60 segundos para cerrar el día.'}),
+    (0.0, 7.0, {'tipo': 'gancho', 'titulo': '¿Apagaste la luz y sigues trabajando?',
+                'sub': 'Un minuto para cerrar el día.'}),
     (8.0, 15.5, {'titulo': 'Di en voz baja: «Por hoy, terminé».'}),
     (16.5, 24.0, {'titulo': 'Cada vez que suene, exhala largo.'}),
     (25.0, 32.5, {'titulo': 'Afloja la frente y la mandíbula.'}),
@@ -862,7 +863,7 @@ TEXTOS_PROMO_NOCHE1 = [
     (55.5, 61.2, {'tipo': 'fin', 'titulo': 'Te regalo las 3\u00a0noches completas',
                   'sub': 'Con su audio de 12 minutos.\nGratis, en el enlace.', 'tarjetas': '1'}),
 ]
-TEXTO_PROMO_NOCHE1 = """¿Te acostaste y la cabeza sigue en el trabajo? 🌙
+TEXTO_PROMO_NOCHE1 = """¿Apagaste la luz y sigues trabajando? 🌙
 Di en voz baja «Por hoy, terminé» y exhala largo cada vez que suene.
 Esta es la noche 1 de 3. Te regalo las tres completas, con su audio de 12 minutos: están en el enlace de mi perfil 🎁
 Sonido en 432 Hz, compuesto desde cero por Rin.
