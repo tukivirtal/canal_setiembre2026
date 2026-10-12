@@ -894,7 +894,34 @@ TEXTOS_HIST_LLEGASTE_STICKER = [
     (0.0, 16.2, {'tipo': 'gancho', 'titulo': '¿Cómo llegaste a esta noche?'}),
 ]
 
+# 12/10: para promocionar (México, Argentina y Chile, 35-54). El dolor sale de lo que más
+# preocupa en la región según Ipsos (marzo-septiembre de 2026): el trabajo y la plata. A la noche
+# eso es «hacer cuentas en la cama». Guía la noche 2 del regalo (la lista de la almohada) y
+# recién al final invita a las tres. Pregunta corta arriba, el medio libre para el título a mano.
+TEXTOS_CUENTAS = [
+    (0.0, 7.0, {'tipo': 'gancho', 'titulo': '¿Te acuestas haciendo cuentas?',
+                'sub': 'Un minuto para soltar los números.'}),
+    (8.0, 15.5, {'titulo': 'Anota en un papel lo que te preocupa pagar.'}),
+    (16.5, 24.0, {'titulo': 'Déjalo lejos de la cama. Ya está escrito.'}),
+    (25.0, 32.5, {'titulo': 'Cada vez que suene, exhala largo.'}),
+    (33.5, 41.0, {'titulo': 'Afloja la frente. Suelta los hombros.'}),
+    (42.0, 49.5, {'titulo': 'A esta hora no se resuelve nada.', 'sub': 'Mañana, con luz, se piensa mejor.'}),
+    (50.5, 55.4, {'titulo': 'Esta es la noche\u00a02 de tres.'}),
+    (55.5, 61.2, {'tipo': 'fin', 'titulo': 'Te regalo las 3\u00a0noches completas',
+                  'sub': 'Con su audio de 12 minutos.\nGratis, en el enlace.', 'tarjetas': '1'}),
+]
+TEXTO_CUENTAS = """¿Te acuestas haciendo cuentas? 🌙
+Anota en un papel lo que te preocupa pagar y déjalo lejos de la cama. A esta hora no se resuelve nada: mañana, con luz, se piensa mejor.
+Esta es la noche 2 de 3. Te regalo las tres completas, con su audio de 12 minutos: están en el enlace de mi perfil 🎁
+Sonido en 396 Hz, compuesto desde cero por Rin.
+
+#dinero #estres #insomnio #calma #396hz"""
+
 PIEZAS = {
+    'cuentas': dict(bucle='vertical-lluvia.mp4', audio='tiktok-cuentas/cuentas-master.wav', T=60,
+                    textos=TEXTOS_CUENTAS, texto=TEXTO_CUENTAS, out='tiktok-cuentas',
+                    nombre='haciendo-cuentas-tiktok.mp4', kbps=1600, sin_marca=True,
+                    variar=dict(tono=-15, zoom=1.1, desde=8)),
     'historia-llegaste-sticker': dict(bucle='vertical-zen-t35.mp4', audio='historia-llegaste/llegaste-historia.wav', T=15,
                                       textos=TEXTOS_HIST_LLEGASTE_STICKER, texto=TEXTO_HIST_LLEGASTE, out='historia-llegaste',
                                       nombre='historia-como-llegaste-sticker.mp4', kbps=4000, sin_marca=True,
