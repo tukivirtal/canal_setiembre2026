@@ -101,7 +101,7 @@ section p + p { margin-top: 14px; }
   background: linear-gradient(90deg, transparent, var(--oro), transparent);
 }
 
-/* Formulario: un solo campo y un solo botón, el único elemento dorado lleno de la página. */
+/* Formulario: un solo campo y un solo botón. */
 .formulario { margin-top: 26px; }
 .formulario .fila { display: flex; flex-direction: column; gap: 10px; }
 @media (min-width: 560px) { .formulario .fila { flex-direction: row; } }
@@ -136,22 +136,33 @@ section p + p { margin-top: 14px; }
 .prueba { margin-top: 20px; text-align: center; font-size: .95rem; color: var(--suave); }
 .prueba b { color: var(--crema); font-weight: 700; }
 
-/* Muestra de audio */
-.muestra { display: flex; align-items: center; gap: 16px; margin-top: 18px; }
-.reproducir {
-  flex: none;
-  width: 64px; height: 64px;
-  border-radius: 50%;
-  border: 1px solid var(--oro);
-  background: rgba(230, 196, 106, .1);
-  color: var(--oro);
-  cursor: pointer;
-  display: grid; place-items: center;
-}
-.reproducir svg { width: 24px; height: 24px; }
-.reproducir:focus-visible { outline: 3px solid var(--crema); outline-offset: 3px; }
-.barra { height: 3px; border-radius: 3px; background: rgba(246, 231, 184, .15); margin-top: 10px; overflow: hidden; }
+/* La noche 1 en la landing: un botón grande que la pone ahí mismo, sin dejar ningún dato */
+.escucha { margin-top: 26px; }
+.escucha .boton { width: 100%; display: inline-flex; align-items: center; justify-content: center; gap: 10px; }
+.boton svg { width: 22px; height: 22px; flex: none; }
+.progreso { display: none; align-items: center; gap: 12px; margin-top: 14px; }
+.escucha.empezo .progreso { display: flex; }
+.progreso .barra { flex: 1; }
+.reloj { font-size: .85rem; color: var(--suave); font-variant-numeric: tabular-nums; }
+.barra { height: 3px; border-radius: 3px; background: rgba(246, 231, 184, .15); overflow: hidden; }
 .barra i { display: block; height: 100%; width: 0; background: var(--oro); transition: width .25s linear; }
+.consejo { margin-top: 12px; font-size: .95rem; color: var(--suave); }
+.estado { font-size: .92rem; color: var(--crema); }
+.estado:empty { display: none; }
+section .escucha p + p { margin-top: 6px; }
+
+/* El pedido del correo, debajo de la noche 1: más chico que el título y sin competir con el botón */
+.pedido { font-size: clamp(1.6rem, 6.4vw, 2rem); }
+.boton-linea { background: transparent; color: var(--oro); border: 1px solid var(--oro); box-shadow: none; }
+.listo {
+  margin-top: 22px;
+  padding: 14px 18px;
+  border-radius: 14px;
+  border: 1px solid rgba(230, 196, 106, .35);
+  background: rgba(230, 196, 106, .08);
+  color: var(--crema);
+}
+.listo a { display: inline-block; margin-top: 6px; }
 
 /* Pasos numerados */
 .pasos { list-style: none; margin-top: 18px; counter-reset: paso; }

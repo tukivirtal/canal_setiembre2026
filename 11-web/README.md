@@ -21,10 +21,19 @@ más bajas que los TikToks, porque son para la cama.
 ## Cómo funciona
 
 ```
-TikTok (biografía) → landing → deja el correo → se abren las 3 noches al instante
-                                   └→ MailerLite: grupo «Rin · Regalo 3 noches»
-                                        → correo 1 al instante, 2 y 3 con un día de espera
+TikTok → landing → la noche 1 suena ahí mismo, sin dejar ningún dato
+                 → deja el correo → se abren las 3 noches al instante
+                   (si la noche 1 está sonando, no la corta: confirma ahí mismo)
+                       └→ MailerLite: grupo «Rin · Regalo 3 noches»
+                            → correo 1 al instante, 2 y 3 con un día de espera
 ```
+
+**Por qué la noche 1 va sin correo (14/10).** La promoción del 13/10 trajo 524 personas y
+ninguna dejó el correo. Las 10 que tocaron el campo fueron las mismas 10 que tocaron el
+botón sin un correo válido: la gente toca el botón, no el campo, y quiere el regalo ya. Ahora
+el botón grande pone la noche 1 y el correo es para recibir las 3 («¿Prefieres escucharla en
+la cama?»). Además, la página arregla sola errores de tipeo seguros (`.con`, `gmial.com`,
+espacios) y dice qué le falta al correo en vez de un error genérico.
 
 El correo se guarda con la función de Netlify `/api/suscribir` (`netlify/functions/suscribir.mjs`),
 que lo agrega al grupo con la API de MailerLite. La clave está en Netlify, en la variable
@@ -99,11 +108,14 @@ ni el correo; la «sesión» es un número al azar que vive mientras la pestaña
 | El tablero | `https://estudioarmonia.com/api/embudo`: pide la clave en un campo (`netlify/functions/tablero.mjs`) |
 
 Lo que muestra el tablero (hoy, 7 o 30 días, en hora de Argentina): cuántas personas llegaron,
-tocaron el campo del correo, tocaron el botón, quedaron guardadas, abrieron las noches y
-pusieron una; cuánto se quedaron y cuánto bajaron los que se fueron sin anotarse; de dónde
-llegan (TikTok, promoción, Instagram…), países, dispositivos y días; las noches escuchadas hasta
-la mitad y hasta el final, la muestra, las descargas, las veces que compartieron, y los
-problemas (correo mal escrito, fallos al guardar, robots).
+pusieron la noche 1 en la landing y la escucharon más de un minuto, tocaron el campo del
+correo (el foco que pone la página después de un error no cuenta), empezaron a escribirlo, lo
+mandaron bien escrito y quedaron guardadas; cuánto se quedaron y cuánto bajaron los que se
+fueron sin escuchar ni dejar el correo; de dónde llegan (TikTok, promoción, Instagram…),
+países, dispositivos, días y la hora del celular de cada persona (desde el 14/10); las noches
+escuchadas hasta la mitad y hasta el final, en la landing y en la página de las noches; las
+descargas, las veces que compartieron, y los problemas (qué le faltaba al correo mal escrito,
+fallos al guardar, robots).
 
 - **La clave** es la variable `EMBUDO_CLAVE` de Netlify (Project configuration → Environment
   variables). Nunca va en el repositorio, que es público. Después de crearla o cambiarla hay

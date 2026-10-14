@@ -1,9 +1,10 @@
 // El embudo de la web del regalo: qué pasa entre que alguien llega a la página y deja el correo.
 //
 // Cada evento se guarda en Netlify Blobs (almacén «embudo») como una clave que lleva todo en el
-// nombre:   día / evento / origen / país / dispositivo / sesión / detalle / azar
+// nombre:   día / evento / origen / país / dispositivo / sesión / detalle / hora y azar
 // Así dos visitas al mismo tiempo nunca pisan el mismo contador, y para sumar alcanza con listar
-// las claves de cada día, sin abrirlas.
+// las claves de cada día, sin abrirlas. La hora es la del celular de la persona («h19-…»); las
+// claves anteriores al 14/10 no la tienen.
 //
 // No se guarda la IP, ni el correo, ni cookies. La sesión es un número al azar que vive en la
 // pestaña (sessionStorage) y sirve para contar personas en vez de toques repetidos.
@@ -13,8 +14,10 @@ export const ALMACEN = 'embudo';
 export const ZONA = 'America/Argentina/Buenos_Aires';
 
 // Los que manda la página. «guardado», «fallo» y «trampa» solo los registra el servidor.
+// «muestra» y «muestra-fin» son de la landing anterior al 14/10 (la noche 1 ahora suena entera).
 export const EVENTOS_PAGINA = new Set([
-  'visita', 'campo', 'correo-mal', 'clic', 'visita-regalo', 'muestra', 'muestra-fin',
+  'visita', 'escucha', 'escucha-minuto', 'escucha-mitad', 'escucha-fin',
+  'campo', 'escribe', 'correo-mal', 'clic', 'visita-regalo', 'muestra', 'muestra-fin',
   'noche-1', 'noche-2', 'noche-3', 'mitad-1', 'mitad-2', 'mitad-3', 'fin-1', 'fin-2', 'fin-3',
   'descarga', 'tarjeta', 'compartir', 'salida',
 ]);
@@ -48,14 +51,16 @@ export function origenPorNavegador(ua = '') {
 
 export const pais = (context) => context?.geo?.country?.code || 'xx';
 
-export function clave({ evento, origen, pais: p, disp, sesion, detalle, fecha = new Date() }) {
+const horaValida = (h) => (Number.isInteger(h) && h >= 0 && h < 24 ? String(h).padStart(2, '0') : 'xx');
+
+export function clave({ evento, origen, pais: p, disp, sesion, detalle, hora, fecha = new Date() }) {
   return [dia(fecha), limpio(evento, 16), limpio(origen, 24), limpio(p, 3), limpio(disp, 8),
-    limpio(sesion, 16), limpio(detalle, 24), Math.random().toString(36).slice(2, 8)].join('/');
+    limpio(sesion, 16), limpio(detalle, 24), `h${horaValida(hora)}-${Math.random().toString(36).slice(2, 8)}`].join('/');
 }
 
 export function leer(k) {
-  const [d, evento, origen, p, disp, sesion, detalle] = k.split('/');
-  return { dia: d, evento, origen, pais: p, disp, sesion, detalle };
+  const [d, evento, origen, p, disp, sesion, detalle, azar = ''] = k.split('/');
+  return { dia: d, evento, origen, pais: p, disp, sesion, detalle, hora: (/^h(\d\d)-/.exec(azar) || [])[1] || 'xx' };
 }
 
 // Medir nunca puede romper el regalo: si falla, se anota en el registro y sigue.
@@ -83,13 +88,15 @@ export async function manejarEvento(req, context, store) {
   if (!d || !EVENTOS_PAGINA.has(d.e)) return new Response(null, { status: 400 });
   await registrar(store, {
     evento: d.e, origen: d.o || origenPorNavegador(ua), pais: pais(context),
-    disp: dispositivo(ua), sesion: d.s, detalle: d.x,
+    disp: dispositivo(ua), sesion: d.s, detalle: d.x, hora: d.h,
   });
   return new Response(null, { status: 204 });
 }
 
 // ── El tablero ─────────────────────────────────────────────────────────────────────────────
 
+const ERRORES = [['vacio', 'sin escribir nada'], ['telefono', 'un teléfono'], ['sin-arroba', 'sin la @'],
+  ['sin-punto', 'sin el final (.com)'], ['otro', 'otro error'], ['x', 'sin dato (antes del 14/10)']];
 const SEGUNDOS = [['s0', 'menos de 3 s'], ['s3', '3 a 10 s'], ['s10', '10 a 30 s'], ['s30', '30 s a 1,5 min'], ['s90', 'más de 1,5 min']];
 const BAJARON = [['p0', 'no bajaron'], ['p25', 'un cuarto'], ['p50', 'la mitad'], ['p75', 'tres cuartos'], ['p100', 'hasta el final']];
 
@@ -98,16 +105,17 @@ export function resumir(claves) {
   const sesiones = new Map();
   for (const e of eventos) {
     let s = sesiones.get(e.sesion);
-    if (!s) sesiones.set(e.sesion, (s = { eventos: new Set(), salidas: [] }));
+    if (!s) sesiones.set(e.sesion, (s = { eventos: new Set(), salidas: [], errores: new Set() }));
     s.eventos.add(e.evento);
-    // La sesión toma el origen, el país y el día de su primera visita a la landing.
-    if (e.evento === 'visita' && !s.origen) Object.assign(s, { origen: e.origen, pais: e.pais, disp: e.disp, dia: e.dia });
+    // La sesión toma el origen, el país, el día y la hora de su primera visita a la landing.
+    if (e.evento === 'visita' && !s.origen) Object.assign(s, { origen: e.origen, pais: e.pais, disp: e.disp, dia: e.dia, hora: e.hora });
     if (e.evento === 'salida') s.salidas.push(e.detalle);
+    if (e.evento === 'correo-mal') s.errores.add(e.detalle);
   }
   for (const [id, s] of sesiones) {
     if (!s.origen) {
       const primero = eventos.find((e) => e.sesion === id);
-      Object.assign(s, { origen: primero.origen, pais: primero.pais, disp: primero.disp, dia: primero.dia });
+      Object.assign(s, { origen: primero.origen, pais: primero.pais, disp: primero.disp, dia: primero.dia, hora: primero.hora });
     }
   }
   const lista = [...sesiones.values()];
@@ -118,17 +126,19 @@ export function resumir(claves) {
   const volvieron = new Set(regalo.filter((e) => e.detalle !== 'form').map((e) => e.sesion)).size;
   const pusieron = lista.filter((s) => ['noche-1', 'noche-2', 'noche-3'].some((n) => s.eventos.has(n))).length;
 
+  // Desde el 14/10 la noche 1 suena en la landing sin dejar el correo; el correo es para recibir las 3.
   const embudo = [
     ['Llegaron a la página', llegaron.length],
+    ['Pusieron la noche 1', con('escucha', llegaron)],
+    ['La escucharon más de 1 minuto', con('escucha-minuto', llegaron)],
     ['Tocaron el campo del correo', con('campo', llegaron)],
-    ['Tocaron «Quiero mis 3 noches»', con('clic', llegaron)],
+    ['Empezaron a escribirlo', con('escribe', llegaron)],
+    ['Lo mandaron bien escrito', con('clic', llegaron)],
     ['Su correo quedó guardado', con('guardado')],
-    ['Abrieron las noches', abrieron],
-    ['Pusieron una noche', pusieron],
   ];
 
-  // Los que se fueron sin tocar el botón: cuánto se quedaron y cuánto bajaron.
-  const seFueron = llegaron.filter((s) => !s.eventos.has('clic'));
+  // Los que se fueron sin escuchar ni dejar el correo: cuánto se quedaron y cuánto bajaron.
+  const seFueron = llegaron.filter((s) => !s.eventos.has('escucha') && !s.eventos.has('clic'));
   const tiempo = new Map(SEGUNDOS.map(([k]) => [k, 0]));
   const scroll = new Map(BAJARON.map(([k]) => [k, 0]));
   let sinDato = 0;
@@ -143,9 +153,9 @@ export function resumir(claves) {
   const agrupar = (campo) => {
     const m = new Map();
     for (const s of llegaron) {
-      const g = m.get(s[campo]) || { llegaron: 0, clic: 0, guardado: 0 };
+      const g = m.get(s[campo]) || { llegaron: 0, escucharon: 0, guardado: 0 };
       g.llegaron++;
-      if (s.eventos.has('clic')) g.clic++;
+      if (s.eventos.has('escucha')) g.escucharon++;
       if (s.eventos.has('guardado')) g.guardado++;
       m.set(s[campo], g);
     }
@@ -154,6 +164,9 @@ export function resumir(claves) {
 
   const cuenta = (ev) => eventos.filter((e) => e.evento === ev).length;
   const fallos = eventos.filter((e) => e.evento === 'fallo').map((e) => e.detalle);
+  // Qué tenía mal el correo, en personas (antes del 14/10 no se anotaba: «x»).
+  const tipos = new Map();
+  for (const s of lista) for (const t of s.errores) tipos.set(t, (tipos.get(t) || 0) + 1);
 
   return {
     embudo, sinDato, seFueron: seFueron.length,
@@ -161,10 +174,12 @@ export function resumir(claves) {
     scroll: BAJARON.map(([k, t]) => [t, scroll.get(k)]),
     origen: agrupar('origen'), pais: agrupar('pais'), disp: agrupar('disp'),
     porDia: agrupar('dia').sort((a, b) => (a[0] < b[0] ? 1 : -1)),
+    hora: agrupar('hora').sort((a, b) => a[0].localeCompare(b[0])),
+    landing: [con('escucha'), con('escucha-minuto'), con('escucha-mitad'), con('escucha-fin')],
     noches: [1, 2, 3].map((n) => [n, con(`noche-${n}`), con(`mitad-${n}`), con(`fin-${n}`)]),
-    muestra: [con('muestra'), con('muestra-fin')],
-    volvieron, descargas: cuenta('descarga'), tarjetas: cuenta('tarjeta'), compartir: con('compartir'),
-    correoMal: con('correo-mal'), fallos, trampas: cuenta('trampa'), eventos: eventos.length,
+    abrieron, pusieron, volvieron, descargas: cuenta('descarga'), tarjetas: cuenta('tarjeta'), compartir: con('compartir'),
+    correoMal: con('correo-mal'), errores: ERRORES.map(([k, t]) => [t, tipos.get(k) || 0]).filter(([, n]) => n),
+    fallos, trampas: cuenta('trampa'), eventos: eventos.length,
   };
 }
 
@@ -182,7 +197,12 @@ const PAISES = {
   gt: 'Guatemala', do: 'Rep. Dominicana', pa: 'Panamá', hn: 'Honduras', sv: 'El Salvador', ni: 'Nicaragua',
   pr: 'Puerto Rico', br: 'Brasil', xx: 'Sin dato',
 };
-const nombrePais = (k) => PAISES[k] || String(k).toUpperCase();
+const REGIONES = (() => { try { return new Intl.DisplayNames(['es'], { type: 'region' }); } catch { return null; } })();
+function nombrePais(k) {
+  if (PAISES[k]) return PAISES[k];
+  try { return REGIONES?.of(String(k).toUpperCase()) || String(k).toUpperCase(); } catch { return String(k).toUpperCase(); }
+}
+const nombreHora = (h) => (h === 'xx' ? 'Sin dato' : `${Number(h)} h`);
 const fechaCorta = (d) => d.split('-').reverse().join('/');
 
 function barras(filas, total) {
@@ -192,8 +212,8 @@ function barras(filas, total) {
 
 function tabla(grupos, fmt = nombre) {
   if (!grupos.length) return '<p class="nada">Todavía sin visitas.</p>';
-  return '<table><tr><th></th><th>Llegaron</th><th>Botón</th><th>Correo</th><th>%</th></tr>' +
-    grupos.map(([k, g]) => `<tr><td>${esc(fmt(k))}</td><td>${g.llegaron}</td><td>${g.clic}</td><td>${g.guardado}</td>` +
+  return '<table><tr><th></th><th>Llegaron</th><th>Escucharon</th><th>Correo</th><th>%</th></tr>' +
+    grupos.map(([k, g]) => `<tr><td>${esc(fmt(k))}</td><td>${g.llegaron}</td><td>${g.escucharon}</td><td>${g.guardado}</td>` +
       `<td>${pct(g.guardado, g.llegaron)}</td></tr>`).join('') + '</table>';
 }
 
@@ -233,7 +253,7 @@ export function pagina(r, { dias, clave: c, desde, hasta }) {
 <h2>El camino</h2>
 <div class="caja">${barras(r.embudo, llegaron)}</div>
 
-<h2>Los que se fueron sin tocar el botón (${r.seFueron})</h2>
+<h2>Los que se fueron sin escuchar ni dejar el correo (${r.seFueron})</h2>
 <div class="caja"><p class="suave" style="margin:0 0 4px">Cuánto se quedaron</p>${barras(r.tiempo, r.seFueron)}</div>
 <div class="caja" style="margin-top:10px"><p class="suave" style="margin:0 0 4px">Cuánto bajaron en la página</p>${barras(r.scroll, r.seFueron)}</div>
 ${r.sinDato ? `<p class="suave">${r.sinDato} sin dato de salida (la app cerró la página de golpe).</p>` : ''}
@@ -250,14 +270,20 @@ ${r.sinDato ? `<p class="suave">${r.sinDato} sin dato de salida (la app cerró l
 <h2>Por día</h2>
 <div class="caja">${tabla(r.porDia, fechaCorta)}</div>
 
+<h2>A qué hora llegan</h2>
+<div class="caja">${tabla(r.hora, nombreHora)}</div>
+<p class="suave">La hora del celular de cada persona (en México, tres horas menos que en Uruguay). Desde el 14/10.</p>
+
 <h2>Las noches</h2>
 <div class="caja"><table><tr><th></th><th>La pusieron</th><th>Pasaron la mitad</th><th>Hasta el final</th></tr>
+<tr><td>Noche 1, en la página principal</td><td>${r.landing[0]}</td><td>${r.landing[2]}</td><td>${r.landing[3]}</td></tr>
 ${r.noches.map(([n, a, b, c2]) => `<tr><td style="white-space:nowrap">Noche ${n}</td><td>${a}</td><td>${b}</td><td>${c2}</td></tr>`).join('')}</table>
-<p class="suave">Muestra de la landing: la escucharon ${r.muestra[0]}, entera ${r.muestra[1]}. Volvieron a las noches desde el correo: ${r.volvieron}.
-Descargaron audios: ${r.descargas}. Guardaron tarjetas: ${r.tarjetas}. Compartieron: ${r.compartir}.</p></div>
+<p class="suave">Las noches 1, 2 y 3 son las de la página «Tus 3 primeras noches». La abrieron al dejar el correo: ${r.abrieron}.
+Volvieron desde el correo: ${r.volvieron}. Pusieron alguna ahí: ${r.pusieron}. Descargaron audios: ${r.descargas}.
+Guardaron tarjetas: ${r.tarjetas}. Compartieron: ${r.compartir}.</p></div>
 
 <h2>Problemas</h2>
-<div class="caja"><p>Escribieron mal el correo: <b>${r.correoMal}</b></p>
+<div class="caja"><p>Mandaron el correo mal escrito: <b>${r.correoMal}</b>${r.errores.length ? ` <span class="suave">(${esc(r.errores.map(([t, n]) => `${t}: ${n}`).join(' · '))})</span>` : ''}</p>
 <p${r.fallos.length ? ' class="alerta"' : ''}>No se pudo guardar el correo: <b>${r.fallos.length}</b>${r.fallos.length ? ` (${esc([...new Set(r.fallos)].join(', '))})` : ''}</p>
 <p class="suave">Robots que cayeron en la trampa: ${r.trampas}. Eventos en el período: ${r.eventos}.</p></div>
 
