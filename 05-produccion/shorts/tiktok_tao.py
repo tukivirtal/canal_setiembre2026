@@ -927,7 +927,76 @@ TEXTOS_HIST_FIN_DE_MES = [
 ]
 TEXTO_HIST_FIN_DE_MES = "No todo el mes de una vez 🌙 Marco Aurelio"
 
+# 14/10: para que haya movimiento, sin promocionar nada. La culpa de parar, que todavía no se
+# había tocado: frases en las que alguien se reconoce. Séneca, Sobre la tranquilidad del ánimo
+# 17.5 (traducción propia del latín: «danda est animis remissio: meliores acrioresque requieti
+# surgent»). Cierra pidiendo que lo manden a alguien, que es lo que más lo mueve.
+TEXTOS_CULPA = [
+    (0.0, 5.0, {'tipo': 'gancho', 'titulo': '¿Te da culpa descansar?',
+                'sub': 'Un minuto que no tienes que ganarte.'}),
+    (6.0, 13.0, {'titulo': 'Te sientas un rato y aparece todo lo que falta hacer.'}),
+    (14.0, 21.0, {'titulo': 'Como si parar fuera perder el tiempo.'}),
+    (22.0, 30.0, {'titulo': 'Apoya la espalda. Cada vez que suene, suelta el aire despacio.'}),
+    (31.0, 39.0, {'titulo': 'Descansar no es dejar de cumplir. Es lo que te deja seguir.'}),
+    (40.0, 48.0, {'titulo': 'Hay que darle descanso al ánimo: descansado, se levanta mejor y con más fuerza.',
+                  'fuente': 'SÉNECA · DE LA TRANQUILIDAD, 17'}),
+    (49.0, 55.0, {'titulo': 'No tienes que ganarte el descanso.'}),
+    (55.5, 60.0, {'tipo': 'fin', 'titulo': 'Mándaselo a alguien que nunca se da un respiro',
+                  'sub': 'Rin · sonido en 396\u00a0Hz, compuesto desde cero.'}),
+]
+TEXTO_CULPA = """¿Te da culpa descansar? 🤍
+Te sientas un rato y aparece todo lo que falta hacer, como si parar fuera perder el tiempo. Descansar no es dejar de cumplir: es lo que te deja seguir.
+«Hay que darle descanso al ánimo: descansado, se levanta mejor y con más fuerza.» Séneca
+Sonido en 396 Hz, compuesto desde cero por Rin.
+Mándaselo a alguien que nunca se da un respiro.
+
+#descanso #autocuidado #calma #pazmental #396hz"""
+
+# 14/10: para promocionar esta noche, con la landing nueva (la noche 1 suena ahí mismo, sin dejar
+# el correo). Le habla a quien lo está viendo en la cama, guía un minuto con lo de la noche 3
+# (soltar el pensamiento con el aire) y recién al final invita a seguir con la noche 1 completa,
+# «sin registrarte», que es lo que la página cumple. Pregunta corta arriba, el medio libre.
+TEXTOS_CAMA = [
+    (0.0, 7.0, {'tipo': 'gancho', 'titulo': '¿Estás viendo esto en la cama?',
+                'sub': 'Un minuto antes de soltar el celular.'}),
+    (8.0, 15.5, {'titulo': 'Baja el brillo de la pantalla.'}),
+    (16.5, 24.0, {'titulo': 'Cada vez que suene, exhala largo.'}),
+    (25.0, 32.5, {'titulo': 'Deja que la almohada sostenga tu cabeza.'}),
+    (33.5, 41.0, {'titulo': 'Si llega un pensamiento, suéltalo con el aire.'}),
+    (42.0, 49.5, {'titulo': 'No tienes que dormirte ya.', 'sub': 'Solo seguir exhalando.'}),
+    (50.5, 55.4, {'titulo': '¿Quieres seguir 12\u00a0minutos más?'}),
+    (55.5, 61.2, {'tipo': 'fin', 'titulo': 'La noche\u00a01 completa está en mi perfil',
+                  'sub': 'Suena directo, sin registrarte.', 'tarjetas': '1'}),
+]
+TEXTO_CAMA = """¿Estás viendo esto en la cama? 🌙
+Baja el brillo, exhala largo cada vez que suene y deja que la almohada sostenga tu cabeza. No tienes que dormirte ya: solo seguir exhalando.
+Si quieres seguir, la noche 1 completa (12 minutos, sin voz) está en el enlace de mi perfil. Suena directo, sin registrarte 🎁
+Sonido en 432 Hz, compuesto desde cero por Rin.
+
+#insomnio #dormir #calma #relajacion #432hz"""
+
+# 14/10: historia del día en que la landing dejó de pedir el correo para la noche 1. Lo cuenta
+# sin vender; los tres textos caen con los tres golpes del sonido (0,3 · 5,3 · 10,2 s).
+TEXTOS_HIST_SIN_CORREO = [
+    (0.3, 5.2, {'tipo': 'gancho', 'titulo': 'Cambié algo para ti.'}),
+    (5.4, 10.1, {'titulo': 'La primera noche ya no te pide el correo.'}),
+    (10.3, 15.0, {'titulo': 'Suena directo en el enlace de mi perfil.', 'sub': 'Ponla esta noche, a volumen bajo.'}),
+]
+TEXTO_HIST_SIN_CORREO = "Para esta noche 🤍"
+
 PIEZAS = {
+    'culpa': dict(bucle='vertical-zen-t35.mp4', audio='tiktok-culpa/culpa-master.wav', T=60,
+                  textos=TEXTOS_CULPA, texto=TEXTO_CULPA, out='tiktok-culpa',
+                  nombre='culpa-descansar-tiktok.mp4', kbps=1600, sin_marca=True,
+                  variar=dict(tono=8, zoom=1.22, espejo=True, desde=55)),
+    'cama': dict(bucle='vertical-lluvia.mp4', audio='tiktok-cama/cama-master.wav', T=60,
+                 textos=TEXTOS_CAMA, texto=TEXTO_CAMA, out='tiktok-cama',
+                 nombre='viendo-esto-en-la-cama-tiktok.mp4', kbps=1600, sin_marca=True,
+                 variar=dict(tono=12, zoom=1.25, espejo=True, desde=40)),
+    'historia-sin-correo': dict(bucle='vertical-zen-t35.mp4', audio='historia-sin-correo/sin-correo-historia.wav', T=15,
+                                textos=TEXTOS_HIST_SIN_CORREO, texto=TEXTO_HIST_SIN_CORREO, out='historia-sin-correo',
+                                nombre='historia-noche-1-sin-correo.mp4', kbps=4000, sin_marca=True,
+                                variar=dict(tono=8, zoom=1.3, desde=22)),
     'historia-fin-de-mes': dict(bucle='vertical-lluvia.mp4', audio='historia-fin-de-mes/fin-de-mes-historia.wav', T=15,
                                 textos=TEXTOS_HIST_FIN_DE_MES, texto=TEXTO_HIST_FIN_DE_MES, out='historia-fin-de-mes',
                                 nombre='historia-marco-aurelio-fin-de-mes.mp4', kbps=4000, sin_marca=True,
