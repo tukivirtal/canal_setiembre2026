@@ -984,7 +984,80 @@ TEXTOS_HIST_SIN_CORREO = [
 ]
 TEXTO_HIST_SIN_CORREO = "Para esta noche 🤍"
 
+# 19/10: dos para el algoritmo, sin promocionar, de los temas anotados: fatiga mental y
+# autoexplotación (con rendimiento adentro). La portada lleva solo la pregunta corta, sin
+# subtítulo, para que el título a mano decorado tenga lugar. Fondos nuevos (theta y jardín)
+# para que no se vean iguales a los dorados y azules de la última semana.
+# Fatiga mental: Marco Aurelio, Meditaciones 4.24, que cita a Demócrito (traducción propia:
+# «ὀλίγα πρῆσσε, εἰ μέλλεις εὐθυμήσειν»). No repite lo del cuerpo cansado de «cansada».
+TEXTOS_FATIGA = [
+    (0.0, 5.0, {'tipo': 'gancho', 'titulo': '¿Dormiste y no descansaste?'}),
+    (6.0, 13.0, {'titulo': 'No es el cuerpo. Es la cabeza, que no paró en todo el día.'}),
+    (14.0, 21.0, {'titulo': 'Mil pestañas abiertas en la cabeza. Y nadie las ve.'}),
+    (22.0, 30.0, {'titulo': 'Cada vez que suene, imagina que cierras una.'}),
+    (31.0, 39.0, {'titulo': 'Mira el centro del círculo, sin buscar nada.'}),
+    (40.0, 48.0, {'titulo': 'Ocúpate de pocas cosas si quieres estar en paz.',
+                  'fuente': 'MARCO AURELIO · MEDITACIONES, 4.24'}),
+    (49.0, 55.0, {'titulo': 'Mañana, una cosa a la vez.'}),
+    (55.5, 60.0, {'tipo': 'fin', 'titulo': 'Guárdalo para cuando la cabeza no dé más',
+                  'sub': 'Rin · sonido en 528\u00a0Hz, compuesto desde cero.'}),
+]
+TEXTO_FATIGA = """¿Dormiste y no descansaste? 🌙
+No es el cuerpo: es la cabeza, que no paró en todo el día. Mil pestañas abiertas, y nadie las ve.
+Cada vez que suene, imagina que cierras una. Mañana, una cosa a la vez.
+«Ocúpate de pocas cosas si quieres estar en paz.» Marco Aurelio
+Sonido en 528 Hz, compuesto desde cero por Rin.
+
+#fatigamental #cansanciomental #estres #calma #528hz"""
+
+# Autoexplotación: nadie te exige tanto como tú, y el valor medido por lo que se rinde. La
+# frase es de Hecatón y la cuenta Séneca en la carta 6 a Lucilio (traducción propia: «quaeris
+# quid profecerim? amicus esse mihi coepi»); por eso la fuente dice «citado por Séneca».
+TEXTOS_AUTOEXPLOTACION = [
+    (0.0, 5.0, {'tipo': 'gancho', 'titulo': '¿Tu peor jefe eres tú?'}),
+    (6.0, 13.0, {'titulo': 'Nadie te pide tanto. Y aun así, no paras.'}),
+    (14.0, 21.0, {'titulo': 'Mides lo que vales por lo que rindes.'}),
+    (22.0, 30.0, {'titulo': 'Pero no eres tu lista de pendientes.'}),
+    (31.0, 39.0, {'titulo': 'Separa un poco los dientes. Exhala cada vez que suene.'}),
+    (40.0, 48.0, {'titulo': '¿Qué progreso he hecho? He empezado a ser amigo de mí mismo.',
+                  'fuente': 'HECATÓN · CITADO POR SÉNECA'}),
+    (49.0, 55.0, {'titulo': 'Hoy, sé quien te cuida, no quien te exige.'}),
+    (55.5, 60.0, {'tipo': 'fin', 'titulo': 'Mándaselo a quien siempre puede un poco más',
+                  'sub': 'Rin · sonido en 417\u00a0Hz, compuesto desde cero.'}),
+]
+TEXTO_AUTOEXPLOTACION = """¿Tu peor jefe eres tú? 🌿
+Nadie te pide tanto y aun así no paras. Mides lo que vales por lo que rindes. Pero no eres tu lista de pendientes.
+«¿Qué progreso he hecho? He empezado a ser amigo de mí mismo.» Hecatón, citado por Séneca
+Sonido en 417 Hz, compuesto desde cero por Rin.
+Mándaselo a quien siempre puede un poco más.
+
+#autoexigencia #burnout #productividad #calma #417hz"""
+
+# 19/10: historia con la frase anotada, «no todo lo puedes tener bajo control». El Enquiridión 1
+# ya salió en «historia-depende»: acá va Epicteto, Disertaciones I 1, 17 (traducción propia:
+# «τὰ ἐφ᾽ ἡμῖν βέλτιστα κατασκευάζειν, τοῖς δ᾽ ἄλλοις χρῆσθαι ὡς πέφυκεν»). Los golpes caen en
+# 0,3 · 5,0 · 11,8 s, cuando cambia el texto; la cita queda más tiempo para leerla.
+TEXTOS_HIST_CONTROL = [
+    (0.3, 4.8, {'tipo': 'gancho', 'titulo': 'No todo lo puedes tener bajo control.'}),
+    (5.0, 11.6, {'titulo': 'Haz lo mejor con lo que depende de ti, y lo demás tómalo como venga.',
+                 'fuente': 'EPICTETO · DISERTACIONES I, 1'}),
+    (11.8, 15.0, {'titulo': 'Por hoy, suelta lo demás.'}),
+]
+TEXTO_HIST_CONTROL = "Lo demás, suéltalo 🤍 Epicteto"
+
 PIEZAS = {
+    'fatiga': dict(bucle='vertical-theta.mp4', audio='tiktok-fatiga/fatiga-master.wav', T=60,
+                   textos=TEXTOS_FATIGA, texto=TEXTO_FATIGA, out='tiktok-fatiga',
+                   nombre='fatiga-mental-tiktok.mp4', kbps=1600, sin_marca=True,
+                   variar=dict(zoom=1.12, desde=12)),
+    'autoexplotacion': dict(bucle='vertical-jardin.mp4', audio='tiktok-autoexplotacion/autoexplotacion-master.wav', T=60,
+                            textos=TEXTOS_AUTOEXPLOTACION, texto=TEXTO_AUTOEXPLOTACION, out='tiktok-autoexplotacion',
+                            nombre='tu-peor-jefe-tiktok.mp4', kbps=1600, sin_marca=True,
+                            variar=dict(zoom=1.15, espejo=True, desde=30)),
+    'historia-control': dict(bucle='vertical-zen-t35.mp4', audio='historia-control/control-historia.wav', T=15,
+                             textos=TEXTOS_HIST_CONTROL, texto=TEXTO_HIST_CONTROL, out='historia-control',
+                             nombre='historia-epicteto-control.mp4', kbps=4000, sin_marca=True,
+                             variar=dict(tono=4, zoom=1.2, espejo=True, desde=36)),
     'culpa': dict(bucle='vertical-zen-t35.mp4', audio='tiktok-culpa/culpa-master.wav', T=60,
                   textos=TEXTOS_CULPA, texto=TEXTO_CULPA, out='tiktok-culpa',
                   nombre='culpa-descansar-tiktok.mp4', kbps=1600, sin_marca=True,
