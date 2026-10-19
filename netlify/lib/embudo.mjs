@@ -9,6 +9,7 @@
 // No se guarda la IP, ni el correo, ni cookies. La sesión es un número al azar que vive en la
 // pestaña (sessionStorage) y sirve para contar personas en vez de toques repetidos.
 import { createHash, timingSafeEqual } from 'node:crypto';
+import { excel } from './excel.mjs';
 
 export const ALMACEN = 'embudo';
 export const ZONA = 'America/Argentina/Buenos_Aires';
@@ -97,6 +98,7 @@ export async function manejarEvento(req, context, store) {
 
 const ERRORES = [['vacio', 'sin escribir nada'], ['telefono', 'un teléfono'], ['sin-arroba', 'sin la @'],
   ['sin-punto', 'sin el final (.com)'], ['otro', 'otro error'], ['x', 'sin dato (antes del 14/10)']];
+const PASOS = { escucha: 'escucha', minuto: 'escucha-minuto', campo: 'campo', escribe: 'escribe', clic: 'clic', guardado: 'guardado' };
 const SEGUNDOS = [['s0', 'menos de 3 s'], ['s3', '3 a 10 s'], ['s10', '10 a 30 s'], ['s30', '30 s a 1,5 min'], ['s90', 'más de 1,5 min']];
 const BAJARON = [['p0', 'no bajaron'], ['p25', 'un cuarto'], ['p50', 'la mitad'], ['p75', 'tres cuartos'], ['p100', 'hasta el final']];
 
@@ -105,12 +107,13 @@ export function resumir(claves) {
   const sesiones = new Map();
   for (const e of eventos) {
     let s = sesiones.get(e.sesion);
-    if (!s) sesiones.set(e.sesion, (s = { eventos: new Set(), salidas: [], errores: new Set() }));
+    if (!s) sesiones.set(e.sesion, (s = { id: e.sesion, eventos: new Set(), salidas: [], errores: new Set(), regalo: new Set() }));
     s.eventos.add(e.evento);
     // La sesión toma el origen, el país, el día y la hora de su primera visita a la landing.
     if (e.evento === 'visita' && !s.origen) Object.assign(s, { origen: e.origen, pais: e.pais, disp: e.disp, dia: e.dia, hora: e.hora });
     if (e.evento === 'salida') s.salidas.push(e.detalle);
     if (e.evento === 'correo-mal') s.errores.add(e.detalle);
+    if (e.evento === 'visita-regalo') s.regalo.add(e.detalle);
   }
   for (const [id, s] of sesiones) {
     if (!s.origen) {
@@ -150,13 +153,13 @@ export function resumir(claves) {
     if (scroll.has(baj)) scroll.set(baj, scroll.get(baj) + 1);
   }
 
+  // Cada paso del camino por origen, país, dispositivo, día u hora (el tablero muestra tres; el Excel, todos).
   const agrupar = (campo) => {
     const m = new Map();
     for (const s of llegaron) {
-      const g = m.get(s[campo]) || { llegaron: 0, escucharon: 0, guardado: 0 };
+      const g = m.get(s[campo]) || Object.fromEntries(['llegaron', ...Object.keys(PASOS)].map((k) => [k, 0]));
       g.llegaron++;
-      if (s.eventos.has('escucha')) g.escucharon++;
-      if (s.eventos.has('guardado')) g.guardado++;
+      for (const [k, ev] of Object.entries(PASOS)) if (s.eventos.has(ev)) g[k]++;
       m.set(s[campo], g);
     }
     return [...m.entries()].sort((a, b) => b[1].llegaron - a[1].llegaron);
@@ -179,7 +182,7 @@ export function resumir(claves) {
     noches: [1, 2, 3].map((n) => [n, con(`noche-${n}`), con(`mitad-${n}`), con(`fin-${n}`)]),
     abrieron, pusieron, volvieron, descargas: cuenta('descarga'), tarjetas: cuenta('tarjeta'), compartir: con('compartir'),
     correoMal: con('correo-mal'), errores: ERRORES.map(([k, t]) => [t, tipos.get(k) || 0]).filter(([, n]) => n),
-    fallos, trampas: cuenta('trampa'), eventos: eventos.length,
+    fallos, trampas: cuenta('trampa'), eventos: eventos.length, personas: lista,
   };
 }
 
@@ -213,7 +216,7 @@ function barras(filas, total) {
 function tabla(grupos, fmt = nombre) {
   if (!grupos.length) return '<p class="nada">Todavía sin visitas.</p>';
   return '<table><tr><th></th><th>Llegaron</th><th>Escucharon</th><th>Correo</th><th>%</th></tr>' +
-    grupos.map(([k, g]) => `<tr><td>${esc(fmt(k))}</td><td>${g.llegaron}</td><td>${g.escucharon}</td><td>${g.guardado}</td>` +
+    grupos.map(([k, g]) => `<tr><td>${esc(fmt(k))}</td><td>${g.llegaron}</td><td>${g.escucha}</td><td>${g.guardado}</td>` +
       `<td>${pct(g.guardado, g.llegaron)}</td></tr>`).join('') + '</table>';
 }
 
@@ -233,6 +236,7 @@ export function pagina(r, { dias, clave: c, desde, hasta }) {
   .periodo{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
   .periodo button{color:var(--texto);background:none;border:1px solid var(--borde);border-radius:999px;padding:5px 14px;font:inherit;font-size:.9rem;cursor:pointer}
   .periodo button.activo{background:var(--oro);color:#17130a;border-color:var(--oro);font-weight:700}
+  .excel button{margin-top:12px;color:var(--oro);background:none;border:1px solid var(--oro);border-radius:10px;padding:8px 14px;font:inherit;font-size:.9rem;cursor:pointer}
   .suave{color:var(--suave);font-size:.85rem;margin-top:6px}
   .caja{border:1px solid var(--borde);border-radius:14px;padding:12px 14px;background:rgba(255,255,255,.02)}
   .fila{position:relative;display:flex;gap:10px;align-items:baseline;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.05)}
@@ -248,6 +252,8 @@ export function pagina(r, { dias, clave: c, desde, hasta }) {
 </style></head><body>
 <h1>Embudo del regalo</h1>
 <div class="periodo">${periodo(1, 'Hoy')}${periodo(7, '7 días')}${periodo(30, '30 días')}</div>
+<form class="excel" method="post" action="/api/embudo"><input type="hidden" name="clave" value="${esc(c)}">
+<input type="hidden" name="dias" value="${dias}"><input type="hidden" name="formato" value="xlsx"><button>Descargar Excel de este período</button></form>
 <p class="suave">Del ${esc(fechaCorta(desde))} al ${esc(fechaCorta(hasta))}, en hora de Argentina. Personas, no toques: cada una cuenta una vez por paso.</p>
 
 <h2>El camino</h2>
@@ -289,6 +295,132 @@ Guardaron tarjetas: ${r.tarjetas}. Compartieron: ${r.compartir}.</p></div>
 
 <p class="suave" style="margin-top:24px">Sin cookies ni datos personales: no se guarda la IP ni el correo. Los números pueden tardar hasta un minuto en aparecer.</p>
 </body></html>`;
+}
+
+// ── El Excel ──────────────────────────────────────────────────────────────────────────────
+// Lo mismo que el tablero, y además una fila por persona y una por evento: para mirar todo sin capturas.
+
+const QUE_ES = {
+  visita: 'Llegó a la página principal',
+  escucha: 'Puso la noche 1 en la página principal',
+  'escucha-minuto': 'Pasó 1 minuto con la noche 1',
+  'escucha-mitad': 'Pasó la mitad de la noche 1',
+  'escucha-fin': 'Escuchó la noche 1 entera',
+  muestra: 'Puso la muestra (página anterior al 14/10)',
+  'muestra-fin': 'Escuchó la muestra entera (página anterior al 14/10)',
+  campo: 'Tocó el campo del correo',
+  escribe: 'Empezó a escribir el correo',
+  'correo-mal': 'Mandó el correo mal escrito (detalle: qué le faltaba)',
+  clic: 'Mandó el correo bien escrito',
+  trampa: 'Un robot cayó en la trampa del formulario',
+  guardado: 'Su correo quedó guardado en MailerLite',
+  fallo: 'No se pudo guardar el correo (detalle: por qué)',
+  'visita-regalo': 'Abrió la página de las noches (form: al dejar el correo; vuelve: desde el correo u otro enlace)',
+  ...Object.fromEntries([1, 2, 3].flatMap((n) => [
+    [`noche-${n}`, `Puso la noche ${n} en la página de las noches`],
+    [`mitad-${n}`, `Pasó la mitad de la noche ${n}`],
+    [`fin-${n}`, `Escuchó la noche ${n} entera`],
+  ])),
+  descarga: 'Descargó un audio (detalle: cuál)',
+  tarjeta: 'Guardó una tarjeta (detalle: cuál)',
+  compartir: 'Tocó «Pasarle estas noches»',
+  salida: 'Se fue o pasó a otra app (detalle: l = página principal o r = noches, segundos y cuánto bajó)',
+};
+const ORDEN = Object.fromEntries(Object.keys(QUE_ES).map((k, i) => [k, i]));
+const etiqueta = (lista, k) => (lista.find(([c]) => c === k) || [k, ''])[1];
+const ahora = () => new Intl.DateTimeFormat('es-AR', { timeZone: ZONA, year: 'numeric', month: '2-digit', day: '2-digit',
+  hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }).format(new Date());
+
+const PASOS_EXCEL = ['Llegaron', 'Pusieron la noche 1', 'Más de 1 minuto', 'Tocaron el campo', 'Empezaron a escribir',
+  'Lo mandaron bien', 'Guardados', '% guardados'];
+const porGrupo = (nombreHoja, titulo, grupos, fmt) => ({
+  nombre: nombreHoja, fijarPrimera: true, anchos: [26, 10, 12, 12, 12, 12, 12, 11, 11],
+  filas: [[titulo, ...PASOS_EXCEL].map((t) => ({ titulo: t })),
+    ...grupos.map(([k, g]) => [fmt(k), g.llegaron, g.escucha, g.minuto, g.campo, g.escribe, g.clic, g.guardado,
+      { pct: g.llegaron ? g.guardado / g.llegaron : NaN }])],
+});
+
+function filaPersona(s) {
+  const si = (ev) => (s.eventos.has(ev) ? 1 : '');
+  const [, seg, baj] = (s.salidas.find((x) => x.startsWith('l-')) || '').split('-');
+  return [{ fecha: s.dia }, s.hora === 'xx' ? '' : Number(s.hora), nombre(s.origen), nombrePais(s.pais), nombre(s.disp),
+    si('visita'), si('escucha'), si('escucha-minuto'), si('escucha-mitad'), si('escucha-fin'),
+    si('campo'), si('escribe'), [...s.errores].map((t) => etiqueta(ERRORES, t)).join(', '), si('clic'), si('guardado'),
+    etiqueta(SEGUNDOS, seg), baj === 'p0' ? 'no bajó' : etiqueta(BAJARON, baj),
+    s.regalo.has('form') ? 1 : '', [...s.regalo].some((d) => d !== 'form') ? 1 : '',
+    [1, 2, 3].filter((n) => s.eventos.has(`noche-${n}`)).join(', '), s.id];
+}
+
+export function libro(r, claves, { dias, desde, hasta }) {
+  const llegaron = r.embudo[0][1];
+  const parte = (n, total) => ({ pct: total ? n / total : NaN });
+  const resumen = [
+    [{ titulo: 'Embudo del regalo · estudioarmonia.com' }],
+    ['Período', `Del ${fechaCorta(desde)} al ${fechaCorta(hasta)} (${dias} ${dias === 1 ? 'día' : 'días'}, hora de Argentina)`],
+    ['Descargado', `${ahora()} (hora de Argentina)`],
+    [],
+    [{ titulo: 'El camino' }, { titulo: 'Personas' }, { titulo: '% de los que llegaron' }],
+    ...r.embudo.map(([t, n]) => [t, n, parte(n, llegaron)]),
+    [],
+    [{ titulo: 'Se fueron sin escuchar ni dejar el correo' }, r.seFueron, parte(r.seFueron, llegaron)],
+    [{ titulo: 'Cuánto se quedaron' }, { titulo: 'Personas' }, { titulo: '%' }],
+    ...r.tiempo.map(([t, n]) => [t, n, parte(n, r.seFueron)]),
+    [{ titulo: 'Cuánto bajaron en la página' }, { titulo: 'Personas' }, { titulo: '%' }],
+    ...r.scroll.map(([t, n]) => [t, n, parte(n, r.seFueron)]),
+    ['Sin dato de salida (la app cerró la página de golpe)', r.sinDato],
+    [],
+    [{ titulo: 'Problemas' }],
+    ['Mandaron el correo mal escrito', r.correoMal],
+    ...r.errores.map(([t, n]) => [`   ${t}`, n]),
+    ['No se pudo guardar el correo', r.fallos.length, [...new Set(r.fallos)].join(', ')],
+    ['Robots que cayeron en la trampa', r.trampas],
+    ['Eventos en el período', r.eventos],
+  ];
+  const noches = [
+    [{ titulo: 'Noche' }, { titulo: 'La pusieron' }, { titulo: 'Pasaron la mitad' }, { titulo: 'Hasta el final' }],
+    ['Noche 1, en la página principal', r.landing[0], r.landing[2], r.landing[3]],
+    ...r.noches.map(([n, a, b, c]) => [`Noche ${n}, en la página de las noches`, a, b, c]),
+    [],
+    ['Pasaron 1 minuto con la noche 1 en la página principal', r.landing[1]],
+    ['Abrieron la página de las noches al dejar el correo', r.abrieron],
+    ['Volvieron a las noches desde el correo', r.volvieron],
+    ['Pusieron alguna noche en la página de las noches', r.pusieron],
+    ['Descargaron audios', r.descargas],
+    ['Guardaron tarjetas', r.tarjetas],
+    ['Compartieron', r.compartir],
+  ];
+  const personas = [...r.personas].sort((a, b) => `${a.dia}${a.hora}`.localeCompare(`${b.dia}${b.hora}`));
+  const eventos = claves.map(leer).filter((e) => e.sesion)
+    .sort((a, b) => a.dia.localeCompare(b.dia) || a.sesion.localeCompare(b.sesion) || (ORDEN[a.evento] ?? 99) - (ORDEN[b.evento] ?? 99));
+  return excel([
+    { nombre: 'Resumen', anchos: [52, 12, 22], filas: resumen },
+    porGrupo('Por día', 'Día', [...r.porDia].sort((a, b) => a[0].localeCompare(b[0])), (d) => ({ fecha: d })),
+    porGrupo('Origen', 'Origen', r.origen, nombre),
+    porGrupo('Países', 'País', r.pais, nombrePais),
+    porGrupo('Dispositivos', 'Dispositivo', r.disp, nombre),
+    porGrupo('Hora', 'Hora del celular', r.hora, nombreHora),
+    { nombre: 'Noches', anchos: [52, 12, 16, 14], filas: noches },
+    { nombre: 'Personas', fijarPrimera: true, anchos: [11, 6, 18, 16, 13, 8, 8, 8, 8, 8, 8, 8, 20, 8, 9, 15, 14, 9, 9, 10, 12],
+      filas: [['Día', 'Hora', 'Origen', 'País', 'Dispositivo', 'Llegó a la página', 'Puso la noche 1', 'Más de 1 minuto',
+        'La mitad', 'Entera', 'Tocó el campo', 'Escribió', 'Correo mal', 'Lo mandó bien', 'Guardado', 'Tiempo en la página',
+        'Cuánto bajó', 'Abrió las noches', 'Volvió desde el correo', 'Noches que puso', 'Sesión'].map((t) => ({ titulo: t })),
+      ...personas.map(filaPersona)] },
+    { nombre: 'Eventos', fijarPrimera: true, anchos: [11, 6, 15, 52, 18, 16, 13, 18, 12],
+      filas: [['Día', 'Hora', 'Evento', 'Qué es', 'Origen', 'País', 'Dispositivo', 'Detalle', 'Sesión'].map((t) => ({ titulo: t })),
+        ...eventos.map((e) => [{ fecha: e.dia }, e.hora === 'xx' ? '' : Number(e.hora), e.evento, QUE_ES[e.evento] || '',
+          nombre(e.origen), nombrePais(e.pais), nombre(e.disp), e.detalle === 'x' ? '' : e.detalle, e.sesion])] },
+    { nombre: 'Guía', anchos: [18, 100], filas: [
+      [{ titulo: 'Evento' }, { titulo: 'Qué es' }],
+      ...Object.entries(QUE_ES),
+      [],
+      [{ titulo: 'Notas' }],
+      ['Día', 'En hora de Argentina.'],
+      ['Hora', 'La del celular de cada persona (en México, tres horas menos que en Uruguay). Desde el 14/10.'],
+      ['Personas', 'Una fila por persona (una pestaña abierta). 1 = sí. «Llegó a la página» vacío: entró directo a la página de las noches.'],
+      ['Sesión', 'Un número al azar que vive mientras la pestaña está abierta: sirve para contar personas, no toques. No es un dato personal.'],
+      ['Privacidad', 'Sin cookies, sin IP y sin correos: del correo mal escrito solo se anota qué le faltaba.'],
+    ] },
+  ]);
 }
 
 function entrada(error = '') {
@@ -341,10 +473,12 @@ export async function manejarEmbudo(req, store, claveEsperada) {
   const url = new URL(req.url);
   let dada = url.searchParams.get('clave');
   let diasPedidos = url.searchParams.get('dias');
+  let formato = url.searchParams.get('formato');
   if (req.method === 'POST') {
     const f = new URLSearchParams(await req.text());
     dada = f.get('clave');
     diasPedidos = f.get('dias') ?? diasPedidos;
+    formato = f.get('formato') ?? formato;
   }
   if (!claveEsperada) {
     return html(503, aviso('El tablero todavía no ve la variable EMBUDO_CLAVE. Si ya la creaste en Netlify ' +
@@ -363,5 +497,16 @@ export async function manejarEmbudo(req, store, claveEsperada) {
     const { blobs } = await store.list({ prefix: `${f}/` });
     for (const b of blobs) claves.push(b.key);
   }
-  return html(200, pagina(resumir(claves), { dias, clave: dada, desde: fechas.at(-1), hasta: fechas[0] }));
+  const rango = { dias, clave: dada, desde: fechas.at(-1), hasta: fechas[0] };
+  if (formato === 'xlsx') {
+    return new Response(libro(resumir(claves), claves, rango), {
+      status: 200,
+      headers: {
+        'Content-Type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+        'Content-Disposition': `attachment; filename="embudo-rin-${rango.hasta}-${dias}-dias.xlsx"`,
+        'Cache-Control': 'no-store', 'X-Robots-Tag': 'noindex',
+      },
+    });
+  }
+  return html(200, pagina(resumir(claves), rango));
 }

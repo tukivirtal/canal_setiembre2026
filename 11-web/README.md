@@ -117,6 +117,10 @@ escuchadas hasta la mitad y hasta el final, en la landing y en la página de las
 descargas, las veces que compartieron, y los problemas (qué le faltaba al correo mal escrito,
 fallos al guardar, robots).
 
+- **El Excel** (19/10): el botón «Descargar Excel de este período» baja un `.xlsx` con el
+  resumen, el camino por día, origen, país, dispositivo y hora, las noches, una fila por
+  persona, una por evento y una guía de qué es cada evento. Es para mandarlo al chat en vez de
+  capturas. Lo arma `netlify/lib/excel.mjs`, sin dependencias (un .xlsx es un zip de XML).
 - **La clave** es la variable `EMBUDO_CLAVE` de Netlify (Project configuration → Environment
   variables). Nunca va en el repositorio, que es público. Después de crearla o cambiarla hay
   que publicar de nuevo (Deploys → Trigger deploy).
