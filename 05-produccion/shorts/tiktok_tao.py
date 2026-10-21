@@ -1045,7 +1045,66 @@ TEXTOS_HIST_CONTROL = [
 ]
 TEXTO_HIST_CONTROL = "Lo demás, suéltalo 🤍 Epicteto"
 
+# 21/10: la fórmula de «cama» (el mejor tiempo promedio de la cuenta, 15,6 s; ver
+# 10-metricas/2026-10-21-tiktok-que-engancha.md), pero para que circule todo el día y no solo
+# de noche (pedido de Fátima). La pregunta describe lo que la persona está haciendo mientras
+# mira, a cualquier hora, y lo primero que pide se hace ahí mismo. Portada con la pregunta
+# sola, para el título a mano; sin luna ni «noche» en la descripción.
+# Ansiedad: Marco Aurelio, Meditaciones 3.10 (traducción propia: «μόνον ζῇ ἕκαστος τὸ παρὸν
+# τοῦτο, τὸ ἀκαριαῖον· τὰ δὲ ἄλλα ἢ βεβίωται ἢ ἔστιν ἐν ἀδήλῳ»). Fondo jardín en turquesa.
+TEXTOS_AIRE = [
+    (0.0, 5.0, {'tipo': 'gancho', 'titulo': '¿Estás aguantando la respiración mientras lees esto?'}),
+    (6.0, 13.0, {'titulo': 'Suelta el aire despacio, por la boca.'}),
+    (14.0, 21.0, {'titulo': 'Baja los hombros. Afloja la mandíbula.'}),
+    (22.0, 30.0, {'titulo': 'Cada vez que suene, exhala más largo de lo que inhalas.'}),
+    (31.0, 39.0, {'titulo': 'Siente los pies en el piso, donde estés.'}),
+    (40.0, 48.0, {'titulo': 'Cada uno vive solo este instante. Lo demás ya pasó, o es incierto.',
+                  'fuente': 'MARCO AURELIO · MEDITACIONES, 3.10'}),
+    (49.0, 55.0, {'titulo': 'Por ahora, solo el aire que entra y sale.'}),
+    (55.5, 60.0, {'tipo': 'fin', 'titulo': 'Guárdalo para cuando la ansiedad apriete',
+                  'sub': 'Rin · sonido en 432 Hz, compuesto desde cero.'}),
+]
+TEXTO_AIRE = """¿Estás aguantando la respiración mientras lees esto? 🌿
+Un minuto para soltar el aire y volver a donde estás.
+«Cada uno vive solo este instante. Lo demás ya pasó, o es incierto.» Marco Aurelio
+Sonido en 432 Hz, compuesto desde cero por Rin.
+Guárdalo para cuando la ansiedad apriete.
+
+#ansiedad #respira #calma #estres #432hz"""
+
+# Poco tiempo después del trabajo y las ganas de hacer otras cosas que no entran en el día:
+# Séneca, Cartas a Lucilio 1.1 (traducción propia, abreviada: «vindica te tibi, et tempus quod
+# adhuc aut auferebatur aut subripiebatur aut excidebat collige et serva»). Fondo dorado
+# llevado a cobre.
+TEXTOS_RATO = [
+    (0.0, 5.0, {'tipo': 'gancho', 'titulo': '¿Este es tu único rato libre del día?'}),
+    (6.0, 13.0, {'titulo': 'Deja de pasar videos. Quédate en este.'}),
+    (14.0, 21.0, {'titulo': 'Apoya la espalda. Cada vez que suene, exhala largo.'}),
+    (22.0, 30.0, {'titulo': 'Piensa en algo que tenías ganas de hacer.'}),
+    (31.0, 39.0, {'titulo': 'No es falta de ganas: el día no te alcanza.'}),
+    (40.0, 48.0, {'titulo': 'Reclámate para ti. Recoge y guarda el tiempo que te quitaban.',
+                  'fuente': 'SÉNECA · CARTAS A LUCILIO, 1'}),
+    (49.0, 55.0, {'titulo': 'Este minuto ya fue tuyo.'}),
+    (55.5, 60.0, {'tipo': 'fin', 'titulo': 'Mándaselo a quien siempre dice «no\u00a0tengo\u00a0tiempo»',
+                  'sub': 'Rin · sonido en 396 Hz, compuesto desde cero.'}),
+]
+TEXTO_RATO = """¿Este es tu único rato libre del día? 🤍
+No es falta de ganas: es que el día no te alcanza. Que este minuto sea tuyo.
+«Reclámate para ti. Recoge y guarda el tiempo que te quitaban.» Séneca
+Sonido en 396 Hz, compuesto desde cero por Rin.
+Mándaselo a quien siempre dice «no tengo tiempo».
+
+#estres #trabajo #tiempolibre #calma #396hz"""
+
 PIEZAS = {
+    'aire': dict(bucle='vertical-jardin.mp4', audio='tiktok-aire/aire-master.wav', T=60,
+                 textos=TEXTOS_AIRE, texto=TEXTO_AIRE, out='tiktok-aire',
+                 nombre='aguantando-la-respiracion-tiktok.mp4', kbps=1600, sin_marca=True,
+                 variar=dict(tono=20, zoom=1.25, desde=6)),
+    'rato': dict(bucle='vertical-zen-t35.mp4', audio='tiktok-rato/rato-master.wav', T=60,
+                 textos=TEXTOS_RATO, texto=TEXTO_RATO, out='tiktok-rato',
+                 nombre='unico-rato-libre-tiktok.mp4', kbps=1600, sin_marca=True,
+                 variar=dict(tono=-12, zoom=1.16, desde=14)),
     'fatiga': dict(bucle='vertical-theta.mp4', audio='tiktok-fatiga/fatiga-master.wav', T=60,
                    textos=TEXTOS_FATIGA, texto=TEXTO_FATIGA, out='tiktok-fatiga',
                    nombre='fatiga-mental-tiktok.mp4', kbps=1600, sin_marca=True,
